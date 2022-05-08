@@ -1,0 +1,33 @@
+<?php
+/**
+ * Helper Functions.
+ *
+ * @since      0.9.0
+ * @package    RankMath
+ * @subpackage RankMath\Core
+ * @author     Rank Math <support@rankmath.com>
+ */
+
+namespace RankMath;
+
+/**
+ * Helper class.
+ */
+class Helper {
+	/**
+	 * @param string $content The string containing the %variables%.
+	 * @param mixed[]|object  $args    Context object, can be post, taxonomy or term.
+	 * @param string[]  $exclude Excluded variables won't be replaced.
+	 *
+	 * @return string
+	 */
+	public static function replace_vars( $content, $args = [], $exclude = [] ) {}
+
+	/**
+	 * Get Schema types as choices.
+	 *
+	 * @param  string|false $none Add none option to the list.
+	 * @return array<string, string>
+	 */
+	public static function choices_rich_snippet_types( $none = false ) {}
+}

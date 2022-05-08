@@ -1,0 +1,30 @@
+<?php
+/**
+ * The Singular Class
+ *
+ * @since      1.0.22
+ * @package    RankMath
+ * @subpackage RankMath\Paper
+ * @author     Rank Math <support@rankmath.com>
+ */
+
+namespace RankMath\Paper;
+
+/**
+ * Singular class.
+ */
+class Singular {
+	/**
+	 * Retrieves the robots.
+	 *
+	 * @return string[]
+	 */
+	public function robots() {}
+
+	/**
+	 * Retrieves meta keywords.
+	 *
+	 * @return string|string[] The focus keywords.
+	 */
+	public function keywords() {}
+}

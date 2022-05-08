@@ -1,0 +1,87 @@
+<?php
+/**
+ * The SEO model for ContentType objects.
+ *
+ * @package \WPGraphQL\RankMath\Model
+ */
+
+namespace WPGraphQL\RankMath\Model;
+
+use \GraphQL\Error\Error;
+use GraphQL\Error\UserError;
+
+/**
+ * Class - ContentTypeSeo
+ */
+class ContentTypeSeo extends Seo {
+	/**
+	 * Stores the incoming post type data.
+	 *
+	 * @var \WP_Post_Type $data
+	 */
+	protected $data;
+
+	/**
+	 * The settings prefix.
+	 *
+	 * @var string
+	 */
+	protected string $prefix;
+
+
+	/**
+	 * Constructor.
+	 *
+	 * @param string $post_type .
+	 * @throws Error .
+	 */
+	public function __construct( string $post_type ) {
+		$object = get_post_type_object( $post_type );
+		if ( null === $object ) {
+			throw new Error(
+				sprintf(
+					// translators: post type .
+					__( 'Invalid post type %s passed to ContentTypeSeo model.', 'wp-graphql-rank-math' ),
+					$post_type,
+				)
+			);
+		}
+
+		$capability = isset( $object->cap->edit_posts ) ? $object->cap->edit_posts : 'edit_posts';
+
+		$allowed_fields = [ 'breadcrumbTitle' ];
+
+		parent::__construct( $object, $capability, $allowed_fields );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function init() {
+		if ( empty( $this->fields ) ) {
+			parent::init();
+
+			$this->fields = array_merge(
+				$this->fields,
+				[
+					'breadcrumbTitle' => fn() : ?string => ! empty( $this->data->labels->singular_name ) ? $this->data->labels->singular_name : null,
+
+				]
+			);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws UserError If no archive URI.
+	 */
+	protected function get_rest_url() : string {
+		$term_link = get_post_type_archive_link( $this->data->name );
+
+		if ( false === $term_link ) {
+			throw new UserError( __( 'There is no archive URI for the provided post type', 'wp-graphql-rank-math' ) );
+		}
+		return get_rest_url( null, '/rankmath/v1/getHead' ) . '?url=' . $term_link;
+	}
+}
