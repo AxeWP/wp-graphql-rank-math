@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'WPGraphQL\\RankMath\\' => array($baseDir . '/src'),
-    'AxeWP\\GraphQL\\' => array($vendorDir . '/justlevine/wp-graphql-plugin-boilerplate/src'),
+    'AxeWP\\GraphQL\\' => array($vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src'),
 );

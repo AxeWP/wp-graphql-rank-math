@@ -18,7 +18,7 @@ class CoreSchemaFilters implements Hookable {
 	 * {@inheritDoc}
 	 */
 	public static function init() : void {
-		add_filter( 'graphql_type_prefix', [ __CLASS__, 'get_type_prefix' ] );
+		add_filter( 'graphql_pb_type_prefix', [ __CLASS__, 'get_type_prefix' ] );
 		add_filter( 'graphql_allowed_fields_on_restricted_type', [ __CLASS__, 'allow_seo_on_post_types' ], 10, 2 );
 		add_filter( 'graphql_model_prepare_fields', [ __CLASS__, 'add_seo_to_model' ], 10, 3 );
 	}

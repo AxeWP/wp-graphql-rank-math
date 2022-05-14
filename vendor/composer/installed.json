@@ -1,24 +1,25 @@
 {
     "packages": [
         {
-            "name": "justlevine/wp-graphql-plugin-boilerplate",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "name": "axepress/wp-graphql-plugin-boilerplate",
+            "version": "0.0.1",
+            "version_normalized": "0.0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/justlevine/wp-graphql-plugin-boilerplate.git",
-                "reference": "7e65a22fbe5f5c3cd1ed8081ff25b72c01e84e92"
+                "url": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate.git",
+                "reference": "d2f488496e0cd08c34619b4bb8d5cdd2aa640347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justlevine/wp-graphql-plugin-boilerplate/zipball/7e65a22fbe5f5c3cd1ed8081ff25b72c01e84e92",
-                "reference": "7e65a22fbe5f5c3cd1ed8081ff25b72c01e84e92",
+                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/d2f488496e0cd08c34619b4bb8d5cdd2aa640347",
+                "reference": "d2f488496e0cd08c34619b4bb8d5cdd2aa640347",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4 || ^8.0"
             },
             "require-dev": {
+                "automattic/vipwpcs": "^2.3",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
                 "phpstan/extension-installer": "^1.1",
@@ -29,8 +30,7 @@
                 "wp-cli/wp-cli-bundle": "^2.6",
                 "wp-coding-standards/wpcs": "^2.3"
             },
-            "time": "2022-05-08T10:17:54+00:00",
-            "default-branch": true,
+            "time": "2022-05-14T19:07:01+00:00",
             "bin": [
                 "bin/create-wpgraphql-plugin.sh"
             ],
@@ -41,65 +41,26 @@
                     "AxeWP\\GraphQL\\": "src/"
                 }
             },
-            "scripts": {
-                "create-plugin": [
-                    "bash bin/create-wpgraphql-plugin.sh"
-                ],
-                "init-plugin": [
-                    "bash bin/init-wpgraphql-plugin.sh"
-                ],
-                "install-test-env": [
-                    "cd wp-graphql-plugin-name && composer install-test-env"
-                ],
-                "install-stan-env": [
-                    "cd wp-graphql-plugin-name && composer --working-dir=wp-graphql-plugin-name/ install-stan-env"
-                ],
-                "codecept-run": [
-                    "cd wp-graphql-plugin-name && vendor/bin/codecept run -c wp-graphql-plugin-name --"
-                ],
-                "codecept-build": [
-                    "cd wp-graphql-plugin-name && /vendor/bin/codecept build -c wp-graphql-plugin-name --"
-                ],
-                "lint": [
-                    "vendor/bin/phpcs"
-                ],
-                "phpcs-i": [
-                    "php ./vendor/bin/phpcs -i"
-                ],
-                "check-cs": [
-                    "php ./vendor/bin/phpcs --standard=.phpcs.xml.dist"
-                ],
-                "fix-cs": [
-                    "php ./vendor/bin/phpcbf --standard=.phpcs.xml.dist"
-                ],
-                "phpstan": [
-                    "phpstan analyze --ansi --memory-limit=1G"
-                ],
-                "install-project-deps": [
-                    "@composer --working-dir=wp-graphql-plugin-name/ install"
-                ],
-                "update-project-deps": [
-                    "@composer --working-dir=wp-graphql-plugin-name/ update"
-                ],
-                "outdated-project-deps": [
-                    "@composer --working-dir=wp-graphql-plugin-name/ outdated"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
             ],
             "authors": [
                 {
-                    "name": "Dovid Levine",
-                    "email": "justlevine@gmail.com"
+                    "name": "AxePress Development",
+                    "homepage": "https://axepress.dev"
+                },
+                {
+                    "name": "David Levine",
+                    "role": "Developer"
                 }
             ],
             "description": "Boilerplate for creating WPGraphQL extensions",
             "support": {
-                "source": "https://github.com/justlevine/wp-graphql-plugin-boilerplate/tree/master",
-                "issues": "https://github.com/justlevine/wp-graphql-plugin-boilerplate/issues"
+                "issues": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/issues",
+                "source": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/tree/0.0.1"
             },
-            "install-path": "../justlevine/wp-graphql-plugin-boilerplate"
+            "install-path": "../axepress/wp-graphql-plugin-boilerplate"
         }
     ],
     "dev": false,

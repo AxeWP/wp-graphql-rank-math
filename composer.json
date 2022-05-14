@@ -13,15 +13,9 @@
 			"role": "Developer"
 		}
 	],
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/justlevine/wp-graphql-plugin-boilerplate"
-		}
-	],
 	"require": {
 		"php": ">=7.4 || ^8.0",
-		"justlevine/wp-graphql-plugin-boilerplate": "dev-master"
+		"axepress/wp-graphql-plugin-boilerplate": "0.0.1"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^3.0",
@@ -39,6 +33,7 @@
 		"wp-graphql/wp-graphql-testcase": "dev-develop",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"squizlabs/php_codesniffer": "^3.6",
+		"automattic/vipwpcs": "^2.3",
 		"wp-coding-standards/wpcs": "^2.3",
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"phpstan/phpstan": "^1.2",
@@ -46,8 +41,7 @@
 		"szepeviktor/phpstan-wordpress": "^1.0",
 		"poolshark/wp-graphql-stubs": "^0.0.2",
 		"wp-cli/wp-cli-bundle": "^2.6",
-		"php-coveralls/php-coveralls": "^2.5",
-		"automattic/vipwpcs": "^2.3"
+		"php-coveralls/php-coveralls": "^2.5"
 	},
 	"config": {
 		"optimize-autoloader": true,

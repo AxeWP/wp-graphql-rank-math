@@ -4,6 +4,8 @@
 	<!-- What to scan -->
 	<file>./access-functions.php</file>
 	<file>./wp-graphql-rank-math.php</file>
+	<file>./activation.php</file>
+	<file>./deactivation.php</file>
 	<file>./src/</file>
 	<exclude-pattern>/vendor/</exclude-pattern>
 	<exclude-pattern>/node_modules/</exclude-pattern>
