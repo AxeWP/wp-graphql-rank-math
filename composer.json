@@ -46,7 +46,8 @@
 		"szepeviktor/phpstan-wordpress": "^1.0",
 		"poolshark/wp-graphql-stubs": "^0.0.2",
 		"wp-cli/wp-cli-bundle": "^2.6",
-		"php-coveralls/php-coveralls": "^2.5"
+		"php-coveralls/php-coveralls": "^2.5",
+		"automattic/vipwpcs": "^2.3"
 	},
 	"config": {
 		"optimize-autoloader": true,

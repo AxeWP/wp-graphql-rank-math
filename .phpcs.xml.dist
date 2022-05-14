@@ -26,7 +26,7 @@
 
 	<!-- Rules: WordPress Coding Standards -->
 	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
-	<rule ref="WordPress-Core">
+	<rule ref="WordPress-VIP-Go">
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
 		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
 		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition.Found"/>

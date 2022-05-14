@@ -7,7 +7,7 @@
 Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [WPGraphQL Plugin Boilerplate](https://github.com/justlevine/wp-graphql-boilerplate).
 
 * [Join the WPGraphQL community on Slack.](https://join.slack.com/t/wp-graphql/shared_invite/zt-3vloo60z-PpJV2PFIwEathWDOxCTTLA)
-* [Documentation](#documentation)
+* [Documentation](#usage)
 
 -----
 

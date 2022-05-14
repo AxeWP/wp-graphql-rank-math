@@ -138,7 +138,8 @@ abstract class Seo extends Model {
 	 * @throws UserError When REST response fails.
 	 */
 	protected function get_head() : ?string {
-		$uri      = $this->get_rest_url();
+		$uri = $this->get_rest_url();
+		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get
 		$response = wp_remote_get( $uri );
 
 		if ( is_wp_error( $response ) ) {
