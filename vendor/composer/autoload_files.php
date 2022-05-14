@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '62bf21aed16c5cf96e9e80d12f6497a7' => $baseDir . '/access-functions.php',
+    'd93954ca8a74d7e67246db741a580590' => $baseDir . '/access-functions.php',
 );

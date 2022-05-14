@@ -53,7 +53,7 @@ class CoreSchemaFilters implements Hookable {
 	 * @param string $model_name .
 	 * @param mixed  $data .
 	 */
-	public static function add_seo_to_model( array $fields, string $model_name, $data ) {
+	public static function add_seo_to_model( array $fields, string $model_name, $data ) : array {
 		if ( 'PostTypeObject' === $model_name ) {
 			$fields['seo'] = function() use ( $data ) {
 				$link = get_post_type_archive_link( $data->name );

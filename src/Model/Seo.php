@@ -144,7 +144,7 @@ abstract class Seo extends Model {
 		if ( is_wp_error( $response ) ) {
 			throw new UserError(
 				// translators: the url.
-				sprintf( __( 'The request for the URL %s could not be retrieved', 'wp-graphql-rank-math' ) ),
+				sprintf( __( 'The request for the URL %s could not be retrieved. Error Message: ', 'wp-graphql-rank-math' ), $uri, $response->get_error_message() ),
 			);
 		}
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );

@@ -1,9 +1,18 @@
 {
-	"name": "justlevine/wp-graphql-rank-math",
+	"name": "axepress/wp-graphql-rank-math",
 	"description": "Adds WPGraphQL support for RankMath SEO",
 	"type": "wordpress-plugin",
 	"license": "GPL-3.0-or-later",
-	"authors": [],
+	"authors": [
+		{
+			"name": "AxePress Development",
+			"homepage": "https://axepress.dev"
+		},
+		{
+			"name": "David Levine",
+			"role": "Developer"
+		}
+	],
 	"repositories": [
 		{
 			"type": "vcs",
@@ -22,7 +31,7 @@
 		"codeception/module-db": "^1.0",
 		"codeception/module-filesystem": "^1.0",
 		"codeception/module-phpbrowser": "^1.0",
-		"codeception/module-rest": "^1.0",
+		"codeception/module-rest": "^2.0",
 		"codeception/module-webdriver": "^1.0",
 		"codeception/phpunit-wrapper": "^8.1",
 		"codeception/util-universalframework": "^1.0",
@@ -36,7 +45,8 @@
 		"phpstan/extension-installer": "^1.1",
 		"szepeviktor/phpstan-wordpress": "^1.0",
 		"poolshark/wp-graphql-stubs": "^0.0.2",
-		"wp-cli/wp-cli-bundle": "^2.6"
+		"wp-cli/wp-cli-bundle": "^2.6",
+		"php-coveralls/php-coveralls": "^2.5"
 	},
 	"config": {
 		"optimize-autoloader": true,
@@ -63,8 +73,17 @@
 		"init-plugin": "bash vendor/bin/init-wpgraphql-plugin.sh",
 		"install-test-env": "bash bin/install-test-env.sh",
 		"install-stan-env": "bash bin/install-stan-env.sh",
-		"codecept-run": "vendor/bin/codecept run --",
-		"codecept-build": "vendor/bin/codecept build --",
+		"docker-build": "bash bin/run-docker.sh build",
+    "docker-run": "bash bin/run-docker.sh run",
+    "docker-destroy": "docker-compose down",
+    "build-and-run": [
+      "@docker-build",
+      "@docker-run"
+    ],
+    "build-app": "@docker-build -a",
+    "build-test": "@docker-build -t",
+    "run-app": "@docker-run -a",
+    "run-test": "@docker-run -t",
 		"lint": "vendor/bin/phpcs",
 		"phpcs-i": [
 			"php ./vendor/bin/phpcs -i"

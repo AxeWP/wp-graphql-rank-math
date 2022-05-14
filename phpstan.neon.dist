@@ -10,6 +10,7 @@ parameters:
 			- phpstan/class-choices.stub
 			- phpstan/class-singular.stub
 			- phpstan/class-helpers.stub
+			- phpstan/Model.stub
 			- vendor/justlevine/wp-graphql-plugin-boilerplate/phpstan/class-wp-post-type.stub
 			- vendor/justlevine/wp-graphql-plugin-boilerplate/phpstan/class-wp-taxonomy.stub
 		bootstrapFiles:

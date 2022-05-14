@@ -55,7 +55,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 						canonicalUrl
 						description
 						focusKeywords
-						fullHead
+						# fullHead
 						isPillarContent
 						robots
 						title
@@ -93,7 +93,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 								$this->expectedField( 'breadcrumbTitle', 'Post Title' ),
 								$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
-								$this->expectedField( 'fullHead', static::IS_NULL ),
+								// $this->expectedField( 'fullHead', static::IS_NULL ),
 								$this->expectedField( 'isPillarContent', false ),
 								$this->expectedField(
 									'robots',

@@ -49,7 +49,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						canonicalUrl
 						description
 						focusKeywords
-						fullHead
+						# fullHead
 						jsonLd {
 							raw
 						}
@@ -76,7 +76,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 								$this->expectedField( 'breadcrumbTitle', "display" ),
 								$this->expectedField( 'description', static::IS_NULL ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
-								$this->expectedField( 'fullHead', static::IS_NULL ),
+								// $this->expectedField( 'fullHead', static::IS_NULL ),
 								$this->expectedField(
 									'robots',
 									[

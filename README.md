@@ -9,6 +9,15 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 * [Join the WPGraphQL community on Slack.](https://join.slack.com/t/wp-graphql/shared_invite/zt-3vloo60z-PpJV2PFIwEathWDOxCTTLA)
 * [Documentation](#documentation)
 
+-----
+
+![GitHub](https://img.shields.io/github/license/axewp/wp-graphql-rank-math)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/Code%20Quality?label=Code%20Quality)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/Integration%20Testing?label=Integration%20Testing)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/WordPress%20Coding%20Standards?label=WordPress%20Coding%20Standards)
+[![Coverage Status](https://coveralls.io/repos/github/AxeWP/wp-graphql-rank-math/badge.svg?branch=develop)](https://coveralls.io/github/AxeWP/wp-graphql-rank-math?branch=develop)
+-----
+
 ## System Requirements
 
 * PHP 7.4+ || 8.0

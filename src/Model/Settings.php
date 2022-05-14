@@ -17,7 +17,7 @@ class Settings extends Model {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @var array $data
+	 * @var array<string, mixed> $data
 	 */
 	protected $data;
 

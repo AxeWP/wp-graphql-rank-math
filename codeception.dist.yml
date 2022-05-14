@@ -35,10 +35,10 @@ extensions:
 modules:
     config:
         WPDb:
-            dsn: 'mysql:host=%TEST_DB_HOST%;dbname=%TEST_DB_NAME%'
-            user: '%TEST_DB_USER%'
-            password: '%TEST_DB_PASSWORD%'
-            populator: 'mysql -u $user -h $host $dbname < $dump'
+            dsn: 'mysql:host=%DB_HOST%;dbname=%DB_NAME%'
+            user: '%DB_USER%'
+            password: '%DB_PASSWORD%'
+            populator: 'mysql -u $user -p$password -h $host $dbname < $dump'
             dump: 'tests/_data/dump.sql'
             populate: true
             cleanup: true
@@ -64,10 +64,10 @@ modules:
             uploads: '/wp-content/uploads'
         WPLoader:
             wpRootFolder: '%WP_ROOT_FOLDER%'
-            dbName: '%TEST_DB_NAME%'
-            dbHost: '%TEST_DB_HOST%'
-            dbUser: '%TEST_DB_USER%'
-            dbPassword: '%TEST_DB_PASSWORD%'
+            dbName: '%DB_NAME%'
+            dbHost: '%DB_HOST%'
+            dbUser: '%DB_USER%'
+            dbPassword: '%DB_PASSWORD%'
             tablePrefix: '%WP_TABLE_PREFIX%'
             domain: '%WP_DOMAIN%'
             adminEmail: '%ADMIN_EMAIL%'
