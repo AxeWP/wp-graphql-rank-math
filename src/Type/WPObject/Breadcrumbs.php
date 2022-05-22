@@ -35,7 +35,7 @@ class Breadcrumbs extends ObjectType {
 	 * {@inheritDoc}
 	 */
 	public static function get_description() : string {
-		return __( 'The Seo score information.', 'wp-graphql-rank-math' );
+		return __( 'The Breadcrumb trail.', 'wp-graphql-rank-math' );
 	}
 
 	/**

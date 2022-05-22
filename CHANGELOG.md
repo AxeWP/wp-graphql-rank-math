@@ -1,7 +1,10 @@
 # Changelog
 
-## 0.0.2
+## v0.0.2
 - Feat: Add `breadcrumbs` trail to `BaseSeoFields`.
 
-## 0.0.1
+### Breaking schema changes
+- Field `RankMathGeneral.breadcrumbs` changed type from `RankMathBreadcrumbs` to `RankMathBreadcrumbsConfig`.
+
+## v0.0.1
 - Initial Release.
