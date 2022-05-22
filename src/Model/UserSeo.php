@@ -12,6 +12,8 @@ use GraphQL\Error\UserError;
 
 /**
  * Class - UserSeo
+ *
+ * @property int $ID the database ID.
  */
 class UserSeo extends Seo {
 	/**
@@ -63,6 +65,7 @@ class UserSeo extends Seo {
 				$this->fields,
 				[
 					'breadcrumbTitle' => fn() : ?string => $this->get_meta( 'breadcrumb_title', '', $this->data->display_name ) ?: null,
+					'ID'              => fn(): int => $this->database_id,
 				]
 			);
 		}

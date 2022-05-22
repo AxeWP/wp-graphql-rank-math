@@ -15,6 +15,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 		parent::setUp();
 
 		rank_math()->variables = new \RankMath\Replace_Variables\Manager();
+		rank_math()->settings->set( 'general', 'breadcrumbs', true );
 
 		$this->admin = $this->factory()->user->create(
 			[
@@ -32,6 +33,8 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	 * {@inheritDoc}
 	 */
 	public function tearDown(): void {
+		rank_math()->settings->set( 'general', 'breadcrumbs', false );
+
 		parent::tearDown();
 	}
 
@@ -45,6 +48,11 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 			query UserSeo( $id: ID! ) {
 				user( id: $id, idType: DATABASE_ID ){ 
 					seo {
+						breadcrumbs {
+							text
+							url
+							isHidden
+						}
 						breadcrumbTitle
 						canonicalUrl
 						description
@@ -73,7 +81,16 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						$this->expectedObject(
 							'seo',
 							[
-								$this->expectedField( 'breadcrumbTitle', "display" ),
+								$this->expectedNode(
+									'breadcrumbs',
+									[
+										$this->expectedField( 'text', 'Archives for display' ),
+										$this->expectedField( 'url', '' ),
+										$this->expectedField( 'isHidden', false ),
+									],
+									1
+								),
+								$this->expectedField( 'breadcrumbTitle', 'display' ),
 								$this->expectedField( 'description', static::IS_NULL ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
 								// $this->expectedField( 'fullHead', static::IS_NULL ),

@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: WPGraphQL for Rank Math SEO
- * Plugin URI: https://github.com/justlevine/wp-graphql-rank-math
- * GitHub Plugin URI: https://github.com/justlevine/wp-graphql-rank-math
+ * Plugin URI: https://github.com/AxeWP/wp-graphql-rank-math
+ * GitHub Plugin URI: https://github.com/AxeWP/wp-graphql-rank-math
  * Description: Adds RankMath support to WPGraphQL
  * Author: AxePress
- * Author URI: https://github.com/axepress
- * Update URI: https://github.com/justlevine/wp-graphql-rank-math
+ * Author URI: https://github.com/AxeWP
+ * Update URI: https://github.com/AxeWP/wp-graphql-rank-math
  * Version: 0.0.1
  * Text Domain: wp-graphql-rank-math
  * Domain Path: /languages
@@ -18,7 +18,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
  * @package WPGraphQL\RankMath
- * @author justlevine
+ * @author axepress
  * @license GPL-3
  * @version 0.0.1
  */

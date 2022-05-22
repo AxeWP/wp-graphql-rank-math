@@ -16,6 +16,8 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 
 		rank_math()->variables          = new \RankMath\Replace_Variables\Manager();
 		rank_math()->frontend_seo_score = new \RankMath\Frontend_SEO_Score();
+		rank_math()->settings->set( 'general', 'breadcrumbs', true );
+
 
 		$this->admin = $this->factory()->user->create(
 			[
@@ -39,6 +41,8 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 	 * {@inheritDoc}
 	 */
 	public function tearDown(): void {
+		rank_math()->settings->set( 'general', 'breadcrumbs', false );
+
 		parent::tearDown();
 	}
 
@@ -51,6 +55,11 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 				contentNode( id: $id, idType: $idType ){ 
 					databaseId
 					seo {
+						breadcrumbs {
+							text
+							url
+							isHidden
+						}
 						breadcrumbTitle
 						canonicalUrl
 						description
@@ -79,6 +88,8 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		];
 
 		$actual = $this->graphql( compact( 'query', 'variables' ) );
+		$this->assertArrayNotHasKey( 'errors', $actual );
+
 
 		$this->assertQuerySuccessful(
 			$actual,
@@ -90,10 +101,19 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 						$this->expectedObject(
 							'seo',
 							[
+								$this->expectedNode(
+									'breadcrumbs',
+									[
+										$this->expectedField( 'text', 'Post Title' ),
+										$this->expectedField( 'url', get_permalink( $this->database_id ) ),
+										$this->expectedField( 'isHidden', false ),
+									],
+									2
+								),
 								$this->expectedField( 'breadcrumbTitle', 'Post Title' ),
 								$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
-								// $this->expectedField( 'fullHead', static::IS_NULL ),
+								$this->expectedField( 'fullHead', static::IS_NULL ),
 								$this->expectedField( 'isPillarContent', false ),
 								$this->expectedField(
 									'robots',

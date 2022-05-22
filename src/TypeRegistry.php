@@ -150,9 +150,10 @@ class TypeRegistry {
 			WPObject\AdvancedRobotsMeta::class,
 			WPObject\SeoScore::class,
 			WPObject\JsonLd::class,
+			WPObject\Breadcrumbs::class,
 
 			// General settings.
-			WPObject\Settings\General\Breadcrumbs::class,
+			WPObject\Settings\General\BreadcrumbsConfig::class,
 			WPObject\Settings\General\FrontendSeoScore::class,
 			WPObject\Settings\General\Links::class,
 			WPObject\Settings\General\Webmaster::class,

@@ -1,5 +1,5 @@
 === WPGraphQL for Rank Math ===
-Contributors: justlevine
+Contributors: axepress, justlevine
 Tags: GraphQL, Gatsby, Headless, WPGraphQL, React, Rest, RankMath, Seo, Schema
 Requires at least: 5.4.1
 Tested up to: 5.9.3

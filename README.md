@@ -4,7 +4,7 @@
 
 🚨 NOTE: This is prerelease software. 🚨
 
-Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [WPGraphQL Plugin Boilerplate](https://github.com/justlevine/wp-graphql-boilerplate).
+Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [WPGraphQL Plugin Boilerplate](https://github.com/AxeWP/wp-graphql-boilerplate).
 
 * [Join the WPGraphQL community on Slack.](https://join.slack.com/t/wp-graphql/shared_invite/zt-3vloo60z-PpJV2PFIwEathWDOxCTTLA)
 * [Documentation](#usage)
@@ -268,4 +268,4 @@ E.g. `vendor/bin/codecept run wpunit` will run all WPUnit tests.
 
 ## Credits
 
-<a href="https://github.com/justlevine/wp-graphql-plugin-boilerplate">![Built with WPGraphQL Plugin Boilerplate](./assets/built-with.png)</a>
+<a href="https://github.com/AxeWP/wp-graphql-plugin-boilerplate">![Built with WPGraphQL Plugin Boilerplate](./assets/built-with.png)</a>

@@ -1,0 +1,60 @@
+<?php
+/**
+ * The Rank Math Breadcrumbs GraphQL Object.
+ *
+ * @package WPGraphQL\RankMath\Type\WPObject
+ */
+
+namespace WPGraphQL\RankMath\Type\WPObject;
+
+use AxeWP\GraphQL\Abstracts\ObjectType;
+use WPGraphQL\AppContext;
+
+/**
+ * Class - Breadcrumbs
+ */
+class Breadcrumbs extends ObjectType {
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected static function type_name() : string {
+		return 'Breadcrumbs';
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected static function get_type_config() : array {
+		$config = parent::get_type_config();
+
+		return $config;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function get_description() : string {
+		return __( 'The Seo score information.', 'wp-graphql-rank-math' );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function get_fields() : array {
+		return [
+			'text'     => [
+				'type'        => 'String',
+				'description' => __( 'The text for the given breadcrumb', 'wp-graphql-rank-math' ),
+			],
+			'url'      => [
+				'type'        => 'String',
+				'description' => __( 'The url for the given breadcrumb', 'wp-graphql-rank-math' ),
+			],
+			'isHidden' => [
+				'type'        => 'Boolean',
+				'description' => __( 'Whether the given breadcrumb is hidden from the schema', 'wp-graphql-rank-math' ),
+			],
+		];
+	}
+}

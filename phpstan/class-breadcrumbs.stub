@@ -1,0 +1,15 @@
+<?php
+
+namespace RankMath\Frontend;
+
+/**
+ * Breadcrumbs class.
+ */
+class Breadcrumbs {
+	/**
+	 * Get an instance of the class.
+	 *
+	 * @return Breadcrumbs The instance.
+	 */
+	public static function get() {}
+}

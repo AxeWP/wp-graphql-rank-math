@@ -10,15 +10,15 @@ namespace WPGraphQL\RankMath\Type\WPObject\Settings\General;
 use AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
- * Class - Breadcrumbs
+ * Class - BreadcrumbsConfig
  */
-class Breadcrumbs extends ObjectType {
+class BreadcrumbsConfig extends ObjectType {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected static function type_name() : string {
-		return 'Breadcrumbs';
+		return 'BreadcrumbsConfig';
 	}
 
 	/**

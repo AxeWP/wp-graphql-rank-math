@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit205b926eb7f297aebfca5f0f7dd8a7d2
+class ComposerStaticInit2960178451ceb7a006dca221c8343320
 {
     public static $files = array (
         'd93954ca8a74d7e67246db741a580590' => __DIR__ . '/../..' . '/access-functions.php',
@@ -77,13 +77,14 @@ class ComposerStaticInit205b926eb7f297aebfca5f0f7dd8a7d2
         'WPGraphQL\\RankMath\\Type\\WPInterface\\MetaSettingWithArchive' => __DIR__ . '/../..' . '/src/Type/WPInterface/MetaSettingWithArchive.php',
         'WPGraphQL\\RankMath\\Type\\WPInterface\\MetaSettingWithRobots' => __DIR__ . '/../..' . '/src/Type/WPInterface/MetaSettingWithRobots.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\AdvancedRobotsMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/AdvancedRobotsMeta.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\Breadcrumbs' => __DIR__ . '/../..' . '/src/Type/WPObject/Breadcrumbs.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\ContentNodeSeo' => __DIR__ . '/../..' . '/src/Type/WPObject/ContentNodeSeo.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\JsonLd' => __DIR__ . '/../..' . '/src/Type/WPObject/JsonLd.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\NodeSeo' => __DIR__ . '/../..' . '/src/Type/WPObject/NodeSeo.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\SeoScore' => __DIR__ . '/../..' . '/src/Type/WPObject/SeoScore.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\General' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/General.php',
-        'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\General\\Breadcrumbs' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/General/Breadcrumbs.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\General\\BreadcrumbsConfig' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/General/BreadcrumbsConfig.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\General\\FrontendSeoScore' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/General/FrontendSeoScore.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\General\\Links' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/General/Links.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\General\\Webmaster' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/General/Webmaster.php',
@@ -103,9 +104,9 @@ class ComposerStaticInit205b926eb7f297aebfca5f0f7dd8a7d2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit205b926eb7f297aebfca5f0f7dd8a7d2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit205b926eb7f297aebfca5f0f7dd8a7d2::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit205b926eb7f297aebfca5f0f7dd8a7d2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2960178451ceb7a006dca221c8343320::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2960178451ceb7a006dca221c8343320::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit2960178451ceb7a006dca221c8343320::$classMap;
 
         }, null, ClassLoader::class);
     }

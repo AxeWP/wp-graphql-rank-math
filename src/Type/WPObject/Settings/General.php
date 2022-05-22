@@ -8,7 +8,7 @@
 namespace WPGraphQL\RankMath\Type\WPObject\Settings;
 
 use AxeWP\GraphQL\Abstracts\ObjectType;
-use WPGraphQL\RankMath\Type\WPObject\Settings\General\Breadcrumbs;
+use WPGraphQL\RankMath\Type\WPObject\Settings\General\BreadcrumbsConfig;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General\FrontendSeoScore;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General\Links;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General\Webmaster;
@@ -47,7 +47,7 @@ class General extends ObjectType {
 	public static function get_fields() : array {
 		return [
 			'breadcrumbs'         => [
-				'type'        => Breadcrumbs::get_type_name(),
+				'type'        => BreadcrumbsConfig::get_type_name(),
 				'description' => __( 'Breadcrumbs settings.', 'wp-graphql-rank-math' ),
 			],
 			'hasBreadcrumbs'      => [

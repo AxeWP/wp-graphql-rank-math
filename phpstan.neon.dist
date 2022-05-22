@@ -7,12 +7,13 @@ parameters:
 		stubFiles:
 			# Simulate added properties
 			- phpstan/rank-math.stub
+			- phpstan/class-breadcrumbs.stub
 			- phpstan/class-choices.stub
 			- phpstan/class-singular.stub
 			- phpstan/class-helpers.stub
-			- vendor/justlevine/wp-graphql-plugin-boilerplate/phpstan/class-wp-post-type.stub
-			- vendor/justlevine/wp-graphql-plugin-boilerplate/phpstan/class-wp-taxonomy.stub
-			- vendor/justlevine/wp-graphql-plugin-boilerplate/phpstan/Model.stub
+			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-post-type.stub
+			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-taxonomy.stub
+			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/Model.stub
 		bootstrapFiles:
 			- phpstan/constants.php
 			- wp-graphql-rank-math.php
@@ -30,6 +31,6 @@ parameters:
 			- src/
 			- ../wp-graphql
 			- ../seo-by-rank-math
-			- vendor/justlevine/wp-graphql-plugin-boilerplate/src/
+			- vendor/axepress/wp-graphql-plugin-boilerplate/src/
 		ignoreErrors:
 			- '#^Function apply_filters(_ref_array)? invoked with ([1-9]|1[0-2]) parameters, 2 required\.$#'
