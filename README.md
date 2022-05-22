@@ -62,9 +62,7 @@ Until we hit v1.0, we're using a modified version of [SemVer](https://semver.org
 * [x] Full head
 * [x] RankMath SEO Score
 * [x] Basic Meta Attributes: Title, Description, Robots, Focus Keywords, Canonical URL,
-* [ ] 🏗 Breadcrumbs
-  * [x] Custom breadcrumb titles.
-  * [ ] Full breadcrumb trail.
+* [x] Breadcrumbs
 * [ ] 🏗 JSON-LD
   * [x] Raw schema
   * [ ] Individual JSON-LD attributes
@@ -83,6 +81,11 @@ query MyPosts {
       databaseId
       title
       seo { # The SEO data for the current post object.
+        breadcrumbs {
+          title
+          url
+          isHidden
+        }
         breadcrumbTitle
         canonicalUrl
         description
@@ -104,6 +107,11 @@ query MyPosts {
       author {
         node {
           seo { # The SEO Data for the post object's author.
+            breadcrumbs {
+              title
+              url
+              isHidden
+            }
             breadcrumbTitle
             canonicalUrl
             description
@@ -118,6 +126,11 @@ query MyPosts {
         nodes {
           name
           seo { # The SEO Data for the post's associated terms.
+            breadcrumbs {
+              title
+              url
+              isHidden
+            }
             breadcrumbTitle
             canonicalUrl
             description
@@ -158,6 +171,11 @@ query MyPosts {
       contentNodes {
         nodes {
           seo { # The SEO data for the associated posts.
+            breadcrumbs {
+              title
+              url
+              isHidden
+            }
             breadcrumbTitle
             canonicalUrl
             description
@@ -192,6 +210,11 @@ query MyCategories {
     nodes {
       name
       seo { # The SEO data for the current term archive
+        breadcrumbs {
+          title
+          url
+          isHidden
+        }
         breadcrumbTitle
         canonicalUrl
         description
@@ -208,6 +231,11 @@ query MyCategories {
           databaseId
           title
           seo { ## The SEO data for the posts associated with this term.
+            breadcrumbs {
+              title
+              url
+              isHidden
+            }
             breadcrumbTitle
             canonicalUrl
             description
@@ -242,6 +270,11 @@ query MyCategories {
     nodes {
       name
       seo { # The SEO data for the User profile page.
+        breadcrumbs {
+          title
+          url
+          isHidden
+        }
         breadcrumbTitle
         canonicalUrl
         description
