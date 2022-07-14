@@ -10,7 +10,6 @@
 *.sql
 *.tar.gz
 .scannerwork
-*.zip
 auth.json
 build/
 coverage/*
@@ -25,9 +24,4 @@ composer.lock
 tests/*.suite.yml
 Thumbs.db
 wp-cli.local.yml
-!vendor
-vendor/*
-!vendor/autoload.php
-!vendor/composer
-vendor/composer/*/
-!vendor/axepress
+vendor
