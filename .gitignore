@@ -17,6 +17,8 @@ coverage/*
 node_modules/
 phpcs.xml
 phpunit.xml
+phpstan.neon
+!phpstan.neon.dist
 schema.graphql
 sonar-project.properties
 sonar-scanner
