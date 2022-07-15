@@ -15,7 +15,9 @@
 	],
 	"require": {
 		"php": ">=7.4 || ^8.0",
-		"axepress/wp-graphql-plugin-boilerplate": "0.0.1"
+		"axepress/wp-graphql-plugin-boilerplate": "0.0.1",
+		"phpunit/phpunit": "^9.5",
+		"codeception/phpunit-wrapper": "^9.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^3.0",
@@ -27,10 +29,8 @@
 		"codeception/module-phpbrowser": "^1.0",
 		"codeception/module-rest": "^2.0",
 		"codeception/module-webdriver": "^1.0",
-		"codeception/phpunit-wrapper": "^8.1",
 		"codeception/util-universalframework": "^1.0",
-		"phpunit/phpunit": "^8.5",
-		"wp-graphql/wp-graphql-testcase": "dev-develop",
+		"wp-graphql/wp-graphql-testcase": "~2.3",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"squizlabs/php_codesniffer": "^3.6",
 		"automattic/vipwpcs": "^2.3",
