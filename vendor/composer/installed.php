@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ef76eb9e9aea87082adecd4997d0ad6cd2d3b2bf',
+        'reference' => '7b0919e232e739a002f86008c052b795028f2fd3',
         'name' => 'axepress/wp-graphql-rank-math',
         'dev' => false,
     ),
@@ -25,7 +25,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ef76eb9e9aea87082adecd4997d0ad6cd2d3b2bf',
+            'reference' => '7b0919e232e739a002f86008c052b795028f2fd3',
             'dev_requirement' => false,
         ),
         'codeception/phpunit-wrapper' => array(
