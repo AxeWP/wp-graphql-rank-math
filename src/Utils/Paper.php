@@ -464,14 +464,7 @@ class Paper {
 	 * @return string
 	 */
 	private function base_url( $path = null ) {
-		$parts    = wp_parse_url( get_option( 'home' ) );
-		$base_url = trailingslashit( $parts['scheme'] . '://' . $parts['host'] );
-
-		if ( ! is_null( $path ) ) {
-			$base_url .= ltrim( $path, '/' );
-		}
-
-		return $base_url;
+		return Utils::base_url( $path ?? '' );
 	}
 
 	/**

@@ -50,14 +50,11 @@ class Utils {
 	 *
 	 * @param string $path .
 	 */
-	public static function base_url( string $path = null ) : string {
-		$parts    = wp_parse_url( get_option( 'home' ) );
-		$base_url = trailingslashit( $parts['scheme'] . '://' . $parts['host'] );
+	public static function base_url( string $path = '' ) : string {
+		$blog_id = is_multisite() ? get_current_blog_id() : null;
 
-		if ( ! is_null( $path ) ) {
-			$base_url .= ltrim( $path, '/' );
-		}
+		$base_url = get_home_url( $blog_id, $path );
 
-		return $base_url;
+		return user_trailingslashit( $base_url );
 	}
 }
