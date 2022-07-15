@@ -1,0 +1,20 @@
+<?php
+
+namespace WPGraphQL\Model;
+
+use Exception;
+use WP_User;
+
+/**
+ * Class Model - Abstract class for modeling data for all core types
+ *
+ * @package WPGraphQL\Model
+ */
+abstract class Model {
+	/**
+	 * Stores the raw data passed to the child class when it's instantiated before it's transformed
+	 *
+	 * @var array<int|string,mixed>|object $data
+	 */
+	protected $data;
+}

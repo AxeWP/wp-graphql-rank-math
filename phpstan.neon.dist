@@ -32,5 +32,3 @@ parameters:
 			- ../wp-graphql
 			- ../seo-by-rank-math
 			- vendor/axepress/wp-graphql-plugin-boilerplate/src/
-		ignoreErrors:
-			- '#^Function apply_filters(_ref_array)? invoked with ([1-9]|1[0-2]) parameters, 2 required\.$#'

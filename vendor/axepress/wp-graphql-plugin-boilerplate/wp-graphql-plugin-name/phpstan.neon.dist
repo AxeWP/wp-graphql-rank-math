@@ -1,0 +1,29 @@
+parameters:
+		level: 8
+		inferPrivatePropertyTypeFromConstructor: true
+		checkMissingIterableValueType: false
+		featureToggles:
+			disableRuntimeReflectionProvider: true
+		stubFiles:
+			# Simulate added properties
+			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-post-type.stub
+			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-taxonomy.stub
+			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/Model.stub
+		bootstrapFiles:
+			- phpstan/constants.php
+			- wp-graphql-plugin-name.php
+			- access-functions.php
+			- activation.php
+			- deactivation.php
+		paths:
+			- wp-graphql-plugin-name.php
+			- access-functions.php
+			- activation.php
+			- deactivation.php
+			- src/
+		scanDirectories:
+			- src/
+			- ../wp-graphql/
+			- vendor/axepress/wp-graphql-plugin-boilerplate/src/
+		ignoreErrors:
+			- '#^Function apply_filters(_ref_array)? invoked with ([1-9]|1[0-2]) parameters, 2 required\.$#'

@@ -1,0 +1,63 @@
+{
+	"name": "axepress/wp-graphql-plugin-boilerplate",
+	"description": "Boilerplate for creating WPGraphQL extensions",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "AxePress Development",
+			"homepage": "https://axepress.dev"
+		},
+		{
+			"name": "David Levine",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=7.4 || ^8.0"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"phpstan/extension-installer": "^1.1",
+		"phpstan/phpstan": "^1.2",
+		"poolshark/wp-graphql-stubs": "^0.0.2",
+		"squizlabs/php_codesniffer": "^3.6",
+		"szepeviktor/phpstan-wordpress": "^1.0",
+		"wp-coding-standards/wpcs": "^2.3",
+		"wp-cli/wp-cli-bundle": "^2.6",
+		"automattic/vipwpcs": "^2.3"
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"process-timeout": 0,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		}
+	},
+	"bin": [
+		"bin/create-wpgraphql-plugin.sh"
+	],
+	"autoload": {
+		"psr-4": {
+			"AxeWP\\GraphQL\\": "src/"
+		}
+	},
+	"scripts": {
+		"create-plugin": "bash bin/create-wpgraphql-plugin.sh",
+		"init-plugin": "bash bin/init-wpgraphql-plugin.sh",
+		"install-test-env": "cd wp-graphql-plugin-name && composer install-test-env",
+		"install-stan-env": "cd wp-graphql-plugin-name && composer --working-dir=wp-graphql-plugin-name/ install-stan-env",
+		"codecept-run": "cd wp-graphql-plugin-name && vendor/bin/codecept run -c wp-graphql-plugin-name --",
+		"codecept-build": "cd wp-graphql-plugin-name && /vendor/bin/codecept build -c wp-graphql-plugin-name --",
+		"lint": "vendor/bin/phpcs",
+		"phpcs-i": "php ./vendor/bin/phpcs -i",
+		"check-cs": "php ./vendor/bin/phpcs --standard=.phpcs.xml.dist",
+		"fix-cs": "php ./vendor/bin/phpcbf --standard=.phpcs.xml.dist",
+		"phpstan": "phpstan analyze --ansi --memory-limit=1G",
+		"install-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ install",
+		"update-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ update",
+		"outdated-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ outdated"
+	}
+}
