@@ -20,13 +20,15 @@ jobs:
     strategy:
       matrix:
         php: [ '7.4' ]
-        wordpress: [ '5.9', '5.8.3', '5.7.2' ]
+        wordpress: [ '6.0', '5.9', '5.8', '5.7' ]
         include:
           - php: '8.0'
             wordpress: '5.9'
-            coverage: 1
           - php: '8.0'
-            wordpress: '5.8.3'
+            wordpress: '5.8'
+          - php: '8.0'
+            wordpress: '6.0'
+            coverage: 1
       fail-fast: false
     name: WordPress ${{ matrix.wordpress }} on PHP ${{ matrix.php }}
     steps:
