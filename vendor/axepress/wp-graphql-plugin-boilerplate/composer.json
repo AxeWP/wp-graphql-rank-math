@@ -17,6 +17,7 @@
 		"php": ">=7.4 || ^8.0"
 	},
 	"require-dev": {
+		"automattic/vipwpcs": "^2.3",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"phpstan/extension-installer": "^1.1",
@@ -24,17 +25,19 @@
 		"poolshark/wp-graphql-stubs": "^0.0.2",
 		"squizlabs/php_codesniffer": "^3.6",
 		"szepeviktor/phpstan-wordpress": "^1.0",
-		"wp-coding-standards/wpcs": "^2.3",
 		"wp-cli/wp-cli-bundle": "^2.6",
-		"automattic/vipwpcs": "^2.3"
+		"wp-coding-standards/wpcs": "^2.3"
 	},
 	"config": {
-		"optimize-autoloader": true,
-		"process-timeout": 0,
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"phpstan/extension-installer": true
-		}
+		},
+		"platform": {
+			"php": "7.4"
+		},
+		"process-timeout": 0,
+		"optimize-autoloader": true
 	},
 	"bin": [
 		"bin/create-wpgraphql-plugin.sh"
@@ -56,8 +59,19 @@
 		"check-cs": "php ./vendor/bin/phpcs --standard=.phpcs.xml.dist",
 		"fix-cs": "php ./vendor/bin/phpcbf --standard=.phpcs.xml.dist",
 		"phpstan": "phpstan analyze --ansi --memory-limit=1G",
-		"install-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ install",
+		"install-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ install --no-dev --optimize-autoloader",
 		"update-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ update",
-		"outdated-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ outdated"
+		"outdated-project-deps": "@composer --working-dir=wp-graphql-plugin-name/ outdated -D"
+	},
+	"archive": {
+		"name": "wp-graphql-plugin-boilerplate",
+		"exclude": [
+			"/.*",
+			"/composer.json",
+			"/composer.lock",
+			"/phpstan.neon.dist",
+			"/wp-graphql-plugin-name",
+			"README.md"
+		]
 	}
 }
