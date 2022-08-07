@@ -6,11 +6,24 @@
 	"authors": [
 		{
 			"name": "AxePress Development",
+			"email": "support@axepress.dev",
 			"homepage": "https://axepress.dev"
 		},
 		{
 			"name": "David Levine",
 			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "support@axepress.dev",
+		"issues": "https://github.com/AxeWP/wp-graphql-rank-math/issues",
+		"forum": "https://github.com/AxeWP/wp-graphql-rank-math/discussions"
+	},
+	"readme": "README.md",
+	"funding": [
+		{
+			"type":"github",
+			"url": "https://github.com/sponsors/AxeWP"
 		}
 	],
 	"require": {
