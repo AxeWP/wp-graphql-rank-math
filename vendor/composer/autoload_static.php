@@ -97,7 +97,6 @@ class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\LocalMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Meta/LocalMeta.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\SocialMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Meta/SocialMeta.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\TaxonomyMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Meta/TaxonomyMeta.php',
-        'WPGraphQL\\RankMath\\Utils\\Paper' => __DIR__ . '/../..' . '/src/Utils/Paper.php',
         'WPGraphQL\\RankMath\\Utils\\Utils' => __DIR__ . '/../..' . '/src/Utils/Utils.php',
     );
 

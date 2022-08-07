@@ -76,8 +76,8 @@ class UserSeo extends Seo {
 	 *
 	 * @throws UserError If no valid term link.
 	 */
-	protected function get_rest_url() : string {
+	protected function get_rest_url_param() : string {
 		$author_url = get_author_posts_url( $this->database_id );
-		return get_rest_url( null, '/rankmath/v1/getHead' ) . '?url=' . $author_url;
+		return $author_url;
 	}
 }

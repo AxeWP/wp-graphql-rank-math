@@ -20,7 +20,6 @@ parameters:
 			- access-functions.php
 			- activation.php
 			- deactivation.php
-			- ../seo-by-rank-math/includes/traits/class-hooker.php
 		paths:
 			- wp-graphql-rank-math.php
 			- access-functions.php
@@ -30,5 +29,5 @@ parameters:
 		scanDirectories:
 			- src/
 			- ../wp-graphql
-			- ../seo-by-rank-math
+			- ../seo-by-rank-math/
 			- vendor/axepress/wp-graphql-plugin-boilerplate/src/

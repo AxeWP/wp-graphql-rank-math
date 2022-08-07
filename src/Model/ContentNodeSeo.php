@@ -7,7 +7,8 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \GraphQL\Error\Error;
+use GraphQL\Error\Error;
+use GraphQL\Error\UserError;
 
 /**
  * Class - ContentNodeSeo
@@ -91,8 +92,16 @@ class ContentNodeSeo extends Seo {
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws UserError If no post permalink.
 	 */
-	protected function get_rest_url() : string {
-		return get_rest_url( null, '/rankmath/v1/getHead' ) . '?url=' . get_permalink( $this->database_id );
+	protected function get_rest_url_param() : string {
+		$permalink = get_permalink( $this->database_id );
+
+		if ( false === $permalink ) {
+			throw new UserError( __( 'There is no URI for the provided content node', 'wp-graphql-rank-math' ) );
+		}
+
+		return $permalink;
 	}
 }
