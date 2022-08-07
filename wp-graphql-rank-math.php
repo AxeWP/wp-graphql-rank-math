@@ -7,7 +7,7 @@
  * Author: AxePress
  * Author URI: https://github.com/AxeWP
  * Update URI: https://github.com/AxeWP/wp-graphql-rank-math
- * Version: 0.0.2
+ * Version: 0.0.3
  * Text Domain: wp-graphql-rank-math
  * Domain Path: /languages
  * Requires at least: 5.4.1
@@ -20,7 +20,7 @@
  * @package WPGraphQL\RankMath
  * @author axepress
  * @license GPL-3
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 // Exit if accessed directly.
@@ -53,7 +53,7 @@ if ( file_exists( __DIR__ . '/deactivation.php' ) ) {
 function graphql_seo_constants() : void {
 	// Plugin version.
 	if ( ! defined( 'WPGRAPHQL_SEO_VERSION' ) ) {
-		define( 'WPGRAPHQL_SEO_VERSION', '0.0.2' );
+		define( 'WPGRAPHQL_SEO_VERSION', '0.0.3' );
 	}
 
 	// Plugin Folder Path.
