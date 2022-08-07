@@ -76,12 +76,12 @@ class TermNodeSeo extends Seo {
 	 *
 	 * @throws UserError If no valid term link.
 	 */
-	protected function get_rest_url() : string {
+	protected function get_rest_url_param() : string {
 		$term_link = get_term_link( $this->database_id );
 
 		if ( is_wp_error( $term_link ) ) {
 			throw new UserError( $term_link->get_error_message() );
 		}
-		return get_rest_url( null, '/rankmath/v1/getHead' ) . '?url=' . $term_link;
+		return $term_link;
 	}
 }

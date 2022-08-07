@@ -7,10 +7,11 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \RankMath\Helper as RMHelper;
+use RankMath\Helper as RMHelper;
+use GraphQL\Error\Error;
 use GraphQL\Error\UserError;
 use WPGraphQL\Model\Model;
-use WPGraphQL\RankMath\Utils\Paper;
+use RankMath\Paper\Paper;
 
 /**
  * Class - Seo
@@ -33,7 +34,7 @@ abstract class Seo extends Model {
 	/**
 	 * The current RankMath paper helper.
 	 *
-	 * @var Paper;
+	 * @var object|Paper;
 	 */
 	protected $helper;
 
@@ -54,7 +55,11 @@ abstract class Seo extends Model {
 	public function __construct( $object, $capability = '', $allowed_fields = [] ) {
 		$this->data = $object;
 
-		$this->helper = new Paper( $object );
+		rank_math()->variables->setup();
+		Paper::reset();
+
+		$this->helper = Paper::get();
+
 
 		$allowed_fields = array_merge(
 			[
@@ -75,12 +80,19 @@ abstract class Seo extends Model {
 	 */
 	protected function init() {
 		if ( empty( $this->fields ) ) {
+			/** @var Paper $helper */
+			$helper = $this->helper;
+
 			$this->fields = [
-				'title'         => fn() : ?string => $this->helper::get()->get_title() ?: null,
-				'description'   => fn() : ?string => $this->helper::get()->get_description() ?: null,
-				'robots'        => fn() : ?array => $this->helper::get()->get_robots() ?: null,
-				'canonicalUrl'  => fn() : ?string => $this->helper::get()->get_canonical() ?: null,
-				'focusKeywords' => fn() : ?array => $this->helper::get()->get_keywords() ?: null,
+				'title'         => fn() : ?string => $helper->get_title() ?: null,
+				'description'   => fn() : ?string => $helper->get_description() ?: null,
+				'robots'        => fn() : ?array => $helper->get_robots() ?: null,
+				'canonicalUrl'  => fn() : ?string => $helper->get_canonical() ?: null,
+				'focusKeywords' => function() use ( $helper ) : ?array {
+					$keywords = $helper->get_keywords();
+
+					return ! empty( $keywords ) ? explode( ',', $keywords ) : null;
+				},
 				'fullHead'      => fn() : ?string => $this->get_head() ?: null,
 				'jsonLd'        => function() {
 						ob_start();
@@ -130,25 +142,42 @@ abstract class Seo extends Model {
 	/**
 	 * Gets the object-specific url to use for the REST API RankMath url param.
 	 */
-	abstract protected function get_rest_url() : string;
+	abstract protected function get_rest_url_param() : string;
 
 	/**
 	 * Gets the head using a REST API request.
 	 *
+	 * @throws Error     When the REST request is invalid.
 	 * @throws UserError When REST response fails.
 	 */
 	protected function get_head() : ?string {
-		$uri = $this->get_rest_url();
-		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get
-		$response = wp_remote_get( $uri );
+		$url_param = $this->get_rest_url_param();
 
-		if ( is_wp_error( $response ) ) {
-			throw new UserError(
-				// translators: the url.
-				sprintf( __( 'The request for the URL %s could not be retrieved. Error Message: ', 'wp-graphql-rank-math' ), $uri, $response->get_error_message() ),
+		$rest_url = get_rest_url( null, '/rankmath/v1/getHead?url=' . $url_param );
+		$request  = \WP_REST_Request::from_url( $rest_url );
+
+		if ( false === $request ) {
+			throw new Error(
+				sprintf(
+					// translators: %s the URL for the getHead endpoint.
+					__( 'Invalid rest request from %s', 'wp-graphql-rank-math' ),
+					$rest_url
+				)
 			);
 		}
-		$data = json_decode( wp_remote_retrieve_body( $response ), true );
+
+		// todo: fix PHP notice https://support.rankmath.com/ticket/fetching-rankmath-v1-gethead-with-rest_do_request-logs-a-php-notice/
+		$response = rest_do_request( $request );
+
+		if ( $response->is_error() ) {
+			/** @var \WP_Error $error */
+			$error = $response->as_error();
+			throw new UserError(
+				// translators: the url.
+				sprintf( __( 'The request for the URL %s could not be retrieved. Error Message: ', 'wp-graphql-rank-math' ), $url_param, $error->get_error_message() ),
+			);
+		}
+		$data = $response->get_data();
 		return ! empty( $data['head'] ) ? $data['head'] : null;
 	}
 }

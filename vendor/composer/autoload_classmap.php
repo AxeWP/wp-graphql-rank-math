@@ -70,6 +70,5 @@ return array(
     'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\LocalMeta' => $baseDir . '/src/Type/WPObject/Settings/Meta/LocalMeta.php',
     'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\SocialMeta' => $baseDir . '/src/Type/WPObject/Settings/Meta/SocialMeta.php',
     'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\TaxonomyMeta' => $baseDir . '/src/Type/WPObject/Settings/Meta/TaxonomyMeta.php',
-    'WPGraphQL\\RankMath\\Utils\\Paper' => $baseDir . '/src/Utils/Paper.php',
     'WPGraphQL\\RankMath\\Utils\\Utils' => $baseDir . '/src/Utils/Utils.php',
 );

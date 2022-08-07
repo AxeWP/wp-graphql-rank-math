@@ -18,7 +18,6 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		rank_math()->frontend_seo_score = new \RankMath\Frontend_SEO_Score();
 		rank_math()->settings->set( 'general', 'breadcrumbs', true );
 
-
 		$this->admin = $this->factory()->user->create(
 			[
 				'role' => 'administrator',
@@ -42,6 +41,9 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 	 */
 	public function tearDown(): void {
 		rank_math()->settings->set( 'general', 'breadcrumbs', false );
+		// Test cleanup.
+    global $wp_rest_server;
+    $wp_rest_server = null;
 
 		parent::tearDown();
 	}

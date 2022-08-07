@@ -76,12 +76,13 @@ class ContentTypeSeo extends Seo {
 	 *
 	 * @throws UserError If no archive URI.
 	 */
-	protected function get_rest_url() : string {
+	protected function get_rest_url_param() : string {
 		$term_link = get_post_type_archive_link( $this->data->name );
 
 		if ( false === $term_link ) {
 			throw new UserError( __( 'There is no archive URI for the provided post type', 'wp-graphql-rank-math' ) );
 		}
-		return get_rest_url( null, '/rankmath/v1/getHead' ) . '?url=' . $term_link;
+
+		return $term_link;
 	}
 }
