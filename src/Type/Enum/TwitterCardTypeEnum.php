@@ -24,7 +24,7 @@ class TwitterCardTypeEnum extends EnumType {
 	 * {@inheritDoc}
 	 */
 	public static function get_description(): string {
-		return __( 'The frontend SEO Score position', 'wp-graphql-rank-math' );
+		return __( 'The Twitter Card Type Enum', 'wp-graphql-rank-math' );
 	}
 
 	/**
@@ -39,6 +39,14 @@ class TwitterCardTypeEnum extends EnumType {
 			'SUMMARY_LARGE_IMAGE' => [
 				'description' => __( 'Summary Card with Large Image.', 'wp-graphql-rank-math' ),
 				'value'       => 'summary_large_image',
+			],
+			'APP'                 => [
+				'description' => __( 'The twitter App card', 'wp-graphql-rank-math' ),
+				'value'       => 'app',
+			],
+			'PLAYER'              => [
+				'description' => __( 'The twitter Player card', 'wp-graphql-rank-math' ),
+				'value'       => 'player',
 			],
 		];
 	}

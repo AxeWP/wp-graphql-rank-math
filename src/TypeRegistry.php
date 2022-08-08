@@ -88,6 +88,8 @@ class TypeRegistry {
 			Enum\BulkEditingTypeEnum::class,
 			Enum\ImagePreviewSizeEnum::class,
 			Enum\KnowledgeGraphTypeEnum::class,
+			Enum\OpenGraphLocaleEnum::class,
+			Enum\OpenGraphProductAvailabilityEnum::class,
 			Enum\RobotsMetaValueEnum::class,
 			Enum\SeoScorePositionEnum::class,
 			Enum\SeoScoreTemplateTypeEnum::class,
@@ -152,6 +154,17 @@ class TypeRegistry {
 			WPObject\JsonLd::class,
 			WPObject\Breadcrumbs::class,
 
+			// Open Graph
+			WPObject\OpenGraph\Article::class,
+			WPObject\OpenGraph\Facebook::class,
+			WPObject\OpenGraph\Image::class,
+			WPObject\OpenGraph\Product::class,
+			WPObject\OpenGraph\SlackEnhancedData::class,
+			WPObject\OpenGraph\TwitterApp::class,
+			WPObject\OpenGraph\Twitter::class,
+			WPObject\OpenGraph\Video::class,
+			WPObject\OpenGraphMeta::class,
+
 			// General settings.
 			WPObject\Settings\General\BreadcrumbsConfig::class,
 			WPObject\Settings\General\FrontendSeoScore::class,
@@ -168,6 +181,7 @@ class TypeRegistry {
 			WPObject\Settings\Meta\SocialMeta::class,
 			WPObject\Settings\Meta\TaxonomyMeta::class,
 			WPObject\Settings\Meta::class,
+
 			// Settings.
 			WPObject\Settings::class,
 			// SEO fields.

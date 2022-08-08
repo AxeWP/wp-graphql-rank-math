@@ -46,6 +46,17 @@ abstract class Seo extends Model {
 	protected string $prefix;
 
 	/**
+	 * The head markup.
+	 *
+	 * It's stored here to avoid having to query it multiple times.
+	 *
+	 * A `false` value is used to determine whether an attempt has already been made to fetch it. 
+	 * 
+	 * @var string|false|null
+	 */
+	protected $full_head = false;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param \WP_User|\WP_Term|\WP_Post|\WP_Post_Type $object .
@@ -95,16 +106,18 @@ abstract class Seo extends Model {
 				},
 				'fullHead'      => fn() : ?string => $this->get_head() ?: null,
 				'jsonLd'        => function() {
-						ob_start();
-						$json = new \RankMath\Schema\JsonLD();
-						$json->setup();
-						$json->json_ld();
-						$output = ob_get_clean();
-						return [
-							'raw' => function() use ( $output ) {
-								return $output;
-							},
-						];
+					ob_start();
+					$json = new \RankMath\Schema\JsonLD();
+					$json->setup();
+					$json->json_ld();
+					$output = ob_get_clean();
+
+					return [ 'raw' => $output ?: null ];
+				},
+				'openGraph'     => function() {
+					$head = $this->get_head();
+
+					return ! empty( $head ) ? $this->parse_og_tags( $head ) : null;
 				},
 			];
 		}
@@ -151,6 +164,10 @@ abstract class Seo extends Model {
 	 * @throws UserError When REST response fails.
 	 */
 	protected function get_head() : ?string {
+		if ( false !== $this->full_head ) {
+			return $this->full_head;
+		}
+
 		$url_param = $this->get_rest_url_param();
 
 		$rest_url = get_rest_url( null, '/rankmath/v1/getHead?url=' . $url_param );
@@ -178,6 +195,48 @@ abstract class Seo extends Model {
 			);
 		}
 		$data = $response->get_data();
-		return ! empty( $data['head'] ) ? $data['head'] : null;
+
+		$this->full_head = ! empty( $data['head'] ) ? $data['head'] : null;
+
+		return $this->full_head;
+	}
+
+	/**
+	 * Parses the Open Graph tags from the head.
+	 *
+	 * @param string $head The head.
+	 */
+	protected function parse_og_tags( string $head ) : ?array {
+		$tags = [];
+
+		if ( preg_match_all( '/<meta (property|name)="([^"]+):([^"]+)" content="([^"]+)" \/>/', $head, $matches ) ) {
+			$this->save_tags_from_matches( $matches, $tags );
+		}
+
+		return $tags ?: null;
+	}
+
+	/**
+	 * Saves the tags from the matches.
+	 *
+	 * @param array $matches The matches.
+	 * @param array $tags The tags array reference.
+	 */
+	private function save_tags_from_matches( array $matches, array &$tags ) : void {
+		// $matches[2] contains the OpenGraph prefix (og, article, twitter, etc ).
+		foreach ( $matches[2] as $key => $prefix ) {
+			$property = $matches[3][ $key ];
+			$value    = $matches[4][ $key ];
+
+			// If meta tag already exists, save the values as an array.
+			if ( isset( $tags[ $prefix ][ $property ] ) ) {
+				if ( ! is_array( $tags[ $prefix ][ $property ] ) ) {
+					$tags[ $prefix ][ $property ] = [ $tags[ $prefix ][ $property ] ];
+				}
+				$tags[ $prefix ][ $property ][] = $value;
+			} else {
+				$tags[ $prefix ][ $property ] = $value;
+			}
+		}
 	}
 }

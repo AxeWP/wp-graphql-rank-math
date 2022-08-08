@@ -13,6 +13,7 @@ use RankMath\Helper;
 use WPGraphQL\RankMath\Model\UserSeo;
 use WPGraphQL\RankMath\Type\WPObject\Breadcrumbs;
 use WPGraphQL\RankMath\Type\WPObject\JsonLd;
+use WPGraphQL\RankMath\Type\WPObject\OpenGraphMeta;
 
 /**
  * Class - BaseSeoFields
@@ -71,13 +72,17 @@ class BaseSeoFields extends InterfaceType {
 				'type'        => 'String',
 				'description' => __( 'The title to use in the breadcrumbs for this post', 'wp-graphql-rank-math' ),
 			],
+			'fullHead'        => [
+				'type'        => 'String',
+				'description' => __( 'The fully-rendered `head` tag for the given item', 'wp-graphql-rank-math' ),
+			],
 			'jsonLd'          => [
 				'type'        => JsonLd::get_type_name(),
 				'description' => __( 'The JSON+LD data', 'wp-graphql-rank-math' ),
 			],
-			'fullHead'        => [
-				'type'        => 'String',
-				'description' => __( 'The fully-rendered `head` tag for the given item', 'wp-graphql-rank-math' ),
+			'openGraph'       => [
+				'type'        => OpenGraphMeta::get_type_name(),
+				'description' => __( 'The open graph meta properties.', 'wp-graphql-rank-math' ),
 			],
 		];
 
