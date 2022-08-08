@@ -55,6 +55,11 @@ body:
       label: WPGraphQL Version
     validations:
       required: true
+  - type: input
+    attributes:
+      label: RankMath SEO Version
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Additional enviornmental details
