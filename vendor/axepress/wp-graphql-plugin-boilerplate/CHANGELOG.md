@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.4
+* dev!: Renames the Hookable interface to `Registrable.
+* feat!: Use Registrable when registering GraphQL types.
+
 ## v0.0.3
 * chore: Update composer deps.
 * chore: Exclude `wp-graphql-plugin-name` when installing as composer dep.

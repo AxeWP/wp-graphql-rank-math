@@ -12,6 +12,7 @@ use Exception;
 use WPGraphQL\RankMath\Connection;
 use WPGraphQL\RankMath\Fields;
 use AxeWP\GraphQL\Interfaces\GraphQLType;
+use AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Mutation;
 use WPGraphQL\RankMath\Type\Enum;
 use WPGraphQL\RankMath\Type\Input;
@@ -267,13 +268,13 @@ class TypeRegistry {
 		}
 
 		foreach ( $classes_to_register as $class ) {
-			if ( ! is_a( $class, GraphQLType::class, true ) ) {
+			if ( ! is_a( $class, Registrable::class, true ) ) {
 				// translators: PHP class.
-				throw new Exception( sprintf( __( 'To be registered to the WPGraphQL Plugin Name GraphQL schema, %s needs to implement \AxeWP\GraphQL\Interfaces\GraphQLType.', 'wp-graphql-rank-math' ), $class ) );
+				throw new Exception( sprintf( __( 'To be registered to the WPGraphQL Plugin Name GraphQL schema, %s needs to implement \AxeWP\GraphQL\Interfaces\Registrable.', 'wp-graphql-rank-math' ), $class ) );
 			}
 
 			// Register the type to the GraphQL schema.
-			$class::register();
+			$class::init();
 			// Store the type in the local registry.
 			self::$registry[] = $class;
 		}
