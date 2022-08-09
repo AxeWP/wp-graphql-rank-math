@@ -11,10 +11,10 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 
 -----
 
-![GitHub](https://img.shields.io/github/license/axewp/wp-graphql-rank-math)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/Code%20Quality?label=Code%20Quality)
+![Packagist License](https://img.shields.io/packagist/l/axepress/wp-graphql-rank-math?color=green) ![Packagist Version](https://img.shields.io/packagist/v/axepress/wp-graphql-rank-math?label=stable) ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/AxeWP/wp-graphql-rank-math/0.0.4) ![GitHub forks](https://img.shields.io/github/forks/AxeWP/wp-graphql-rank-math?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/AxeWP/wp-graphql-rank-math?style=social)<br />
+![CodeQuality](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/Code%20Quality?label=Code%20Quality)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/Integration%20Testing?label=Integration%20Testing)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/WordPress%20Coding%20Standards?label=WordPress%20Coding%20Standards)
+![Coding Standards](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/WordPress%20Coding%20Standards?label=WordPress%20Coding%20Standards)
 [![Coverage Status](https://coveralls.io/repos/github/AxeWP/wp-graphql-rank-math/badge.svg?branch=develop)](https://coveralls.io/github/AxeWP/wp-graphql-rank-math?branch=develop)
 -----
 
@@ -40,6 +40,18 @@ Until we hit v1.0, we're using a modified version of [SemVer](https://semver.org
 * v0.**x**: "Major" releases. These releases introduce new features, and _may_ contain breaking changes to either the PHP API or the GraphQL schema
 * v0.x.**y**: "Minor" releases. These releases introduce new features and enhancements and address bugs. They _do not_ contain breaking changes.
 * v0.x.y.**z**: "Patch" releases. These releases are reserved for addressing issue with the previous release only.
+
+## Development and Support
+
+Development of WPGraphQL for Rank Math SEO is provided by [AxePress Development](https://axepress.dev). Community contributions are _welcome_ and **encouraged**.
+
+Basic support is provided for free, both in [this repo](https://github.com/axewp/wp-graphql-rank-math/issues) and at the #rank-math channel in [WPGraphQL Slack](https://join.slack.com/t/wp-graphql/shared_invite/zt-3vloo60z-PpJV2PFIwEathWDOxCTTLA).
+
+Priority support and custom development is available to [our Sponsors](https://github.com/sponsors/AxeWP).
+
+<a href="https://github.com/sponsors/AxeWP" alt="GitHub Sponsors"><img src="https://img.shields.io/static/v1?label=Sponsor%20Us%20%40%20AxeWP&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86&style=for-the-badge" /></a>
+
+
 
 ## Supported Features
 
