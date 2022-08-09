@@ -8,6 +8,8 @@ wp plugin activate wp-graphql-rank-math --allow-root
 # Set pretty permalinks.
 wp rewrite structure '/%year%/%monthnum%/%postname%/' --allow-root
 
+wp option update rank_math_registration_skip 1 --allow-root
+
 wp db export "${DATA_DUMP_DIR}/dump.sql" --allow-root
 
 # If maintenance mode is active, de-activate it
