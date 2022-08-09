@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.4 - OpenGraph Support
+- feat: Add `openGraph` data to `BaseSeoFields`.
+- chore: Update Composer deps. 
+
 ## v0.0.3
 - fix: Ensure `Model\Seo::focus_keywords` callback returns an array.
 - fix: Keep `composer.lock` and production `vendor` deps in repository.
