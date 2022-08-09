@@ -7,13 +7,13 @@
 
 namespace WPGraphQL\RankMath;
 
-use AxeWP\GraphQL\Interfaces\Hookable;
+use AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Model\ContentTypeSeo;
 
 /**
  * Class - CoreSchemaFilters
  */
-class CoreSchemaFilters implements Hookable {
+class CoreSchemaFilters implements Registrable {
 	/**
 	 * {@inheritDoc}
 	 */

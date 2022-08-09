@@ -23,6 +23,7 @@ class TypeRegistryTest extends \Codeception\TestCase\WPTestCase {
 
 	/**
 	 * Tests TypeRegistry::truncate()
+	 *
 	 * @uses WPGraphQL\RankMath\TypeRegistry::init()
 	 */
 	public function test_get_registered_types() {

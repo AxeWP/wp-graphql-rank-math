@@ -9,7 +9,7 @@ namespace AxeWP\GraphQL\Traits;
 
 use Closure;
 use Error;
-use \WPGraphQL\Registry\TypeRegistry;
+use WPGraphQL\Registry\TypeRegistry;
 
 /**
  * Trait - TypeResolverTrait
@@ -20,7 +20,7 @@ trait TypeResolverTrait {
 	 *
 	 * @var ?TypeRegistry
 	 */
-	protected static ?TypeRegistry $type_registry;
+	protected static ?TypeRegistry $type_registry = null;
 
 	/**
 	 * The function used to resolve the Interface type in the `resolveType` callback.

@@ -8,9 +8,9 @@
 namespace AxeWP\GraphQL\Interfaces;
 
 /**
- * Interface - Hookable
+ * Interface - Registrable
  */
-interface Hookable {
+interface Registrable {
 	/**
 	 * Registers class methods to WordPress.
 	 *

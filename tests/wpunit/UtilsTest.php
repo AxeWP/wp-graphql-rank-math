@@ -48,7 +48,7 @@ class UtilsTest extends \Codeception\TestCase\WPTestCase {
 	 * Tests Utils::base_url()
 	 */
 	public function testBaseUrl() {
-		$uri = '/about';
+		$uri    = '/about/';
 		$actual = Utils::base_url( $uri );
 
 		$this->assertStringStartsWith( 'http', $actual );

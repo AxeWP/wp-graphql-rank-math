@@ -21,7 +21,7 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 		$page_id = $this->factory()->post->create(
 			[
-				'post_type'    => 'post',
+				'post_type'    => 'page',
 				'post_status'  => 'publish',
 				'post_title'   => 'Post Title',
 				'post_content' => 'Post Content',
@@ -32,13 +32,6 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 		update_option( 'page_for_posts', $page_id );
 
 		WPGraphQL::clear_schema();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
 	}
 
 	/**

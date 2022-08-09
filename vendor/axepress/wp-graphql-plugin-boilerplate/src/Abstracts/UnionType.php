@@ -8,7 +8,7 @@
 namespace AxeWP\GraphQL\Abstracts;
 
 use AxeWP\GraphQL\Traits\TypeResolverTrait;
-use \WPGraphQL\Registry\TypeRegistry;
+use WPGraphQL\Registry\TypeRegistry;
 
 /**
  * Class - UnionType
@@ -31,10 +31,12 @@ abstract class UnionType extends Type {
 	abstract public static function get_possible_types() : array;
 
 	/**
-	 * Register connections to the GraphQL Schema.
+	 * {@inheritDoc}
+	 *
+	 * @param ?TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
 	 */
-	public static function register() : void {
-		self::$type_registry = \WPGraphQL::get_type_registry();
+	public static function register( $type_registry = null ) : void {
+		self::$type_registry = $type_registry;
 
 		register_graphql_union_type( static::get_type_name(), static::get_type_config() );
 	}

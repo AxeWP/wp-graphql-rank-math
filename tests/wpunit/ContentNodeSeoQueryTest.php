@@ -1,12 +1,15 @@
 <?php
 
+use WPGraphQL\RankMath\Type\Enum\OpenGraphLocaleEnum;
+use WPGraphQL\RankMath\Type\Enum\TwitterCardTypeEnum;
+
 /**
  * Tests ContentNode seo queries.
  */
 class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
-
 	public $admin;
 	public $database_id;
+	public $tester;
 
 	/**
 	 * {@inheritDoc}
@@ -14,9 +17,11 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 	public function setUp(): void {
 		parent::setUp();
 
-		rank_math()->variables          = new \RankMath\Replace_Variables\Manager();
-		rank_math()->frontend_seo_score = new \RankMath\Frontend_SEO_Score();
+		self::set_permalink_structure( '/%year%/%monthnum%/%day%/%postname%/' );
+
 		rank_math()->settings->set( 'general', 'breadcrumbs', true );
+		rank_math()->settings->set( 'general', 'headless_support', true );
+		
 
 		$this->admin = $this->factory()->user->create(
 			[
@@ -41,9 +46,8 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 	 */
 	public function tearDown(): void {
 		rank_math()->settings->set( 'general', 'breadcrumbs', false );
-		// Test cleanup.
-    global $wp_rest_server;
-    $wp_rest_server = null;
+
+		wp_delete_post( $this->database_id, true );
 
 		parent::tearDown();
 	}
@@ -66,12 +70,32 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 						canonicalUrl
 						description
 						focusKeywords
-						# fullHead
+						fullHead
 						isPillarContent
 						robots
 						title
 						jsonLd {
 							raw
+						}
+						openGraph {
+							articleMeta {
+								section
+							}
+							description
+							locale
+							siteName
+							title
+							type
+							url
+							slackEnhancedData {
+								data
+								label
+							}
+							twitterMeta {
+								card
+								description
+								title
+							}
 						}
 						seoScore {
 							badgeHtml
@@ -115,7 +139,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 								$this->expectedField( 'breadcrumbTitle', 'Post Title' ),
 								$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
-								$this->expectedField( 'fullHead', static::IS_NULL ),
+								$this->expectedField( 'fullHead', static::NOT_FALSY ),
 								$this->expectedField( 'isPillarContent', false ),
 								$this->expectedField(
 									'robots',
@@ -128,6 +152,39 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 									]
 								),
 								$this->expectedField( 'title', 'Post Title - Test' ),
+								$this->expectedObject(
+									'openGraph',
+									[
+										$this->expectedObject(
+											'articleMeta',
+											[
+												$this->expectedField( 'section', 'Uncategorized' ),
+											]
+										),
+										$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
+										$this->expectedField( 'locale', $this->tester->get_enum_for_value( OpenGraphLocaleEnum::get_type_name(), 'en_US' ) ),
+										$this->expectedField( 'siteName', 'Test' ),
+										$this->expectedField( 'title', 'Post Title - Test' ),
+										$this->expectedField( 'type', 'article' ),
+										$this->expectedField( 'url', get_permalink( $this->database_id ) ),
+										$this->expectedNode(
+											'slackEnhancedData',
+											[
+												$this->expectedField( 'data', 'Less than a minute' ),
+												$this->expectedField( 'label', 'Time to read' ),
+											],
+											0
+										),
+										$this->expectedObject(
+											'twitterMeta',
+											[
+												$this->expectedField( 'card', $this->tester->get_enum_for_value( TwitterCardTypeEnum::get_type_name(), 'summary_large_image' ) ),
+												$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
+												$this->expectedField( 'title', 'Post Title - Test' ),
+											]
+										),
+									]
+								),
 								$this->expectedObject(
 									'seoScore',
 									[

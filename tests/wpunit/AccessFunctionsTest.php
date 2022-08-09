@@ -8,9 +8,8 @@ class AccessFunctionsTest extends \Codeception\TestCase\WPTestCase {
 	 * {@inheritDoc}
 	 */
 	public function setUp(): void {
-		update_option( 'graphql_seo_settings', [ 'delete_data_on_deactivate' => true ] );
-
 		parent::setUp();
+		update_option( 'graphql_seo_settings', [ 'delete_data_on_deactivate' => true ] );
 	}
 
 	/**

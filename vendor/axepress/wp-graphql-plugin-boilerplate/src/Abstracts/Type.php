@@ -8,13 +8,21 @@
 namespace AxeWP\GraphQL\Abstracts;
 
 use AxeWP\GraphQL\Interfaces\GraphQLType;
+use AxeWP\GraphQL\Interfaces\Registrable;
 use AxeWP\GraphQL\Traits\TypeNameTrait;
 
 /**
  * Class - Type
  */
-abstract class Type implements GraphQLType {
+abstract class Type implements GraphQLType, Registrable {
 	use TypeNameTrait;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function init() : void {
+		add_action( 'graphql_register_types', [ static::class, 'register' ] );
+	}
 
 	/**
 	 * Defines the GraphQL type name registered in WPGraphQL.

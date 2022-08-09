@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
+class ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660
 {
     public static $files = array (
         'd93954ca8a74d7e67246db741a580590' => __DIR__ . '/../..' . '/access-functions.php',
@@ -44,7 +44,7 @@ class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
         'AxeWP\\GraphQL\\Abstracts\\UnionType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/UnionType.php',
         'AxeWP\\GraphQL\\Helper\\Helper' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Helper/Helper.php',
         'AxeWP\\GraphQL\\Interfaces\\GraphQLType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/GraphQLType.php',
-        'AxeWP\\GraphQL\\Interfaces\\Hookable' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Hookable.php',
+        'AxeWP\\GraphQL\\Interfaces\\Registrable' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Registrable.php',
         'AxeWP\\GraphQL\\Interfaces\\TypeWithConnections' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithConnections.php',
         'AxeWP\\GraphQL\\Interfaces\\TypeWithFields' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithFields.php',
         'AxeWP\\GraphQL\\Interfaces\\TypeWithInputFields' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithInputFields.php',
@@ -67,6 +67,8 @@ class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
         'WPGraphQL\\RankMath\\Type\\Enum\\BulkEditingTypeEnum' => __DIR__ . '/../..' . '/src/Type/Enum/BulkEditingTypeEnum.php',
         'WPGraphQL\\RankMath\\Type\\Enum\\ImagePreviewSizeEnum' => __DIR__ . '/../..' . '/src/Type/Enum/ImagePreviewSizeEnum.php',
         'WPGraphQL\\RankMath\\Type\\Enum\\KnowledgeGraphTypeEnum' => __DIR__ . '/../..' . '/src/Type/Enum/KnowledgeGraphTypeEnum.php',
+        'WPGraphQL\\RankMath\\Type\\Enum\\OpenGraphLocaleEnum' => __DIR__ . '/../..' . '/src/Type/Enum/OpenGraphLocaleEnum.php',
+        'WPGraphQL\\RankMath\\Type\\Enum\\OpenGraphProductAvailabilityEnum' => __DIR__ . '/../..' . '/src/Type/Enum/OpenGraphProductAvailabilityEnum.php',
         'WPGraphQL\\RankMath\\Type\\Enum\\RobotsMetaValueEnum' => __DIR__ . '/../..' . '/src/Type/Enum/RobotsMetaValueEnum.php',
         'WPGraphQL\\RankMath\\Type\\Enum\\SeoRatingEnum' => __DIR__ . '/../..' . '/src/Type/Enum/SeoRatingEnum.php',
         'WPGraphQL\\RankMath\\Type\\Enum\\SeoScorePositionEnum' => __DIR__ . '/../..' . '/src/Type/Enum/SeoScorePositionEnum.php',
@@ -81,6 +83,15 @@ class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
         'WPGraphQL\\RankMath\\Type\\WPObject\\ContentNodeSeo' => __DIR__ . '/../..' . '/src/Type/WPObject/ContentNodeSeo.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\JsonLd' => __DIR__ . '/../..' . '/src/Type/WPObject/JsonLd.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\NodeSeo' => __DIR__ . '/../..' . '/src/Type/WPObject/NodeSeo.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraphMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraphMeta.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\Article' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/Article.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\Facebook' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/Facebook.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\Image' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/Image.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\Product' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/Product.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\SlackEnhancedData' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/SlackEnhancedData.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\Twitter' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/Twitter.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\TwitterApp' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/TwitterApp.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\OpenGraph\\Video' => __DIR__ . '/../..' . '/src/Type/WPObject/OpenGraph/Video.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\SeoScore' => __DIR__ . '/../..' . '/src/Type/WPObject/SeoScore.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\General' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/General.php',
@@ -103,9 +114,9 @@ class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660::$classMap;
 
         }, null, ClassLoader::class);
     }

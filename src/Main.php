@@ -78,9 +78,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 			// Setup plugin.
 			CoreSchemaFilters::init();
 			Settings::init();
-
-			// Initialize plugin type registry.
-			add_action( get_graphql_register_action(), [ TypeRegistry::class, 'init' ] );
+			TypeRegistry::init();
 		}
 
 		/**

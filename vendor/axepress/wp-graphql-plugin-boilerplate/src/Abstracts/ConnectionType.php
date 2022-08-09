@@ -8,6 +8,7 @@
 namespace AxeWP\GraphQL\Abstracts;
 
 use AxeWP\GraphQL\Interfaces\GraphQLType;
+use AxeWP\GraphQL\Interfaces\Registrable;
 use AxeWP\GraphQL\Traits\TypeNameTrait;
 
 /**
@@ -37,8 +38,15 @@ use AxeWP\GraphQL\Traits\TypeNameTrait;
  *   }>,
  * }
  */
-abstract class ConnectionType implements GraphQLType {
+abstract class ConnectionType implements GraphQLType, Registrable {
 	use TypeNameTrait;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function init() : void {
+		add_action( 'graphql_register_types', [ static::class, 'register' ] );
+	}
 
 	/**
 	 * Defines all possible connection args for the GraphQL type.

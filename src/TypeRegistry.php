@@ -12,6 +12,7 @@ use Exception;
 use WPGraphQL\RankMath\Connection;
 use WPGraphQL\RankMath\Fields;
 use AxeWP\GraphQL\Interfaces\GraphQLType;
+use AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Mutation;
 use WPGraphQL\RankMath\Type\Enum;
 use WPGraphQL\RankMath\Type\Input;
@@ -88,6 +89,8 @@ class TypeRegistry {
 			Enum\BulkEditingTypeEnum::class,
 			Enum\ImagePreviewSizeEnum::class,
 			Enum\KnowledgeGraphTypeEnum::class,
+			Enum\OpenGraphLocaleEnum::class,
+			Enum\OpenGraphProductAvailabilityEnum::class,
 			Enum\RobotsMetaValueEnum::class,
 			Enum\SeoScorePositionEnum::class,
 			Enum\SeoScoreTemplateTypeEnum::class,
@@ -152,6 +155,17 @@ class TypeRegistry {
 			WPObject\JsonLd::class,
 			WPObject\Breadcrumbs::class,
 
+			// Open Graph
+			WPObject\OpenGraph\Article::class,
+			WPObject\OpenGraph\Facebook::class,
+			WPObject\OpenGraph\Image::class,
+			WPObject\OpenGraph\Product::class,
+			WPObject\OpenGraph\SlackEnhancedData::class,
+			WPObject\OpenGraph\TwitterApp::class,
+			WPObject\OpenGraph\Twitter::class,
+			WPObject\OpenGraph\Video::class,
+			WPObject\OpenGraphMeta::class,
+
 			// General settings.
 			WPObject\Settings\General\BreadcrumbsConfig::class,
 			WPObject\Settings\General\FrontendSeoScore::class,
@@ -168,6 +182,7 @@ class TypeRegistry {
 			WPObject\Settings\Meta\SocialMeta::class,
 			WPObject\Settings\Meta\TaxonomyMeta::class,
 			WPObject\Settings\Meta::class,
+
 			// Settings.
 			WPObject\Settings::class,
 			// SEO fields.
@@ -253,13 +268,13 @@ class TypeRegistry {
 		}
 
 		foreach ( $classes_to_register as $class ) {
-			if ( ! is_a( $class, GraphQLType::class, true ) ) {
+			if ( ! is_a( $class, Registrable::class, true ) ) {
 				// translators: PHP class.
-				throw new Exception( sprintf( __( 'To be registered to the WPGraphQL Plugin Name GraphQL schema, %s needs to implement \AxeWP\GraphQL\Interfaces\GraphQLType.', 'wp-graphql-rank-math' ), $class ) );
+				throw new Exception( sprintf( __( 'To be registered to the WPGraphQL Plugin Name GraphQL schema, %s needs to implement \AxeWP\GraphQL\Interfaces\Registrable.', 'wp-graphql-rank-math' ), $class ) );
 			}
 
 			// Register the type to the GraphQL schema.
-			$class::register();
+			$class::init();
 			// Store the type in the local registry.
 			self::$registry[] = $class;
 		}

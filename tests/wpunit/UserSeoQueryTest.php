@@ -14,8 +14,10 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		rank_math()->variables = new \RankMath\Replace_Variables\Manager();
+		self::set_permalink_structure( '/%year%/%monthnum%/%day%/%postname%/' );
+
 		rank_math()->settings->set( 'general', 'breadcrumbs', true );
+		rank_math()->settings->set( 'general', 'headless_support', true );
 
 		$this->admin = $this->factory()->user->create(
 			[
@@ -57,7 +59,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						canonicalUrl
 						description
 						focusKeywords
-						# fullHead
+						# fullHead @todo
 						jsonLd {
 							raw
 						}
@@ -93,7 +95,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 								$this->expectedField( 'breadcrumbTitle', 'display' ),
 								$this->expectedField( 'description', static::IS_NULL ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
-								// $this->expectedField( 'fullHead', static::IS_NULL ),
+								// $this->expectedField( 'fullHead', static::NOT_FALSY ),
 								$this->expectedField(
 									'robots',
 									[

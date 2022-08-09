@@ -66,7 +66,7 @@ Until we hit v1.0, we're using a modified version of [SemVer](https://semver.org
 * [ ] 🏗 JSON-LD
   * [x] Raw schema
   * [ ] Individual JSON-LD attributes
-* [ ] OpenGraph & Twitter
+* [x] OpenGraph & Twitter
 
 ## Usage
 
@@ -94,6 +94,26 @@ query MyPosts {
         isPillarContent
         jsonLd {
           raw
+        }
+        openGraph {
+          articleMeta {
+            section
+          }
+          description
+          locale
+          siteName
+          title
+          type
+          url
+          slackEnhancedData {
+            data
+            label
+          }
+          twitterMeta {
+            card
+            description
+            title
+          }
         }
         robots
         seoScore {
@@ -136,11 +156,20 @@ query MyPosts {
             description
             focusKeywords
             fullHead
-            robots
-            title
             jsonLd {
               raw
             }
+            openGraph {
+              locale
+              siteName
+              type
+              url
+              twitterMeta {
+                card
+              }
+            }
+            robots
+            title
           }
         }
       }
@@ -165,6 +194,15 @@ query MyPosts {
         jsonLd {
           raw
         }
+        openGraph {
+          locale
+          siteName
+          type
+          url
+          twitterMeta {
+            card
+          }
+        }
         robots
         title
       }
@@ -184,6 +222,26 @@ query MyPosts {
             isPillarContent
             jsonLd {
               raw
+            }
+            openGraph {
+              articleMeta {
+                section
+              }
+              description
+              locale
+              siteName
+              title
+              type
+              url
+              slackEnhancedData {
+                data
+                label
+              }
+              twitterMeta {
+                card
+                description
+                title
+              }
             }
             robots
             seoScore {
@@ -223,6 +281,15 @@ query MyCategories {
         jsonLd {
           raw
         }
+        openGraph {
+          locale
+          siteName
+          type
+          url
+          twitterMeta {
+            card
+          }
+        }
         robots
         title
       }
@@ -244,6 +311,26 @@ query MyCategories {
             isPillarContent
             jsonLd {
               raw
+            }
+            openGraph {
+              articleMeta {
+                section
+              }
+              description
+              locale
+              siteName
+              title
+              type
+              url
+              slackEnhancedData {
+                data
+                label
+              }
+              twitterMeta {
+                card
+                description
+                title
+              }
             }
             robots
             seoScore {

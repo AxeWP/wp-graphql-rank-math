@@ -8,7 +8,7 @@
 namespace AxeWP\GraphQL\Abstracts;
 
 use AxeWP\GraphQL\Interfaces\TypeWithFields;
-use \WPGraphQL\Registry\TypeRegistry;
+use WPGraphQL\Registry\TypeRegistry;
 
 /**
  * Class - InterfaceType
@@ -17,15 +17,17 @@ abstract class InterfaceType extends Type implements TypeWithFields {
 	/**
 	 * The WPGraphQL TypeRegistry instance.
 	 *
-	 * @var TypeRegistry
+	 * @var ?TypeRegistry
 	 */
-	protected static TypeRegistry $type_registry;
+	protected static ?TypeRegistry $type_registry = null;
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @param TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
 	 */
-	public static function register() : void {
-		self::$type_registry = \WPGraphQL::get_type_registry();
+	public static function register( $type_registry = null ) : void {
+		self::$type_registry = $type_registry;
 
 		register_graphql_interface_type( static::get_type_name(), static::get_type_config() );
 	}
