@@ -173,8 +173,6 @@ abstract class Seo extends Model {
 		$rest_url = get_rest_url( null, '/rankmath/v1/getHead?url=' . $url_param );
 		$request  = \WP_REST_Request::from_url( $rest_url );
 
-		codecept_debug( $request );
-
 		if ( false === $request ) {
 			throw new Error(
 				sprintf(
@@ -214,8 +212,6 @@ abstract class Seo extends Model {
 		if ( preg_match_all( '/<meta (property|name)="([^"]+):([^"]+)" content="([^"]+)" \/>/', $head, $matches ) ) {
 			$this->save_tags_from_matches( $matches, $tags );
 		}
-		codecept_debug( $head );
-		codecept_debug( $tags );
 
 		return $tags ?: null;
 	}
@@ -228,7 +224,6 @@ abstract class Seo extends Model {
 	 */
 	private function save_tags_from_matches( array $matches, array &$tags ) : void {
 		// $matches[2] contains the OpenGraph prefix (og, article, twitter, etc ).
-		codecept_debug( $matches );
 		foreach ( $matches[2] as $key => $prefix ) {
 			$property = $matches[3][ $key ];
 			$value    = $matches[4][ $key ];
