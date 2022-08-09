@@ -17,7 +17,7 @@ return array(
     'AxeWP\\GraphQL\\Abstracts\\UnionType' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/UnionType.php',
     'AxeWP\\GraphQL\\Helper\\Helper' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Helper/Helper.php',
     'AxeWP\\GraphQL\\Interfaces\\GraphQLType' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/GraphQLType.php',
-    'AxeWP\\GraphQL\\Interfaces\\Hookable' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Hookable.php',
+    'AxeWP\\GraphQL\\Interfaces\\Registrable' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Registrable.php',
     'AxeWP\\GraphQL\\Interfaces\\TypeWithConnections' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithConnections.php',
     'AxeWP\\GraphQL\\Interfaces\\TypeWithFields' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithFields.php',
     'AxeWP\\GraphQL\\Interfaces\\TypeWithInputFields' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithInputFields.php',

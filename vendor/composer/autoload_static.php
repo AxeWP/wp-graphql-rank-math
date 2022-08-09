@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
+class ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660
 {
     public static $files = array (
         'd93954ca8a74d7e67246db741a580590' => __DIR__ . '/../..' . '/access-functions.php',
@@ -44,7 +44,7 @@ class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
         'AxeWP\\GraphQL\\Abstracts\\UnionType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/UnionType.php',
         'AxeWP\\GraphQL\\Helper\\Helper' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Helper/Helper.php',
         'AxeWP\\GraphQL\\Interfaces\\GraphQLType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/GraphQLType.php',
-        'AxeWP\\GraphQL\\Interfaces\\Hookable' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Hookable.php',
+        'AxeWP\\GraphQL\\Interfaces\\Registrable' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Registrable.php',
         'AxeWP\\GraphQL\\Interfaces\\TypeWithConnections' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithConnections.php',
         'AxeWP\\GraphQL\\Interfaces\\TypeWithFields' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithFields.php',
         'AxeWP\\GraphQL\\Interfaces\\TypeWithInputFields' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithInputFields.php',
@@ -114,9 +114,9 @@ class ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit512208ad7ff8075d7c98d0dcd20064f0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660::$classMap;
 
         }, null, ClassLoader::class);
     }

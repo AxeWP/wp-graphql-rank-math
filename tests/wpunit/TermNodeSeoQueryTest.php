@@ -1,5 +1,8 @@
 <?php
 
+use WPGraphQL\RankMath\Type\Enum\OpenGraphLocaleEnum;
+use WPGraphQL\RankMath\Type\Enum\TwitterCardTypeEnum;
+
 /**
  * Tests TermNode seo queries.
  */
@@ -14,8 +17,10 @@ class TermNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		rank_math()->variables = new \RankMath\Replace_Variables\Manager();
+		self::set_permalink_structure( '/%year%/%monthnum%/%day%/%postname%/' );
+
 		rank_math()->settings->set( 'general', 'breadcrumbs', true );
+		rank_math()->settings->set( 'general', 'headless_support', true );
 
 		$this->admin = $this->factory()->user->create(
 			[
@@ -38,6 +43,7 @@ class TermNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	 */
 	public function tearDown(): void {
 		rank_math()->settings->set( 'general', 'breadcrumbs', false );
+		wp_delete_post( $this->database_id, true );
 
 		parent::tearDown();
 	}
@@ -61,9 +67,20 @@ class TermNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						canonicalUrl
 						description
 						focusKeywords
-						# fullHead
+						fullHead
 						jsonLd {
 							raw
+						}
+						openGraph {
+							locale
+							siteName
+							title
+							type
+							url
+							twitterMeta {
+								card
+								title
+							}
 						}
 						robots
 						title
@@ -97,7 +114,24 @@ class TermNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 								$this->expectedField( 'breadcrumbTitle', 'Test term' ),
 								$this->expectedField( 'description', static::IS_NULL ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
-								// $this->expectedField( 'fullHead', static::IS_NULL ),
+								$this->expectedField( 'fullHead', static::NOT_FALSY ),
+								$this->expectedObject(
+									'openGraph',
+									[
+										$this->expectedField( 'locale', $this->tester->get_enum_for_value( OpenGraphLocaleEnum::get_type_name(), 'en_US' ) ),
+										$this->expectedField( 'siteName', 'Test' ),
+										$this->expectedField( 'title', 'Test term - Test' ),
+										$this->expectedField( 'type', 'article' ),
+										$this->expectedField( 'url', get_term_link( $this->database_id ) ),
+										$this->expectedObject(
+											'twitterMeta',
+											[
+												$this->expectedField( 'card', $this->tester->get_enum_for_value( TwitterCardTypeEnum::get_type_name(), 'summary_large_image' ) ),
+												$this->expectedField( 'title', 'Test term - Test' ),
+											]
+										),
+									]
+								),
 								$this->expectedField(
 									'robots',
 									[

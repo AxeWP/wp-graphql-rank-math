@@ -4,11 +4,13 @@
 actor: WpunitTesterActions
 modules:
   enabled:
+    - WPDb
     - WPLoader
     - \Helper\Wpunit
   disabled:
-    - WPDb
     - WPBrowser
   config:
+    WPLoader:
+      loadOnly: true
     WPDb:
-      cleanup: false
+      cleanup: true

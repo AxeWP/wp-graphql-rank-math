@@ -92,13 +92,13 @@ configure_wordpress() {
 	export WP_CLI_CONFIG_PATH=${WP_CLI_CONFIG_PATH};
 	wp config create --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASS" --dbhost="$DB_HOST" --skip-check --force=true
 	wp core install --url=$WP_DOMAIN --title=Test --admin_user=$ADMIN_USERNAME --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL
-	wp rewrite structure '/%year%/%monthnum%/%postname%/' --hard
+
+	wp rewrite structure '/%year%/%monthnum%/%postname%/' --category-base='category' --allow-root
+
 }
 
 install_plugins() {
 	cd $WP_CORE_DIR
-
-	wp plugin list --allow-root
 
 	# Install WPGraphQL and Activate
 	wp plugin install wp-graphql --allow-root
@@ -129,12 +129,12 @@ setup_plugin() {
 
 post_setup() {
 	cd $WP_CORE_DIR
-	ls
 
 	# activate the plugin
 	wp plugin activate wp-graphql-rank-math --allow-root
 
-	# Flush the permalinks
+	wp option update rank_math_registration_skip 1 --allow-root
+
 	wp rewrite flush --allow-root --hard
 
 	# Export the db for codeception to use
@@ -142,4 +142,5 @@ post_setup() {
 
 	echo "Installed plugins"
 	wp plugin list --allow-root
+
 }
