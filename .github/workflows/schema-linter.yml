@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - develop
-  pull_request_target:
+  pull_request:
     branches:
       - develop
       - main
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -21,6 +22,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
         # Ensure docker waits for mariadb to start
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,9 +42,6 @@ jobs:
 
       - name: Setup GraphQL Schema Linter
         run: npm install -g graphql-schema-linter@^3.0 graphql@^16
-
-      - name: Add HTTP basic auth credentials
-        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
 
       - name: Setup WordPress
         run: |
