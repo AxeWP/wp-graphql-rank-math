@@ -17,21 +17,27 @@ on:
 jobs:
   continuous_integration:
     runs-on: ubuntu-latest
+    name: WordPress ${{ matrix.wordpress }} on PHP ${{ matrix.php }}
+
     strategy:
       matrix:
-        php: [ '7.4' ]
-        wordpress: [ '6.0', '5.9', '5.8', '5.7' ]
+        php: ["7.4", "8.0"]
+        wordpress: ["6.0", "5.9", "5.8"]
         include:
-          - php: '8.0'
-            wordpress: '5.9'
-          - php: '8.0'
-            wordpress: '5.8'
-          - php: '8.0'
-            wordpress: '6.0'
+          - php: "8.0"
+            wordpress: "6.0"
             coverage: 1
+          - php: "7.4"
+            wordpress: "5.7"
       fail-fast: false
-    name: WordPress ${{ matrix.wordpress }} on PHP ${{ matrix.php }}
+
     steps:
+      - name: Cancel previous runs of this workflow (pull requests only)
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: styfle/cancel-workflow-action@0.5.0
+        with:
+          access_token: ${{ github.token }}
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -40,21 +46,10 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: json, mbstring
-          tools: composer, wp-cli
-
-      - name: Get Composer Cache Directory
-        id: composercache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composercache.outputs.dir }}
-          key: php-${{ matrix.php }}-${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: php-${{ matrix.php }}-${{ runner.os }}-composer-
+          tools: composer:v2
 
       - name: Install dependencies
-        run: composer install --no-dev
+        uses: ramsey/composer-install@v2
 
       - name: Build "testing" Docker Image
         env:
