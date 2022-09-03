@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- chore: Update Composer deps.
+
 ## v0.0.4 - OpenGraph Support
 - feat: Add `openGraph` data to `BaseSeoFields`.
 - chore: Update Composer deps. 
