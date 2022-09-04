@@ -35,8 +35,13 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 		Helper::update_modules( [ 'sitemap' => 'on' ] );
 
-
 		$this->clearSchema();
+	}
+
+	public function tearDown() : void {
+		Helper::update_modules( [ 'sitemap' => 'off' ] );
+
+		parent::tearDown();
 	}
 
 	/**
@@ -581,6 +586,15 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 				),
 			]
 		);
+
+		// Cleanup
+		$title_options['disable_author_archives'] = 'on';
+		rank_math()->settings->set( 'titles', 'disable_author_archives', true );
+
+		$title_options['author_custom_robots'] = 'on';
+		rank_math()->settings->set( 'titles', 'author_custom_robots', true );
+
+		update_option( 'rank-math-options-titles', $title_options );
 	}
 
 }
