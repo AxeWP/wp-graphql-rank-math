@@ -10,6 +10,7 @@ namespace WPGraphQL\RankMath\Type\WPObject;
 use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta;
+use WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap;
 
 /**
  * Class - Settings
@@ -42,6 +43,10 @@ class Settings extends ObjectType {
 			'meta'    => [
 				'type'        => Meta::get_type_name(),
 				'description' => __( 'Meta settings.', 'wp-graphql-rank-math' ),
+			],
+			'sitemap' => [
+				'type'        => Sitemap::get_type_name(),
+				'description' => __( 'Sitemap settings.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

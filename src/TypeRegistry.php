@@ -182,6 +182,12 @@ class TypeRegistry {
 			WPObject\Settings\Meta\SocialMeta::class,
 			WPObject\Settings\Meta\TaxonomyMeta::class,
 			WPObject\Settings\Meta::class,
+			// Sitemap settings
+			WPObject\Settings\Sitemap\Author::class,
+			WPObject\Settings\Sitemap\ContentType::class,
+			WPObject\Settings\Sitemap\General::class,
+			WPObject\Settings\Sitemap\Taxonomy::class,
+			WPObject\Settings\Sitemap::class,
 
 			// Settings.
 			WPObject\Settings::class,
