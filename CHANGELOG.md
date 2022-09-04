@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+
+## v0.0.5 - Sitemap Support
+- feat: Add support for `Sitemap` module.
 - chore: Update Composer deps.
 
 ## v0.0.4 - OpenGraph Support
