@@ -8,17 +8,44 @@
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap;
 
 use AxeWP\GraphQL\Abstracts\ObjectType;
+use AxeWP\GraphQL\Interfaces\TypeWithConnections;
+use WPGraphQL\Data\Connection\UserConnectionResolver;
 
 /**
  * Class - Author
  */
-class Author extends ObjectType {
+class Author extends ObjectType implements TypeWithConnections {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected static function type_name() : string {
 		return 'SitemapAuthorSettings';
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function get_connections() : array {
+		return [
+			'connectedAuthors' => [
+				'toType'      => 'User',
+				'description' => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
+				'resolve'     => function( $source, $args, $context, $info ) {
+					$resolver = new UserConnectionResolver( $source, $args, $context, $info );
+
+					if ( ! empty( $source->excludedRoles ) ) {
+						$resolver->set_query_arg( 'role__not_in', $source->excludedRoles );
+					}
+
+					if ( ! empty( $source->excludedUserDatabaseIds ) ) {
+						$resolver->set_query_arg( 'exclude', $source->excludedUserDatabaseIds );
+					}
+
+					return $resolver->get_connection();
+				},
+			],
+		];
 	}
 
 	/**

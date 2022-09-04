@@ -8,17 +8,47 @@
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap;
 
 use AxeWP\GraphQL\Abstracts\ObjectType;
+use AxeWP\GraphQL\Interfaces\TypeWithConnections;
+use RankMath\Helper;
+use WPGraphQL\Data\Connection\TermObjectConnectionResolver;
 
 /**
  * Class - Taxonomy
  */
-class Taxonomy extends ObjectType {
+class Taxonomy extends ObjectType implements TypeWithConnections {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected static function type_name() : string {
 		return 'SitemapTaxonomySettings';
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function get_connections() : array {
+		return [
+			'connectedTerms' => [
+				'toType'      => 'TermNode',
+				'description' => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
+				'resolve'     => function( $source, $args, $context, $info ) {
+					if ( empty( $source['isInSitemap'] ) ) {
+						return null;
+					}
+
+					$resolver = new TermObjectConnectionResolver( $source, $args, $context, $info, $source['type'] );
+
+					$excluded_term_ids = Helper::get_settings( 'sitemap.exclude_terms' );
+
+					if ( ! empty( $excluded_term_ids ) ) {
+						$resolver->set_query_arg( 'exclude', $excluded_term_ids );
+					}
+
+					return $resolver->get_connection();
+				},
+			],
+		];
 	}
 
 	/**

@@ -462,12 +462,22 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						excludedRoles
 						excludedUserDatabaseIds
 						sitemapUrl
+						connectedAuthors {
+							nodes {
+								id
+							}
+						}
 					}
 					contentTypes {
 						customImageMetaKeys
 						isInSitemap
 						sitemapUrl
 						type
+						connectedContentNodes {
+							nodes {
+								id
+							}
+						}
 					}
 					general {
 						canPingSearchEngines
@@ -483,6 +493,11 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						isInSitemap
 						sitemapUrl
 						type
+						connectedTerms {
+							nodes {
+								id
+							}
+						}
 					}
 				}
 			}
@@ -505,6 +520,13 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 										$this->expectedField( 'excludedRoles', [ 'CONTRIBUTOR', 'SUBSCRIBER' ] ),
 										$this->expectedField( 'excludedUserDatabaseIds', static::IS_NULL ),
 										$this->expectedField( 'sitemapUrl', get_home_url() . '/author-sitemap.xml' ),
+										$this->expectedNode(
+											'connectedAuthors.nodes',
+											[
+												$this->expectedField( 'id', static::NOT_FALSY ),
+											],
+											0
+										),
 									]
 								),
 								$this->expectedNode(
@@ -514,6 +536,13 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 										$this->expectedField( 'isInSitemap', true ),
 										$this->expectedField( 'sitemapUrl', get_home_url() . '/post-sitemap.xml' ),
 										$this->expectedField( 'type', 'POST' ),
+										$this->expectedNode(
+											'connectedContentNodes.nodes',
+											[
+												$this->expectedField( 'id', static::NOT_FALSY ),
+											],
+											0
+										),
 									],
 									0
 								),
@@ -536,6 +565,13 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 										$this->expectedField( 'isInSitemap', true ),
 										$this->expectedField( 'sitemapUrl', get_home_url() . '/category-sitemap.xml' ),
 										$this->expectedField( 'type', 'CATEGORY' ),
+										$this->expectedNode(
+											'connectedTerms.nodes',
+											[
+												$this->expectedField( 'id', static::NOT_FALSY ),
+											],
+											0
+										),
 									],
 									0
 								),
