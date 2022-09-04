@@ -81,11 +81,11 @@ class Settings extends Model {
 
 			if ( in_array( 'sitemap', $this->active_modules, true ) ) {
 				$this->fields['sitemap'] = fn() => [
-					'general'      => $this->sitemap_general_fields(),
-					'contentTypes' => $this->sitemap_content_type_fields(),
-					'taxonomies'   => $this->sitemap_taxonomy_fields(),
-					'author'       => $this->sitemap_author_fields(),
-					'indexUrl'     => rank_math_get_sitemap_url(),
+					'author'          => $this->sitemap_author_fields(),
+					'contentTypes'    => $this->sitemap_content_type_fields(),
+					'general'         => $this->sitemap_general_fields(),
+					'sitemapIndexUrl' => rank_math_get_sitemap_url(),
+					'taxonomies'      => $this->sitemap_taxonomy_fields(),
 				];
 			}
 		}

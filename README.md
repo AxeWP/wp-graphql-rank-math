@@ -63,7 +63,7 @@ Priority support and custom development is available to [our Sponsors](https://g
   * [x] Categories, tags, and custom taxonomy terms.
   * [x] Authors (users)
   * [ ] Image attributes.
-* [ ] Sitemaps
+* [x] Sitemaps
 * [ ] Redirections
 * [ ] 404 Monitor
 * [ ] Local SEO and Knowledgegraph
@@ -384,6 +384,59 @@ query MyCategories {
         }
         robots
         title
+      }
+    }
+  }
+}
+
+
+```
+### Querying Sitemaps
+
+```graphql
+{
+  rankMathSettings {
+    sitemap {
+      author {
+        excludedRoles
+        excludedUserDatabaseIds
+        sitemapUrl
+        connectedAuthors {
+          nodes {
+            id
+          }
+        }
+      }
+      contentTypes {
+        customImageMetaKeys
+        isInSitemap
+        sitemapUrl
+        type
+        connectedContentNodes {
+          nodes {
+            uri
+          }
+        }
+      }
+      general {
+        canPingSearchEngines
+        excludedPostDatabaseIds
+        excludedTermDatabaseIds
+        hasFeaturedImage
+        hasImages
+        linksPerSitemap
+      }
+      indexUrl
+      taxonomies {
+        hasEmptyTerms
+        isInSitemap
+        sitemapUrl
+        type
+        connectedAuthors {
+          nodes {
+            uri
+          }
+        }
       }
     }
   }

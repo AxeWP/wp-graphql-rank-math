@@ -487,7 +487,7 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						hasImages
 						linksPerSitemap
 					}
-					indexUrl
+					sitemapIndexUrl
 					taxonomies {
 						hasEmptyTerms
 						isInSitemap
@@ -557,7 +557,7 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 										$this->expectedField( 'linksPerSitemap', 200 ),
 									]
 								),
-								$this->expectedField( 'indexUrl', get_home_url() . '/sitemap_index.xml' ),
+								$this->expectedField( 'sitemapIndexUrl', get_home_url() . '/sitemap_index.xml' ),
 								$this->expectedNode(
 									'taxonomies',
 									[

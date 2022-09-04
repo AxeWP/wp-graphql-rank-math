@@ -45,11 +45,11 @@ class Sitemap extends ObjectType {
 	 */
 	public static function get_fields() : array {
 		return [
-			'author'       => [
+			'author'          => [
 				'type'        => Author::get_type_name(),
 				'description' => __( 'Author sitemap settings. Null if authors are not indexable.', 'wp-graphql-rank-math' ),
 			],
-			'contentTypes' => [
+			'contentTypes'    => [
 				'type'        => [ 'list_of' => ContentType::get_type_name() ],
 				'args'        => [
 					'include' => [
@@ -68,15 +68,15 @@ class Sitemap extends ObjectType {
 					return ! empty( $content_types ) ? $content_types : null;
 				},
 			],
-			'general'      => [
+			'general'         => [
 				'type'        => General::get_type_name(),
 				'description' => __( 'Sitemap general settings.', 'wp-graphql-rank-math' ),
 			],
-			'indexUrl'     => [
+			'sitemapIndexUrl' => [
 				'type'        => 'String',
 				'description' => __( 'The URL to the sitemap index.', 'wp-graphql-rank-math' ),
 			],
-			'taxonomies'   => [
+			'taxonomies'      => [
 				'type'        => [ 'list_of' => Taxonomy::get_type_name() ],
 				'args'        => [
 					'include' => [
