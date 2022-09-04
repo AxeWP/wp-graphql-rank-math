@@ -108,6 +108,11 @@ class ComposerStaticInit823d6215ead1682dacbe21a9f0dd4660
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\LocalMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Meta/LocalMeta.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\SocialMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Meta/SocialMeta.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\TaxonomyMeta' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Meta/TaxonomyMeta.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\Author' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap/Author.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\ContentType' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap/ContentType.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\General' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap/General.php',
+        'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\Taxonomy' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap/Taxonomy.php',
         'WPGraphQL\\RankMath\\Utils\\Utils' => __DIR__ . '/../..' . '/src/Utils/Utils.php',
     );
 

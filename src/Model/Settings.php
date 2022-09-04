@@ -9,6 +9,8 @@ namespace WPGraphQL\RankMath\Model;
 
 use Exception;
 use WPGraphQL\Model\Model;
+use RankMath\Helper;
+use RankMath\Sitemap\Router;
 
 /**
  * Class - Settings
@@ -17,9 +19,16 @@ class Settings extends Model {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @var array<string, mixed> $data
+	 * @var array<string, mixed>
 	 */
 	protected $data;
+
+	/**
+	 * Array of active modules
+	 * 
+	 * @var string[]
+	 */
+	protected array $active_modules;
 
 
 	/**
@@ -37,6 +46,9 @@ class Settings extends Model {
 		}
 
 		$this->data = $settings;
+
+		$this->active_modules = Helper::get_active_modules();
+
 		parent::__construct();
 	}
 
@@ -64,8 +76,18 @@ class Settings extends Model {
 					'shouldIndexPaginatedPages'    => empty( $this->data['titles']['noindex_paginated_pages'] ),
 					'shouldIndexArchiveSubpages'   => empty( $this->data['titles']['noindex_archive_subpages'] ),
 					'shouldIndexPasswordProtected' => empty( $this->data['titles']['noindex_password_protected'] ),
-				],
+				],  
 			];
+
+			if ( in_array( 'sitemap', $this->active_modules, true ) ) {
+				$this->fields['sitemap'] = fn() => [
+					'author'          => $this->sitemap_author_fields(),
+					'contentTypes'    => $this->sitemap_content_type_fields(),
+					'general'         => $this->sitemap_general_fields(),
+					'sitemapIndexUrl' => rank_math_get_sitemap_url(),
+					'taxonomies'      => $this->sitemap_taxonomy_fields(),
+				];
+			}
 		}
 	}
 
@@ -299,6 +321,92 @@ class Settings extends Model {
 				'hasSeoControls'          => ! empty( $this->data['titles'][ $prefix . '_add_meta_box' ] ),
 				'analyzedFields'          => ! empty( $this->data['titles'][ $prefix . '_analyze_fields' ] ) ? $this->data['titles'][ $prefix . '_analyze_fields' ] : null,
 				'primaryTaxonomy'         => ! empty( $this->data['titles'][ $prefix . '_primary_taxonomy' ] ) ? $this->data['titles'][ $prefix . '_primary_taxonomy' ] : null,
+			];
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Resolve the sitemap general settings.
+	 */
+	private function sitemap_general_fields() : array {
+		return [
+			'canPingSearchEngines'    => ! empty( $this->data['sitemap']['ping_search_engines'] ),
+			'excludedPostDatabaseIds' => ! empty( $this->data['sitemap']['exclude_posts'] ) ? array_map( 'absint', explode( ',', $this->data['sitemap']['exclude_posts'] ) ) : null,
+			'excludedTermDatabaseIds' => ! empty( $this->data['sitemap']['exclude_terms'] ) ? array_map( 'absint', explode( ',', $this->data['sitemap']['exclude_terms'] ) ) : null,
+			'hasFeaturedImage'        => ! empty( $this->data['sitemap']['include_featured_image'] ),
+			'hasImages'               => ! empty( $this->data['sitemap']['include_images'] ),
+			'linksPerSitemap'         => ! empty( $this->data['sitemap']['items_per_page'] ) ? absint( $this->data['sitemap']['items_per_page'] ) : null,
+		];
+	}
+
+	/**
+	 * Resolve the sitemap general settings.
+	 */
+	private function sitemap_author_fields() : ?array {
+		if ( ! Helper::is_author_archive_indexable() ) {
+			return null;
+		}
+
+		return [
+			'excludedRoles'           => function() {
+				if ( empty( $this->data['sitemap']['exclude_roles'] ) ) {
+					return null;
+				}
+
+				$roles = array_keys( $this->data['sitemap']['exclude_roles'] );
+
+				if ( ! is_string( $roles[0] ) ) {
+					$roles = array_values( $this->data['sitemap']['exclude_roles'] );
+				}
+
+				return ! empty( $roles ) ? $roles : null;
+			},
+			'excludedUserDatabaseIds' => ! empty( $this->data['sitemap']['exclude_users'] ) ? array_map( 'absint', explode( ',', $this->data['sitemap']['exclude_users'] ) ) : null,
+			'sitemapUrl'              => Router::get_base_url( 'author-sitemap.xml' ),
+		];
+	}
+
+	/**
+	 * Resolve the sitemap post type settings.
+	 */
+	private function sitemap_content_type_fields() : array {
+		$post_types = \WPGraphQL::get_allowed_post_types();
+
+		$fields = [];
+
+		foreach ( $post_types as $post_type ) {
+			$prefix = 'pt_' . $post_type;
+
+			$fields[ $post_type ] = [
+				'customImageMetaKeys' => ! empty( $this->data['sitemap'][ $prefix . '_image_customfields' ] ) ? preg_split( '/\r\n|\r|\n/', $this->data['sitemap'][ $prefix . '_image_customfields' ] ) : null,
+				'isInSitemap'         => ! empty( $this->data['sitemap'][ $prefix . '_sitemap' ] ),
+				'sitemapUrl'          => ! empty( $this->data['sitemap'][ $prefix . '_sitemap' ] ) ? Router::get_base_url( $post_type . '-sitemap.xml' ) : null,
+				'type'                => $post_type,
+			];
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Resolve the sitemap taxonomy settings.
+	 */
+	private function sitemap_taxonomy_fields() : array {
+		$taxonomies = \WPGraphQL::get_allowed_taxonomies();
+
+		$fields = [];
+
+		foreach ( $taxonomies as $taxonomy ) {
+			$prefix = 'tax_' . $taxonomy;
+
+			$fields[ $taxonomy ] = [
+				'hasEmptyTerms' => ! empty( $this->data['sitemap'][ $prefix . '_include_empty' ] ),
+				'isInSitemap'   => ! empty( $this->data['sitemap'][ $prefix . '_sitemap' ] ),
+				'sitemapUrl'    => ! empty( $this->data['sitemap'][ $prefix . '_sitemap' ] ) ? Router::get_base_url( $taxonomy . '-sitemap.xml' ) : null,
+				'type'          => $taxonomy,
+
 			];
 		}
 

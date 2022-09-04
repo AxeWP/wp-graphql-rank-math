@@ -6,7 +6,6 @@
 class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 	public $admin;
-	public $database_id;
 
 	/**
 	 * {@inheritDoc}
@@ -18,6 +17,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 		rank_math()->settings->set( 'general', 'breadcrumbs', true );
 		rank_math()->settings->set( 'general', 'headless_support', true );
+		rank_math()->settings->set( 'titles', 'disable_author_archives', false );
 
 		$this->admin = $this->factory()->user->create(
 			[
@@ -36,6 +36,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	 */
 	public function tearDown(): void {
 		rank_math()->settings->set( 'general', 'breadcrumbs', false );
+		rank_math()->settings->set( 'titles', 'disable_author_archives', true );
 
 		parent::tearDown();
 	}

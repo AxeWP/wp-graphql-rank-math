@@ -1,5 +1,7 @@
 <?php
 
+use RankMath\Helper;
+
 /**
  * Tests Settings queries.
  */
@@ -31,7 +33,15 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_for_posts', $page_id );
 
-		WPGraphQL::clear_schema();
+		Helper::update_modules( [ 'sitemap' => 'on' ] );
+
+		$this->clearSchema();
+	}
+
+	public function tearDown() : void {
+		Helper::update_modules( [ 'sitemap' => 'off' ] );
+
+		parent::tearDown();
 	}
 
 	/**
@@ -433,6 +443,158 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 				),
 			]
 		);
+	}
+
+	/**
+	 * Tests rankMathSettings.sitemap
+	 */
+	public function testSitemapSettings() {
+		// Configure settings.
+		$title_options = get_option( 'rank-math-options-titles', [] );
+
+		$title_options['disable_author_archives'] = 'off';
+		rank_math()->settings->set( 'titles', 'disable_author_archives', false );
+
+		$title_options['author_custom_robots'] = 'off';
+		rank_math()->settings->set( 'titles', 'author_custom_robots', false );
+
+		update_option( 'rank-math-options-titles', $title_options );
+
+		$query = '{
+			rankMathSettings {
+				sitemap {
+					author {
+						excludedRoles
+						excludedUserDatabaseIds
+						sitemapUrl
+						connectedAuthors {
+							nodes {
+								id
+							}
+						}
+					}
+					contentTypes {
+						customImageMetaKeys
+						isInSitemap
+						sitemapUrl
+						type
+						connectedContentNodes {
+							nodes {
+								id
+							}
+						}
+					}
+					general {
+						canPingSearchEngines
+						excludedPostDatabaseIds
+						excludedTermDatabaseIds
+						hasFeaturedImage
+						hasImages
+						linksPerSitemap
+					}
+					sitemapIndexUrl
+					taxonomies {
+						hasEmptyTerms
+						isInSitemap
+						sitemapUrl
+						type
+						connectedTerms {
+							nodes {
+								id
+							}
+						}
+					}
+				}
+			}
+		}';
+
+		$actual = $this->graphql( compact( 'query' ) );
+
+		$this->assertQuerySuccessful(
+			$actual,
+			[
+				$this->expectedObject(
+					'rankMathSettings',
+					[
+						$this->expectedObject(
+							'sitemap',
+							[
+								$this->expectedObject(
+									'author',
+									[
+										$this->expectedField( 'excludedRoles', [ 'CONTRIBUTOR', 'SUBSCRIBER' ] ),
+										$this->expectedField( 'excludedUserDatabaseIds', static::IS_NULL ),
+										$this->expectedField( 'sitemapUrl', get_home_url() . '/author-sitemap.xml' ),
+										$this->expectedNode(
+											'connectedAuthors.nodes',
+											[
+												$this->expectedField( 'id', static::NOT_FALSY ),
+											],
+											0
+										),
+									]
+								),
+								$this->expectedNode(
+									'contentTypes',
+									[
+										$this->expectedField( 'customImageMetaKeys', static::IS_NULL ),
+										$this->expectedField( 'isInSitemap', true ),
+										$this->expectedField( 'sitemapUrl', get_home_url() . '/post-sitemap.xml' ),
+										$this->expectedField( 'type', 'POST' ),
+										$this->expectedNode(
+											'connectedContentNodes.nodes',
+											[
+												$this->expectedField( 'id', static::NOT_FALSY ),
+											],
+											0
+										),
+									],
+									0
+								),
+								$this->expectedObject(
+									'general',
+									[
+										$this->expectedField( 'canPingSearchEngines', true ),
+										$this->expectedField( 'excludedPostDatabaseIds', static::IS_NULL ),
+										$this->expectedField( 'excludedTermDatabaseIds', static::IS_NULL ),
+										$this->expectedField( 'hasFeaturedImage', false ),
+										$this->expectedField( 'hasImages', true ),
+										$this->expectedField( 'linksPerSitemap', 200 ),
+									]
+								),
+								$this->expectedField( 'sitemapIndexUrl', get_home_url() . '/sitemap_index.xml' ),
+								$this->expectedNode(
+									'taxonomies',
+									[
+										$this->expectedField( 'hasEmptyTerms', false ),
+										$this->expectedField( 'isInSitemap', true ),
+										$this->expectedField( 'sitemapUrl', get_home_url() . '/category-sitemap.xml' ),
+										$this->expectedField( 'type', 'CATEGORY' ),
+										$this->expectedNode(
+											'connectedTerms.nodes',
+											[
+												$this->expectedField( 'id', static::NOT_FALSY ),
+											],
+											0
+										),
+									],
+									0
+								),
+							]
+						),
+					]
+				),
+			]
+		);
+
+		// Cleanup
+		$title_options['disable_author_archives'] = 'on';
+		rank_math()->settings->set( 'titles', 'disable_author_archives', true );
+
+		$title_options['author_custom_robots'] = 'on';
+		rank_math()->settings->set( 'titles', 'author_custom_robots', true );
+
+		update_option( 'rank-math-options-titles', $title_options );
 	}
 
 }

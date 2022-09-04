@@ -81,5 +81,10 @@ return array(
     'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\LocalMeta' => $baseDir . '/src/Type/WPObject/Settings/Meta/LocalMeta.php',
     'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\SocialMeta' => $baseDir . '/src/Type/WPObject/Settings/Meta/SocialMeta.php',
     'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Meta\\TaxonomyMeta' => $baseDir . '/src/Type/WPObject/Settings/Meta/TaxonomyMeta.php',
+    'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap' => $baseDir . '/src/Type/WPObject/Settings/Sitemap.php',
+    'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\Author' => $baseDir . '/src/Type/WPObject/Settings/Sitemap/Author.php',
+    'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\ContentType' => $baseDir . '/src/Type/WPObject/Settings/Sitemap/ContentType.php',
+    'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\General' => $baseDir . '/src/Type/WPObject/Settings/Sitemap/General.php',
+    'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\Taxonomy' => $baseDir . '/src/Type/WPObject/Settings/Sitemap/Taxonomy.php',
     'WPGraphQL\\RankMath\\Utils\\Utils' => $baseDir . '/src/Utils/Utils.php',
 );
