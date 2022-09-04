@@ -350,7 +350,19 @@ class Settings extends Model {
 		}
 
 		return [
-			'excludedRoles'           => ! empty( $this->data['sitemap']['exclude_roles'] ) ? $this->data['sitemap']['exclude_roles'] : null,
+			'excludedRoles'           => function() {
+				if ( empty( $this->data['sitemap']['exclude_roles'] ) ) {
+					return null;
+				}
+
+				$roles = array_keys( $this->data['sitemap']['exclude_roles'] );
+
+				if ( ! is_string( $roles[0] ) ) {
+					$roles = array_values( $this->data['sitemap']['exclude_roles'] );
+				}
+
+				return ! empty( $roles ) ? $roles : null;
+			},
 			'excludedUserDatabaseIds' => ! empty( $this->data['sitemap']['exclude_users'] ) ? array_map( 'absint', explode( ',', $this->data['sitemap']['exclude_users'] ) ) : null,
 			'sitemapUrl'              => Router::get_base_url( 'author-sitemap.xml' ),
 		];
