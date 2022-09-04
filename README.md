@@ -29,7 +29,12 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 
 1. Install & activate [WPGraphQL](https://www.wpgraphql.com/).
 2. Install & activate [Rank Math SEO](https://rankmath.com/).
-3. Download the zip of this repository, upload it to your WordPress install, and activate the plugin.
+3. Download the [latest release](https://github.com/AxeWP/wp-graphql-rank-math/releases) `.zip` file, upload it to your WordPress install, and activate the plugin.
+
+### With Composer
+```console
+composer require axepress/wp-graphql-rank-math
+```
 
 ## Updating and Versioning
 
