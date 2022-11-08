@@ -57,6 +57,50 @@ class UserSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function setup() : void {
+		global $wp_query, $post, $authordata;
+
+		// Store variables for resetting at tear down
+		$this->global_post       = $post;
+		$this->global_authordata = $authordata;
+
+		if ( $this->data instanceof \WP_User ) {
+
+			// Reset postdata
+			$wp_query->reset_postdata();
+
+			// Parse the query to setup global state
+			$wp_query->parse_query(
+				[
+					'author_name' => $this->data->user_nicename,
+				]
+			);
+
+			// Setup globals
+			$wp_query->is_author         = true;
+			$GLOBALS['authordata']       = $this->data; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+			$wp_query->queried_object    = get_user_by( 'id', $this->data->ID );
+			$wp_query->queried_object_id = $this->data->ID;
+		}
+
+		parent::setup();
+	}
+
+	/**
+	 * Reset global state after the model fields
+	 * have been generated
+	 *
+	 * @return void
+	 */
+	public function tear_down() {
+		$GLOBALS['authordata'] = $this->global_authordata; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		$GLOBALS['post']       = $this->global_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		wp_reset_postdata();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	protected function init() {
 		if ( empty( $this->fields ) ) {
 			parent::init();
