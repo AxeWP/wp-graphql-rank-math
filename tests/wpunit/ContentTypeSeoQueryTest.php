@@ -39,6 +39,9 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 			]
 		);
 
+		// Set site subtitle to Just another WordPress site. Since WP 6.1 removes it
+		update_option( 'blogdescription', 'Just another WordPress site' );
+
 		WPGraphQL::clear_schema();
 	}
 
@@ -77,7 +80,7 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 							[
 								$this->expectedField( 'breadcrumbTitle', 'Post' ),
 								$this->expectedField( 'canonicalUrl', static::IS_NULL ),
-								$this->expectedField( 'description', static::IS_NULL ),
+								$this->expectedField( 'description', 'Just another WordPress site' ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
 								$this->expectedField(
 									'robots',
@@ -86,7 +89,7 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 										'follow',
 									]
 								),
-								$this->expectedField( 'title', 'Test -' ),
+								$this->expectedField( 'title', 'Test - Just another WordPress site' ),
 							]
 						),
 					]
