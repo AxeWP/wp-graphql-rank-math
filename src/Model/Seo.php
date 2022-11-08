@@ -34,7 +34,7 @@ abstract class Seo extends Model {
 	/**
 	 * The current RankMath paper helper.
 	 *
-	 * @var object|Paper;
+	 * @var \RankMath\Paper\Paper;
 	 */
 	protected $helper;
 
@@ -57,6 +57,20 @@ abstract class Seo extends Model {
 	protected $full_head;
 
 	/**
+	 * The Global Post at time of Model generation
+	 *
+	 * @var \WP_Post
+	 */
+	protected $global_post;
+
+	/**
+	 * The global authordata at time of Model generation
+	 *
+	 * @var \WP_User
+	 */
+	protected $global_authordata;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param \WP_User|\WP_Term|\WP_Post|\WP_Post_Type $object .
@@ -66,10 +80,6 @@ abstract class Seo extends Model {
 	public function __construct( $object, $capability = '', $allowed_fields = [] ) {
 		$this->full_head = false;
 		$this->data      = $object;
-
-		rank_math()->variables->setup();
-		Paper::reset();
-		$this->helper = Paper::get();
 
 		$allowed_fields = array_merge(
 			[
@@ -89,22 +99,42 @@ abstract class Seo extends Model {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function setup() : void {
+		rank_math()->variables->setup();
+
+		Paper::reset();
+		/** @var \RankMath\Paper\Paper $paper */
+		$paper        = Paper::get();
+		$this->helper = $paper;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	protected function init() {
 		if ( empty( $this->fields ) ) {
-			/** @var Paper $helper */
-			$helper = $this->helper;
-
 			$this->fields = [
-				'title'         => fn() : ?string => $helper->get_title() ?: null,
-				'description'   => fn() : ?string => $helper->get_description() ?: null,
-				'robots'        => fn() : ?array => $helper->get_robots() ?: null,
-				'canonicalUrl'  => fn() : ?string => $helper->get_canonical() ?: null,
-				'focusKeywords' => function() use ( $helper ) : ?array {
-					$keywords = $helper->get_keywords();
+				'title'         => function() : ?string {
+					return $this->helper->get_title() ?: null;
+				},
+				'description'   => function() : ?string {
+					return $this->helper->get_description() ?: null;
+				},
+				'robots'        => function() : ?array {
+					return $this->helper->get_robots() ?: null;
+				},
+				'canonicalUrl'  => function() : ?string {
+					return $this->helper->get_canonical() ?: null; 
+				},
+				'focusKeywords' => function() : ?array {
+					$keywords = $this->helper->get_keywords();
 
 					return ! empty( $keywords ) ? explode( ',', $keywords ) : null;
 				},
-				'fullHead'      => fn() : ?string => $this->get_head() ?: null,
+				'fullHead'      => function() : ?string {
+					$head = $this->get_head();
+					return $head ?: null;
+				},
 				'jsonLd'        => function() {
 					ob_start();
 					$json = new \RankMath\Schema\JsonLD();
@@ -183,7 +213,6 @@ abstract class Seo extends Model {
 			);
 		}
 
-		// todo: fix PHP notice https://support.rankmath.com/ticket/fetching-rankmath-v1-gethead-with-rest_do_request-logs-a-php-notice/
 		$response = rest_do_request( $request );
 
 		if ( $response->is_error() ) {

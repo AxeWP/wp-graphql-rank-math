@@ -66,7 +66,7 @@ abstract class ConnectionType implements GraphQLType, Registrable {
 	 *
 	 * @return ConnectionConfig
 	 */
-	protected static function get_connection_config( $config ) {
+	protected static function get_connection_config( $config ) : array {
 		return array_merge(
 			[
 				'toType' => static::get_type_name(),

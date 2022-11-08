@@ -8,6 +8,8 @@ use RankMath\Helper;
 class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 	public $admin;
+	public $post_id;
+	public $page_id;
 
 	/**
 	 * {@inheritDoc}
@@ -25,8 +27,18 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 			[
 				'post_type'    => 'page',
 				'post_status'  => 'publish',
-				'post_title'   => 'Post Title',
-				'post_content' => 'Post Content',
+				'post_title'   => 'Post Archive',
+				'post_content' => 'Post Archive Content',
+			]
+		);
+
+		$this->post_id = $this->factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_title'   => 'Sitemap Test Post',
+				'post_content' => 'Sitemap Test post content',
+				'post_author'  => $this->admin,
 			]
 		);
 
@@ -34,12 +46,15 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 		update_option( 'page_for_posts', $page_id );
 
 		Helper::update_modules( [ 'sitemap' => 'on' ] );
+		rank_math()->settings->set( 'general', 'breadcrumbs', false );
 
 		$this->clearSchema();
 	}
 
 	public function tearDown() : void {
 		Helper::update_modules( [ 'sitemap' => 'off' ] );
+		wp_delete_post( $this->post_id, true );
+		wp_delete_post( $this->page_id, true );
 
 		parent::tearDown();
 	}
@@ -459,6 +474,10 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 		rank_math()->settings->set( 'titles', 'author_custom_robots', false );
 
 		update_option( 'rank-math-options-titles', $title_options );
+
+		$this->set_permalink_structure( '/%postname%/' );
+
+		$this->clearSchema();
 
 		$query = '{
 			rankMathSettings {

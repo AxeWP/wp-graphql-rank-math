@@ -93,8 +93,12 @@ configure_wordpress() {
 	wp config create --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASS" --dbhost="$DB_HOST" --skip-check --force=true
 	wp core install --url=$WP_DOMAIN --title=Test --admin_user=$ADMIN_USERNAME --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL
 
-	wp rewrite structure '/%year%/%monthnum%/%postname%/' --category-base='category' --allow-root
+	wp rewrite structure '/%year%/%monthnum%/%postname%/' --category-base='category' --hard --allow-root
 
+	wp config set RANK_MATH_REGISTRATION_SKIP true --raw --allow-root
+	wp config set WP_DEBUG true --raw --allow-root
+	wp config set WP_DEBUG_LOG true --raw --allow-root
+	wp config set GRAPHQL_DEBUG true --raw --allow-root
 }
 
 install_plugins() {
@@ -132,8 +136,6 @@ post_setup() {
 
 	# activate the plugin
 	wp plugin activate wp-graphql-rank-math --allow-root
-
-	wp option update rank_math_registration_skip 1 --allow-root
 
 	wp rewrite flush --allow-root --hard
 

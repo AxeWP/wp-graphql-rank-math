@@ -61,6 +61,92 @@ class ContentNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function setup() : void {
+		global $wp_query, $post;
+
+		/**
+		 * Store the global post before overriding
+		 */
+		$this->global_post = $post;
+
+		// Bail early if this is not a post.
+		if ( ! $this->data instanceof \WP_Post ) {
+			return;
+		}
+
+		/**
+		 * Set the resolving post to the global $post. That way any filters that
+		 * might be applied when resolving fields can rely on global post and
+		 * post data being set up.
+		 */
+		$id        = $this->data->ID;
+		$post_type = $this->data->post_type;
+		$post_name = $this->data->post_name;
+		$data      = $this->data;
+
+		if ( 'revision' === $this->data->post_type ) {
+			$id     = $this->data->post_parent;
+			$parent = get_post( $this->data->post_parent );
+			if ( empty( $parent ) ) {
+				$this->fields = [];
+				return;
+			}
+			$post_type = $parent->post_type;
+			$post_name = $parent->post_name;
+			$data      = $parent;
+		}
+
+		/**
+		 * Clear out existing postdata
+		 */
+		$wp_query->reset_postdata();
+
+		/**
+		 * Parse the query to tell WordPress how to
+		 * setup global state
+		 */
+		switch ( $post_type ) {
+			case 'post':
+				$wp_query->parse_query(
+					[
+						'page' => '',
+						'p'    => $id,
+					]
+				);
+				break;
+			case 'page':
+				$wp_query->parse_query(
+					[
+						'page'     => '',
+						'pagename' => $post_name,
+					]
+				);
+				break;
+			case 'attachment':
+				$wp_query->parse_query( [ 'attachment' => $post_name ] );
+				break;
+			default:
+				$wp_query->parse_query(
+					[
+						$post_type  => $post_name,
+						'post_type' => $post_type,
+						'name'      => $post_name,
+					]
+				);
+				break;
+		}
+
+		$wp_query->setup_postdata( $data );
+		$GLOBALS['post']             = $data; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		$wp_query->queried_object    = get_post( $this->data->ID );
+		$wp_query->queried_object_id = $this->data->ID;
+
+		parent::setup();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	protected function init() {
 		if ( empty( $this->fields ) ) {
 			parent::init();

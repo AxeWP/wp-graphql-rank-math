@@ -26,8 +26,6 @@ abstract class Type implements GraphQLType, Registrable {
 
 	/**
 	 * Defines the GraphQL type name registered in WPGraphQL.
-	 *
-	 * @return string
 	 */
 	abstract protected static function type_name() : string;
 

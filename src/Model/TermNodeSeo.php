@@ -57,6 +57,60 @@ class TermNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function setup() : void {
+		global $wp_query, $post;
+
+		/**
+		 * Store the global post before overriding
+		 */
+		$this->global_post = $post;
+
+		if ( $this->data instanceof WP_Term ) {
+
+			/**
+			 * Reset global post
+			 */
+			$GLOBALS['post'] = get_post( 0 ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+
+			/**
+			 * Parse the query to tell WordPress
+			 * how to setup global state
+			 */
+			if ( 'category' === $this->data->taxonomy ) {
+				$wp_query->parse_query(
+					[
+						'category_name' => $this->data->slug,
+					]
+				);
+			} elseif ( 'post_tag' === $this->data->taxonomy ) {
+				$wp_query->parse_query(
+					[
+						'tag' => $this->data->slug,
+					]
+				);
+			}
+
+			$wp_query->queried_object_id = $this->data->term_id;
+			$wp_query->queried_object    = get_term( $this->data->term_id, $this->data->taxonomy );
+		}
+
+		parent::setup();
+	}
+
+	/**
+	 * Reset global state after the model fields
+	 * have been generated
+	 *
+	 * @return void
+	 */
+	public function tear_down() {
+		$GLOBALS['post'] = $this->global_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		wp_reset_postdata();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	protected function init() {
 		if ( empty( $this->fields ) ) {
 			parent::init();

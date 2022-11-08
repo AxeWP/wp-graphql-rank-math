@@ -51,6 +51,10 @@ class ContentTypeSeo extends Seo {
 
 		$allowed_fields = [ 'breadcrumbTitle' ];
 
+		global $wp_query;
+
+		$wp_query->parse_query( [ 'post_type' => $post_type ] );
+
 		parent::__construct( $object, $capability, $allowed_fields );
 	}
 

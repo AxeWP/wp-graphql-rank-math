@@ -9,18 +9,13 @@ namespace AxeWP\GraphQL\Traits;
 
 use Closure;
 use Error;
-use WPGraphQL\Registry\TypeRegistry;
 
 /**
  * Trait - TypeResolverTrait
+ *
+ * @property ?\WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
  */
 trait TypeResolverTrait {
-	/**
-	 * The WPGraphQL TypeRegistry instance.
-	 *
-	 * @var ?TypeRegistry
-	 */
-	protected static ?TypeRegistry $type_registry = null;
 
 	/**
 	 * The function used to resolve the Interface type in the `resolveType` callback.
@@ -32,7 +27,7 @@ trait TypeResolverTrait {
 		 * @param mixed       $value The value from the resolver of the parent field.
 		 */
 		return static function( $value ) {
-			if ( ! static::$type_registry instanceof TypeRegistry ) {
+			if ( ! static::$type_registry instanceof \WPGraphQL\Registry\TypeRegistry ) {
 				throw new Error(
 					sprintf(
 					// translators: function name.
