@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## v0.0.6 - Better support for Head meta.
+- feat: setup WP globals in GraphQL models
+- chore: update Composer deps.
+- ci: use `STEP_DEBUG` flag on integration tests.
+- tests: Use functional tests for `openGraph` and `fullHead` queries.
+- docs: Add instructions for installing with Composer.
+
 ## v0.0.5 - Sitemap Support
 - feat: Add support for `Sitemap` module.
 - chore: Update Composer deps.
@@ -24,10 +31,10 @@
 - chore: fix PHPCompatibilityWP `testVersion` when linting with `phpcs`.
 
 ## v0.0.2
-- Feat: Add `breadcrumbs` trail to `BaseSeoFields`.
+- feat: Add `breadcrumbs` trail to `BaseSeoFields`.
 
 ### Breaking schema changes
-- Field `RankMathGeneral.breadcrumbs` changed type from `RankMathBreadcrumbs` to `RankMathBreadcrumbsConfig`.
+- dev: Field `RankMathGeneral.breadcrumbs` changed type from `RankMathBreadcrumbs` to `RankMathBreadcrumbsConfig`.
 
 ## v0.0.1
 - Initial Release.
