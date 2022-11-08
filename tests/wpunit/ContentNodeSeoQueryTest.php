@@ -14,7 +14,8 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setUp(): void {
+	public function setUp(): void 
+	{
 		parent::setUp();
 
 		self::set_permalink_structure( '/%year%/%monthnum%/%day%/%postname%/' );
@@ -38,7 +39,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 			]
 		);
 
-		WPGraphQL::clear_schema();
+		$this->clearSchema();
 	}
 
 	/**
@@ -50,6 +51,8 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		wp_delete_post( $this->database_id, true );
 
 		parent::tearDown();
+
+		$this->clearSchema();
 	}
 
 	/**
@@ -70,32 +73,11 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 						canonicalUrl
 						description
 						focusKeywords
-						fullHead
 						isPillarContent
 						robots
 						title
 						jsonLd {
 							raw
-						}
-						openGraph {
-							articleMeta {
-								section
-							}
-							description
-							locale
-							siteName
-							title
-							type
-							url
-							slackEnhancedData {
-								data
-								label
-							}
-							twitterMeta {
-								card
-								description
-								title
-							}
 						}
 						seoScore {
 							badgeHtml
@@ -139,7 +121,6 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 								$this->expectedField( 'breadcrumbTitle', 'Post Title' ),
 								$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
-								$this->expectedField( 'fullHead', static::NOT_FALSY ),
 								$this->expectedField( 'isPillarContent', false ),
 								$this->expectedField(
 									'robots',
@@ -152,39 +133,6 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 									]
 								),
 								$this->expectedField( 'title', 'Post Title - Test' ),
-								$this->expectedObject(
-									'openGraph',
-									[
-										$this->expectedObject(
-											'articleMeta',
-											[
-												$this->expectedField( 'section', 'Uncategorized' ),
-											]
-										),
-										$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
-										$this->expectedField( 'locale', $this->tester->get_enum_for_value( OpenGraphLocaleEnum::get_type_name(), 'en_US' ) ),
-										$this->expectedField( 'siteName', 'Test' ),
-										$this->expectedField( 'title', 'Post Title - Test' ),
-										$this->expectedField( 'type', 'article' ),
-										$this->expectedField( 'url', get_permalink( $this->database_id ) ),
-										$this->expectedNode(
-											'slackEnhancedData',
-											[
-												$this->expectedField( 'data', 'Less than a minute' ),
-												$this->expectedField( 'label', 'Time to read' ),
-											],
-											0
-										),
-										$this->expectedObject(
-											'twitterMeta',
-											[
-												$this->expectedField( 'card', $this->tester->get_enum_for_value( TwitterCardTypeEnum::get_type_name(), 'summary_large_image' ) ),
-												$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
-												$this->expectedField( 'title', 'Post Title - Test' ),
-											]
-										),
-									]
-								),
 								$this->expectedObject(
 									'seoScore',
 									[
