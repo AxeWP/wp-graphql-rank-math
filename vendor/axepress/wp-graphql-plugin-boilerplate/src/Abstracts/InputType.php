@@ -9,25 +9,28 @@ namespace AxeWP\GraphQL\Abstracts;
 
 use AxeWP\GraphQL\Interfaces\TypeWithInputFields;
 
-/**
- * Class - InputType
- */
-abstract class InputType extends Type implements TypeWithInputFields {
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function register() : void {
-		register_graphql_input_type( static::get_type_name(), static::get_type_config() );
-	}
+if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\InputType' ) ) {
 
 	/**
-	 * {@inheritDoc}
+	 * Class - InputType
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
+	abstract class InputType extends Type implements TypeWithInputFields {
+		/**
+		 * {@inheritDoc}
+		 */
+		public static function register() : void {
+			register_graphql_input_type( static::get_type_name(), static::get_type_config() );
+		}
 
-		$config['fields'] = static::get_fields();
+		/**
+		 * {@inheritDoc}
+		 */
+		protected static function get_type_config() : array {
+			$config = parent::get_type_config();
 
-		return $config;
+			$config['fields'] = static::get_fields();
+
+			return $config;
+		}
 	}
 }

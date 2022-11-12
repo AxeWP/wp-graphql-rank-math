@@ -7,69 +7,72 @@
 
 namespace AxeWP\GraphQL\Abstracts;
 
-/**
- * Class - MutationType
- */
-abstract class MutationType extends Type {
-	/**
-	 * Gets the input fields for the mutation.
-	 *
-	 * @return array<string, array{
-	 *   type: string|array<string, string | array<string, string>>,
-	 *   description: string,
-	 *   defaultValue?: string
-	 * }>
-	 */
-	abstract public static function get_input_fields() : array;
+if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\MutationType' ) ) {
 
 	/**
-	 * Gets the fields for the type.
-	 *
-	 * @return array<string, array{
-	 *   type: string|array<string, string | array<string, string>>,
-	 *   description: string,
-	 *   args?: array<string, array{
-	 *     type: string|array<string, string | array<string, string>>,
-	 *     description: string,
-	 *     defaultValue?: mixed
-	 *   }>,
-	 *   resolve?: callable,
-	 *   deprecationReason?: string,
-	 * }>
+	 * Class - MutationType
 	 */
-	abstract public static function get_output_fields() : array;
+	abstract class MutationType extends Type {
+		/**
+		 * Gets the input fields for the mutation.
+		 *
+		 * @return array<string, array{
+		 *   type: string|array<string, string | array<string, string>>,
+		 *   description: string,
+		 *   defaultValue?: string
+		 * }>
+		 */
+		abstract public static function get_input_fields() : array;
 
-	/**
-	 * Defines the mutation data modification closure.
-	 *
-	 * @return callable
-	 */
-	abstract public static function mutate_and_get_payload() : callable;
+		/**
+		 * Gets the fields for the type.
+		 *
+		 * @return array<string, array{
+		 *   type: string|array<string, string | array<string, string>>,
+		 *   description: string,
+		 *   args?: array<string, array{
+		 *     type: string|array<string, string | array<string, string>>,
+		 *     description: string,
+		 *     defaultValue?: mixed
+		 *   }>,
+		 *   resolve?: callable,
+		 *   deprecationReason?: string,
+		 * }>
+		 */
+		abstract public static function get_output_fields() : array;
 
-	/**
-	 * Register mutations to the GraphQL Schema.
-	 */
-	public static function register() : void {
-		register_graphql_mutation( static::get_type_name(), static::get_type_config() );
-	}
+		/**
+		 * Defines the mutation data modification closure.
+		 *
+		 * @return callable
+		 */
+		abstract public static function mutate_and_get_payload() : callable;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description(): string {
-		return '';
-	}
+		/**
+		 * Register mutations to the GraphQL Schema.
+		 */
+		public static function register() : void {
+			register_graphql_mutation( static::get_type_name(), static::get_type_config() );
+		}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
+		/**
+		 * {@inheritDoc}
+		 */
+		public static function get_description(): string {
+			return '';
+		}
 
-		$config['inputFields']         = static::get_input_fields();
-		$config['outputFields']        = static::get_output_fields();
-		$config['mutateAndGetPayload'] = static::mutate_and_get_payload();
+		/**
+		 * {@inheritDoc}
+		 */
+		protected static function get_type_config() : array {
+			$config = parent::get_type_config();
 
-		return $config;
+			$config['inputFields']         = static::get_input_fields();
+			$config['outputFields']        = static::get_output_fields();
+			$config['mutateAndGetPayload'] = static::mutate_and_get_payload();
+
+			return $config;
+		}
 	}
 }

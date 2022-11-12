@@ -7,25 +7,28 @@
 
 namespace AxeWP\GraphQL\Interfaces;
 
-/**
- * Interface - TypeWithConnections
- */
-interface TypeWithConnections extends GraphQLType {
+if ( ! interface_exists( '\AxeWP\GraphQL\Interfaces\TypeWithConnections' ) ) {
+
 	/**
-	 * Gets the properties for the type.
-	 *
-	 * @return array<string, array{
-	 *   toType: string,
-	 *   description: string,
-	 *   args?: array<string, array{
-	 *     type: string|array<string, string | array<string, string>>,
-	 *     description: string,
-	 *     defaultValue?: mixed
-	 *   }>,
-	 *   connectionInterfaces?: string[],
-	 *   oneToOne?: bool,
-	 *   resolve?: callable,
-	 * }>
+	 * Interface - TypeWithConnections
 	 */
-	public static function get_connections() : array;
+	interface TypeWithConnections extends GraphQLType {
+		/**
+		 * Gets the properties for the type.
+		 *
+		 * @return array<string, array{
+		 *   toType: string,
+		 *   description: string,
+		 *   args?: array<string, array{
+		 *     type: string|array<string, string | array<string, string>>,
+		 *     description: string,
+		 *     defaultValue?: mixed
+		 *   }>,
+		 *   connectionInterfaces?: string[],
+		 *   oneToOne?: bool,
+		 *   resolve?: callable,
+		 * }>
+		 */
+		public static function get_connections() : array;
+	}
 }

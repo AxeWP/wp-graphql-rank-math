@@ -4,7 +4,7 @@
 
 🚨 NOTE: This is prerelease software. Use at your own risk 🚨
 
-A boilerplate for creating WPGraphQL extensions.
+A boilerplate for creating WPGraphQL extensions. Can be used as a Composer dependency or as a tool to scaffold your own plugin.
 
 * [Join the WPGraphQL community on Slack.](https://join.slack.com/t/wp-graphql/shared_invite/zt-3vloo60z-PpJV2PFIwEathWDOxCTTLA)
 
@@ -34,7 +34,14 @@ Inspired by the following projects and their contributors:
 
 ## Getting Started
 
-### 1. Initialize the plugin
+### As a Composer dependency
+```console
+composer require axepress/wp-graphql-plugin-boilerplate
+```
+
+### As a plugin starter
+
+#### 1. Initialize the plugin
 
 Creating your WPGraphQL plugin is as simple as downloading the project to your machine and running `curl -fsSL https://raw.github.com/AxeWP/wp-graphql-plugin-boilerplate/master/bin/install.sh | bash`.
 
@@ -49,11 +56,11 @@ You will be asked to provide the following configuration details, or you can pas
 
 Alternatively, you can download the repository and run `composer create-plugin`.
 
-### 2. Create your `.env` file
+#### 2. Create your `.env` file
 
 Rename `.env.dist` to `.env`, and set the variables to your particular localhost/testing environment.
 
-## Project Structure
+##### Project Structure
 
 ```properties
 

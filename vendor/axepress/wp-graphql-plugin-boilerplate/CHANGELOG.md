@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.0.6
+* feat: only create classes if not already available.
+* fix: scope type_prefix filter to plugin with `AXEWP_PB_HOOK_PREFIX` constant.
+* chore: update composer deps
+* ci: test library and plugin scaffold separately.
+
 ## v0.0.5
 * feat: move explicit 3rd party dependencies to doc-blocks.
 * chore: update composer deps.

@@ -10,50 +10,53 @@ namespace AxeWP\GraphQL\Traits;
 use Closure;
 use Error;
 
-/**
- * Trait - TypeResolverTrait
- *
- * @property ?\WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
- */
-trait TypeResolverTrait {
+if ( ! trait_exists( '\AxeWP\GraphQL\Traits\TypeResolverTrait' ) ) {
 
 	/**
-	 * The function used to resolve the Interface type in the `resolveType` callback.
+	 * Trait - TypeResolverTrait
 	 *
-	 * @throws Error If $type_registry is not set.
+	 * @property ?\WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
 	 */
-	protected static function get_type_resolver() : Closure {
+	trait TypeResolverTrait {
+
 		/**
-		 * @param mixed       $value The value from the resolver of the parent field.
+		 * The function used to resolve the Interface type in the `resolveType` callback.
+		 *
+		 * @throws Error If $type_registry is not set.
 		 */
-		return static function( $value ) {
-			if ( ! static::$type_registry instanceof \WPGraphQL\Registry\TypeRegistry ) {
-				throw new Error(
-					sprintf(
-					// translators: function name.
-						__( 'Incorrect usage of %s. This method may only be called after self::$type_registry is set.', 'wp-graphql-plugin-name' ),
-						__FUNCTION__
-					)
-				);
-			}
+		protected static function get_type_resolver() : Closure {
+			/**
+			 * @param mixed       $value The value from the resolver of the parent field.
+			 */
+			return static function( $value ) {
+				if ( ! static::$type_registry instanceof \WPGraphQL\Registry\TypeRegistry ) {
+					throw new Error(
+						sprintf(
+						// translators: function name.
+							__( 'Incorrect usage of %s. This method may only be called after self::$type_registry is set.', 'wp-graphql-plugin-name' ),
+							__FUNCTION__
+						)
+					);
+				}
 
-			$type_name = static::get_resolved_type_name( $value );
+				$type_name = static::get_resolved_type_name( $value );
 
-			if ( empty( $type_name ) ) {
-				throw new Error(
+				if ( empty( $type_name ) ) {
+					throw new Error(
 					// translators: the GraphQL interface type name.
-					sprintf( __( 'The value passed to %s failed to resolve to a valid GraphQL type', 'wp-graphql-plugin-name' ), static::class )
-				);
-			}
+						sprintf( __( 'The value passed to %s failed to resolve to a valid GraphQL type', 'wp-graphql-plugin-name' ), static::class )
+					);
+				}
 
-			return static::$type_registry->get_type( $type_name );
-		};
+				return static::$type_registry->get_type( $type_name );
+			};
+		}
+
+		/**
+		 * Gets the name of the GraphQL type to that the interface/union resolves to.
+		 *
+		 * @param mixed $value The value from the resolver of the parent field.
+		 */
+		abstract public static function get_resolved_type_name( $value ): ?string;
 	}
-
-	/**
-	 * Gets the name of the GraphQL type to that the interface/union resolves to.
-	 *
-	 * @param mixed $value The value from the resolver of the parent field.
-	 */
-	abstract public static function get_resolved_type_name( $value ): ?string;
 }

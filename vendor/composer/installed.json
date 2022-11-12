@@ -2,17 +2,17 @@
     "packages": [
         {
             "name": "axepress/wp-graphql-plugin-boilerplate",
-            "version": "0.0.5",
-            "version_normalized": "0.0.5.0",
+            "version": "0.0.6",
+            "version_normalized": "0.0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate.git",
-                "reference": "91432db39658a2fe187924de5251951dc59030ef"
+                "reference": "d4bc7043abf8e3cedb848530fae440ede0c205a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/91432db39658a2fe187924de5251951dc59030ef",
-                "reference": "91432db39658a2fe187924de5251951dc59030ef",
+                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/d4bc7043abf8e3cedb848530fae440ede0c205a7",
+                "reference": "d4bc7043abf8e3cedb848530fae440ede0c205a7",
                 "shasum": ""
             },
             "require": {
@@ -20,21 +20,21 @@
             },
             "require-dev": {
                 "automattic/vipwpcs": "^2.3",
+                "axepress/wp-graphql-stubs": "^1.12.2",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpstan": "^1.2",
-                "poolshark/wp-graphql-stubs": "^0.0.2",
                 "squizlabs/php_codesniffer": "^3.6",
                 "szepeviktor/phpstan-wordpress": "^1.0",
                 "wp-cli/wp-cli-bundle": "^2.6",
                 "wp-coding-standards/wpcs": "^2.3"
             },
-            "time": "2022-11-05T12:34:14+00:00",
+            "time": "2022-11-12T15:12:39+00:00",
             "bin": [
                 "bin/create-wpgraphql-plugin.sh"
             ],
-            "type": "wordpress-plugin",
+            "type": "library",
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
@@ -58,7 +58,7 @@
             "description": "Boilerplate for creating WPGraphQL extensions",
             "support": {
                 "issues": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/issues",
-                "source": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/tree/0.0.5"
+                "source": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/tree/0.0.6"
             },
             "funding": [
                 {

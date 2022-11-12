@@ -9,53 +9,57 @@ namespace AxeWP\GraphQL\Abstracts;
 
 use AxeWP\GraphQL\Traits\TypeResolverTrait;
 
-/**
- * Class - UnionType
- */
-abstract class UnionType extends Type {
-	use TypeResolverTrait;
+if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\UnionType' ) ) {
 
 	/**
-	 * The WPGraphQL TypeRegistry instance.
-	 *
-	 * @var ?\WPGraphQL\Registry\TypeRegistry
+	 * Class - UnionType
 	 */
-	protected static $type_registry = null;
+	abstract class UnionType extends Type {
+		use TypeResolverTrait;
 
-	/**
-	 * Gets the array of possible GraphQL types that can be resolved to.
-	 *
-	 * @return string[]
-	 */
-	abstract public static function get_possible_types() : array;
+		/**
+		 * The WPGraphQL TypeRegistry instance.
+		 *
+		 * @var ?\WPGraphQL\Registry\TypeRegistry
+		 */
+		protected static $type_registry = null;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @param \WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
-	 */
-	public static function register( $type_registry = null ) : void {
-		self::$type_registry = $type_registry;
+		/**
+		 * Gets the array of possible GraphQL types that can be resolved to.
+		 *
+		 * @return string[]
+		 */
+		abstract public static function get_possible_types() : array;
 
-		register_graphql_union_type( static::get_type_name(), static::get_type_config() );
+		/**
+		 * {@inheritDoc}
+		 *
+		 * @param \WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
+		 */
+		public static function register( $type_registry = null ) : void {
+			self::$type_registry = $type_registry;
+
+			register_graphql_union_type( static::get_type_name(), static::get_type_config() );
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		protected static function get_type_config() : array {
+			$config = parent::get_type_config();
+
+			$config['typeNames']   = static::get_possible_types();
+			$config['resolveType'] = static::get_type_resolver();
+
+			return $config;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public static function should_load_eagerly(): bool {
+			return true;
+		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		$config['typeNames']   = static::get_possible_types();
-		$config['resolveType'] = static::get_type_resolver();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function should_load_eagerly(): bool {
-		return true;
-	}
 }

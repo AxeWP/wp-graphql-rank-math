@@ -11,33 +11,34 @@ use AxeWP\GraphQL\Interfaces\GraphQLType;
 use AxeWP\GraphQL\Interfaces\Registrable;
 use AxeWP\GraphQL\Interfaces\TypeWithFields;
 
-/**
- * Class - FieldsType
- */
-abstract class FieldsType implements GraphQLType, Registrable, TypeWithFields {
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function init() : void {
-		add_action( 'graphql_register_types', [ static::class, 'register' ] );
-	}
+if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\FieldsType' ) ) {
 
 	/**
-	 * Defines the GraphQL type name registered in WPGraphQL.
-	 *
-	 * @return string
+	 * Class - FieldsType
 	 */
-	abstract protected static function type_name() : string;
+	abstract class FieldsType implements GraphQLType, Registrable, TypeWithFields {
+		/**
+		 * {@inheritDoc}
+		 */
+		public static function init() : void {
+			add_action( 'graphql_register_types', [ static::class, 'register' ] );
+		}
 
-	/**
-	 * Gets the GraphQL type name.
-	 */
-	abstract public static function get_type_name() : string;
+		/**
+		 * Defines the GraphQL type name registered in WPGraphQL.
+		 */
+		abstract protected static function type_name() : string;
 
-	/**
-	 * Register Fields to the GraphQL Schema.
-	 */
-	public static function register() : void {
-		register_graphql_fields( static::get_type_name(), static::get_fields() );
+		/**
+		 * Gets the GraphQL type name.
+		 */
+		abstract public static function get_type_name() : string;
+
+		/**
+		 * Register Fields to the GraphQL Schema.
+		 */
+		public static function register() : void {
+			register_graphql_fields( static::get_type_name(), static::get_fields() );
+		}
 	}
 }

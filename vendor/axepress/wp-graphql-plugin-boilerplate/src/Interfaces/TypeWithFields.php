@@ -7,24 +7,27 @@
 
 namespace AxeWP\GraphQL\Interfaces;
 
-/**
- * Interface - TypeWithFields.
- */
-interface TypeWithFields extends GraphQLType {
+if ( ! interface_exists( '\AxeWP\GraphQL\Interfaces\TypeWithFields' ) ) {
+
 	/**
-	 * Gets the fields for the type.
-	 *
-	 * @return array<string, array{
-	 *   type: string|array<string, string | array<string, string>>,
-	 *   description: string,
-	 *   args?: array<string, array{
-	 *     type: string|array<string, string | array<string, string>>,
-	 *     description: string,
-	 *     defaultValue?: mixed
-	 *   }>,
-	 *   resolve?: callable,
-	 *   deprecationReason?: string,
-	 * }>
+	 * Interface - TypeWithFields.
 	 */
-	public static function get_fields() : array;
+	interface TypeWithFields extends GraphQLType {
+		/**
+		 * Gets the fields for the type.
+		 *
+		 * @return array<string, array{
+		 *   type: string|array<string, string | array<string, string>>,
+		 *   description: string,
+		 *   args?: array<string, array{
+		 *     type: string|array<string, string | array<string, string>>,
+		 *     description: string,
+		 *     defaultValue?: mixed
+		 *   }>,
+		 *   resolve?: callable,
+		 *   deprecationReason?: string,
+		 * }>
+		 */
+		public static function get_fields() : array;
+	}
 }
