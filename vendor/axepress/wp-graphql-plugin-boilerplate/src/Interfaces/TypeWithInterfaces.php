@@ -7,14 +7,17 @@
 
 namespace AxeWP\GraphQL\Interfaces;
 
-/**
- * Interface - TypeWithInterfaces.
- */
-interface TypeWithInterfaces extends GraphQLType {
+if ( ! interface_exists( '\AxeWP\GraphQL\Interfaces\TypeWithInterfaces' ) ) {
+
 	/**
-	 * Gets the array of GraphQL interfaces that should be applied to the type.
-	 *
-	 * @return string[]
+	 * Interface - TypeWithInterfaces.
 	 */
-	public static function get_interfaces() : array;
+	interface TypeWithInterfaces extends GraphQLType {
+		/**
+		 * Gets the array of GraphQL interfaces that should be applied to the type.
+		 *
+		 * @return string[]
+		 */
+		public static function get_interfaces() : array;
+	}
 }

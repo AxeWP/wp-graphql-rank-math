@@ -7,12 +7,15 @@
 
 namespace AxeWP\GraphQL\Interfaces;
 
-/**
- * Interface - GraphQLType
- */
-interface GraphQLType {
+if ( ! interface_exists( '\AxeWP\GraphQL\Interfaces\GraphQLType' ) ) {
+
 	/**
-	 * Register connections to the GraphQL Schema.
+	 * Interface - GraphQLType
 	 */
-	public static function register() : void;
+	interface GraphQLType {
+		/**
+		 * Register connections to the GraphQL Schema.
+		 */
+		public static function register() : void;
+	}
 }

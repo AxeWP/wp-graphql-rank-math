@@ -28,14 +28,6 @@ class MainTest extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * Tests graphql_seo_get_setting
 	 */
-	public function testInstance() {
-		$this->instance = new Main();
-		$this->assertTrue( $this->instance instanceof Main );
-
-		$actual = graphql_seo_init();
-		$this->assertEquals( $this->instance, $actual );
-	}
-
 	public function testInstanceBeforeInstantiation() {
 		$instance = Main::instance();
 		$this->assertTrue( $instance instanceof Main );

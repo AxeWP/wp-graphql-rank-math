@@ -7,18 +7,21 @@
 
 namespace AxeWP\GraphQL\Interfaces;
 
-/**
- * Interface - TypeWithInputFields.
- */
-interface TypeWithInputFields extends GraphQLType {
+if ( ! interface_exists( '\AxeWP\GraphQL\Interfaces\TypeWithInputFields' ) ) {
+
 	/**
-	 * Gets the input fields for the type.
-	 *
-	 * @return array<string, array{
-	 *   type: string|array<string, string | array<string, string>>,
-	 *   description: string,
-	 *   defaultValue?: string
-	 * }>
+	 * Interface - TypeWithInputFields.
 	 */
-	public static function get_fields() : array;
+	interface TypeWithInputFields extends GraphQLType {
+		/**
+		 * Gets the input fields for the type.
+		 *
+		 * @return array<string, array{
+		 *   type: string|array<string, string | array<string, string>>,
+		 *   description: string,
+		 *   defaultValue?: string
+		 * }>
+		 */
+		public static function get_fields() : array;
+	}
 }

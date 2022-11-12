@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-## v0.0.6 - Better support for Head meta.
+## v0.0.7
+- fix: prevent type prefixes clashing with other AxeWP plugins.
+- chore: Update composer dependencies.
+
+## v0.0.6 - Better support for Head meta
 - feat: setup WP globals in GraphQL models
 - chore: update Composer deps.
 - ci: use `STEP_DEBUG` flag on integration tests.

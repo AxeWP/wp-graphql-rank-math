@@ -11,87 +11,90 @@ use AxeWP\GraphQL\Interfaces\GraphQLType;
 use AxeWP\GraphQL\Interfaces\Registrable;
 use AxeWP\GraphQL\Traits\TypeNameTrait;
 
-/**
- * Class - ConnectionType
- *
- * @phpstan-type ConnectionConfig array{
- *   fromType: string,
- *   fromFieldName: string,
- *   resolve: callable,
- *   oneToOne?: bool,
- *   toType?: string,
- *   connectionArgs?: array<string, array{
- *     type: string|array<string, string | array<string, string>>,
- *     description: string,
- *     defaultValue?: mixed
- *   }>,
- *   connectionFields?: array<string, array{
- *     type: string|array<string, string | array<string, string>>,
- *     description: string,
- *     args?: array<string, array{
- *       type: string|array<string, string | array<string, string>>,
- *       description: string,
- *       defaultValue?: mixed,
- *     }>,
- *     resolve?: callable,
- *     deprecationReason?: string,
- *   }>,
- * }
- */
-abstract class ConnectionType implements GraphQLType, Registrable {
-	use TypeNameTrait;
+if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\ConnectionType' ) ) {
 
 	/**
-	 * {@inheritDoc}
-	 */
-	public static function init() : void {
-		add_action( 'graphql_register_types', [ static::class, 'register' ] );
-	}
-
-	/**
-	 * Defines all possible connection args for the GraphQL type.
+	 * Class - ConnectionType
 	 *
-	 * @return array<string, array{
-	 *   type: string|array<string, string | array<string, string>>,
-	 *   description: string,
-	 *   defaultValue?: mixed
-	 * }>,
+	 * @phpstan-type ConnectionConfig array{
+	 *   fromType: string,
+	 *   fromFieldName: string,
+	 *   resolve: callable,
+	 *   oneToOne?: bool,
+	 *   toType?: string,
+	 *   connectionArgs?: array<string, array{
+	 *     type: string|array<string, string | array<string, string>>,
+	 *     description: string,
+	 *     defaultValue?: mixed
+	 *   }>,
+	 *   connectionFields?: array<string, array{
+	 *     type: string|array<string, string | array<string, string>>,
+	 *     description: string,
+	 *     args?: array<string, array{
+	 *       type: string|array<string, string | array<string, string>>,
+	 *       description: string,
+	 *       defaultValue?: mixed,
+	 *     }>,
+	 *     resolve?: callable,
+	 *     deprecationReason?: string,
+	 *   }>,
+	 * }
 	 */
-	abstract protected static function connection_args() : array;
+	abstract class ConnectionType implements GraphQLType, Registrable {
+		use TypeNameTrait;
 
-	/**
-	 * Gets the $config array used to register the connection to the GraphQL type.
-	 *
-	 * @param ConnectionConfig $config The connection config array.
-	 *
-	 * @return ConnectionConfig
-	 */
-	protected static function get_connection_config( $config ) : array {
-		return array_merge(
-			[
-				'toType' => static::get_type_name(),
-			],
-			$config
-		);
-	}
-
-	/**
-	 * Returns a filtered array of connection args.
-	 *
-	 * @param ?string[] $filter_by an array of specific connections to return.
-	 */
-	final public static function get_connection_args( ?array $filter_by = null ) : array {
-		$connection_args = static::get_connection_args();
-
-		if ( empty( $filter_by ) ) {
-			return $connection_args;
+		/**
+		 * {@inheritDoc}
+		 */
+		public static function init() : void {
+			add_action( 'graphql_register_types', [ static::class, 'register' ] );
 		}
 
-		$filtered_args = [];
-		foreach ( $filter_by as $filter ) {
-			$filtered_args[ $filter ] = $connection_args[ $filter ];
+		/**
+		 * Defines all possible connection args for the GraphQL type.
+		 *
+		 * @return array<string, array{
+		 *   type: string|array<string, string | array<string, string>>,
+		 *   description: string,
+		 *   defaultValue?: mixed
+		 * }>,
+		 */
+		abstract protected static function connection_args() : array;
+
+		/**
+		 * Gets the $config array used to register the connection to the GraphQL type.
+		 *
+		 * @param ConnectionConfig $config The connection config array.
+		 *
+		 * @return ConnectionConfig
+		 */
+		protected static function get_connection_config( $config ) : array {
+			return array_merge(
+				[
+					'toType' => static::get_type_name(),
+				],
+				$config
+			);
 		}
 
-		return $filtered_args;
+		/**
+		 * Returns a filtered array of connection args.
+		 *
+		 * @param ?string[] $filter_by an array of specific connections to return.
+		 */
+		final public static function get_connection_args( ?array $filter_by = null ) : array {
+			$connection_args = static::get_connection_args();
+
+			if ( empty( $filter_by ) ) {
+				return $connection_args;
+			}
+
+			$filtered_args = [];
+			foreach ( $filter_by as $filter ) {
+				$filtered_args[ $filter ] = $connection_args[ $filter ];
+			}
+
+			return $filtered_args;
+		}
 	}
 }

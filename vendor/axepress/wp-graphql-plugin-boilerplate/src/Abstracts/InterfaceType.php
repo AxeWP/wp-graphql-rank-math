@@ -9,53 +9,54 @@ namespace AxeWP\GraphQL\Abstracts;
 
 use AxeWP\GraphQL\Interfaces\TypeWithFields;
 
-/**
- * Class - InterfaceType
- */
-abstract class InterfaceType extends Type implements TypeWithFields {
-	/**
-	 * The WPGraphQL TypeRegistry instance.
-	 *
-	 * @var ?\WPGraphQL\Registry\TypeRegistry
-	 */
-	protected static $type_registry = null;
+if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\InterfaceType' ) ) {
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * @param \WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
+	 * Class - InterfaceType
 	 */
-	public static function register( $type_registry = null ) : void {
-		self::$type_registry = $type_registry;
+	abstract class InterfaceType extends Type implements TypeWithFields {
+		/**
+		 * The WPGraphQL TypeRegistry instance.
+		 *
+		 * @var ?\WPGraphQL\Registry\TypeRegistry
+		 */
+		protected static $type_registry = null;
 
-		register_graphql_interface_type( static::get_type_name(), static::get_type_config() );
-	}
+		/**
+		 * {@inheritDoc}
+		 *
+		 * @param \WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
+		 */
+		public static function register( $type_registry = null ) : void {
+			self::$type_registry = $type_registry;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		$config['fields'] = static::get_fields();
-
-		if ( method_exists( static::class, 'get_type_resolver' ) ) {
-			// @phpstan-ignore-next-line
-			$config['resolveType'] = static::get_type_resolver();
+			register_graphql_interface_type( static::get_type_name(), static::get_type_config() );
 		}
 
-		if ( method_exists( static::class, 'get_interfaces' ) ) {
-			// @phpstan-ignore-next-line
-			$config['interfaces'] = static::get_interfaces();
+		/**
+		 * {@inheritDoc}
+		 */
+		protected static function get_type_config() : array {
+			$config = parent::get_type_config();
+
+			$config['fields'] = static::get_fields();
+
+			if ( method_exists( static::class, 'get_type_resolver' ) ) {
+				$config['resolveType'] = static::get_type_resolver();
+			}
+
+			if ( method_exists( static::class, 'get_interfaces' ) ) {
+				$config['interfaces'] = static::get_interfaces();
+			}
+
+			return $config;
 		}
 
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function should_load_eagerly(): bool {
-		return true;
+		/**
+		 * {@inheritDoc}
+		 */
+		public static function should_load_eagerly(): bool {
+			return true;
+		}
 	}
 }

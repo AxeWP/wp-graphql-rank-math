@@ -7,11 +7,11 @@
  * Author: AxePress
  * Author URI: https://github.com/AxeWP
  * Update URI: https://github.com/AxeWP/wp-graphql-rank-math
- * Version: 0.0.6
+ * Version: 0.0.7
  * Text Domain: wp-graphql-rank-math
  * Domain Path: /languages
  * Requires at least: 5.4.1
- * Tested up to: 6.0.1
+ * Tested up to: 6.1
  * Requires PHP: 7.4
  * WPGraphQL requires at least: 1.8.0
  * License: GPL-3
@@ -20,7 +20,7 @@
  * @package WPGraphQL\RankMath
  * @author axepress
  * @license GPL-3
- * @version 0.0.6
+ * @version 0.0.7
  */
 
 // Exit if accessed directly.
@@ -53,7 +53,7 @@ if ( file_exists( __DIR__ . '/deactivation.php' ) ) {
 function graphql_seo_constants() : void {
 	// Plugin version.
 	if ( ! defined( 'WPGRAPHQL_SEO_VERSION' ) ) {
-		define( 'WPGRAPHQL_SEO_VERSION', '0.0.6' );
+		define( 'WPGRAPHQL_SEO_VERSION', '0.0.7' );
 	}
 
 	// Plugin Folder Path.
@@ -75,6 +75,11 @@ function graphql_seo_constants() : void {
 	if ( ! defined( 'WPGRAPHQL_SEO_AUTOLOAD' ) ) {
 		define( 'WPGRAPHQL_SEO_AUTOLOAD', true );
 	}
+
+	// The Plugin Boilerplate hook prefix.
+	if ( ! defined( 'AXEWP_PB_HOOK_PREFIX' ) ) {
+		define( 'AXEWP_PB_HOOK_PREFIX', 'graphql_seo' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	}
 }
 
 /**
@@ -95,17 +100,16 @@ function graphql_seo_dependencies_not_ready() : array {
 
 /**
  * Initializes plugin.
- *
- * @return \WPGraphQL\RankMath\Main|false
  */
-function graphql_seo_init() {
+function graphql_seo_init() : void {
 	graphql_seo_constants();
 
 	$not_ready = graphql_seo_dependencies_not_ready();
 
 	if ( empty( $not_ready ) && defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
 		require_once WPGRAPHQL_SEO_PLUGIN_DIR . 'src/Main.php';
-		return \WPGraphQL\RankMath\Main::instance();
+		\WPGraphQL\RankMath\Main::instance();
+		return;
 	}
 
 	foreach ( $not_ready as $dep ) {
@@ -128,8 +132,6 @@ function graphql_seo_init() {
 			}
 		);
 	}
-
-	return false;
 }
 
 add_action( 'graphql_init', 'graphql_seo_init' );

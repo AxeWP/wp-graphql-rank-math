@@ -1,7 +1,7 @@
 {
 	"name": "axepress/wp-graphql-plugin-boilerplate",
 	"description": "Boilerplate for creating WPGraphQL extensions",
-	"type": "wordpress-plugin",
+	"type": "library",
 	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
@@ -22,7 +22,7 @@
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"phpstan/extension-installer": "^1.1",
 		"phpstan/phpstan": "^1.2",
-		"poolshark/wp-graphql-stubs": "^0.0.2",
+		"axepress/wp-graphql-stubs": "^1.12.2",
 		"squizlabs/php_codesniffer": "^3.6",
 		"szepeviktor/phpstan-wordpress": "^1.0",
 		"wp-cli/wp-cli-bundle": "^2.6",
