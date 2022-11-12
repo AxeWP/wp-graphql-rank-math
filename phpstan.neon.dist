@@ -28,6 +28,7 @@ parameters:
 			- src/
 		scanDirectories:
 			- src/
-			- ../wp-graphql
-			- ../seo-by-rank-math/
+			- ../seo-by-rank-math
 			- vendor/axepress/wp-graphql-plugin-boilerplate/src/
+		scanFiles:
+			- vendor/axepress/wp-graphql-stubs/wp-graphql-stubs.php
