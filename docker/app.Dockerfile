@@ -24,26 +24,26 @@ LABEL author_uri=https://github.com/AxeWP
 SHELL [ "/bin/bash", "-c" ]
 
 # Install system packages
-RUN apt-get update &&
-	apt-get -y install
-# CircleCI depedencies
-git \
-	ssh \
-	tar \
-	gzip \
-	wget \
-	mariadb-client
+RUN apt-get update && \
+    apt-get -y install \
+    # CircleCI depedencies
+    git \
+    ssh \
+    tar \
+    gzip \
+    wget \
+    mariadb-client
 
 # Install Dockerize
 ENV DOCKERIZE_VERSION v0.6.1
-RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz &&
-	tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz &&
-	rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Install WP-CLI
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &&
-	chmod +x wp-cli.phar &&
-	mv wp-cli.phar /usr/local/bin/wp
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
 
 # Set project environmental variables
 ENV WP_ROOT_FOLDER="/var/www/html"
@@ -55,32 +55,32 @@ ENV DATA_DUMP_DIR="${PROJECT_DIR}/tests/_data"
 RUN sed -i '$d' /usr/local/bin/docker-entrypoint.sh
 
 # Set up Apache
-RUN echo 'ServerName localhost' >>/etc/apache2/apache2.conf
+RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
 
 # Custom PHP settings
-RUN echo "upload_max_filesize = 50M" >>/usr/local/etc/php/conf.d/custom.ini \
-	;
+RUN echo "upload_max_filesize = 50M" >> /usr/local/etc/php/conf.d/custom.ini \
+    ;
 
 # Install XDebug 3
-RUN echo "Installing XDebug 3 version $XDEBUG_VERSION (in disabled state)" &&
-	if [[ $PHP_VERSION == 7* ]]; then pecl install xdebug-3.1.5; else pecl install xdebug; fi &&
-	mkdir -p /usr/local/etc/php/conf.d/disabled &&
-	echo "zend_extension=xdebug" >/usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini &&
-	echo "xdebug.mode=develop,debug,coverage" >>/usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini &&
-	echo "xdebug.start_with_request=yes" >>/usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini &&
-	echo "xdebug.client_host=host.docker.internal" >>/usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini &&
-	echo "xdebug.client_port=9003" >>/usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini &&
-	echo "xdebug.max_nesting_level=512" >>/usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini \
-	;
+RUN echo "Installing XDebug 3 version $XDEBUG_VERSION (in disabled state)" \
+    && if [[ $PHP_VERSION == 7* ]]; then pecl install xdebug-3.1.5; else pecl install xdebug; fi \
+    && mkdir -p /usr/local/etc/php/conf.d/disabled \
+    && echo "zend_extension=xdebug" > /usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini \
+    && echo "xdebug.mode=develop,debug,coverage" >> /usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini \
+    && echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_port=9003" >> /usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini \
+    && echo "xdebug.max_nesting_level=512" >> /usr/local/etc/php/conf.d/disabled/docker-php-ext-xdebug.ini \
+    ;
 
 # Set xdebug configuration off by default. See the entrypoint.sh.
 ENV USING_XDEBUG=0
 
 # Set up entrypoint
-WORKDIR /var/www/html
-COPY docker/app.setup.sh /usr/local/bin/app-setup.sh
-COPY docker/app.post-setup.sh /usr/local/bin/app-post-setup.sh
-COPY docker/app.entrypoint.sh /usr/local/bin/app-entrypoint.sh
-RUN chmod 755 /usr/local/bin/app-entrypoint.sh
+WORKDIR    /var/www/html
+COPY       docker/app.setup.sh /usr/local/bin/app-setup.sh
+COPY       docker/app.post-setup.sh /usr/local/bin/app-post-setup.sh
+COPY       docker/app.entrypoint.sh /usr/local/bin/app-entrypoint.sh
+RUN        chmod 755 /usr/local/bin/app-entrypoint.sh
 ENTRYPOINT ["app-entrypoint.sh"]
 CMD ["apache2-foreground"]
