@@ -4,6 +4,7 @@
 - ci: Update GitHub Actions to latest versions.
 - ci: Fix Xdebug version for PHP 7.4.
 - chore: add explicit PHP 8.1 support.
+- chore: Update composer dependencies.
 
 ## v0.0.7
 - fix: prevent type prefixes clashing with other AxeWP plugins.
