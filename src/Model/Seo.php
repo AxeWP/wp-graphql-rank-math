@@ -94,14 +94,18 @@ abstract class Seo extends Model {
 		);
 
 		parent::__construct( $capability, $allowed_fields );
+
+		rank_math()->variables->setup();
+		// Seat up RM Globals.
+		$url = $this->get_rest_url_param();
+
+		$this->setup_post_head( $url );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function setup() : void {
-		rank_math()->variables->setup();
-
 		Paper::reset();
 		/** @var \RankMath\Paper\Paper $paper */
 		$paper        = Paper::get();
@@ -200,10 +204,6 @@ abstract class Seo extends Model {
 			return $this->full_head;
 		}
 
-		$url = $this->get_rest_url_param();
-
-		$this->setup_post_head( $url );
-
 		ob_start();
 		do_action( 'wp' );
 		do_action( 'rank_math/head' );
@@ -272,7 +272,6 @@ abstract class Seo extends Model {
 		remove_all_actions( 'rank_math/opengraph/facebook' );
 		remove_all_actions( 'rank_math/opengraph/twitter' );
 		remove_all_actions( 'rank_math/opengraph/slack' );
-		wp();
 
 		if ( $headless->is_home ) {
 			$GLOBALS['wp_query']->is_home = true;
