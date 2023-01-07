@@ -213,6 +213,13 @@ abstract class Seo extends Model {
 			);
 		}
 
+		// Remove RM head filters.
+		remove_all_actions( 'rank_math/head' );
+		remove_all_actions( 'rank_math/json_ld' );
+		remove_all_actions( 'rank_math/opengraph/facebook' );
+		remove_all_actions( 'rank_math/opengraph/twitter' );
+		remove_all_actions( 'rank_math/opengraph/slack' );
+
 		$response = rest_do_request( $request );
 
 		if ( $response->is_error() ) {
