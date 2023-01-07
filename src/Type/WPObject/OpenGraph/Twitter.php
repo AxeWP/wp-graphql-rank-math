@@ -58,7 +58,7 @@ class Twitter extends ObjectType {
 			'appCountry'              => [
 				'type'        => 'String',
 				'description' => __( 'The app country.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : string => ! empty( $source['app:country'] ) ? $source['app:country'] : null,
+				'resolve'     => fn( $source ) : ?string => ! empty( $source['app:country'] ) ? $source['app:country'] : null,
 			],
 			'ipadApp'                 => [
 				'type'        => TwitterApp::get_type_name(),
