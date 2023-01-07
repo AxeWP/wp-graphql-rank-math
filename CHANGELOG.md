@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- fix: Prevent duplicate OpenGraph meta tags by clearing `RankMath` hooks before fetching.
+- fix!: Rename `playerStreamContentTypee` to `playerStreamContentType`.
+- fix: Allow `OpenGraphTwitter.appCountry` to resolve to `null`.
 - ci: Update GitHub Actions to latest versions.
 - ci: Fix Xdebug version for PHP 7.4.
 - chore: add explicit PHP 8.1 support.
