@@ -130,7 +130,7 @@ class TermNodeSeo extends Seo {
 	 *
 	 * @throws UserError If no valid term link.
 	 */
-	protected function get_rest_url_param() : string {
+	protected function get_object_url() : string {
 		$term_link = get_term_link( $this->database_id );
 
 		if ( is_wp_error( $term_link ) ) {

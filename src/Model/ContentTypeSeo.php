@@ -80,7 +80,7 @@ class ContentTypeSeo extends Seo {
 	 *
 	 * @throws UserError If no archive URI.
 	 */
-	protected function get_rest_url_param() : string {
+	protected function get_object_url() : string {
 		$term_link = get_post_type_archive_link( $this->data->name );
 
 		if ( false === $term_link ) {

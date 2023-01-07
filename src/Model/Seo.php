@@ -97,7 +97,7 @@ abstract class Seo extends Model {
 
 		rank_math()->variables->setup();
 		// Seat up RM Globals.
-		$url = $this->get_rest_url_param();
+		$url = $this->get_object_url();
 
 		$this->setup_post_head( $url );
 	}
@@ -187,9 +187,19 @@ abstract class Seo extends Model {
 	}
 
 	/**
-	 * Gets the object-specific url to use for the REST API RankMath url param.
+	 * Gets the object-specific url to use for generating the RankMath <head>.
 	 */
-	abstract protected function get_rest_url_param() : string;
+	abstract protected function get_object_url() : string;
+
+	/**
+	 * Gets the object-specific url to use for generating the RankMath <head>.
+	 *
+	 * @deprecated @todo
+	 */
+	protected function get_rest_url_param() : string {
+		_deprecated_function( __FUNCTION__, '@todo', __NAMESPACE__ . '::get_object_url()' );
+		return $this->get_object_url();
+	}
 
 	/**
 	 * Gets all the tags that go in the <head>.

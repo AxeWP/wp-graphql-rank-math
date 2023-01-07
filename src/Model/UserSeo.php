@@ -120,7 +120,7 @@ class UserSeo extends Seo {
 	 *
 	 * @throws UserError If no valid term link.
 	 */
-	protected function get_rest_url_param() : string {
+	protected function get_object_url() : string {
 		$author_url = get_author_posts_url( $this->database_id );
 		return $author_url;
 	}
