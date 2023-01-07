@@ -4,10 +4,14 @@
 - fix: Prevent duplicate OpenGraph meta tags by clearing `RankMath` hooks before fetching.
 - fix!: Rename `playerStreamContentTypee` to `playerStreamContentType`.
 - fix: Allow `OpenGraphTwitter.appCountry` to resolve to `null`.
+- fix: set object globals for head in Model constructor.
+- dev: rename `Seo::get_rest_url_param()` to `Seo::get_object_url()`
+- dev: Locally generate <head> instead using RankMath's REST route.
 - ci: Update GitHub Actions to latest versions.
 - ci: Fix Xdebug version for PHP 7.4.
 - chore: add explicit PHP 8.1 support.
 - chore: Update composer dependencies.
+- tests: Set category when testing `ContentNodeSeoQueryCept` so `articleMeta.section` returns a value.
 
 ## v0.0.7
 - fix: prevent type prefixes clashing with other AxeWP plugins.
