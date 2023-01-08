@@ -1,10 +1,14 @@
 # Changelog
 
 ## Unreleased
+- feat!: Rename `RankMathBaseSeoFields` interface to `RankMathSeo.
+- feat!: Change `seo` field type to `RankMathoSeo` interface and impelement with `NodeWithRankMathSeo` interface.
+- feat!: Change `RankMathCommentNodeSeo` from GraphQL object to interface.
 - fix: Prevent duplicate OpenGraph meta tags by clearing `RankMath` hooks before fetching.
 - fix!: Rename `playerStreamContentTypee` to `playerStreamContentType`.
 - fix: Allow `OpenGraphTwitter.appCountry` to resolve to `null`.
 - fix: set object globals for head in Model constructor.
+- dev: add the following WordPress filters: `graphql_seo_model_class`, `graphql_seo_resolved_type_name`, `graphql_seo_types_with_seo`.
 - dev: rename `Seo::get_rest_url_param()` to `Seo::get_object_url()`
 - dev: Locally generate <head> instead using RankMath's REST route.
 - ci: Update GitHub Actions to latest versions.
@@ -46,7 +50,7 @@
 - chore: fix PHPCompatibilityWP `testVersion` when linting with `phpcs`.
 
 ## v0.0.2
-- feat: Add `breadcrumbs` trail to `BaseSeoFields`.
+- feat: Add `breadcrumbs` trail to `Seo`.
 
 ### Breaking schema changes
 - dev: Field `RankMathGeneral.breadcrumbs` changed type from `RankMathBreadcrumbs` to `RankMathBreadcrumbsConfig`.

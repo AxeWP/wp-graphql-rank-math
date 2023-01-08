@@ -24,15 +24,6 @@ class MetaSettingWithArchive extends InterfaceType {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public static function get_description() : string {
 		return __( 'Meta Settings with archive fields.', 'wp-graphql-rank-math' );
 	}

@@ -73,17 +73,19 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 						canonicalUrl
 						description
 						focusKeywords
-						isPillarContent
 						robots
 						title
 						jsonLd {
 							raw
 						}
-						seoScore {
-							badgeHtml
-							hasFrontendScore
-							rating
-							score
+						... on RankMathContentNodeSeo {
+							isPillarContent
+							seoScore {
+								badgeHtml
+								hasFrontendScore
+								rating
+								score
+							}
 						}
 					}
 				}

@@ -108,7 +108,6 @@ query MyPosts {
         description
         focusKeywords
         fullHead
-        isPillarContent
         jsonLd {
           raw
         }
@@ -133,13 +132,16 @@ query MyPosts {
           }
         }
         robots
-        seoScore {
-          badgeHtml
-          hasFrontendScore
-          rating
-          score
-        }
         title
+        ... on RankMathContentNodeSeo { # Only available on `contentNode` types.
+          isPillarContent
+          seoScore {
+            badgeHtml
+            hasFrontendScore
+            rating
+            score
+          }
+        }
       }
       author {
         node {
@@ -236,7 +238,6 @@ query MyPosts {
             description
             focusKeywords
             fullHead
-            isPillarContent
             jsonLd {
               raw
             }
@@ -261,13 +262,16 @@ query MyPosts {
               }
             }
             robots
-            seoScore {
-              badgeHtml
-              hasFrontendScore
-              rating
-              score
-            }
             title
+            ... on RankMathContentNodeSeo { # Only available on `contentNode` types.
+              isPillarContent
+              seoScore {
+                badgeHtml
+                hasFrontendScore
+                rating
+                score
+              }
+            }
           }
         }
       }
@@ -325,7 +329,6 @@ query MyCategories {
             description
             focusKeywords
             fullHead
-            isPillarContent
             jsonLd {
               raw
             }
@@ -350,13 +353,16 @@ query MyCategories {
               }
             }
             robots
-            seoScore {
-              badgeHtml
-              hasFrontendScore
-              rating
-              score
-            }
             title
+            ... on RankMathContentNodeSeo { # Only available on `contentNode` types.
+              isPillarContent
+              seoScore {
+                badgeHtml
+                hasFrontendScore
+                rating
+                score
+              }
+            }
           }
         }
       }
@@ -396,6 +402,40 @@ query MyCategories {
 
 
 ```
+### Querying with `nodeByUri`.
+
+```graphql
+query MyNodeByUriQuery( $uri: String ) {
+  nodeByUri( uri: $uri ) {
+    ... on NodeWithRankMathSeo {
+      seo {
+        breadcrumbs {
+          title
+          url
+          isHidden
+        }
+        breadcrumbTitle
+        canonicalUrl
+        description
+        focusKeywords
+        fullHead
+        jsonLd {
+          raw
+        }
+        robots
+        title
+        ... on RankMathContentNodeSeo {
+          isPillarContent
+          seoScore {
+            score
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ### Querying Sitemaps
 
 ```graphql

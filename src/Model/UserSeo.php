@@ -30,7 +30,6 @@ class UserSeo extends Seo {
 	 */
 	protected string $prefix;
 
-
 	/**
 	 * Constructor.
 	 *
@@ -113,6 +112,13 @@ class UserSeo extends Seo {
 				]
 			);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function get_object_type() : string {
+		return 'User';
 	}
 
 	/**
