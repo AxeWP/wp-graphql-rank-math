@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- feat!: Rename `RankMathBaseSeoFields` interface to `RankMathSeo.
+- feat!: Change `seo` field type to `RankMathoSeo` interface and impelement with `NodeWithRankMathSeo` interface.
+- feat!: Change `RankMathCommentNodeSeo` from GraphQL object to interface.
 - fix: Prevent duplicate OpenGraph meta tags by clearing `RankMath` hooks before fetching.
 - fix!: Rename `playerStreamContentTypee` to `playerStreamContentType`.
 - fix: Allow `OpenGraphTwitter.appCountry` to resolve to `null`.
@@ -46,7 +49,7 @@
 - chore: fix PHPCompatibilityWP `testVersion` when linting with `phpcs`.
 
 ## v0.0.2
-- feat: Add `breadcrumbs` trail to `BaseSeoFields`.
+- feat: Add `breadcrumbs` trail to `Seo`.
 
 ### Breaking schema changes
 - dev: Field `RankMathGeneral.breadcrumbs` changed type from `RankMathBreadcrumbs` to `RankMathBreadcrumbsConfig`.

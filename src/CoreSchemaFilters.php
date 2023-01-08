@@ -20,7 +20,6 @@ class CoreSchemaFilters implements Registrable {
 	public static function init() : void {
 		add_filter( 'graphql_seo_type_prefix', [ __CLASS__, 'get_type_prefix' ] );
 		add_filter( 'graphql_allowed_fields_on_restricted_type', [ __CLASS__, 'allow_seo_on_post_types' ], 10, 2 );
-		add_filter( 'graphql_model_prepare_fields', [ __CLASS__, 'add_seo_to_model' ], 10, 3 );
 	}
 
 	/**
@@ -44,24 +43,5 @@ class CoreSchemaFilters implements Registrable {
 		}
 
 		return $allowed_fields;
-	}
-
-	/**
-	 * Add seo to content model, so it can be surfaced by unauthenticated posts.
-	 *
-	 * @param array  $fields .
-	 * @param string $model_name .
-	 * @param mixed  $data .
-	 */
-	public static function add_seo_to_model( array $fields, string $model_name, $data ) : array {
-		if ( 'PostTypeObject' === $model_name ) {
-			$fields['seo'] = function() use ( $data ) {
-				$link = get_post_type_archive_link( $data->name );
-
-				return ! empty( $link ) ? new ContentTypeSeo( $data->name ) : null;
-			};
-		}
-
-		return $fields;
 	}
 }

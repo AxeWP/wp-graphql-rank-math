@@ -15,6 +15,8 @@ use RankMath\Paper\Paper;
 
 /**
  * Class - Seo
+ *
+ * @property string $type The type of object.
  */
 abstract class Seo extends Model {
 	/**
@@ -89,6 +91,7 @@ abstract class Seo extends Model {
 				'fullHead',
 				'jsonLd',
 				'openGraph',
+				'type',
 			],
 			$allowed_fields
 		);
@@ -153,6 +156,9 @@ abstract class Seo extends Model {
 
 					return ! empty( $head ) ? $this->parse_og_tags( $head ) : null;
 				},
+				'type'          => function() : string {
+					return $this->get_object_type();
+				},
 			];
 		}
 	}
@@ -185,6 +191,11 @@ abstract class Seo extends Model {
 
 		return ( ! empty( $value ) ? $value : $default ) ?: null;
 	}
+
+	/**
+	 * Gets the object type used to determine how the GraphQL interface should resolve.
+	 */
+	abstract public function get_object_type() : string;
 
 	/**
 	 * Gets the object-specific url to use for generating the RankMath <head>.

@@ -9,6 +9,7 @@ namespace WPGraphQL\RankMath\Model;
 
 use \GraphQL\Error\Error;
 use GraphQL\Error\UserError;
+use WPGraphQL;
 
 /**
  * Class - ContentTypeSeo
@@ -73,6 +74,15 @@ class ContentTypeSeo extends Seo {
 				]
 			);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function get_object_type() : string {
+		$post_types = WPGraphQL::get_allowed_post_types( 'objects' );
+
+		return $post_types[ $this->data->name ]->graphql_single_name;
 	}
 
 	/**

@@ -1,21 +1,24 @@
 <?php
 /**
- * The Rank Math general settings GraphQL Object.
+ * Interface for ContentNode Seo fields.
  *
- * @package WPGraphQL\RankMath\Type\WPObject
+ * @package WPGraphQL\RankMath\Type\WPInterface
  */
 
-namespace WPGraphQL\RankMath\Type\WPObject;
+namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
+use AxeWP\GraphQL\Abstracts\InterfaceType;
 use AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
-use WPGraphQL\RankMath\Model\ContentNodeSeo as ModelContentNodeSeo;
-use WPGraphQL\RankMath\Type\WPInterface\BaseSeoFields;
+use AxeWP\GraphQL\Traits\TypeResolverTrait;
+use WPGraphQL\Model\Model;
+use WPGraphQL\RankMath\Type\WPObject\SeoScore;
 
 /**
  * Class - ContentNodeSeo
  */
-class ContentNodeSeo extends ObjectType implements TypeWithInterfaces {
+class ContentNodeSeo extends InterfaceType implements TypeWithInterfaces {
+	use TypeResolverTrait;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -26,27 +29,10 @@ class ContentNodeSeo extends ObjectType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function register(): void {
-		parent::register();
-
-		register_graphql_field(
-			'ContentNode',
-			'seo',
-			[
-				'type'        => self::get_type_name(),
-				'description' => self::get_description(),
-				'resolve'     => function( $source ) {
-					return ! empty( $source->databaseId ) ? new ModelContentNodeSeo( $source->databaseId ) : null;
-				},
-			]
-		);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	protected static function get_type_config() : array {
 		$config = parent::get_type_config();
+
+		$config['eagerlyLoadType'] = true;
 
 		return $config;
 	}
@@ -56,13 +42,6 @@ class ContentNodeSeo extends ObjectType implements TypeWithInterfaces {
 	 */
 	public static function get_description() : string {
 		return __( 'The seo data for Post Objects', 'wp-graphql-rank-math' );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_interfaces() : array {
-		return [ BaseSeoFields::get_type_name() ];
 	}
 
 	/**
@@ -79,5 +58,27 @@ class ContentNodeSeo extends ObjectType implements TypeWithInterfaces {
 				'description' => __( 'The SEO score', 'wp-graphql-rank-math' ),
 			],
 		];
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function get_interfaces() : array {
+		return [ Seo::get_type_name() ];
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param Model $value The model.
+	 */
+	public static function get_resolved_type_name( $value ) : ?string {
+		$type_name = null;
+
+		if ( isset( $value->post_type ) ) {
+			$type_name = 'RankMath' . graphql_format_type_name( $value->post_type . 'ObjectSeo' );
+		}
+
+		return $type_name;
 	}
 }

@@ -132,7 +132,9 @@ class TypeRegistry {
 		$classes_to_register = [
 			WPInterface\MetaSettingWithArchive::class,
 			WPInterface\MetaSettingWithRobots::class,
-			WPInterface\BaseSeoFields::class,
+			WPInterface\Seo::class,
+			WPInterface\ContentNodeSeo::class,
+			WPInterface\NodeWithSeo::class,
 		];
 
 		/**
@@ -191,9 +193,9 @@ class TypeRegistry {
 
 			// Settings.
 			WPObject\Settings::class,
-			// SEO fields.
-			WPObject\NodeSeo::class,
-			WPObject\ContentNodeSeo::class,
+
+			// The individual SEO objects.
+			WPObject\SeoObjects::class,
 		];
 
 		/**

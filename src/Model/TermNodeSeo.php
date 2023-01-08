@@ -10,6 +10,7 @@ namespace WPGraphQL\RankMath\Model;
 use \GraphQL\Error\Error;
 use GraphQL\Error\UserError;
 use WP_Term;
+use WPGraphQL;
 
 /**
  * Class - TermNodeSeo
@@ -123,6 +124,15 @@ class TermNodeSeo extends Seo {
 				]
 			);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function get_object_type() : string {
+		$taxonomies = WPGraphQL::get_allowed_taxonomies( 'objects' );
+
+		return $taxonomies[ $this->data->taxonomy ]->graphql_single_name;
 	}
 
 	/**
