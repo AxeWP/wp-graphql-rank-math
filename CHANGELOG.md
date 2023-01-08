@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## v0.0.8
 - feat!: Rename `RankMathBaseSeoFields` interface to `RankMathSeo.
 - feat!: Change `seo` field type to `RankMathoSeo` interface and impelement with `NodeWithRankMathSeo` interface.
 - feat!: Change `RankMathCommentNodeSeo` from GraphQL object to interface.

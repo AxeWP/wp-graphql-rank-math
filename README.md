@@ -11,7 +11,7 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 
 -----
 
-![Packagist License](https://img.shields.io/packagist/l/axepress/wp-graphql-rank-math?color=green) ![Packagist Version](https://img.shields.io/packagist/v/axepress/wp-graphql-rank-math?label=stable) ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/AxeWP/wp-graphql-rank-math/0.0.7) ![GitHub forks](https://img.shields.io/github/forks/AxeWP/wp-graphql-rank-math?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/AxeWP/wp-graphql-rank-math?style=social)<br />
+![Packagist License](https://img.shields.io/packagist/l/axepress/wp-graphql-rank-math?color=green) ![Packagist Version](https://img.shields.io/packagist/v/axepress/wp-graphql-rank-math?label=stable) ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/AxeWP/wp-graphql-rank-math/0.0.8) ![GitHub forks](https://img.shields.io/github/forks/AxeWP/wp-graphql-rank-math?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/AxeWP/wp-graphql-rank-math?style=social)<br />
 ![CodeQuality](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/Code%20Quality?label=Code%20Quality)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/Integration%20Testing?label=Integration%20Testing)
 ![Coding Standards](https://img.shields.io/github/workflow/status/axewp/wp-graphql-rank-math/WordPress%20Coding%20Standards?label=WordPress%20Coding%20Standards)
