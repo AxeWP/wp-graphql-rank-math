@@ -3,7 +3,7 @@
  * Interface for a Node with SEO data.
  *
  * @package WPGraphQL\RankMath\Type\WPInterface
- * @since @todo
+ * @since 0.0.8
  */
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
@@ -35,8 +35,9 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		 * Filters the GraphQL types that have SEO data.
 		 * This is used to register the NodeWithSeo interface to the types.
 		 *
+		 * @since 0.0.8
+		 *
 		 * @param array $types_with_seo The types that have SEO data.
-		 * @since @todo
 		 */
 		$types_with_seo = apply_filters(
 			'graphql_seo_types_with_seo',
@@ -130,7 +131,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		/**
 		 * Filter the SEO model class used for a given node model.
 		 *
-		 * @since @todo
+		 * @since 0.0.8
 		 *
 		 * @param Model|null $seo_model The SEO model class to use.
 		 * @param Model       $node_model The Model for the node.

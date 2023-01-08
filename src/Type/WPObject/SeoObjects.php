@@ -3,6 +3,7 @@
  * The Rank Math general settings GraphQL Object.
  *
  * @package WPGraphQL\RankMath\Type\WPObject
+ * @since 0.0.8
  */
 
 namespace WPGraphQL\RankMath\Type\WPObject;

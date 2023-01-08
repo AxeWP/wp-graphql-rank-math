@@ -1,6 +1,6 @@
 <?php
 /**
- * Extends the WPGraphQL Post model.
+ * The abstract SEO model.
  *
  * @package \WPGraphQL\RankMath\Model
  */
@@ -205,10 +205,10 @@ abstract class Seo extends Model {
 	/**
 	 * Gets the object-specific url to use for generating the RankMath <head>.
 	 *
-	 * @deprecated @todo
+	 * @deprecated 0.0.8
 	 */
 	protected function get_rest_url_param() : string {
-		_deprecated_function( __FUNCTION__, '@todo', __NAMESPACE__ . '::get_object_url()' );
+		_deprecated_function( __FUNCTION__, '0.0.8', __NAMESPACE__ . '::get_object_url()' );
 		return $this->get_object_url();
 	}
 
