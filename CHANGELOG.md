@@ -8,6 +8,7 @@
 - fix!: Rename `playerStreamContentTypee` to `playerStreamContentType`.
 - fix: Allow `OpenGraphTwitter.appCountry` to resolve to `null`.
 - fix: set object globals for head in Model constructor.
+- dev: add the following WordPress filters: `graphql_seo_model_class`, `graphql_seo_resolved_type_name`, `graphql_seo_types_with_seo`.
 - dev: rename `Seo::get_rest_url_param()` to `Seo::get_object_url()`
 - dev: Locally generate <head> instead using RankMath's REST route.
 - ci: Update GitHub Actions to latest versions.

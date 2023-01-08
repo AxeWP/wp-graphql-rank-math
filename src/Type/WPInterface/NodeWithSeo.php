@@ -78,7 +78,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 						return null;
 					}
 
-					$model = self::get_model_class_for_node( $source );
+					$model = self::get_model_for_node( $source );
 
 					if ( empty( $model ) ) {
 						throw new UserError(
@@ -108,7 +108,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	 *
 	 * @param Model $node_model The node model.
 	 */
-	private static function get_model_class_for_node( Model $node_model ) : ?Model {
+	private static function get_model_for_node( Model $node_model ) : ?Model {
 		// A map of the node models to their corresponding SEO model classes.
 		switch ( true ) {
 			case $node_model instanceof \WPGraphQL\Model\Post:
@@ -135,7 +135,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		 * @param Model|null $seo_model The SEO model class to use.
 		 * @param Model       $node_model The Model for the node.
 		 */
-		$seo_model = apply_filters( 'graphql_seo_model_class', $seo_model, $node_model );
+		$seo_model = apply_filters( 'graphql_seo_resolved_model', $seo_model, $node_model );
 
 		return $seo_model;
 	}
