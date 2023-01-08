@@ -94,14 +94,18 @@ abstract class Seo extends Model {
 		);
 
 		parent::__construct( $capability, $allowed_fields );
+
+		rank_math()->variables->setup();
+		// Seat up RM Globals.
+		$url = $this->get_object_url();
+
+		$this->setup_post_head( $url );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function setup() : void {
-		rank_math()->variables->setup();
-
 		Paper::reset();
 		/** @var \RankMath\Paper\Paper $paper */
 		$paper        = Paper::get();
@@ -183,12 +187,24 @@ abstract class Seo extends Model {
 	}
 
 	/**
-	 * Gets the object-specific url to use for the REST API RankMath url param.
+	 * Gets the object-specific url to use for generating the RankMath <head>.
 	 */
-	abstract protected function get_rest_url_param() : string;
+	abstract protected function get_object_url() : string;
 
 	/**
-	 * Gets the head using a REST API request.
+	 * Gets the object-specific url to use for generating the RankMath <head>.
+	 *
+	 * @deprecated @todo
+	 */
+	protected function get_rest_url_param() : string {
+		_deprecated_function( __FUNCTION__, '@todo', __NAMESPACE__ . '::get_object_url()' );
+		return $this->get_object_url();
+	}
+
+	/**
+	 * Gets all the tags that go in the <head>.
+	 *
+	 * Shims the `RankMath\Rest\Headless::get_html_head() private method to avoid a REST Call.
 	 *
 	 * @throws Error     When the REST request is invalid.
 	 * @throws UserError When REST response fails.
@@ -198,41 +214,13 @@ abstract class Seo extends Model {
 			return $this->full_head;
 		}
 
-		$url_param = $this->get_rest_url_param();
+		ob_start();
+		do_action( 'wp' );
+		do_action( 'rank_math/head' );
 
-		$rest_url = get_rest_url( null, '/rankmath/v1/getHead?url=' . $url_param );
-		$request  = \WP_REST_Request::from_url( $rest_url );
+		$head = ob_get_clean();
 
-		if ( false === $request ) {
-			throw new Error(
-				sprintf(
-					// translators: %s the URL for the getHead endpoint.
-					__( 'Invalid rest request from %s', 'wp-graphql-rank-math' ),
-					$rest_url
-				)
-			);
-		}
-
-		// Remove RM head filters.
-		remove_all_actions( 'rank_math/head' );
-		remove_all_actions( 'rank_math/json_ld' );
-		remove_all_actions( 'rank_math/opengraph/facebook' );
-		remove_all_actions( 'rank_math/opengraph/twitter' );
-		remove_all_actions( 'rank_math/opengraph/slack' );
-
-		$response = rest_do_request( $request );
-
-		if ( $response->is_error() ) {
-			/** @var \WP_Error $error */
-			$error = $response->as_error();
-			throw new UserError(
-				// translators: the url.
-				sprintf( __( 'The request for the URL %s could not be retrieved. Error Message: ', 'wp-graphql-rank-math' ), $url_param, $error->get_error_message() ),
-			);
-		}
-		$data = $response->get_data();
-
-		$this->full_head = ! empty( $data['head'] ) ? $data['head'] : null;
+		$this->full_head = $head ?: null;
 
 		return $this->full_head;
 	}
@@ -274,5 +262,35 @@ abstract class Seo extends Model {
 				$tags[ $prefix ][ $property ] = $value;
 			}
 		}
+	}
+
+	/**
+	 * Prepare head output for a URL.
+	 *
+	 * Shims the RankMath\Rest\Headless::setup_post_head() private method to avoid a REST call.
+	 *
+	 * @param string $url The URL.
+	 */
+	private function setup_post_head( string $url ) : void {
+		$headless = new \RankMath\Rest\Headless();
+		// Setup WordPress.
+		$_SERVER['REQUEST_URI'] = esc_url_raw( $headless->generate_request_uri( $url ) );
+		remove_all_actions( 'wp' );
+		remove_all_actions( 'parse_request' );
+		remove_all_actions( 'rank_math/head' );
+		remove_all_actions( 'rank_math/json_ld' );
+		remove_all_actions( 'rank_math/opengraph/facebook' );
+		remove_all_actions( 'rank_math/opengraph/twitter' );
+		remove_all_actions( 'rank_math/opengraph/slack' );
+
+		if ( $headless->is_home ) {
+			$GLOBALS['wp_query']->is_home = true;
+		}
+
+		remove_filter( 'option_rewrite_rules', [ $headless, 'fix_query_notice' ] );
+
+		// Setup Rank Math.
+		rank_math()->variables->setup();
+		new \RankMath\Frontend\Frontend();
 	}
 }

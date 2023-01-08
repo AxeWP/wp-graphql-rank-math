@@ -3,13 +3,28 @@
 $I = new FunctionalTester( $scenario );
 $I->wantTo( 'Query content node seo data' );
 
+// Create post category
+$cat_id = $I->haveTermInDatabase(
+	'Category',
+	'category',
+	[
+		'description' => 'Category description',
+		'name'        => 'Test Term',
+	]
+);
+
 $post_id = $I->havePostInDatabase(
 	[
-		'post_title'   => 'Test Post',
-		'post_type'    => 'post',
-		'post_status'  => 'publish',
-		'post_content' => 'Post Content',
-	] 
+		'post_title'    => 'Test Post',
+		'post_type'     => 'post',
+		'post_status'   => 'publish',
+		'post_content'  => 'Post Content',
+		'tax_input'   => [
+			'category' => [
+				$cat_id[0],
+			],
+		],
+	]
 );
 
 // Enable Headless support and breadcrumbs in rank math general

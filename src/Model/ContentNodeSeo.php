@@ -181,7 +181,7 @@ class ContentNodeSeo extends Seo {
 	 *
 	 * @throws UserError If no post permalink.
 	 */
-	protected function get_rest_url_param() : string {
+	protected function get_object_url() : string {
 		$permalink = get_permalink( $this->database_id );
 
 		if ( false === $permalink ) {
