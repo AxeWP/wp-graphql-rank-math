@@ -4,8 +4,8 @@
 ...
 
 ## v0.0.8
-- feat!: Rename `RankMathBaseSeoFields` interface to `RankMathSeo.
-- feat!: Change `seo` field type to `RankMathoSeo` interface and impelement with `NodeWithRankMathSeo` interface.
+- feat!: Rename `RankMathBaseSeoFields` interface to `RankMathSeo`.
+- feat!: Change `seo` field type to `RankMathSeo` interface and implement with `NodeWithRankMathSeo` interface.
 - feat!: Change `RankMathCommentNodeSeo` from GraphQL object to interface.
 - fix!: Rename `playerStreamContentTypee` to `playerStreamContentType`.
 - fix: Prevent duplicate OpenGraph meta tags by clearing `RankMath` hooks before fetching.
