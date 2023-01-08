@@ -3,6 +3,7 @@
  * The shared SEO fields interface.
  *
  * @package WPGraphQL\RankMath\Type\WPInterface
+ * @since 0.0.8
  */
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
@@ -148,6 +149,12 @@ class Seo extends InterfaceType {
 				$type_name = null;
 		}
 
+		/**
+		 * Filters the GraphQL Object type name for the given SEO model.
+		 *
+		 * @param string|null $type_name The GraphQL type name for the SEO Object.
+		 * @param Model       $model     The SEO model for the type.
+		 */
 		$type_name = apply_filters( 'graphql_seo_resolved_type_name', $type_name, $value );
 
 		return $type_name;

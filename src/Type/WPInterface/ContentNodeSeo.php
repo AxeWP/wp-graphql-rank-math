@@ -3,6 +3,7 @@
  * Interface for ContentNode Seo fields.
  *
  * @package WPGraphQL\RankMath\Type\WPInterface
+ * @since 0.0.8
  */
 
 namespace WPGraphQL\RankMath\Type\WPInterface;

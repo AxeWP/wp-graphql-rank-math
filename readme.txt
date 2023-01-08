@@ -4,8 +4,8 @@ Tags: GraphQL, Gatsby, Headless, WPGraphQL, React, Rest, RankMath, Seo, Schema
 Requires at least: 5.4.1
 Tested up to: 6.1
 Requires PHP: 7.4
-Requires WPGraphQL: 1.8.0
-Stable tag: 0.0.7
+Requires WPGraphQL: 1.8.1
+Stable tag: 0.0.8
 License: GPL-3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
