@@ -10,13 +10,14 @@
 - fix!: Rename `playerStreamContentTypee` to `playerStreamContentType`.
 - fix: Allow `OpenGraphTwitter.appCountry` to resolve to `null`.
 - fix: set object globals for head in Model constructor.
+- dev!: rename `Seo::get_rest_url_param()` to `Seo::get_object_url()`
 - dev: add the following WordPress filters: `graphql_seo_model_class`, `graphql_seo_resolved_type_name`, `graphql_seo_types_with_seo`.
-- dev: rename `Seo::get_rest_url_param()` to `Seo::get_object_url()`
 - dev: Locally generate <head> instead using RankMath's REST route.
-- ci: Update GitHub Actions to latest versions.
-- ci: Fix Xdebug version for PHP 7.4.
 - chore: add explicit PHP 8.1 support.
 - chore: Update composer dependencies.
+- ci: Update GitHub Actions to latest versions.
+- ci: Fix Xdebug version for PHP 7.4.
+- ci: Update readme shields.
 - tests: Set category when testing `ContentNodeSeoQueryCept` so `articleMeta.section` returns a value.
 
 ## v0.0.7
