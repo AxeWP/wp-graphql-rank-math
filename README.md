@@ -12,9 +12,9 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 -----
 
 ![Packagist License](https://img.shields.io/packagist/l/axepress/wp-graphql-rank-math?color=green) ![Packagist Version](https://img.shields.io/packagist/v/axepress/wp-graphql-rank-math?label=stable) ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/AxeWP/wp-graphql-rank-math/0.0.8) ![GitHub forks](https://img.shields.io/github/forks/AxeWP/wp-graphql-rank-math?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/AxeWP/wp-graphql-rank-math?style=social)<br />
-![CodeQuality](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/code-quality.yml?branch=develop)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/integration-testing.yml?branch=develop)
-![Coding Standards](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/code-standard.yml?branch=develop)
+![CodeQuality](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/code-quality.yml?branch=develop&label=Code%20Quality)
+![Integration Tests](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/integration-testing.yml?branch=develop&label=Integration%20Testing)
+![Coding Standards](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/code-standard.yml?branch=develop&label=WordPress%20Coding%20Standards)
 [![Coverage Status](https://coveralls.io/repos/github/AxeWP/wp-graphql-rank-math/badge.svg?branch=develop)](https://coveralls.io/github/AxeWP/wp-graphql-rank-math?branch=develop)
 -----
 
