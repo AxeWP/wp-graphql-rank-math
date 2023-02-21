@@ -3,6 +3,9 @@
 ## Unreleased
 ...
 
+## v0.0.9
+- chore: update WPGraphQL Plugin Boilerplate dependency to v0.0.7.
+
 ## v0.0.8
 - feat!: Rename `RankMathBaseSeoFields` interface to `RankMathSeo`.
 - feat!: Change `seo` field type to `RankMathSeo` interface and implement with `NodeWithRankMathSeo` interface.

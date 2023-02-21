@@ -3,7 +3,7 @@
         'name' => 'axepress/wp-graphql-rank-math',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '905b47ef0d3035ca7025355c4505730e83c84687',
+        'reference' => 'fc3047d9703643c3577a76bd16ed4fd44f50080f',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'axepress/wp-graphql-rank-math' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '905b47ef0d3035ca7025355c4505730e83c84687',
+            'reference' => 'fc3047d9703643c3577a76bd16ed4fd44f50080f',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
