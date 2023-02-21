@@ -1,4 +1,6 @@
 # Changelog
+## v0.0.7
+* fix: ConnectionType::get_connection_args() should call ::connection_args().
 
 ## v0.0.6
 * feat: only create classes if not already available.

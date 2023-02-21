@@ -30,6 +30,8 @@ vendor/*
 !vendor/autoload.php
 !vendor/composer
 vendor/composer/*/
+!vendor/axepress
+vendor/axepress/*
 !vendor/axepress/wp-graphql-plugin-boilerplate
 
 # NPM deps
