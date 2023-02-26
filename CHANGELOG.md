@@ -3,7 +3,7 @@
 ## Unreleased
 - dev: namespace Composer dependencies with Strauss.
 - chore: update WPGraphQL Plugin Boilerplate dependency to v0.0.8.
-
+- dev: wrap global functions in `function_exists()` checks.
 ## v0.0.9
 - chore: update WPGraphQL Plugin Boilerplate dependency to v0.0.7.
 

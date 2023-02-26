@@ -46,87 +46,94 @@ if ( file_exists( __DIR__ . '/deactivation.php' ) ) {
 	register_activation_hook( __FILE__, 'graphql_seo_deactivation_callback' );
 }
 
+if ( ! function_exists( 'graphql_seo_constants' ) ) {
+	/**
+	 * Define plugin constants.
+	 */
+	function graphql_seo_constants() : void {
+		// Plugin version.
+		if ( ! defined( 'WPGRAPHQL_SEO_VERSION' ) ) {
+			define( 'WPGRAPHQL_SEO_VERSION', '0.0.9' );
+		}
 
-/**
- * Define plugin constants.
- */
-function graphql_seo_constants() : void {
-	// Plugin version.
-	if ( ! defined( 'WPGRAPHQL_SEO_VERSION' ) ) {
-		define( 'WPGRAPHQL_SEO_VERSION', '0.0.9' );
-	}
+		// Plugin Folder Path.
+		if ( ! defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
+			define( 'WPGRAPHQL_SEO_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+		}
 
-	// Plugin Folder Path.
-	if ( ! defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
-		define( 'WPGRAPHQL_SEO_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-	}
+		// Plugin Folder URL.
+		if ( ! defined( 'WPGRAPHQL_SEO_PLUGIN_URL' ) ) {
+			define( 'WPGRAPHQL_SEO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+		}
 
-	// Plugin Folder URL.
-	if ( ! defined( 'WPGRAPHQL_SEO_PLUGIN_URL' ) ) {
-		define( 'WPGRAPHQL_SEO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-	}
+		// Plugin Root File.
+		if ( ! defined( 'WPGRAPHQL_SEO_PLUGIN_FILE' ) ) {
+			define( 'WPGRAPHQL_SEO_PLUGIN_FILE', __FILE__ );
+		}
 
-	// Plugin Root File.
-	if ( ! defined( 'WPGRAPHQL_SEO_PLUGIN_FILE' ) ) {
-		define( 'WPGRAPHQL_SEO_PLUGIN_FILE', __FILE__ );
-	}
-
-	// Whether to autoload the files or not.
-	if ( ! defined( 'WPGRAPHQL_SEO_AUTOLOAD' ) ) {
-		define( 'WPGRAPHQL_SEO_AUTOLOAD', true );
-	}
-}
-
-/**
- * Checks if all the the required plugins are installed and activated.
- */
-function graphql_seo_dependencies_not_ready() : array {
-	$deps = [];
-
-	if ( ! class_exists( '\WPGraphQL' ) ) {
-		$deps[] = 'WPGraphQL';
-	}
-	if ( ! class_exists( '\RankMath' ) ) {
-		$deps[] = 'RankMath SEO';
-	}
-
-	return $deps;
-}
-
-/**
- * Initializes plugin.
- */
-function graphql_seo_init() : void {
-	graphql_seo_constants();
-
-	$not_ready = graphql_seo_dependencies_not_ready();
-
-	if ( empty( $not_ready ) && defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
-		require_once WPGRAPHQL_SEO_PLUGIN_DIR . 'src/Main.php';
-		\WPGraphQL\RankMath\Main::instance();
-		return;
-	}
-
-	foreach ( $not_ready as $dep ) {
-		add_action(
-			'admin_notices',
-			function() use ( $dep ) {
-				?>
-				<div class="error notice">
-					<p>
-						<?php
-							printf(
-								/* translators: dependency not ready error message */
-								esc_html__( '%1$s must be active for WPGraphQL for Rank Math to work.', 'wp-graphql-rank-math' ),
-								esc_html( $dep )
-							);
-						?>
-					</p>
-				</div>
-				<?php
-			}
-		);
+		// Whether to autoload the files or not.
+		if ( ! defined( 'WPGRAPHQL_SEO_AUTOLOAD' ) ) {
+			define( 'WPGRAPHQL_SEO_AUTOLOAD', true );
+		}
 	}
 }
 
+if ( ! function_exists( 'graphql_seo_dependencies_not_ready' ) ) {
+	/**
+	 * Checks if all the the required plugins are installed and activated.
+	 */
+	function graphql_seo_dependencies_not_ready() : array {
+		$deps = [];
+
+		if ( ! class_exists( '\WPGraphQL' ) ) {
+			$deps[] = 'WPGraphQL';
+		}
+		if ( ! class_exists( '\RankMath' ) ) {
+			$deps[] = 'RankMath SEO';
+		}
+
+		return $deps;
+	}
+}
+
+if ( ! function_exists( 'graphql_seo_init' ) ) {
+
+	/**
+	 * Initializes plugin.
+	 */
+	function graphql_seo_init() : void {
+		graphql_seo_constants();
+
+		$not_ready = graphql_seo_dependencies_not_ready();
+
+		if ( empty( $not_ready ) && defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
+			require_once WPGRAPHQL_SEO_PLUGIN_DIR . 'src/Main.php';
+			\WPGraphQL\RankMath\Main::instance();
+			return;
+		}
+
+		foreach ( $not_ready as $dep ) {
+			add_action(
+				'admin_notices',
+				function() use ( $dep ) {
+					?>
+					<div class="error notice">
+						<p>
+							<?php
+								printf(
+									/* translators: dependency not ready error message */
+									esc_html__( '%1$s must be active for WPGraphQL for Rank Math to work.', 'wp-graphql-rank-math' ),
+									esc_html( $dep )
+								);
+							?>
+						</p>
+					</div>
+					<?php
+				}
+			);
+		}
+	}
+}
+
+// Initialize the plugin.
 add_action( 'graphql_init', 'graphql_seo_init' );
