@@ -28,7 +28,7 @@
 	],
 	"require": {
 		"php": ">=7.4 || ^8.0 || ^8.1",
-		"axepress/wp-graphql-plugin-boilerplate": "^0.0.7"
+		"axepress/wp-graphql-plugin-boilerplate": "^0.0.8"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^3.0",
@@ -70,15 +70,33 @@
 		],
 		"psr-4": {
 			"WPGraphQL\\RankMath\\": "src/"
-		}
+		},
+		"classmap": [
+			"vendor-prefixed/"
+		]
 	},
 	"autoload-dev": {
 		"psr-4": {
 			"Tests\\WPGraphQL\\RankMath\\": "tests/_support/"
 		}
 	},
+	"extra": {
+		"strauss": {
+			"target_directory": "vendor-prefixed",
+			"namespace_prefix": "WPGraphQL\\RankMath\\Vendor\\",
+			"classmap_prefix": "WPGraphQL_RankMath_",
+			"constant_prefix": "WPGRAPHQL_SEO_",
+			"include_modified_date": false,
+			"delete_vendor_files": true,
+			"packages": [
+				"axepress/wp-graphql-plugin-boilerplate"
+			],
+			"excluded_from_prefix": {
+				"file_patterns": ["/psr.*/"]
+			}
+		}
+	},
 	"scripts": {
-		"init-plugin": "bash vendor/bin/init-wpgraphql-plugin.sh",
 		"install-test-env": "bash bin/install-test-env.sh",
 		"install-stan-env": "bash bin/install-stan-env.sh",
 		"docker-build": "bash bin/run-docker.sh build",
@@ -104,6 +122,17 @@
 		],
 		"phpstan": [
 			"vendor/bin/phpstan analyze --ansi --memory-limit=1G"
+		],
+		"strauss": [
+			"test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/download/0.13.0/strauss.phar",
+			"@php bin/strauss.phar",
+			"composer dump-autoload --optimize"
+		],
+		"post-install-cmd": [
+			"@strauss"
+		],
+		"post-update-cmd": [
+			"@strauss"
 		]
 	}
 }

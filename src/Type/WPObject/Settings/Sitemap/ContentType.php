@@ -7,10 +7,10 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
-use AxeWP\GraphQL\Interfaces\TypeWithConnections;
 use RankMath\Helper;
 use WPGraphQL\Data\Connection\PostObjectConnectionResolver;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithConnections;
 
 /**
  * Class - ContentType

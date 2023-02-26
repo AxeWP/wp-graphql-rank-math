@@ -7,11 +7,11 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap\Author;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap\ContentType;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap\General;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap\Taxonomy;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - Sitemap

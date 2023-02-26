@@ -7,9 +7,9 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\General;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\RankMath\Type\Enum\SeoScorePositionEnum;
 use WPGraphQL\RankMath\Type\Enum\SeoScoreTemplateTypeEnum;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - FrontendSeoScore

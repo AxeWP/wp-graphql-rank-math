@@ -9,6 +9,7 @@ namespace WPGraphQL\RankMath;
 
 use WPGraphQL\RankMath\Admin\Settings\Settings;
 use \RankMath\Helper as RMHelper;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Helper;
 
 if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 
@@ -66,6 +67,9 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 		 * @codeCoverageIgnore
 		 */
 		private function setup() : void {
+			// // Setup boilerplate hook prefix.
+			Helper::set_hook_prefix( 'graphql_seo' );
+
 			// Force enable RankMath headless support.
 			$enabled = RMHelper::get_settings( 'general.headless_support' );
 

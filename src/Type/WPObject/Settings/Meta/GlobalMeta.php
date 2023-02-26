@@ -7,11 +7,11 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Meta;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
-use AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 use WPGraphQL\AppContext;
 use WPGraphQL\RankMath\Type\Enum\TwitterCardTypeEnum;
 use WPGraphQL\RankMath\Type\WPInterface\MetaSettingWithRobots;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 
 /**
  * Class - GlobalMeta

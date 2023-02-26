@@ -7,9 +7,9 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Meta;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\AppContext;
 use WPGraphQL\RankMath\Type\Enum\KnowledgeGraphTypeEnum;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - LocalMeta

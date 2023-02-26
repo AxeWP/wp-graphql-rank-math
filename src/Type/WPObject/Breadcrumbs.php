@@ -7,8 +7,7 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
-use WPGraphQL\AppContext;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - Breadcrumbs

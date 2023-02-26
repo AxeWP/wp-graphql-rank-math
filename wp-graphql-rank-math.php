@@ -75,11 +75,6 @@ function graphql_seo_constants() : void {
 	if ( ! defined( 'WPGRAPHQL_SEO_AUTOLOAD' ) ) {
 		define( 'WPGRAPHQL_SEO_AUTOLOAD', true );
 	}
-
-	// The Plugin Boilerplate hook prefix.
-	if ( ! defined( 'AXEWP_PB_HOOK_PREFIX' ) ) {
-		define( 'AXEWP_PB_HOOK_PREFIX', 'graphql_seo' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
-	}
 }
 
 /**

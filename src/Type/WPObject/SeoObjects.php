@@ -8,11 +8,11 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject;
 
-use AxeWP\GraphQL\Interfaces\Registrable;
-use AxeWP\GraphQL\Traits\TypeNameTrait;
 use WPGraphQL;
 use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo;
 use WPGraphQL\RankMath\Type\WPInterface\Seo;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
 
 /**
  * Class - SeoObjects

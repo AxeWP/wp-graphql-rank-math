@@ -7,7 +7,6 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Meta;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use GraphQL\Error\UserError;
 use RankMath\Helper;
 use WPGraphQL\AppContext;
@@ -16,6 +15,7 @@ use WPGraphQL\RankMath\Type\Enum\BulkEditingTypeEnum;
 use WPGraphQL\RankMath\Type\Enum\SnippetTypeEnum;
 use WPGraphQL\RankMath\Type\WPInterface\MetaSettingWithArchive;
 use WPGraphQL\RankMath\Type\WPInterface\MetaSettingWithRobots;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - ContentTypeMeta
