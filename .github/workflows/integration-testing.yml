@@ -10,9 +10,9 @@ on:
       - develop
       - main
     paths:
-      - '**.php'
-      - '.github/workflows/*.yml'
-      - '!docs/**'
+      - "**.php"
+      - ".github/workflows/*.yml"
+      - "!docs/**"
 
 jobs:
   continuous_integration:
@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         php: ["7.4", "8.0", "8.1"]
-        wordpress: ["6.1", "6.0", "5.9" ]
+        wordpress: ["6.1", "6.0", "5.9"]
         include:
           - php: "8.1"
             wordpress: "6.1"
@@ -79,3 +79,12 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: vendor/bin/php-coveralls -v
+
+      - name: Push CodeCoverage to CodeClimate
+        if: ${{ matrix.coverage == 1 }}
+        uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ad47d548dc0d258507a0608664256e9c9f3ab9d91f32c59c6c688587e83e2610
+        with:
+          coverageLocations: |
+            ${{github.workspace}}/tests/_output/*.xml:clover

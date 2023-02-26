@@ -14,7 +14,7 @@ settings:
 coverage:
     enabled: true
     remote: false
-    c3_url: '%WP_URL%/wp-content/plugins/wp-graphql-rank-math/wp-graphql-rank-math.php'
+    c3_url: '%WP_URL%/wp-content/plugins/wp-graphql-rank-math/wp-graphql-rank-math.php/'
     include:
         - src/*
         - access-functions.php
