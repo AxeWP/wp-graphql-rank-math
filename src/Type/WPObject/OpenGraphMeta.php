@@ -7,9 +7,9 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\RankMath\Type\Enum\OpenGraphLocaleEnum;
 use WPGraphQL\RankMath\Type\WPObject\OpenGraph;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - OpenGraphMeta

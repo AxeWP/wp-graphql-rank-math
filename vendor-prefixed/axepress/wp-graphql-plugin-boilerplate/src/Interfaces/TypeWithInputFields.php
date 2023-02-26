@@ -3,11 +3,15 @@
  * Interface for for classes that register a GraphQL type with input fields to the GraphQL schema.
  *
  * @package AxeWP\GraphQL\Interfaces
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Interfaces;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces;
 
-if ( ! interface_exists( '\AxeWP\GraphQL\Interfaces\TypeWithInputFields' ) ) {
+if ( ! interface_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInputFields' ) ) {
 
 	/**
 	 * Interface - TypeWithInputFields.

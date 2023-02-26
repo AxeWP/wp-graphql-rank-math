@@ -7,11 +7,11 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General\BreadcrumbsConfig;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General\FrontendSeoScore;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General\Links;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General\Webmaster;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - General

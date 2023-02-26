@@ -3,14 +3,18 @@
  * Trait for getting Type Names.
  *
  * @package AxeWP\GraphQL\Traits
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Traits;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits;
 
-use AxeWP\GraphQL\Helper\Helper;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Helper;
 use Exception;
 
-if ( ! trait_exists( '\AxeWP\GraphQL\Traits\TypeNameTrait' ) ) {
+if ( ! trait_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait' ) ) {
 
 	/**
 	 * Trait - TypeNameTrait
@@ -19,7 +23,7 @@ if ( ! trait_exists( '\AxeWP\GraphQL\Traits\TypeNameTrait' ) ) {
 		/**
 		 * Gets the GraphQL type name.
 		 *
-		 * @throws Exception When the implementing class has no type name.
+		 * @throws \Exception When the implementing class has no type name.
 		 */
 		final public static function get_type_name() : string {
 			if ( ! method_exists( static::class, 'type_name' ) ) {

@@ -7,9 +7,9 @@
 
 namespace WPGraphQL\RankMath\Fields;
 
-use AxeWP\GraphQL\Abstracts\FieldsType;
 use WPGraphQL\RankMath\Model\Settings as ModelSettings;
 use WPGraphQL\RankMath\Type\WPObject\Settings;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\FieldsType;
 
 /**
  * Class - RootQuery

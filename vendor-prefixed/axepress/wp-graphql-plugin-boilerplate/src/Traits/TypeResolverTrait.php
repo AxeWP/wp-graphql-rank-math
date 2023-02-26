@@ -3,14 +3,18 @@
  * Trait for getting possible resolve types.
  *
  * @package AxeWP\GraphQL\Traits
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Traits;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits;
 
 use Closure;
 use Error;
 
-if ( ! trait_exists( '\AxeWP\GraphQL\Traits\TypeResolverTrait' ) ) {
+if ( ! trait_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeResolverTrait' ) ) {
 
 	/**
 	 * Trait - TypeResolverTrait
@@ -22,7 +26,7 @@ if ( ! trait_exists( '\AxeWP\GraphQL\Traits\TypeResolverTrait' ) ) {
 		/**
 		 * The function used to resolve the Interface type in the `resolveType` callback.
 		 *
-		 * @throws Error If $type_registry is not set.
+		 * @throws \Error If $type_registry is not set.
 		 */
 		protected static function get_type_resolver() : Closure {
 			/**

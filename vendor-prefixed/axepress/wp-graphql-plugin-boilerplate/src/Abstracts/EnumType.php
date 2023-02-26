@@ -3,11 +3,15 @@
  * Abstract class to make it easy to register Enum types to WPGraphQL.
  *
  * @package AxeWP\GraphQL\Abstracts
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Abstracts;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts;
 
-if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\EnumType' ) ) {
+if ( ! class_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\EnumType' ) ) {
 
 	/**
 	 * Class - EnumType

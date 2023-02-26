@@ -7,10 +7,10 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\RankMath\Type\WPObject\Settings\General;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Sitemap;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - Settings

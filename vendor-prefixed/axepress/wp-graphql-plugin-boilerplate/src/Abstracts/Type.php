@@ -3,15 +3,19 @@
  * Abstract class to make it easy to register Types to WPGraphQL.
  *
  * @package AxeWP\GraphQL\Abstracts
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Abstracts;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts;
 
-use AxeWP\GraphQL\Interfaces\GraphQLType;
-use AxeWP\GraphQL\Interfaces\Registrable;
-use AxeWP\GraphQL\Traits\TypeNameTrait;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\GraphQLType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
 
-if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\Type' ) ) {
+if ( ! class_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\Type' ) ) {
 
 	/**
 	 * Class - Type
@@ -38,14 +42,14 @@ if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\Type' ) ) {
 
 		/**
 		 * Gets the $config array used to register the type to WPGraphQL.
+		 *
+		 * @return array<string, mixed>
 		 */
 		protected static function get_type_config() : array {
-			$config = [
+			return [
 				'description'     => static::get_description(),
 				'eagerlyLoadType' => static::should_load_eagerly(),
 			];
-
-			return $config;
 		}
 
 		/**

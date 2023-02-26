@@ -3,13 +3,17 @@
  * Abstract class to make it easy to register Union types to WPGraphQL.
  *
  * @package AxeWP\GraphQL\Abstracts
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Abstracts;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts;
 
-use AxeWP\GraphQL\Traits\TypeResolverTrait;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeResolverTrait;
 
-if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\UnionType' ) ) {
+if ( ! class_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\UnionType' ) ) {
 
 	/**
 	 * Class - UnionType
@@ -22,7 +26,7 @@ if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\UnionType' ) ) {
 		 *
 		 * @var ?\WPGraphQL\Registry\TypeRegistry
 		 */
-		protected static $type_registry = null;
+		protected static $type_registry;
 
 		/**
 		 * Gets the array of possible GraphQL types that can be resolved to.
@@ -34,7 +38,7 @@ if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\UnionType' ) ) {
 		/**
 		 * {@inheritDoc}
 		 *
-		 * @param \WPGraphQL\Registry\TypeRegistry $type_registry The WPGraphQL TypeRegistry instance.
+		 * @param \WPGraphQL\Registry\TypeRegistry|null $type_registry The WPGraphQL TypeRegistry instance.
 		 */
 		public static function register( $type_registry = null ) : void {
 			self::$type_registry = $type_registry;

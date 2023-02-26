@@ -7,8 +7,8 @@
 
 namespace WPGraphQL\RankMath\Type\Enum;
 
-use AxeWP\GraphQL\Abstracts\EnumType;
 use RankMath\Helper;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\EnumType;
 
 /**
  * Class - SnippetTypeEnum

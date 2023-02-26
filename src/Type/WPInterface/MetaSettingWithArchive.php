@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use AxeWP\GraphQL\Abstracts\InterfaceType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
 
 /**
  * Class - MetaSettingWithArchive

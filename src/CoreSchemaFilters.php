@@ -7,8 +7,7 @@
 
 namespace WPGraphQL\RankMath;
 
-use AxeWP\GraphQL\Interfaces\Registrable;
-use WPGraphQL\RankMath\Model\ContentTypeSeo;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 
 /**
  * Class - CoreSchemaFilters

@@ -7,10 +7,9 @@
 
 namespace WPGraphQL\RankMath\Type\Enum;
 
-use AxeWP\GraphQL\Abstracts\EnumType;
-use RankMath\Helper;
 use RankMath\OpenGraph\Facebook_Locale;
 use WPGraphQL\Type\WPEnumType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\EnumType;
 
 /**
  * Class - OpenGraphLocaleEnum

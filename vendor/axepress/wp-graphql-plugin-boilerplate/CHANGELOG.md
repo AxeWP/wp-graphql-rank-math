@@ -1,4 +1,12 @@
 # Changelog
+
+## v0.0.8
+* feat: Deprecate `AXEWP_PB_HOOK_PREFIX` constant in favor of `Helper::set_hook_prefix()`.
+* dev: recommend installation via Strauss.
+* chore: exclude `assets` and `bin` from distribution.
+* chore: use FQCN in docblocks.
+* chore: fix various code smells.
+
 ## v0.0.7
 * fix: ConnectionType::get_connection_args() should call ::connection_args().
 

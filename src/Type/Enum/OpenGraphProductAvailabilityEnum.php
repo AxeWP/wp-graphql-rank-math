@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Type\Enum;
 
-use AxeWP\GraphQL\Abstracts\EnumType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\EnumType;
 
 /**
  * Class - OpenGraphProductAvailabilityEnum

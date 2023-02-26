@@ -8,14 +8,14 @@
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use AxeWP\GraphQL\Abstracts\InterfaceType;
-use AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 use GraphQL\Error\UserError;
 use WPGraphQL\Model\Model;
 use WPGraphQL\RankMath\Model\ContentNodeSeo;
 use WPGraphQL\RankMath\Model\ContentTypeSeo;
 use WPGraphQL\RankMath\Model\TermNodeSeo;
 use WPGraphQL\RankMath\Model\UserSeo;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 
 /**
  * Class - NodeWithSeo

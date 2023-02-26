@@ -3,13 +3,17 @@
  * Abstract class to make it easy to register Object types to WPGraphQL.
  *
  * @package AxeWP\GraphQL\Abstracts
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Abstracts;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts;
 
-use AxeWP\GraphQL\Interfaces\TypeWithFields;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithFields;
 
-if ( ! class_exists( '\AxeWP\GraphQL\Abstracts\ObjectType' ) ) {
+if ( ! class_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType' ) ) {
 
 	/**
 	 * Class - ObjectType

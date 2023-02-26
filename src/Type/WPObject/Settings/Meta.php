@@ -7,7 +7,6 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta\AuthorArchiveMeta;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta\ContentTypeMeta;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta\DateArchiveMeta;
@@ -16,6 +15,7 @@ use WPGraphQL\RankMath\Type\WPObject\Settings\Meta\HomepageMeta;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta\LocalMeta;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta\SocialMeta;
 use WPGraphQL\RankMath\Type\WPObject\Settings\Meta\TaxonomyMeta;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - Meta

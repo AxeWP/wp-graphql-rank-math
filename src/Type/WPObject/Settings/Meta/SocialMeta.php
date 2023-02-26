@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Meta;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - SocialMeta

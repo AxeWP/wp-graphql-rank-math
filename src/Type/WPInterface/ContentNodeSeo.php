@@ -8,11 +8,11 @@
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use AxeWP\GraphQL\Abstracts\InterfaceType;
-use AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
-use AxeWP\GraphQL\Traits\TypeResolverTrait;
 use WPGraphQL\Model\Model;
 use WPGraphQL\RankMath\Type\WPObject\SeoScore;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeResolverTrait;
 
 /**
  * Class - ContentNodeSeo

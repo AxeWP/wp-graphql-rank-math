@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Type\WPObject\OpenGraph;
 
-use AxeWP\GraphQL\Abstracts\ObjectType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
 
 /**
  * Class - Article

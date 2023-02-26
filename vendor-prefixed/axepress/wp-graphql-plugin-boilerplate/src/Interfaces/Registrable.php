@@ -3,11 +3,15 @@
  * Interface for classes containing WordPress action/filter hooks.
  *
  * @package AxeWP\GraphQL\Interfaces
+ *
+ * @license GPL-3.0-or-later
+ * Modified by AxePress Development using Strauss.
+ * @see https://github.com/BrianHenryIE/strauss
  */
 
-namespace AxeWP\GraphQL\Interfaces;
+namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces;
 
-if ( ! interface_exists( '\AxeWP\GraphQL\Interfaces\Registrable' ) ) {
+if ( ! interface_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable' ) ) {
 
 	/**
 	 * Interface - Registrable

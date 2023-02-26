@@ -8,8 +8,6 @@
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use AxeWP\GraphQL\Abstracts\InterfaceType;
-use AxeWP\GraphQL\Traits\TypeResolverTrait;
 use RankMath\Frontend\Breadcrumbs as RMBreadcrumbs;
 use RankMath\Helper;
 use WPGraphQL\Model\Model;
@@ -20,6 +18,8 @@ use WPGraphQL\RankMath\Model\UserSeo;
 use WPGraphQL\RankMath\Type\WPObject\Breadcrumbs;
 use WPGraphQL\RankMath\Type\WPObject\JsonLd;
 use WPGraphQL\RankMath\Type\WPObject\OpenGraphMeta;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeResolverTrait;
 
 /**
  * Class - Seo
