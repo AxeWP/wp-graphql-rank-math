@@ -1,10 +1,12 @@
 # Changelog
 
-## Unreleased
+## v0.0.10
 - dev: check plugin dependency versions.
 - dev: namespace Composer dependencies with Strauss.
 - dev: wrap global functions in `function_exists()` checks.
 - chore: update WPGraphQL Plugin Boilerplate dependency to v0.0.8.
+- ci: add coverage reports to CodeClimate.
+- tests: Regenerate _support classes.
 
 ## v0.0.9
 - chore: update WPGraphQL Plugin Boilerplate dependency to v0.0.7.
