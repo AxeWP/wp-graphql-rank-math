@@ -16,18 +16,16 @@ parameters:
 			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/Model.stub
 		bootstrapFiles:
 			- phpstan/constants.php
-			- wp-graphql-rank-math.php
-			- access-functions.php
-			- activation.php
-			- deactivation.php
 		paths:
 			- wp-graphql-rank-math.php
 			- access-functions.php
 			- activation.php
 			- deactivation.php
 			- src/
+		excludePaths:
+			analyse:
+				- vendor-prefixed
 		scanDirectories:
-			- src/
 			- ../seo-by-rank-math
 			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/
 		scanFiles:
