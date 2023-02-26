@@ -81,15 +81,22 @@ if ( ! function_exists( 'graphql_seo_constants' ) ) {
 if ( ! function_exists( 'graphql_seo_dependencies_not_ready' ) ) {
 	/**
 	 * Checks if all the the required plugins are installed and activated.
+	 *
+	 * @return array<string, string> List of dependencies that are not ready.
 	 */
 	function graphql_seo_dependencies_not_ready() : array {
+		$wpgraphql_version = '1.8.1';
+		$rankmath_version  = '1.0.90';
+
 		$deps = [];
 
-		if ( ! class_exists( '\WPGraphQL' ) ) {
-			$deps[] = 'WPGraphQL';
+		// WPGraphQL Check.
+		if ( ! class_exists( '\WPGraphQL' ) || ( defined( 'WPGRAPHQL_VERSION' ) && version_compare( WPGRAPHQL_VERSION, $wpgraphql_version, '<' ) ) ) { // @phpstan-ignore-line
+			$deps['WPGraphQL'] = $wpgraphql_version;
 		}
-		if ( ! class_exists( '\RankMath' ) ) {
-			$deps[] = 'RankMath SEO';
+
+		if ( ! class_exists( '\RankMath' ) || defined( 'RANK_MATH_VERSION' ) && version_compare( RANK_MATH_VERSION, $rankmath_version, '<' ) ) {
+			$deps['RankMath SEO'] = $rankmath_version;
 		}
 
 		return $deps;
@@ -112,18 +119,19 @@ if ( ! function_exists( 'graphql_seo_init' ) ) {
 			return;
 		}
 
-		foreach ( $not_ready as $dep ) {
+		foreach ( $not_ready as $dep => $version ) {
 			add_action(
 				'admin_notices',
-				function() use ( $dep ) {
+				function() use ( $dep, $version ) {
 					?>
 					<div class="error notice">
 						<p>
 							<?php
 								printf(
 									/* translators: dependency not ready error message */
-									esc_html__( '%1$s must be active for WPGraphQL for Rank Math to work.', 'wp-graphql-rank-math' ),
-									esc_html( $dep )
+									esc_html__( '%1$s (v%2$s+) must be active for WPGraphQL for Rank Math to work.', 'wp-graphql-rank-math' ),
+									esc_attr( $dep ),
+									esc_attr( $version ),
 								);
 							?>
 						</p>
