@@ -97,7 +97,6 @@
 		}
 	},
 	"scripts": {
-		"init-plugin": "bash vendor/bin/init-wpgraphql-plugin.sh",
 		"install-test-env": "bash bin/install-test-env.sh",
 		"install-stan-env": "bash bin/install-stan-env.sh",
 		"docker-build": "bash bin/run-docker.sh build",
