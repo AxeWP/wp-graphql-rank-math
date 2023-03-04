@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- fix: pass necessary data to resolve `OpenGraphMeta.image` field.
+
 ## v0.0.10
 - dev: check plugin dependency versions.
 - dev: namespace Composer dependencies with Strauss.
