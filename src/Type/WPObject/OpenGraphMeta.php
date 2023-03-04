@@ -70,7 +70,21 @@ class OpenGraphMeta extends ObjectType {
 			'image'             => [
 				'type'        => OpenGraph\Image::get_type_name(),
 				'description' => __( 'The OpenGraph image meta', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => ! empty( $source['og']['image'] ) ? $source['og']['image'] : null,
+				'resolve'     => function( $source ) : ?array {
+					$values = [];
+
+					// The URL is stored in it's own key.
+					if ( ! empty( $source['og']['image'] ) ) {
+						$values['url'] = $source['og']['image'];
+					}
+
+					// The rest of the data is stored in an array.
+					if ( ! empty( $source['og:image'] ) ) {
+						$values = array_merge( $values, $source['og:image'] );
+					}
+
+					return ! empty( $values ) ? $values : null;
+				},
 			],
 			'facebookMeta'      => [
 				'type'        => OpenGraph\Facebook::get_type_name(),
