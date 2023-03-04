@@ -1,15 +1,16 @@
 # Changelog
 
-## Unreleased
-- fix: pass necessary data to resolve `OpenGraphMeta.image` field.
+## v0.0.11
+- fix: Pass necessary data to resolve `OpenGraphMeta.image` field.
+- chore: Update Composer dev-dependencies.
 
 ## v0.0.10
-- dev: check plugin dependency versions.
-- dev: namespace Composer dependencies with Strauss.
-- dev: wrap global functions in `function_exists()` checks.
-- chore: update WPGraphQL Plugin Boilerplate dependency to v0.0.8.
-- ci: add coverage reports to CodeClimate.
-- tests: Regenerate _support classes.
+- dev: Check plugin dependency versions.
+- dev: Namespace Composer dependencies with Strauss.
+- dev: Wrap global functions in `function_exists()` checks.
+- chore: Update WPGraphQL Plugin Boilerplate dependency to `v0.0.8`.
+- ci: Add coverage reports to CodeClimate.
+- tests: Regenerate `_support` classes.
 
 ## v0.0.9
 - chore: update WPGraphQL Plugin Boilerplate dependency to v0.0.7.
