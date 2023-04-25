@@ -182,8 +182,11 @@ class ContentNodeSeo extends Seo {
 	 */
 	public function get_object_type() : string {
 		$post_types = WPGraphQL::get_allowed_post_types( 'objects' );
-
-		return $post_types[ $this->data->post_type ]->graphql_single_name;
+		$post_type = $this->data->post_type;
+		if ($post_type == 'revision') {
+			$post_type = get_post_type($this->data->post_parent);
+		}
+		return $post_types[ $post_type ]->graphql_single_name;
 	}
 
 	/**
