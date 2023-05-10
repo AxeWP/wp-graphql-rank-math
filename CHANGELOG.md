@@ -3,6 +3,7 @@
 ## Unreleased
 - fix: Use correct post type when querying for `ContentNodeSeo` on revisions. Props @idflood
 - chore: Update Strauss and Composer dev-dependencies to latest versions.
+- ci: Test plugin compatibility with WordPress 6.2
 
 ## v0.0.11
 - fix: Pass necessary data to resolve `OpenGraphMeta.image` field.
