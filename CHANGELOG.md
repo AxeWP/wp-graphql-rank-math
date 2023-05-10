@@ -2,6 +2,7 @@
 
 ## Unreleased
 - chore: Update Strauss and Composer dev-dependencies to latest versions.
+- ci: Test plugin compatibility with WordPress 6.2
 
 ## v0.0.11
 - fix: Pass necessary data to resolve `OpenGraphMeta.image` field.
