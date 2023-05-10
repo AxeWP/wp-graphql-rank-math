@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- fix: Use correct post type when querying for `ContentNodeSeo` on revisions. Props @idflood
 - chore: Update Strauss and Composer dev-dependencies to latest versions.
 
 ## v0.0.11
