@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- chore: Update Strauss and Composer dev-dependencies to latest versions.
+
 ## v0.0.11
 - fix: Pass necessary data to resolve `OpenGraphMeta.image` field.
 - chore: Update Composer dev-dependencies.
