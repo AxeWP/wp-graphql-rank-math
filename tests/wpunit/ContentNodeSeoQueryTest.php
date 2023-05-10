@@ -1,21 +1,16 @@
 <?php
-
-use WPGraphQL\RankMath\Type\Enum\OpenGraphLocaleEnum;
-use WPGraphQL\RankMath\Type\Enum\TwitterCardTypeEnum;
-
 /**
  * Tests ContentNode seo queries.
  */
 class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	public $admin;
 	public $database_id;
-	public $tester;
+	public \WpunitTester $tester;
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setUp(): void 
-	{
+	public function setUp(): void {
 		parent::setUp();
 
 		self::set_permalink_structure( '/%year%/%monthnum%/%day%/%postname%/' );
@@ -55,13 +50,10 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		$this->clearSchema();
 	}
 
-	/**
-	 * Tests rankMathSettings.general
-	 */
-	public function testContentNodeSeo() {
-		$query = '
-			query contentNode( $id: ID!, $idType: ContentNodeIdTypeEnum ) {
-				contentNode( id: $id, idType: $idType ){ 
+	protected function get_query() : string {
+		return '
+			query contentNode( $id: ID!, $idType: ContentNodeIdTypeEnum, $asPreview: Boolean ) {
+				contentNode( id: $id, idType: $idType, asPreview: $asPreview ){ 
 					databaseId
 					seo {
 						breadcrumbs {
@@ -91,16 +83,9 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 				}
 			}
 		';
+	}
 
-		$variables = [
-			'id'     => $this->database_id,
-			'idType' => 'DATABASE_ID',
-		];
-
-		$actual = $this->graphql( compact( 'query', 'variables' ) );
-		$this->assertArrayNotHasKey( 'errors', $actual );
-
-
+	protected function assertValidSeo( array $actual ): void {
 		$this->assertQuerySuccessful(
 			$actual,
 			[
@@ -150,6 +135,46 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 				),
 			]
 		);
+	}
+
+	/**
+	 * Tests seo on the contentNode.
+	 */
+	public function testContentNodeSeo() {
+		$query = $this->get_query();
+
+		$variables = [
+			'id'        => $this->database_id,
+			'idType'    => 'DATABASE_ID',
+			'asPreview' => false,
+		];
+
+		$actual = $this->graphql( compact( 'query', 'variables' ) );
+		$this->assertArrayNotHasKey( 'errors', $actual );
+
+		$this->assertValidSeo( $actual );
+
+		// Test individual values:
+		$this->assertStringContainsString( home_url(), $actual['data']['contentNode']['seo']['canonicalUrl'] );
+		$this->assertStringContainsString( '<script type="application/ld+json" class="rank-math-schema">', $actual['data']['contentNode']['seo']['jsonLd']['raw'] );
+	}
+
+	/**
+	 * Tests seo on the contentNode preview.
+	 */
+	public function testContentNodeSeoAsPreview() {
+		$query = $this->get_query();
+
+		$variables = [
+			'id'        => $this->database_id,
+			'idType'    => 'DATABASE_ID',
+			'asPreview' => true,
+		];
+
+		$actual = $this->graphql( compact( 'query', 'variables' ) );
+		$this->assertArrayNotHasKey( 'errors', $actual );
+
+		$this->assertValidSeo( $actual );
 
 		// Test individual values:
 		$this->assertStringContainsString( home_url(), $actual['data']['contentNode']['seo']['canonicalUrl'] );
