@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## v0.0.12
 - fix: Use correct post type when querying for `ContentNodeSeo` on revisions. Props @idflood
 - dev: Show admin notice when conflicting `wp-graphql-yoast-seo` is installed.
 - chore: Update Strauss and Composer dev-dependencies to latest versions.
