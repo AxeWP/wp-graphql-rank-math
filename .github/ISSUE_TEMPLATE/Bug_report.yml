@@ -1,15 +1,13 @@
 name: Bug report
-description: template for bug reports
+description: Create a bug report for WPGraphQL for Rank Math SEO
 body:
   - type: markdown
     attributes:
       value: >-
         Thank you for taking the time to report a possible bug!
 
-        Please remember, a bug report is not the place to ask questions. You can
-        use Slack for that, or start a topic in [GitHub
-        Discussions](https://github.com/AxeWP/wp-graphql-rank-math/discussions).
-  - type: input
+        Please remember, a bug report is not the place to ask questions. You can use Slack for that, or start a topic in [GitHub Discussions](https://github.com/AxeWP/wp-graphql-rank-math/discussions).
+  - type: textarea
     attributes:
       label: Description
       description: >-
@@ -36,7 +34,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Additional Context
+      label: Additional context
       description: >-
         Add any other context about the problem here, such as screenshots, error
         logs, etc.
@@ -68,9 +66,7 @@ body:
     attributes:
       label: Please confirm that you have searched existing issues in the repo.
       description: >-
-        You can do this by searching
-        https://github.com/AxeWP/wp-graphql-rank-math/issues and making sure the
-        bug is not related to another plugin.
+        You can do this by searching https://github.com/AxeWP/wp-graphql-rank-math/issues and making sure the bug is not related to another plugin.
       options:
         - label: 'Yes'
           required: true
