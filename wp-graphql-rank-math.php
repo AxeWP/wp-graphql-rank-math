@@ -113,7 +113,7 @@ if ( ! function_exists( 'graphql_seo_plugin_conflicts' ) ) {
 		$conflicts = [];
 
 		if ( function_exists( 'wp_gql_seo_build_content_type_data' ) ) {
-			$conflicts['WPGraphQL Yoast SEO Addon'] = __( 'Please delete the plugin entirely (sometimes listed as "Add WPGraphQL SEO", located in `path/to/wp-content/plugins/wp-graphql-yoast-seo`) before continuing.', 'wp-graphql-rank-math' );
+			$conflicts['WPGraphQL Yoast SEO Addon'] = __( 'This plugin may appear as "Add WPGraphQL SEO" in the plugin list.', 'wp-graphql-rank-math' );
 		}
 
 		return $conflicts;
@@ -163,20 +163,28 @@ if ( ! function_exists( 'graphql_seo_init' ) ) {
 		}
 
 		// Output an error notice for the conflicting plugins.
-		foreach ( $conflicts as $conflict => $resolution ) {
+		foreach ( $conflicts as $conflict => $note ) {
 			add_action(
 				'admin_notices',
-				static function () use ( $conflict, $resolution ) {
+				static function () use ( $conflict, $note ) {
 					?>
 				<div class="error notice">
 					<p>
 						<?php
 						printf(
 							/* translators: dependency not ready error message */
-							esc_html__( '%1$s is not compatible with WPGraphQL for Rank Math SEO. %2$s', 'wp-graphql-rank-math' ),
+							esc_html__( '%1$s is not compatible with WPGraphQL for Rank Math SEO. Please deactivate it.', 'wp-graphql-rank-math' ),
 							esc_attr( $conflict ),
-							$resolution ?: esc_html__( 'Please deactivate it.', 'wp-graphql-rank-math' )
 						);
+
+						if ( ! empty( $note ) ) {
+							// translators: resolution message.
+							printf(
+								'<br /><em>%1$s</em> %2$s',
+								esc_html__( 'Note: ', 'wp-graphql-rank-math' ),
+								esc_html( $note ),
+							);
+						}
 						?>
 					</p>
 				</div>
