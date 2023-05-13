@@ -103,6 +103,23 @@ if ( ! function_exists( 'graphql_seo_dependencies_not_ready' ) ) {
 	}
 }
 
+if ( ! function_exists( 'graphql_seo_plugin_conflicts' ) ) {
+	/**
+	 * Checks if any known plugin conflicts are present.
+	 *
+	 * @since @todo
+	 */
+	function graphql_seo_plugin_conflicts() : array {
+		$conflicts = [];
+
+		if ( function_exists( 'wp_gql_seo_build_content_type_data' ) ) {
+			$conflicts['WPGraphQL Yoast SEO Addon'] = __( 'Please delete the plugin entirely (sometimes listed as "Add WPGraphQL SEO", located in `path/to/wp-content/plugins/wp-graphql-yoast-seo`) before continuing.', 'wp-graphql-rank-math' );
+		}
+
+		return $conflicts;
+	}
+}
+
 if ( ! function_exists( 'graphql_seo_init' ) ) {
 
 	/**
@@ -113,12 +130,16 @@ if ( ! function_exists( 'graphql_seo_init' ) ) {
 
 		$not_ready = graphql_seo_dependencies_not_ready();
 
-		if ( empty( $not_ready ) && defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
+		// Get the conflicting plugins.
+		$conflicts = graphql_seo_plugin_conflicts();
+
+		if ( empty( $not_ready ) && empty( $conflicts ) && defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
 			require_once WPGRAPHQL_SEO_PLUGIN_DIR . 'src/Main.php';
 			\WPGraphQL\RankMath\Main::instance();
 			return;
 		}
 
+		// Output an error notice for the dependencies that are not ready.
 		foreach ( $not_ready as $dep => $version ) {
 			add_action(
 				'admin_notices',
@@ -136,6 +157,29 @@ if ( ! function_exists( 'graphql_seo_init' ) ) {
 							?>
 						</p>
 					</div>
+					<?php
+				}
+			);
+		}
+
+		// Output an error notice for the conflicting plugins.
+		foreach ( $conflicts as $conflict => $resolution ) {
+			add_action(
+				'admin_notices',
+				static function () use ( $conflict, $resolution ) {
+					?>
+				<div class="error notice">
+					<p>
+						<?php
+						printf(
+							/* translators: dependency not ready error message */
+							esc_html__( '%1$s is not compatible with WPGraphQL for Rank Math SEO. %2$s', 'wp-graphql-rank-math' ),
+							esc_attr( $conflict ),
+							$resolution ?: esc_html__( 'Please deactivate it.', 'wp-graphql-rank-math' )
+						);
+						?>
+					</p>
+				</div>
 					<?php
 				}
 			);
