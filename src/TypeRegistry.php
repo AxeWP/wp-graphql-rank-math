@@ -85,6 +85,7 @@ class TypeRegistry {
 			Enum\ArticleTypeEnum::class,
 			Enum\BulkEditingTypeEnum::class,
 			Enum\ImagePreviewSizeEnum::class,
+			Enum\JsonLdGraphTypeEnum::class,
 			Enum\KnowledgeGraphTypeEnum::class,
 			Enum\OpenGraphLocaleEnum::class,
 			Enum\OpenGraphProductAvailabilityEnum::class,
@@ -129,6 +130,15 @@ class TypeRegistry {
 		$classes_to_register = [
 			WPInterface\MetaSettingWithArchive::class,
 			WPInterface\MetaSettingWithRobots::class,
+
+			// Json LD
+			WPInterface\JsonLd\Thing::class,
+			WPInterface\JsonLd\Graph::class,
+			WPInterface\JsonLd\Action::class,
+			WPInterface\JsonLd\CreativeWork::class,
+			WPInterface\JsonLd\WebPage::class,
+
+			// SEO
 			WPInterface\Seo::class,
 			WPInterface\ContentNodeSeo::class,
 			WPInterface\NodeWithSeo::class,
@@ -190,6 +200,14 @@ class TypeRegistry {
 
 			// Settings.
 			WPObject\Settings::class,
+
+			// JSON+LD 
+			WPObject\JsonLd\Person::class,
+			WPObject\JsonLd\Article::class,
+			WPObject\JsonLd\CollectionPage::class,
+			WPObject\JsonLd\WebPage::class,
+			WPObject\JsonLd\WebSite::class,
+			WPObject\JsonLd\SearchAction::class,
 
 			// The individual SEO objects.
 			WPObject\SeoObjects::class,

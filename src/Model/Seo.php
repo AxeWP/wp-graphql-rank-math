@@ -138,19 +138,8 @@ abstract class Seo extends Model {
 
 					return ! empty( $keywords ) ? explode( ',', $keywords ) : null;
 				},
-				'fullHead'      => function() : ?string {
-					$head = $this->get_head();
-					return $head ?: null;
-				},
-				'jsonLd'        => function() {
-					ob_start();
-					$json = new \RankMath\Schema\JsonLD();
-					$json->setup();
-					$json->json_ld();
-					$output = ob_get_clean();
-
-					return [ 'raw' => $output ?: null ];
-				},
+				'fullHead'      => fn() : ?string => $this->get_head() ?: null,
+				'jsonLd'        => fn() : ?array => $this->get_json_ld() ?: null,
 				'openGraph'     => function() {
 					$head = $this->get_head();
 
@@ -161,6 +150,63 @@ abstract class Seo extends Model {
 				},
 			];
 		}
+	}
+
+	/**
+	 * Gets the JsonLD data for the node.
+	 *
+	 * @throws UserError If JsonLD data cannot be parsed.
+	 */
+	protected function get_json_ld() : array {
+		ob_start();
+		$json = new \RankMath\Schema\JsonLD();
+		$json->setup();
+		$json->json_ld();
+		$raw_output = ob_get_clean();
+
+		preg_match( '/>(.*?)<\/script>/s', $raw_output ?: '', $matches );
+		
+		$json_ld = json_decode( $matches[1], true );
+
+		if ( ! empty( json_last_error() ) ) {
+			throw new UserError(
+				sprintf(
+					// translators: json error.
+					__( 'There was an error generating the JSON-LD output. Message %s', 'wp-graphql-rank-math' ),
+					json_last_error_msg(),
+				)
+			);
+		}
+
+		return [
+			'raw'     => $raw_output ?: null,
+			'context' => $json_ld['@context'] ?? null,
+			'graph'   => ! empty( $json_ld['@graph'] ) ? 
+				array_map(
+					fn( $graph_item ) => $this->get_json_ld_graph_data( $graph_item ),
+					$json_ld['@graph']
+				) :
+				null,
+		];
+	}
+
+	/**
+	 * Populates the graph data for the jsonld Object.
+	 *
+	 * @param array $json_ld The JSonLD graph object.
+	 */
+	protected function get_json_ld_graph_data( array $json_ld ) : array {
+		return [
+			'author'        => $json_ld['author'] ?? null,
+			'dateModified'  => $json_ld['date_modified'] ?? null,
+			'datePublished' => $json_ld['date_published'] ?? null,
+			'description'   => $json_ld['description'] ?? null,
+			'keywords'      => ! empty( $json_ld['keywords'] ) ? explode( ',', $json_ld['keywords'] ) : null,
+			'publisher'     => $json_ld['publisher'] ?? null,
+			'type'          => $json_ld['@type'] ?? null,
+			'id'            => $json_ld['@id'] ?? null,
+			'name'          => $json_ld['name'] ?? null,
+		];
 	}
 
 	/**

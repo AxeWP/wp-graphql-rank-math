@@ -8,6 +8,7 @@
 namespace WPGraphQL\RankMath\Type\WPObject;
 
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
+use WPGraphQL\RankMath\Type\WPInterface\JsonLd\Graph;
 
 /**
  * Class - JsonLd
@@ -42,9 +43,17 @@ class JsonLd extends ObjectType {
 	 */
 	public static function get_fields() : array {
 		return [
-			'raw' => [
+			'raw'     => [
 				'type'        => 'String',
 				'description' => __( 'The raw JSON+LD output', 'wp-graphql-rank-math' ),
+			],
+			'context' => [
+				'type'        => 'String',
+				'description' => __( 'The JSON+LD context', 'wp-graphql-rank-math' ),
+			],
+			'graph'   => [
+				'type'        => [ 'list_of' => Graph::get_type_name() ],
+				'description' => __( 'The JSON+LD @graph objects.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}
