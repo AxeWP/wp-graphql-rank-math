@@ -8,8 +8,8 @@
 namespace WPGraphQL\RankMath\Type\Enum;
 
 use RankMath\OpenGraph\Facebook_Locale;
-use WPGraphQL\Type\WPEnumType;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\EnumType;
+use WPGraphQL\Type\WPEnumType;
 
 /**
  * Class - OpenGraphLocaleEnum
@@ -18,7 +18,7 @@ class OpenGraphLocaleEnum extends EnumType {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'OpenGraphLocaleEnum';
 	}
 

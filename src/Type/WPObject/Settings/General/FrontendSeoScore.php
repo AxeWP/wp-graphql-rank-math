@@ -15,26 +15,25 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - FrontendSeoScore
  */
 class FrontendSeoScore extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'FrontendSeoScore';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'RankMath Frontend SEO Score settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
-		$fields = [
+	public static function get_fields(): array {
+		return [
 			'enabledPostTypes'    => [
 				'type'        => [ 'list_of' => 'ContentTypeEnum' ],
 				'description' => __( 'The list of post types which should display the calculated SEO score.', 'wp-graphql-rank-math' ),
@@ -52,8 +51,5 @@ class FrontendSeoScore extends ObjectType {
 				'description' => __( 'Whether to insert a backlink to RankMath.com to show your support, if you are showing the SEO scores on the front end.', 'wp-graphql-rank-math' ),
 			],
 		];
-
-		return $fields;
 	}
-
 }

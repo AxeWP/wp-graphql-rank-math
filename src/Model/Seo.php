@@ -8,8 +8,8 @@
 namespace WPGraphQL\RankMath\Model;
 
 use RankMath\Helper as RMHelper;
-use WPGraphQL\Model\Model;
 use RankMath\Paper\Paper;
+use WPGraphQL\Model\Model;
 
 /**
  * Class - Seo
@@ -106,7 +106,7 @@ abstract class Seo extends Model {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setup() : void {
+	public function setup(): void {
 		Paper::reset();
 		/** @var \RankMath\Paper\Paper $paper */
 		$paper        = Paper::get();
@@ -119,24 +119,24 @@ abstract class Seo extends Model {
 	protected function init() {
 		if ( empty( $this->fields ) ) {
 			$this->fields = [
-				'title'         => function () : ?string {
+				'title'         => function (): ?string {
 					return $this->helper->get_title() ?: null;
 				},
-				'description'   => function () : ?string {
+				'description'   => function (): ?string {
 					return $this->helper->get_description() ?: null;
 				},
-				'robots'        => function () : ?array {
+				'robots'        => function (): ?array {
 					return $this->helper->get_robots() ?: null;
 				},
-				'canonicalUrl'  => function () : ?string {
+				'canonicalUrl'  => function (): ?string {
 					return $this->helper->get_canonical() ?: null; 
 				},
-				'focusKeywords' => function () : ?array {
+				'focusKeywords' => function (): ?array {
 					$keywords = $this->helper->get_keywords();
 
 					return ! empty( $keywords ) ? explode( ',', $keywords ) : null;
 				},
-				'fullHead'      => function () : ?string {
+				'fullHead'      => function (): ?string {
 					$head = $this->get_head();
 					return $head ?: null;
 				},
@@ -154,7 +154,7 @@ abstract class Seo extends Model {
 
 					return ! empty( $head ) ? $this->parse_og_tags( $head ) : null;
 				},
-				'type'          => function () : string {
+				'type'          => function (): string {
 					return $this->get_object_type();
 				},
 			];
@@ -193,19 +193,19 @@ abstract class Seo extends Model {
 	/**
 	 * Gets the object type used to determine how the GraphQL interface should resolve.
 	 */
-	abstract public function get_object_type() : string;
+	abstract public function get_object_type(): string;
 
 	/**
 	 * Gets the object-specific url to use for generating the RankMath <head>.
 	 */
-	abstract protected function get_object_url() : string;
+	abstract protected function get_object_url(): string;
 
 	/**
 	 * Gets the object-specific url to use for generating the RankMath <head>.
 	 *
 	 * @deprecated 0.0.8
 	 */
-	protected function get_rest_url_param() : string {
+	protected function get_rest_url_param(): string {
 		_deprecated_function( __FUNCTION__, '0.0.8', __NAMESPACE__ . '::get_object_url()' );
 		return $this->get_object_url();
 	}
@@ -218,7 +218,7 @@ abstract class Seo extends Model {
 	 * @throws \GraphQL\Error\Error When the REST request is invalid.
 	 * @throws \GraphQL\Error\UserError When REST response fails.
 	 */
-	protected function get_head() : ?string {
+	protected function get_head(): ?string {
 		if ( false !== $this->full_head ) {
 			return $this->full_head;
 		}
@@ -238,7 +238,7 @@ abstract class Seo extends Model {
 	 *
 	 * @param string $head The head.
 	 */
-	protected function parse_og_tags( string $head ) : ?array {
+	protected function parse_og_tags( string $head ): ?array {
 		$tags = [];
 
 		if ( preg_match_all( '/<meta (property|name)="([^"]+):([^"]+)" content="([^"]+)" \/>/', $head, $matches ) ) {
@@ -254,7 +254,7 @@ abstract class Seo extends Model {
 	 * @param array $matches The matches.
 	 * @param array $tags The tags array reference.
 	 */
-	private function save_tags_from_matches( array $matches, array &$tags ) : void {
+	private function save_tags_from_matches( array $matches, array &$tags ): void {
 		// $matches[2] contains the OpenGraph prefix (og, article, twitter, etc ).
 		foreach ( $matches[2] as $key => $prefix ) {
 			$property = $matches[3][ $key ];
@@ -279,7 +279,7 @@ abstract class Seo extends Model {
 	 *
 	 * @param string $url The URL.
 	 */
-	private function setup_post_head( string $url ) : void {
+	private function setup_post_head( string $url ): void {
 		$headless = new \RankMath\Rest\Headless();
 		// Setup WordPress.
 		$_SERVER['REQUEST_URI'] = esc_url_raw( $headless->generate_request_uri( $url ) );

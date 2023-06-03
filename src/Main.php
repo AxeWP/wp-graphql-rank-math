@@ -7,8 +7,8 @@
 
 namespace WPGraphQL\RankMath;
 
-use WPGraphQL\RankMath\Admin\Settings\Settings;
 use RankMath\Helper as RMHelper;
+use WPGraphQL\RankMath\Admin\Settings\Settings;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Helper;
 
 if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
@@ -27,7 +27,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 		/**
 		 * Constructor
 		 */
-		public static function instance() : self {
+		public static function instance(): self {
 			if ( ! isset( self::$instance ) || ! ( is_a( self::$instance, self::class ) ) ) {
 				// You cant test a singleton.
 				// @codeCoverageIgnoreStart
@@ -55,7 +55,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 		 *
 		 * @codeCoverageIgnore
 		 */
-		private function includes() : void {
+		private function includes(): void {
 			if ( defined( 'WPGRAPHQL_SEO_AUTOLOAD' ) && false !== WPGRAPHQL_SEO_AUTOLOAD && defined( 'WPGRAPHQL_SEO_PLUGIN_DIR' ) ) {
 				require_once WPGRAPHQL_SEO_PLUGIN_DIR . 'vendor/autoload.php';
 			}
@@ -66,7 +66,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 		 *
 		 * @codeCoverageIgnore
 		 */
-		private function setup() : void {
+		private function setup(): void {
 			// // Setup boilerplate hook prefix.
 			Helper::set_hook_prefix( 'graphql_seo' );
 
@@ -104,7 +104,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 		 *
 		 * @codeCoverageIgnore
 		 */
-		public function __wakeup() : void {
+		public function __wakeup(): void {
 			// De-serializing instances of the class is forbidden.
 			_doing_it_wrong( __FUNCTION__, esc_html__( 'De-serializing instances of the plugin Main class is not allowed.', 'wp-graphql-rank-math' ), '0.0.1' );
 		}

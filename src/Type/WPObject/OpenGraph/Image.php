@@ -13,34 +13,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - Image
  */
 class Image extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'OpenGraphImage';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The OpenGraph Image meta.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'url'       => [
 				'type'        => 'String',
@@ -49,7 +39,7 @@ class Image extends ObjectType {
 			'secureUrl' => [
 				'type'        => 'String',
 				'description' => __( 'The https:// URL for the image.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn( $source ) :?string => ! empty( $source['secure_url'] ) ? $source['secure_url'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['secure_url'] ) ? $source['secure_url'] : null,
 			],
 			'type'      => [
 				'type'        => 'String', // @todo

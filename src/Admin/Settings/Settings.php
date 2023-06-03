@@ -30,14 +30,14 @@ class Settings {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function init() : void {
+	public static function init(): void {
 		add_action( 'admin_init', [ self::class, 'register_settings' ] );
 	}
 
 	/**
 	 * Gets an instance of the WPGraphQL settings api.
 	 */
-	public static function get_settings_api() : SettingsRegistry {
+	public static function get_settings_api(): SettingsRegistry {
 		if ( ! isset( self::$settings_api ) ) {
 			self::$settings_api = new SettingsRegistry();
 		}
@@ -48,7 +48,7 @@ class Settings {
 	/**
 	 * Registers the settings to WPGraphQL
 	 */
-	public static function register_settings() : void {
+	public static function register_settings(): void {
 		$settings_api = self::get_settings_api();
 
 		$settings_api->register_fields(

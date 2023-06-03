@@ -13,26 +13,25 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - Links
  */
 class Links extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'Links';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO links settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
-		$fields = [
+	public static function get_fields(): array {
+		return [
 			'defaultAttachmentRedirectUrl' => [
 				'type'        => 'String',
 				'description' => __( 'The default redirection url for attachments without a parent post', 'wp-graphql-rank-math' ),
@@ -66,8 +65,5 @@ class Links extends ObjectType {
 				'description' => __( 'Whether to redirect all attachment page URLs to the post they appear in.', 'wp-graphql-rank-math' ),
 			],
 		];
-
-		return $fields;
 	}
-
 }

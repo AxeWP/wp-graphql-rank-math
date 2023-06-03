@@ -55,21 +55,21 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'NodeWithRankMathSeo';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'A node with RankMath SEO data.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'seo' => [
 				'type'        => Seo::get_type_name(),
@@ -100,7 +100,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_interfaces() : array {
+	public static function get_interfaces(): array {
 		return [ 'Node' ];
 	}
 
@@ -109,7 +109,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	 *
 	 * @param \WPGraphQL\Model\Model $node_model The node model.
 	 */
-	private static function get_model_for_node( Model $node_model ) : ?Model {
+	private static function get_model_for_node( Model $node_model ): ?Model {
 		// A map of the node models to their corresponding SEO model classes.
 		switch ( true ) {
 			case $node_model instanceof \WPGraphQL\Model\Post:

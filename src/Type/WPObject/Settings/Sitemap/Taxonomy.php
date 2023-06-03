@@ -16,18 +16,17 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithConnections;
  * Class - Taxonomy
  */
 class Taxonomy extends ObjectType implements TypeWithConnections {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'SitemapTaxonomySettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_connections() : array {
+	public static function get_connections(): array {
 		return [
 			'connectedTerms' => [
 				'toType'      => 'TermNode',
@@ -54,14 +53,14 @@ class Taxonomy extends ObjectType implements TypeWithConnections {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Sitemap general settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'hasEmptyTerms' => [
 				'type'        => 'Boolean',

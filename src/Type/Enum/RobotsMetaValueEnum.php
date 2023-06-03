@@ -17,7 +17,7 @@ class RobotsMetaValueEnum extends EnumType {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'RobotsMetaValueEnum';
 	}
 

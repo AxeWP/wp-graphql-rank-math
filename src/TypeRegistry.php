@@ -9,16 +9,15 @@ namespace WPGraphQL\RankMath;
 
 use Exception;
 use WPGraphQL\RankMath\Fields;
-use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Type\Enum;
 use WPGraphQL\RankMath\Type\WPInterface;
 use WPGraphQL\RankMath\Type\WPObject;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 
 /**
  * Class - TypeRegistry
  */
 class TypeRegistry {
-
 	/**
 	 * The local registry of registered types.
 	 *
@@ -29,7 +28,7 @@ class TypeRegistry {
 	/**
 	 * Gets an array of all the registered GraphQL types along with their class name.
 	 */
-	public static function get_registered_types() : array {
+	public static function get_registered_types(): array {
 		if ( empty( self::$registry ) ) {
 			self::initialize_registry();
 		}
@@ -40,7 +39,7 @@ class TypeRegistry {
 	/**
 	 * Registers types, connections, unions, and mutations to GraphQL schema.
 	 */
-	public static function init() : void {
+	public static function init(): void {
 		/**
 		 * Fires before all types have been registered.
 		 */
@@ -57,7 +56,7 @@ class TypeRegistry {
 	/**
 	 * Initializes the plugin type registry.
 	 */
-	private static function initialize_registry() : void {
+	private static function initialize_registry(): void {
 		$classes_to_register = array_merge(
 			self::enums(),
 			self::inputs(),
@@ -71,12 +70,10 @@ class TypeRegistry {
 		self::register_types( $classes_to_register );
 	}
 
-
-
 	/**
 	 * List of Enum classes to register.
 	 */
-	private static function enums() : array {
+	private static function enums(): array {
 		// Enums to register.
 		$classes_to_register = [
 			Enum\ArticleTypeEnum::class,
@@ -106,7 +103,7 @@ class TypeRegistry {
 	/**
 	 * List of Input classes to register.
 	 */
-	private static function inputs() : array {
+	private static function inputs(): array {
 		$classes_to_register = [];
 
 		/**
@@ -122,7 +119,7 @@ class TypeRegistry {
 	/**
 	 * List of Interface classes to register.
 	 */
-	public static function interfaces() : array {
+	public static function interfaces(): array {
 		$classes_to_register = [
 			WPInterface\MetaSettingWithArchive::class,
 			WPInterface\MetaSettingWithRobots::class,
@@ -144,7 +141,7 @@ class TypeRegistry {
 	/**
 	 * List of Object classes to register.
 	 */
-	public static function objects() : array {
+	public static function objects(): array {
 		$classes_to_register = [
 			WPObject\AdvancedRobotsMeta::class,
 			WPObject\SeoScore::class,
@@ -205,7 +202,7 @@ class TypeRegistry {
 	/**
 	 * List of Field classes to register.
 	 */
-	public static function fields() : array {
+	public static function fields(): array {
 		$classes_to_register = [
 			Fields\RootQuery::class,
 		];
@@ -223,7 +220,7 @@ class TypeRegistry {
 	/**
 	 * List of Connection classes to register.
 	 */
-	public static function connections() : array {
+	public static function connections(): array {
 		$classes_to_register = [];
 
 		/**
@@ -239,7 +236,7 @@ class TypeRegistry {
 	/**
 	 * Registers mutation.
 	 */
-	public static function mutations() : array {
+	public static function mutations(): array {
 		$classes_to_register = [];
 
 		/**
@@ -263,7 +260,7 @@ class TypeRegistry {
 	 *
 	 * @throws \Exception .
 	 */
-	private static function register_types( array $classes_to_register ) : void {
+	private static function register_types( array $classes_to_register ): void {
 		// Bail if there are no classes to register.
 		if ( empty( $classes_to_register ) ) {
 			return;

@@ -16,25 +16,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
  * Class - HomepageMeta
  */
 class HomepageMeta extends ObjectType implements TypeWithInterfaces {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'HomepageMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Homepage settings. Only used when the Settings > Reading > Your homepage displays is set to `Your latest posts`.', 'wp-graphql-rank-math' );
 	}
 
 		/**
 		 * {@inheritDoc}
 		 */
-	public static function get_interfaces() : array {
+	public static function get_interfaces(): array {
 		return [
 			MetaSettingWithRobots::get_type_name(),
 		];
@@ -43,7 +42,7 @@ class HomepageMeta extends ObjectType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'title'               => [
 				'type'        => 'String',

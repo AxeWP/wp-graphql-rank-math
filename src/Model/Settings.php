@@ -8,9 +8,9 @@
 namespace WPGraphQL\RankMath\Model;
 
 use Exception;
-use WPGraphQL\Model\Model;
 use RankMath\Helper;
 use RankMath\Sitemap\Router;
+use WPGraphQL\Model\Model;
 
 /**
  * Class - Settings
@@ -29,7 +29,6 @@ class Settings extends Model {
 	 * @var string[]
 	 */
 	protected array $active_modules;
-
 
 	/**
 	 * Constructor.
@@ -60,8 +59,8 @@ class Settings extends Model {
 	protected function init() {
 		if ( empty( $this->fields ) ) {
 			$this->fields = [
-				'general' => fn() => $this->general_fields(),
-				'meta'    => fn() => [
+				'general' => fn () => $this->general_fields(),
+				'meta'    => fn () => [
 					'authorArchives'               => $this->meta_author_archive_fields(),
 					'global'                       => $this->meta_global_fields(),
 					'local'                        => $this->meta_local_fields(),
@@ -80,7 +79,7 @@ class Settings extends Model {
 			];
 
 			if ( in_array( 'sitemap', $this->active_modules, true ) ) {
-				$this->fields['sitemap'] = fn() => [
+				$this->fields['sitemap'] = fn () => [
 					'author'          => $this->sitemap_author_fields(),
 					'contentTypes'    => $this->sitemap_content_type_fields(),
 					'general'         => $this->sitemap_general_fields(),
@@ -94,9 +93,9 @@ class Settings extends Model {
 	/**
 	 * Resolve the general settings fields.
 	 */
-	private function general_fields() : array {
+	private function general_fields(): array {
 		return [
-			'breadcrumbs'         => function () : array {
+			'breadcrumbs'         => function (): array {
 				$has_home = ! empty( $this->data['general']['breadcrumbs_home'] );
 
 				return [
@@ -106,13 +105,13 @@ class Settings extends Model {
 					'hasTaxonomyName'       => empty( $this->data['general']['breadcrumbs_hide_taxonomy_name'] ),
 					'hasBlogPage'           => ! empty( $this->data['general']['breadcrumbs_blog_page'] ),
 					'hasHome'               => $has_home,
-					'homeLabel'             => function () use ( $has_home ) : ?string {
+					'homeLabel'             => function () use ( $has_home ): ?string {
 						if ( ! $has_home ) {
 							return null;
 						}
 						return ! empty( $this->data['general']['breadcrumbs_home_label'] ) ? $this->data['general']['breadcrumbs_home_label'] : null;
 					},
-					'homeUrl'               => function () use ( $has_home ) : ?string {
+					'homeUrl'               => function () use ( $has_home ): ?string {
 						if ( ! $has_home ) {
 							return null;
 						}
@@ -161,23 +160,23 @@ class Settings extends Model {
 	 *
 	 * @param string $key the array key used to store the meta.
 	 */
-	private function advanced_robots_meta( string $key ) : ?array {
-		return ! empty( $this->data['titles'][ $key ] ) ?
-			[
+	private function advanced_robots_meta( string $key ): ?array {
+		return ! empty( $this->data['titles'][ $key ] )
+			? [
 				'hasSnippet'       => ! empty( $this->data['titles'][ $key ]['max-snippet'] ),
 				'snippetLength'    => ! empty( $this->data['titles'][ $key ]['max-snippet'] ) ? $this->data['titles'][ $key ]['max-snippet'] : null,
 				'hasVideoPreview'  => ! empty( $this->data['titles'][ $key ]['max-video-preview'] ),
 				'videoDuration'    => ! empty( $this->data['titles'][ $key ]['max-video-preview'] ) ? $this->data['titles'][ $key ]['max-video-preview'] : null,
 				'hasImagePreview'  => ! empty( $this->data['titles'][ $key ]['max-image-preview'] ),
 				'imagePreviewSize' => ! empty( $this->data['titles'][ $key ]['max-image-preview'] ) ? $this->data['titles'][ $key ]['max-image-preview'] : null,
-			] :
-			null;
+			]
+			: null;
 	}
 
 	/**
 	 * Resolve titles and meta Global fields.
 	 */
-	private function meta_global_fields() : array {
+	private function meta_global_fields(): array {
 		return [
 			'advancedRobotsMeta'         => $this->advanced_robots_meta( 'advanced_robots_global' ),
 			'robotsMeta'                 => ! empty( $this->data['titles']['robots_global'] ) ? $this->data['titles']['robots_global'] : null,
@@ -193,7 +192,7 @@ class Settings extends Model {
 	/**
 	 * Resolve titles and meta social fields.
 	 */
-	private function meta_social_fields() : array {
+	private function meta_social_fields(): array {
 		return [
 			'facebookPageUrl'   => ! empty( $this->data['titles']['social_url_facebook'] ) ? $this->data['titles']['social_url_facebook'] : null,
 			'facebookAuthorUrl' => ! empty( $this->data['titles']['facebook_author_urls'] ) ? $this->data['titles']['facebook_author_urls'] : null,
@@ -206,7 +205,7 @@ class Settings extends Model {
 	/**
 	 * Resolve titles and meta local fields.
 	 */
-	private function meta_local_fields() : array {
+	private function meta_local_fields(): array {
 		return [
 			'type'   => ! empty( $this->data['titles']['knowledgegraph_type'] ) ? $this->data['titles']['knowledgegraph_type'] : null,
 			'name'   => ! empty( $this->data['titles']['knowledgegraph_name'] ) ? $this->data['titles']['knowledgegraph_name'] : null,
@@ -218,7 +217,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the titles and meta homepage fields.
 	 */
-	private function meta_homepage_fields() : ?array {
+	private function meta_homepage_fields(): ?array {
 		return 'page' !== get_option( 'show_on_front' ) ? [
 			'advancedRobotsMeta'  => $this->advanced_robots_meta( 'homepage_advanced_robots' ),
 			'description'         => ! empty( $this->data['titles']['homepage_description'] ) ? $this->data['titles']['author_archive_description'] : null,
@@ -234,7 +233,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the titles and meta date archive fields.
 	 */
-	private function meta_date_archive_fields() : array {
+	private function meta_date_archive_fields(): array {
 		$has_archives = empty( $this->data['titles']['disable_date_archives'] );
 
 		return [
@@ -249,7 +248,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the titles and meta author archive fields.
 	 */
-	private function meta_author_archive_fields() : array {
+	private function meta_author_archive_fields(): array {
 		$has_archives = empty( $this->data['titles']['disable_author_archives'] );
 		return [
 			'advancedRobotsMeta'      => $has_archives ? $this->advanced_robots_meta( 'author_advanced_robots' ) : null,
@@ -267,7 +266,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the titles and meta for taxonomy fields.
 	 */
-	private function meta_taxonomy_fields() : array {
+	private function meta_taxonomy_fields(): array {
 		$taxonomies = \WPGraphQL::get_allowed_taxonomies();
 
 		$fields = [];
@@ -293,7 +292,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the titles and meta for post type fields.
 	 */
-	private function meta_content_type_fields() : array {
+	private function meta_content_type_fields(): array {
 		$post_types = \WPGraphQL::get_allowed_post_types();
 
 		$fields = [];
@@ -330,7 +329,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the sitemap general settings.
 	 */
-	private function sitemap_general_fields() : array {
+	private function sitemap_general_fields(): array {
 		return [
 			'canPingSearchEngines'    => ! empty( $this->data['sitemap']['ping_search_engines'] ),
 			'excludedPostDatabaseIds' => ! empty( $this->data['sitemap']['exclude_posts'] ) ? array_map( 'absint', explode( ',', $this->data['sitemap']['exclude_posts'] ) ) : null,
@@ -344,7 +343,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the sitemap general settings.
 	 */
-	private function sitemap_author_fields() : ?array {
+	private function sitemap_author_fields(): ?array {
 		if ( ! Helper::is_author_archive_indexable() ) {
 			return null;
 		}
@@ -371,7 +370,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the sitemap post type settings.
 	 */
-	private function sitemap_content_type_fields() : array {
+	private function sitemap_content_type_fields(): array {
 		$post_types = \WPGraphQL::get_allowed_post_types();
 
 		$fields = [];
@@ -393,7 +392,7 @@ class Settings extends Model {
 	/**
 	 * Resolve the sitemap taxonomy settings.
 	 */
-	private function sitemap_taxonomy_fields() : array {
+	private function sitemap_taxonomy_fields(): array {
 		$taxonomies = \WPGraphQL::get_allowed_taxonomies();
 
 		$fields = [];

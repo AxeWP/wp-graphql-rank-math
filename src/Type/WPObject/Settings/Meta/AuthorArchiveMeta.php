@@ -16,25 +16,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
  * Class - AuthorArchiveMeta
  */
 class AuthorArchiveMeta extends ObjectType implements TypeWithInterfaces {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'AuthorArchiveMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Author Archive meta settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_interfaces() : array {
+	public static function get_interfaces(): array {
 		return [
 			MetaSettingWithArchive::get_type_name(),
 			MetaSettingWithRobots::get_type_name(),
@@ -44,8 +43,8 @@ class AuthorArchiveMeta extends ObjectType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
-		$fields = [
+	public static function get_fields(): array {
+		return [
 			'baseSlug'                => [
 				'type'        => 'String',
 				'description' => __( 'Change the `/author/` part in author archive URLs.', 'wp-graphql-rank-math' ),
@@ -67,8 +66,5 @@ class AuthorArchiveMeta extends ObjectType implements TypeWithInterfaces {
 				'description' => __( 'Whether the SEO Controls meta box for user profile pages is enabled.', 'wp-graphql-rank-math' ),
 			],
 		];
-
-		return $fields;
 	}
-
 }

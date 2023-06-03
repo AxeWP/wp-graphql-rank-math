@@ -14,34 +14,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - AdvancedRobotsMeta
  */
 class AdvancedRobotsMeta extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'AdvancedRobotsMeta';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The config for an advanced robots meta values.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'hasSnippet'       => [
 				'type'        => 'Boolean',
@@ -69,6 +59,4 @@ class AdvancedRobotsMeta extends ObjectType {
 			],
 		];
 	}
-
-
 }

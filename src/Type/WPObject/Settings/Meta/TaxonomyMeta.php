@@ -15,25 +15,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - TaxonomyMeta
  */
 class TaxonomyMeta extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'TaxonomyMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Taxonomy meta settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function register() : void {
+	public static function register(): void {
 		/** @var \WP_Taxonomy[] */
 		$allowed_taxonomies = \WPGraphQL::get_allowed_taxonomies( 'objects', [ 'public' => true ] );
 
@@ -63,7 +62,7 @@ class TaxonomyMeta extends ObjectType {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		/** @var \WP_Taxonomy[] */
 		$allowed_taxonomies = \WPGraphQL::get_allowed_taxonomies( 'objects', [ 'public' => true ] );
 
@@ -88,7 +87,7 @@ class TaxonomyMeta extends ObjectType {
 	 *
 	 * @param \WP_Taxonomy $tax_object .
 	 */
-	public static function get_child_type_fields( \WP_Taxonomy $tax_object ) : array {
+	public static function get_child_type_fields( \WP_Taxonomy $tax_object ): array {
 		$fields = [
 			'hasCustomRobotsMeta'     => [
 				'type'        => 'Boolean',

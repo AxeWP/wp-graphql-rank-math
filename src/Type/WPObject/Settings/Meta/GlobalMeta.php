@@ -17,25 +17,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
  * Class - GlobalMeta
  */
 class GlobalMeta extends ObjectType implements TypeWithInterfaces {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'GlobalMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Global settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_interfaces() : array {
+	public static function get_interfaces(): array {
 		return [
 			MetaSettingWithRobots::get_type_name(),
 		];
@@ -44,7 +43,7 @@ class GlobalMeta extends ObjectType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		$fields = [
 			'openGraphImage'             => [
 				'type'        => 'MediaItem',
@@ -80,5 +79,4 @@ class GlobalMeta extends ObjectType implements TypeWithInterfaces {
 
 		return $fields;
 	}
-
 }

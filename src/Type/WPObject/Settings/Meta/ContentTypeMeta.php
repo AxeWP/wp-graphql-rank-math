@@ -21,25 +21,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - ContentTypeMeta
  */
 class ContentTypeMeta extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'ContentTypeMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Post Type settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function register() : void {
+	public static function register(): void {
 		/** @var \WP_Post_Type[] */
 		$allowed_post_types = \WPGraphQL::get_allowed_post_types( 'objects', [ 'public' => true ] );
 
@@ -76,7 +75,7 @@ class ContentTypeMeta extends ObjectType {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		/** @var \WP_Post_Type[] */
 		$allowed_post_types = \WPGraphQL::get_allowed_post_types( 'objects', [ 'public' => true ] );
 
@@ -107,7 +106,7 @@ class ContentTypeMeta extends ObjectType {
 	 *
 	 * @param \WP_Post_Type $post_type_object .
 	 */
-	public static function get_child_type_fields( \WP_Post_Type $post_type_object ) : array {
+	public static function get_child_type_fields( \WP_Post_Type $post_type_object ): array {
 		$fields = [
 			'title'                   => [
 				'type'        => 'String',
