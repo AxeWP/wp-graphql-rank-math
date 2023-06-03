@@ -86,6 +86,8 @@ class TaxonomyMeta extends ObjectType {
 	 * Get the fields for the provided content type.
 	 *
 	 * @param \WP_Taxonomy $tax_object .
+	 *
+	 * @return array<string, array<string, string>>
 	 */
 	public static function get_child_type_fields( \WP_Taxonomy $tax_object ): array {
 		$fields = [

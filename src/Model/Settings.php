@@ -92,6 +92,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve the general settings fields.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function general_fields(): array {
 		return [
@@ -159,6 +161,8 @@ class Settings extends Model {
 	 * Get the advanced robots meta for the provided key.
 	 *
 	 * @param string $key the array key used to store the meta.
+	 *
+	 * @return ?array<string, mixed>
 	 */
 	private function advanced_robots_meta( string $key ): ?array {
 		return ! empty( $this->data['titles'][ $key ] )
@@ -175,6 +179,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve titles and meta Global fields.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function meta_global_fields(): array {
 		return [
@@ -191,6 +197,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve titles and meta social fields.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function meta_social_fields(): array {
 		return [
@@ -204,6 +212,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve titles and meta local fields.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function meta_local_fields(): array {
 		return [
@@ -216,6 +226,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve the titles and meta homepage fields.
+	 *
+	 * @return ?array<string, mixed>
 	 */
 	private function meta_homepage_fields(): ?array {
 		return 'page' !== get_option( 'show_on_front' ) ? [
@@ -232,6 +244,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve the titles and meta date archive fields.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function meta_date_archive_fields(): array {
 		$has_archives = empty( $this->data['titles']['disable_date_archives'] );
@@ -247,6 +261,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve the titles and meta author archive fields.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function meta_author_archive_fields(): array {
 		$has_archives = empty( $this->data['titles']['disable_author_archives'] );
@@ -265,8 +281,11 @@ class Settings extends Model {
 
 	/**
 	 * Resolve the titles and meta for taxonomy fields.
+	 *
+	 * @return ?array<string, array<string,mixed>>
 	 */
-	private function meta_taxonomy_fields(): array {
+	private function meta_taxonomy_fields(): ?array {
+		/** @var string[] $taxonomies */
 		$taxonomies = \WPGraphQL::get_allowed_taxonomies();
 
 		$fields = [];
@@ -286,13 +305,16 @@ class Settings extends Model {
 			];
 		}
 
-		return $fields;
+		return $fields ?: null;
 	}
 
 	/**
 	 * Resolve the titles and meta for post type fields.
+	 *
+	 * @return ?array<string, array<string,mixed>>
 	 */
-	private function meta_content_type_fields(): array {
+	private function meta_content_type_fields(): ?array {
+		/** @var string[] $post_types */
 		$post_types = \WPGraphQL::get_allowed_post_types();
 
 		$fields = [];
@@ -323,11 +345,13 @@ class Settings extends Model {
 			];
 		}
 
-		return $fields;
+		return $fields ?: null;
 	}
 
 	/**
 	 * Resolve the sitemap general settings.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function sitemap_general_fields(): array {
 		return [
@@ -342,6 +366,8 @@ class Settings extends Model {
 
 	/**
 	 * Resolve the sitemap general settings.
+	 *
+	 * @return array<string, mixed>
 	 */
 	private function sitemap_author_fields(): ?array {
 		if ( ! Helper::is_author_archive_indexable() ) {
@@ -369,8 +395,11 @@ class Settings extends Model {
 
 	/**
 	 * Resolve the sitemap post type settings.
+	 *
+	 * @return ?array<string, mixed>
 	 */
-	private function sitemap_content_type_fields(): array {
+	private function sitemap_content_type_fields(): ?array {
+		/** @var string[] $post_types */
 		$post_types = \WPGraphQL::get_allowed_post_types();
 
 		$fields = [];
@@ -386,13 +415,16 @@ class Settings extends Model {
 			];
 		}
 
-		return $fields;
+		return $fields ?: null;
 	}
 
 	/**
 	 * Resolve the sitemap taxonomy settings.
+	 *
+	 * @return array<string, array<string,mixed>>
 	 */
-	private function sitemap_taxonomy_fields(): array {
+	private function sitemap_taxonomy_fields(): ?array {
+		/** @var string[] $taxonomies */
 		$taxonomies = \WPGraphQL::get_allowed_taxonomies();
 
 		$fields = [];
@@ -409,6 +441,6 @@ class Settings extends Model {
 			];
 		}
 
-		return $fields;
+		return $fields ?: null;
 	}
 }

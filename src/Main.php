@@ -30,7 +30,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 		public static function instance(): self {
 			if ( ! isset( self::$instance ) || ! ( is_a( self::$instance, self::class ) ) ) {
 				// You cant test a singleton.
-				// @codeCoverageIgnoreStart
+				// @codeCoverageIgnoreStart .
 				if ( ! function_exists( 'is_plugin_active' ) ) {
 					require_once ABSPATH . 'wp-admin/includes/plugin.php';
 				}

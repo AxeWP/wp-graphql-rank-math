@@ -99,10 +99,12 @@ class Twitter extends ObjectType {
 	/**
 	 * Get the app meta for the twitter app type.
 	 *
-	 * @param array  $source The values from the resolver.
-	 * @param string $type The app type.
+	 * @param array<string, mixed> $source The values from the resolver.
+	 * @param string               $type The app type.
+	 *
+	 * @return ?array<string, mixed>
 	 */
-	protected static function get_app_meta( $source, $type ): ?array {
+	protected static function get_app_meta( array $source, string $type ): ?array {
 		$values = [];
 
 		if ( ! empty( $source[ 'app:name:' . $type ] ) ) {

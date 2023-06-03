@@ -21,12 +21,14 @@ class TypeRegistry {
 	/**
 	 * The local registry of registered types.
 	 *
-	 * @var array
+	 * @var string[]
 	 */
 	public static array $registry = [];
 
 	/**
 	 * Gets an array of all the registered GraphQL types along with their class name.
+	 *
+	 * @return string[]
 	 */
 	public static function get_registered_types(): array {
 		if ( empty( self::$registry ) ) {
@@ -72,6 +74,8 @@ class TypeRegistry {
 
 	/**
 	 * List of Enum classes to register.
+	 *
+	 * @return string[]
 	 */
 	private static function enums(): array {
 		// Enums to register.
@@ -102,6 +106,8 @@ class TypeRegistry {
 
 	/**
 	 * List of Input classes to register.
+	 *
+	 * @return string[]
 	 */
 	private static function inputs(): array {
 		$classes_to_register = [];
@@ -118,6 +124,8 @@ class TypeRegistry {
 
 	/**
 	 * List of Interface classes to register.
+	 *
+	 * @return string[]
 	 */
 	public static function interfaces(): array {
 		$classes_to_register = [
@@ -140,6 +148,8 @@ class TypeRegistry {
 
 	/**
 	 * List of Object classes to register.
+	 *
+	 * @return string[]
 	 */
 	public static function objects(): array {
 		$classes_to_register = [
@@ -148,7 +158,7 @@ class TypeRegistry {
 			WPObject\JsonLd::class,
 			WPObject\Breadcrumbs::class,
 
-			// Open Graph
+			// Open Graph.
 			WPObject\OpenGraph\Article::class,
 			WPObject\OpenGraph\Facebook::class,
 			WPObject\OpenGraph\Image::class,
@@ -175,7 +185,7 @@ class TypeRegistry {
 			WPObject\Settings\Meta\SocialMeta::class,
 			WPObject\Settings\Meta\TaxonomyMeta::class,
 			WPObject\Settings\Meta::class,
-			// Sitemap settings
+			// Sitemap settings.
 			WPObject\Settings\Sitemap\Author::class,
 			WPObject\Settings\Sitemap\ContentType::class,
 			WPObject\Settings\Sitemap\General::class,
@@ -201,6 +211,8 @@ class TypeRegistry {
 
 	/**
 	 * List of Field classes to register.
+	 *
+	 * @return string[]
 	 */
 	public static function fields(): array {
 		$classes_to_register = [
@@ -219,6 +231,8 @@ class TypeRegistry {
 
 	/**
 	 * List of Connection classes to register.
+	 *
+	 * @return string[]
 	 */
 	public static function connections(): array {
 		$classes_to_register = [];
@@ -235,6 +249,8 @@ class TypeRegistry {
 
 	/**
 	 * Registers mutation.
+	 *
+	 * @return string[]
 	 */
 	public static function mutations(): array {
 		$classes_to_register = [];

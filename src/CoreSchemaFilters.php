@@ -35,6 +35,8 @@ class CoreSchemaFilters implements Registrable {
 	 *
 	 * @param string[] $allowed_fields .
 	 * @param string   $model_name .
+	 *
+	 * @return string[]
 	 */
 	public static function allow_seo_on_post_types( array $allowed_fields, string $model_name ): array {
 		if ( 'PostTypeObject' === $model_name ) {

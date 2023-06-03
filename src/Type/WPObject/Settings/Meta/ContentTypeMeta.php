@@ -105,6 +105,8 @@ class ContentTypeMeta extends ObjectType {
 	 * Get the fields for the provided content type.
 	 *
 	 * @param \WP_Post_Type $post_type_object .
+	 *
+	 * @return array<string, array<string, mixed>>
 	 */
 	public static function get_child_type_fields( \WP_Post_Type $post_type_object ): array {
 		$fields = [

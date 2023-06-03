@@ -237,6 +237,8 @@ abstract class Seo extends Model {
 	 * Parses the Open Graph tags from the head.
 	 *
 	 * @param string $head The head.
+	 *
+	 * @return ?array<string, mixed> The tags.
 	 */
 	protected function parse_og_tags( string $head ): ?array {
 		$tags = [];
@@ -251,8 +253,8 @@ abstract class Seo extends Model {
 	/**
 	 * Saves the tags from the matches.
 	 *
-	 * @param array $matches The matches.
-	 * @param array $tags The tags array reference.
+	 * @param string[][]           $matches The matches.
+	 * @param array<string, mixed> $tags The tags array reference.
 	 */
 	private function save_tags_from_matches( array $matches, array &$tags ): void {
 		// $matches[2] contains the OpenGraph prefix (og, article, twitter, etc ).
