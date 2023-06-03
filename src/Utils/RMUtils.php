@@ -8,13 +8,12 @@
 
 namespace WPGraphQL\RankMath\Utils;
 
-use \RankMath\Helper;
+use RankMath\Helper;
 
 /**
  * Class - RMUtils
  */
 class RMUtils {
-
 	/**
 	 * Check if a module is active.
 	 *
@@ -24,8 +23,7 @@ class RMUtils {
 	 *
 	 * @since @todo
 	 */
-	public static function is_module_active( string $module ) : bool {
+	public static function is_module_active( string $module ): bool {
 		return Helper::is_module_active( $module );
 	}
-
 }

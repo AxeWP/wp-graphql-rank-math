@@ -7,8 +7,8 @@
 
 namespace WPGraphQL\RankMath\Modules\Redirection\Type\Enum;
 
+use RankMath\Helper;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\EnumType;
-use \RankMath\Helper;
 use WPGraphQL\Type\WPEnumType;
 
 /**
@@ -18,7 +18,7 @@ class RedirectionTypeEnum extends EnumType {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'RedirectionType';
 	}
 

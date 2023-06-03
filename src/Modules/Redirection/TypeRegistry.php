@@ -19,29 +19,31 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
  * Class - TypeRegistry
  */
 class TypeRegistry implements Registrable {
-	const MODULE_NAME = 'redirections';
+	public const MODULE_NAME = 'redirections';
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function init() : void {
+	public static function init(): void {
 		// Bail if the module is not active.
 		if ( ! RMUtils::is_module_active( self::MODULE_NAME ) ) {
 			return;
 		}
 
 		// Register the types.
-		add_filter( 'graphql_seo_registered_enum_classes', [ __CLASS__, 'enums' ] );
-		add_filter( 'graphql_seo_registered_object_classes', [ __CLASS__, 'objects' ] );
-		add_filter( 'graphql_seo_registered_field_classes', [ __CLASS__, 'fields' ] );
+		add_filter( 'graphql_seo_registered_enum_classes', [ self::class, 'enums' ] );
+		add_filter( 'graphql_seo_registered_object_classes', [ self::class, 'objects' ] );
+		add_filter( 'graphql_seo_registered_field_classes', [ self::class, 'fields' ] );
 	}
 
 	/**
 	 * List of Enum classes to register.
 	 *
-	 * @param array $existing_classes The xisting classes.
+	 * @param class-string[] $existing_classes The existing classes.
+	 *
+	 * @return class-string[]
 	 */
-	public static function enums( array $existing_classes ) : array {
+	public static function enums( array $existing_classes ): array {
 		$classes_to_register = [
 			RedirectionTypeEnum::class,
 			RedirectionBehaviorEnum::class,
@@ -53,9 +55,11 @@ class TypeRegistry implements Registrable {
 	/**
 	 * List of Object classes to register.
 	 *
-	 * @param array $existing_classes The xisting classes.
+	 * @param class-string[] $existing_classes The existing classes.
+	 *
+	 * @return class-string[]
 	 */
-	public static function objects( array $existing_classes ) : array {
+	public static function objects( array $existing_classes ): array {
 		$classes_to_register = [
 			RedirectionSettings::class,
 		];
@@ -66,9 +70,11 @@ class TypeRegistry implements Registrable {
 	/**
 	 * List of Field classes to register.
 	 *
-	 * @param array $existing_classes The xisting classes.
+	 * @param class-string[] $existing_classes The xisting classes.
+	 *
+	 * @return class-string[]
 	 */
-	public static function fields( array $existing_classes ) : array {
+	public static function fields( array $existing_classes ): array {
 		$classes_to_register = [
 			GeneralSettings::class,
 		];

@@ -20,14 +20,14 @@ class GeneralSettings extends FieldsType {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'General';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'redirections' => [
 				'type'        => RedirectionSettings::get_type_name(),
