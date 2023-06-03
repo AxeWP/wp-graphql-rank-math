@@ -44,12 +44,12 @@
 		"codeception/util-universalframework": "^1.0",
 		"phpunit/phpunit": "^9.5",
 		"wp-graphql/wp-graphql-testcase": "~2.3",
-		"automattic/vipwpcs": "^2.3",
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"phpstan/phpstan": "^1.2",
 		"phpstan/extension-installer": "^1.1",
 		"szepeviktor/phpstan-wordpress": "^1.0",
 		"axepress/wp-graphql-stubs": "^1.12",
+		"axepress/wp-graphql-cs": "dev-main",
 		"wp-cli/wp-cli-bundle": "^2.6",
 		"php-coveralls/php-coveralls": "^2.5"
 	},
