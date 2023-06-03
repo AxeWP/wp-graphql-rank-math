@@ -121,28 +121,28 @@ abstract class Seo extends Model {
 	protected function init() {
 		if ( empty( $this->fields ) ) {
 			$this->fields = [
-				'title'         => function() : ?string {
+				'title'         => function () : ?string {
 					return $this->helper->get_title() ?: null;
 				},
-				'description'   => function() : ?string {
+				'description'   => function () : ?string {
 					return $this->helper->get_description() ?: null;
 				},
-				'robots'        => function() : ?array {
+				'robots'        => function () : ?array {
 					return $this->helper->get_robots() ?: null;
 				},
-				'canonicalUrl'  => function() : ?string {
+				'canonicalUrl'  => function () : ?string {
 					return $this->helper->get_canonical() ?: null; 
 				},
-				'focusKeywords' => function() : ?array {
+				'focusKeywords' => function () : ?array {
 					$keywords = $this->helper->get_keywords();
 
 					return ! empty( $keywords ) ? explode( ',', $keywords ) : null;
 				},
-				'fullHead'      => function() : ?string {
+				'fullHead'      => function () : ?string {
 					$head = $this->get_head();
 					return $head ?: null;
 				},
-				'jsonLd'        => function() {
+				'jsonLd'        => function () {
 					ob_start();
 					$json = new \RankMath\Schema\JsonLD();
 					$json->setup();
@@ -151,12 +151,12 @@ abstract class Seo extends Model {
 
 					return [ 'raw' => $output ?: null ];
 				},
-				'openGraph'     => function() {
+				'openGraph'     => function () {
 					$head = $this->get_head();
 
 					return ! empty( $head ) ? $this->parse_og_tags( $head ) : null;
 				},
-				'type'          => function() : string {
+				'type'          => function () : string {
 					return $this->get_object_type();
 				},
 			];
@@ -226,8 +226,7 @@ abstract class Seo extends Model {
 		}
 
 		ob_start();
-		do_action( 'wp' );
-		do_action( 'rank_math/head' );
+		do_action( 'wp' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
 
 		$head = ob_get_clean();
 

@@ -74,7 +74,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 			'seo' => [
 				'type'        => Seo::get_type_name(),
 				'description' => __( 'The RankMath SEO data for the node.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) {
+				'resolve'     => function ( $source ) {
 					if ( ! $source instanceof Model ) {
 						return null;
 					}

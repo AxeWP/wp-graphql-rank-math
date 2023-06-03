@@ -168,7 +168,7 @@ class ContentTypeMeta extends ObjectType {
 			'socialImage'             => [
 				'type'        => 'MediaItem',
 				'description' => __( 'The default image to display when sharing this post type on social media', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source, array $args, AppContext $context ) {
+				'resolve'     => function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['socialImage'] ) ? $context->get_loader( 'post' )->load_deferred( $source['socialImage'] ) : null;
 				},
 			],
@@ -197,7 +197,7 @@ class ContentTypeMeta extends ObjectType {
 			$fields['primaryTaxonomy'] = [
 				'type'        => 'TaxonomyEnum',
 				'description' => __( 'The taxonomy used with the Primary Term Feature and displayed in the Breadcrumbs.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) use ( $allowed_taxonomies ) {
+				'resolve'     => function ( $source ) use ( $allowed_taxonomies ) {
 					if ( ! in_array( $source, $allowed_taxonomies, true ) ) {
 						throw new UserError(
 							sprintf(

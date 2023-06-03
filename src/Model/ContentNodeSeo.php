@@ -165,7 +165,7 @@ class ContentNodeSeo extends Seo {
 
 							return ! empty( $output ) ? $output : null;
 							},
-						'rating'           => function() : ?string {
+						'rating'           => function () : ?string {
 							$score = rank_math()->frontend_seo_score->get_score( $this->database_id );
 
 							return rank_math()->frontend_seo_score->get_rating( (int) $score ) ?: null;

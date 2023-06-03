@@ -52,7 +52,7 @@ class OpenGraphMeta extends ObjectType {
 			'alternateLocales'  => [
 				'type'        => [ 'list_of' => OpenGraphLocaleEnum::get_type_name() ],
 				'description' => __( 'A list of other locales this page is available in', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => function ( $source ) : ?array {
 					$value = ! empty( $source['og']['locale:alternate'] ) ? $source['og']['locale:alternate'] : null;
 
 					if ( is_string( $value ) ) {
@@ -70,7 +70,7 @@ class OpenGraphMeta extends ObjectType {
 			'image'             => [
 				'type'        => OpenGraph\Image::get_type_name(),
 				'description' => __( 'The OpenGraph image meta', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => function ( $source ) : ?array {
 					$values = [];
 
 					// The URL is stored in it's own key.
@@ -105,7 +105,7 @@ class OpenGraphMeta extends ObjectType {
 			'slackEnhancedData' => [
 				'type'        => [ 'list_of' => OpenGraph\SlackEnhancedData::get_type_name() ],
 				'description' => __( 'The Slack Enhanced Data meta values.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => function ( $source ) : ?array {
 					$values  = [];
 					$counter = 1;
 

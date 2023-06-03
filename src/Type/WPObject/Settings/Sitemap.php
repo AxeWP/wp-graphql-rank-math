@@ -58,7 +58,7 @@ class Sitemap extends ObjectType {
 					],
 				],
 				'description' => __( 'Content types included in the sitemap.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source, array $args ) {
+				'resolve'     => function ( $source, array $args ) {
 					$content_types = $source['contentTypes'];
 
 					if ( ! empty( $args['include'] ) ) {
@@ -85,7 +85,7 @@ class Sitemap extends ObjectType {
 					],
 				],
 				'description' => __( 'Content types included in the sitemap.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source, array $args ) {
+				'resolve'     => function ( $source, array $args ) {
 					$taxonomies = $source['taxonomies'];
 
 					if ( ! empty( $args['include'] ) ) {

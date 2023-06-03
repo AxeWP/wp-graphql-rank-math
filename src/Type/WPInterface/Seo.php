@@ -102,7 +102,7 @@ class Seo extends InterfaceType {
 					// Get the crumbs and shape them.
 					$crumbs      = RMBreadcrumbs::get()->get_crumbs();
 					$breadcrumbs = array_map(
-						function( $crumb ) {
+						function ( $crumb ) {
 							return [
 								'text'     => $crumb[0] ?? null,
 								'url'      => $crumb[1] ?? null,

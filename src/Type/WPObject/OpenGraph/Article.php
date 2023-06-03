@@ -63,7 +63,7 @@ class Article extends ObjectType {
 			'tags'          => [
 				'type'        => [ 'list_of' => 'String' ],
 				'description' => __( 'The article tags.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => function ( $source ) : ?array {
 					$value = ! empty( $source['tag'] ) ? $source['tag'] : null;
 
 					if ( is_string( $value ) ) {

@@ -50,7 +50,7 @@ class Facebook extends ObjectType {
 			'admins' => [
 				'type'        => [ 'list_of' => 'String' ],
 				'description' => __( 'The Facebook admins associated with this resource', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => function ( $source ) : ?array {
 					$value = ! empty( $source['admins'] ) ? $source['admins'] : null;
 
 					if ( is_string( $value ) ) {

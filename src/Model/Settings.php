@@ -96,7 +96,7 @@ class Settings extends Model {
 	 */
 	private function general_fields() : array {
 		return [
-			'breadcrumbs'         => function() : array {
+			'breadcrumbs'         => function () : array {
 				$has_home = ! empty( $this->data['general']['breadcrumbs_home'] );
 
 				return [
@@ -106,13 +106,13 @@ class Settings extends Model {
 					'hasTaxonomyName'       => empty( $this->data['general']['breadcrumbs_hide_taxonomy_name'] ),
 					'hasBlogPage'           => ! empty( $this->data['general']['breadcrumbs_blog_page'] ),
 					'hasHome'               => $has_home,
-					'homeLabel'             => function() use ( $has_home ) : ?string {
+					'homeLabel'             => function () use ( $has_home ) : ?string {
 						if ( ! $has_home ) {
 							return null;
 						}
 						return ! empty( $this->data['general']['breadcrumbs_home_label'] ) ? $this->data['general']['breadcrumbs_home_label'] : null;
 					},
-					'homeUrl'               => function() use ( $has_home ) : ?string {
+					'homeUrl'               => function () use ( $has_home ) : ?string {
 						if ( ! $has_home ) {
 							return null;
 						}
@@ -350,7 +350,7 @@ class Settings extends Model {
 		}
 
 		return [
-			'excludedRoles'           => function() {
+			'excludedRoles'           => function () {
 				if ( empty( $this->data['sitemap']['exclude_roles'] ) ) {
 					return null;
 				}
