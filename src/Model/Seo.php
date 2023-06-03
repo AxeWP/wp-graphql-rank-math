@@ -225,6 +225,7 @@ abstract class Seo extends Model {
 
 		ob_start();
 		do_action( 'wp' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+		do_action( 'rank_math/head' );
 
 		$head = ob_get_clean();
 

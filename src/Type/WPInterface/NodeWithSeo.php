@@ -49,6 +49,8 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 			]
 		);
 
+		// @todo only apply to ContentTypes that have SEO data.
+
 		register_graphql_interfaces_to_types( self::type_name(), $types_with_seo );
 	}
 

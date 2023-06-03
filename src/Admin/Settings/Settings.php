@@ -38,7 +38,7 @@ class Settings {
 	 * Gets an instance of the WPGraphQL settings api.
 	 */
 	public static function get_settings_api(): SettingsRegistry {
-		if ( ! isset( self::$settings_api ) ) {
+		if ( ! isset( self::$settings_api ) || ! self::$settings_api instanceof SettingsRegistry ) {
 			self::$settings_api = new SettingsRegistry();
 		}
 
