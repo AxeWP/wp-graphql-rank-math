@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \GraphQL\Error\Error;
+use GraphQL\Error\Error;
 use GraphQL\Error\UserError;
 use WPGraphQL;
 
@@ -34,7 +34,7 @@ class ContentTypeSeo extends Seo {
 	 * Constructor.
 	 *
 	 * @param string $post_type .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( string $post_type ) {
 		$object = get_post_type_object( $post_type );
@@ -88,7 +88,7 @@ class ContentTypeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no archive URI.
+	 * @throws \GraphQL\Error\UserError If no archive URI.
 	 */
 	protected function get_object_url() : string {
 		$term_link = get_post_type_archive_link( $this->data->name );

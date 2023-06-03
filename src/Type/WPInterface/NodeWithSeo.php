@@ -74,7 +74,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 			'seo' => [
 				'type'        => Seo::get_type_name(),
 				'description' => __( 'The RankMath SEO data for the node.', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source ) {
+				'resolve'     => static function ( $source ) {
 					if ( ! $source instanceof Model ) {
 						return null;
 					}
@@ -86,7 +86,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 							sprintf(
 								/* translators: %s: The name of the node type */
 								__( 'The %s type does not have a corresponding SEO model class.', 'wp-graphql-rank-math' ),
-								get_class( $source )
+								$source::class
 							)
 						);
 					}
@@ -107,7 +107,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * Gets the SEO model class for a given node model.
 	 *
-	 * @param Model $node_model The node model.
+	 * @param \WPGraphQL\Model\Model $node_model The node model.
 	 */
 	private static function get_model_for_node( Model $node_model ) : ?Model {
 		// A map of the node models to their corresponding SEO model classes.
@@ -133,8 +133,8 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		 *
 		 * @since 0.0.8
 		 *
-		 * @param Model|null $seo_model The SEO model class to use.
-		 * @param Model       $node_model The Model for the node.
+		 * @param \WPGraphQL\Model\Model|null $seo_model The SEO model class to use.
+		 * @param \WPGraphQL\Model\Model $node_model The Model for the node.
 		 */
 		$seo_model = apply_filters( 'graphql_seo_resolved_model', $seo_model, $node_model );
 

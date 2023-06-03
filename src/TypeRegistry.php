@@ -8,12 +8,9 @@
 namespace WPGraphQL\RankMath;
 
 use Exception;
-use WPGraphQL\RankMath\Connection;
 use WPGraphQL\RankMath\Fields;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
-use WPGraphQL\RankMath\Mutation;
 use WPGraphQL\RankMath\Type\Enum;
-use WPGraphQL\RankMath\Type\Input;
 use WPGraphQL\RankMath\Type\WPInterface;
 use WPGraphQL\RankMath\Type\WPObject;
 
@@ -264,7 +261,7 @@ class TypeRegistry {
 	 *
 	 * @param string[] $classes_to_register .
 	 *
-	 * @throws Exception .
+	 * @throws \Exception .
 	 */
 	private static function register_types( array $classes_to_register ) : void {
 		// Bail if there are no classes to register.

@@ -31,7 +31,7 @@ class Author extends ObjectType implements TypeWithConnections {
 			'connectedAuthors' => [
 				'toType'      => 'User',
 				'description' => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source, $args, $context, $info ) {
+				'resolve'     => static function ( $source, $args, $context, $info ) {
 					$resolver = new UserConnectionResolver( $source, $args, $context, $info );
 
 					if ( ! empty( $source->excludedRoles ) ) {

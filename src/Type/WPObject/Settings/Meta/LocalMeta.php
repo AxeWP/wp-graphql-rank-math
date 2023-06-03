@@ -46,7 +46,7 @@ class LocalMeta extends ObjectType {
 			'logo' => [
 				'type'        => 'MediaItem',
 				'description' => __( 'The logo to be used in the Google\'s Knowledge Graph.', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source, array $args, AppContext $context ) {
+				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['logoId'] ) ? $context->get_loader( 'post' )->load_deferred( $source['logoId'] ) : null;
 				},
 			],

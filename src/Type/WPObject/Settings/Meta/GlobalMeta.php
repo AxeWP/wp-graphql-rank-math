@@ -49,7 +49,7 @@ class GlobalMeta extends ObjectType implements TypeWithInterfaces {
 			'openGraphImage'             => [
 				'type'        => 'MediaItem',
 				'description' => __( 'When a featured image or an OpenGraph Image is not set for individual posts/pages/CPTs, this image will be used as a fallback thumbnail when your post is shared on Facebook.', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source, array $args, AppContext $context ) {
+				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['openGraphImageId'] ) ? $context->get_loader( 'post' )->load_deferred( $source['openGraphImageId'] ) : null;
 				},
 			],

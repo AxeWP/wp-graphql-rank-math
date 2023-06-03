@@ -8,8 +8,6 @@
 namespace WPGraphQL\RankMath\Model;
 
 use RankMath\Helper as RMHelper;
-use GraphQL\Error\Error;
-use GraphQL\Error\UserError;
 use WPGraphQL\Model\Model;
 use RankMath\Paper\Paper;
 
@@ -142,7 +140,7 @@ abstract class Seo extends Model {
 					$head = $this->get_head();
 					return $head ?: null;
 				},
-				'jsonLd'        => function () {
+				'jsonLd'        => static function () {
 					ob_start();
 					$json = new \RankMath\Schema\JsonLD();
 					$json->setup();
@@ -217,8 +215,8 @@ abstract class Seo extends Model {
 	 *
 	 * Shims the `RankMath\Rest\Headless::get_html_head() private method to avoid a REST Call.
 	 *
-	 * @throws Error     When the REST request is invalid.
-	 * @throws UserError When REST response fails.
+	 * @throws \GraphQL\Error\Error When the REST request is invalid.
+	 * @throws \GraphQL\Error\UserError When REST response fails.
 	 */
 	protected function get_head() : ?string {
 		if ( false !== $this->full_head ) {

@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \GraphQL\Error\Error;
+use GraphQL\Error\Error;
 use GraphQL\Error\UserError;
 use WP_Term;
 use WPGraphQL;
@@ -35,7 +35,7 @@ class TermNodeSeo extends Seo {
 	 * Constructor.
 	 *
 	 * @param int $term_id .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( int $term_id ) {
 		/** @var ?\WP_Term $object */
@@ -138,7 +138,7 @@ class TermNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no valid term link.
+	 * @throws \GraphQL\Error\UserError If no valid term link.
 	 */
 	protected function get_object_url() : string {
 		$term_link = get_term_link( $this->database_id );

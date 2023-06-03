@@ -8,7 +8,6 @@
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use WPGraphQL\Model\Model;
 use WPGraphQL\RankMath\Type\WPObject\SeoScore;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
@@ -71,7 +70,7 @@ class ContentNodeSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @param Model $value The model.
+	 * @param \WPGraphQL\Model\Model $value The model.
 	 */
 	public static function get_resolved_type_name( $value ) : ?string {
 		$type_name = null;

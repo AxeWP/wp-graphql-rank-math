@@ -35,7 +35,8 @@ class OpenGraphLocaleEnum extends EnumType {
 	public static function get_values(): array {
 		$types = Facebook_Locale::FACEBOOK_LOCALES;
 
-		
+		$values = [];
+
 		foreach ( $types as $locale ) {
 			$values[ WPEnumType::get_safe_name( $locale ) ] = [
 				// translators: %s is the locale.

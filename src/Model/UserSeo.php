@@ -7,8 +7,7 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \GraphQL\Error\Error;
-use GraphQL\Error\UserError;
+use GraphQL\Error\Error;
 
 /**
  * Class - UserSeo
@@ -34,7 +33,7 @@ class UserSeo extends Seo {
 	 * Constructor.
 	 *
 	 * @param int $user_id .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( int $user_id ) {
 		$object = get_user_by( 'id', $user_id );
@@ -124,7 +123,7 @@ class UserSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no valid term link.
+	 * @throws \GraphQL\Error\UserError If no valid term link.
 	 */
 	protected function get_object_url() : string {
 		$author_url = get_author_posts_url( $this->database_id );

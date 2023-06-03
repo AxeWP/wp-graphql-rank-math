@@ -68,7 +68,7 @@ class HomepageMeta extends ObjectType implements TypeWithInterfaces {
 			'socialImage'         => [
 				'type'        => 'MediaItem',
 				'description' => __( 'Image displayed when your homepage is shared on Facebook and other social networks.', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source, array $args, AppContext $context ) {
+				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['socialImageId'] ) ? $context->get_loader( 'post' )->load_deferred( $source['socialImageId'] ) : null;
 				},
 			],

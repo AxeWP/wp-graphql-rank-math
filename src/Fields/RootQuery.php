@@ -40,7 +40,7 @@ class RootQuery extends FieldsType {
 			'rankMathSettings' => [
 				'type'        => Settings::get_type_name(),
 				'description' => __( 'RankMath SEO site settings', 'wp-graphql-rank-math' ),
-				'resolve'     => fn() => new ModelSettings(),
+				'resolve'     => static fn() => new ModelSettings(),
 			],
 		];
 	}

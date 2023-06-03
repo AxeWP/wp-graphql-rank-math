@@ -32,7 +32,7 @@ class Taxonomy extends ObjectType implements TypeWithConnections {
 			'connectedTerms' => [
 				'toType'      => 'TermNode',
 				'description' => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source, $args, $context, $info ) {
+				'resolve'     => static function ( $source, $args, $context, $info ) {
 					if ( empty( $source['isInSitemap'] ) ) {
 						return null;
 					}

@@ -40,7 +40,7 @@ class ContentNodeSeo extends Seo {
 	 * Constructor.
 	 *
 	 * @param int $post_id .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( int $post_id ) {
 		$object = get_post( $post_id );
@@ -158,8 +158,8 @@ class ContentNodeSeo extends Seo {
 					'breadcrumbTitle' => fn() : ?string => $this->get_meta( 'breadcrumb_title', '', get_the_title( $this->database_id ) ) ?: null,
 					'isPillarContent' => fn() : bool => ! empty( $this->get_meta( 'pillar_content' ) ),
 					'seoScore'        => fn() => [
-						'hasFrontendScore' => fn() : bool => rank_math()->frontend_seo_score->score_enabled(),
-						'badgeHtml'        => function (): ?string {
+						'hasFrontendScore' => static fn() : bool => rank_math()->frontend_seo_score->score_enabled(),
+						'badgeHtml'        => static function (): ?string {
 							$output = rank_math_get_seo_score();
 							$output = ! empty( $output ) ? str_replace( [ "\n", "\t", "\r" ], '', $output ) : null;
 
@@ -195,7 +195,7 @@ class ContentNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no post permalink.
+	 * @throws \GraphQL\Error\UserError If no post permalink.
 	 */
 	protected function get_object_url() : string {
 		$permalink = get_permalink( $this->database_id );

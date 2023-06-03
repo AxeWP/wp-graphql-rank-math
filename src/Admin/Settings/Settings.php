@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Admin\Settings;
 
-use \WPGraphQL\Admin\Settings\SettingsRegistry;
+use WPGraphQL\Admin\Settings\SettingsRegistry;
 
 /**
  * Class - Settings
@@ -16,7 +16,7 @@ class Settings {
 	/**
 	 * An instance of the Settings API.
 	 *
-	 * @var ?SettingsRegistry
+	 * @var ?\WPGraphQL\Admin\Settings\SettingsRegistry
 	 */
 	private static $settings_api;
 
@@ -31,7 +31,7 @@ class Settings {
 	 * {@inheritDoc}
 	 */
 	public static function init() : void {
-		add_action( 'admin_init', [ __CLASS__, 'register_settings' ] );
+		add_action( 'admin_init', [ self::class, 'register_settings' ] );
 	}
 
 	/**

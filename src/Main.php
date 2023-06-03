@@ -8,7 +8,7 @@
 namespace WPGraphQL\RankMath;
 
 use WPGraphQL\RankMath\Admin\Settings\Settings;
-use \RankMath\Helper as RMHelper;
+use RankMath\Helper as RMHelper;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Helper;
 
 if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
@@ -28,7 +28,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 		 * Constructor
 		 */
 		public static function instance() : self {
-			if ( ! isset( self::$instance ) || ! ( is_a( self::$instance, __CLASS__ ) ) ) {
+			if ( ! isset( self::$instance ) || ! ( is_a( self::$instance, self::class ) ) ) {
 				// You cant test a singleton.
 				// @codeCoverageIgnoreStart
 				if ( ! function_exists( 'is_plugin_active' ) ) {
