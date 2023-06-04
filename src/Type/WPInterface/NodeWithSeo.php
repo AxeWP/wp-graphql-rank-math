@@ -23,12 +23,8 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
-	 *
-	 * @param \WPGraphQL\Registry\TypeRegistry $type_registry
 	 */
-	public static function register( $type_registry = null ): void {
-		self::$type_registry = $type_registry;
-
+	public static function register(): void {
 		register_graphql_interface_type( static::type_name(), static::get_type_config() );
 
 		/**

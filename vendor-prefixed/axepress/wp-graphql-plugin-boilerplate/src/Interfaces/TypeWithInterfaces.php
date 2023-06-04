@@ -22,6 +22,6 @@ if ( ! interface_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Ty
 		 *
 		 * @return string[]
 		 */
-		public static function get_interfaces() : array;
+		public static function get_interfaces(): array;
 	}
 }
