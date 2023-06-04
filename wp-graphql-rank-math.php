@@ -50,7 +50,7 @@ if ( ! function_exists( 'graphql_seo_constants' ) ) {
 	/**
 	 * Define plugin constants.
 	 */
-	function graphql_seo_constants() : void {
+	function graphql_seo_constants(): void {
 		// Plugin version.
 		if ( ! defined( 'WPGRAPHQL_SEO_VERSION' ) ) {
 			define( 'WPGRAPHQL_SEO_VERSION', '0.0.12' );
@@ -84,7 +84,7 @@ if ( ! function_exists( 'graphql_seo_dependencies_not_ready' ) ) {
 	 *
 	 * @return array<string, string> List of dependencies that are not ready.
 	 */
-	function graphql_seo_dependencies_not_ready() : array {
+	function graphql_seo_dependencies_not_ready(): array {
 		$wpgraphql_version = '1.8.1';
 		$rankmath_version  = '1.0.90';
 
@@ -107,9 +107,11 @@ if ( ! function_exists( 'graphql_seo_plugin_conflicts' ) ) {
 	/**
 	 * Checks if any known plugin conflicts are present.
 	 *
+	 * @return array<string, string> List of conflicting plugins.
+	 *
 	 * @since 0.0.12
 	 */
-	function graphql_seo_plugin_conflicts() : array {
+	function graphql_seo_plugin_conflicts(): array {
 		$conflicts = [];
 
 		if ( function_exists( 'wp_gql_seo_build_content_type_data' ) ) {
@@ -125,7 +127,7 @@ if ( ! function_exists( 'graphql_seo_init' ) ) {
 	/**
 	 * Initializes plugin.
 	 */
-	function graphql_seo_init() : void {
+	function graphql_seo_init(): void {
 		graphql_seo_constants();
 
 		$not_ready = graphql_seo_dependencies_not_ready();
@@ -143,7 +145,7 @@ if ( ! function_exists( 'graphql_seo_init' ) ) {
 		foreach ( $not_ready as $dep => $version ) {
 			add_action(
 				'admin_notices',
-				function() use ( $dep, $version ) {
+				static function () use ( $dep, $version ) {
 					?>
 					<div class="error notice">
 						<p>

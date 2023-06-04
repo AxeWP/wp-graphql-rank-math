@@ -34,4 +34,4 @@ jobs:
           composer-options: "--no-progress"
 
       - name: Run PHP_CodeSniffer
-        run: composer run-script check-cs
+        run: composer run-script lint
