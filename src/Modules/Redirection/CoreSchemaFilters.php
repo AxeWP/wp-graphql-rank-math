@@ -34,8 +34,10 @@ class CoreSchemaFilters implements Registrable {
 	/**
 	 * Registers loaders to AppContext.
 	 *
-	 * @param array                 $loaders Data loaders.
-	 * @param \WPGraphQL\AppContext $context App context.
+	 * @param array<string, \WPGraphQL\Data\Loader\AbstractDataLoader> $loaders Data loaders.
+	 * @param \WPGraphQL\AppContext                                    $context App context.
+	 *
+	 * @return array<string, \WPGraphQL\Data\Loader\AbstractDataLoader>
 	 */
 	public static function register_loaders( array $loaders, AppContext $context ): array {
 		$loaders[ RedirectionsLoader::$name ] = new RedirectionsLoader( $context );
@@ -43,6 +45,12 @@ class CoreSchemaFilters implements Registrable {
 		return $loaders;
 	}
 
+	/**
+	 * Adds pagination support to the redirections query.
+	 *
+	 * @param \MyThemeShop\Database\Query_Builder $table The redirections table.
+	 * @param array<string,mixed>                 $args  The query args passed to the query.
+	 */
 	public static function add_redirection_pagination_support( &$table, array $args ): void {
 		// Return early if its not a GraphQL request.
 		if ( true !== is_graphql_request() ) {
@@ -54,7 +62,7 @@ class CoreSchemaFilters implements Registrable {
 		// Get a copy of the table, not the reference.
 		$current_table = clone $table;
 
-		// apply the after cursor to the query
+		// Apply the after cursor to the query.
 		if ( ! empty( $args['graphql_after_cursor'] ) ) {
 			$after_cursor = new RedirectionCursor( $args, 'after' );
 			$where        = $after_cursor->get_where();
@@ -65,7 +73,7 @@ class CoreSchemaFilters implements Registrable {
 			}
 		}
 
-		// apply the before cursor to the query
+		// Apply the before cursor to the query.
 		if ( ! empty( $args['graphql_before_cursor'] ) ) {
 			$before_cursor = new RedirectionCursor( $args, 'before' );
 			$where         = $before_cursor->get_where();

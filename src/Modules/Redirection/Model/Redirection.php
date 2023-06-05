@@ -39,7 +39,7 @@ class Redirection extends Model {
 	/**
 	 * Constructor
 	 *
-	 * @param array $data The redirection data.
+	 * @param array<string,mixed> $data The redirection data.
 	 */
 	public function __construct( array $data ) {
 		$this->data = $data;

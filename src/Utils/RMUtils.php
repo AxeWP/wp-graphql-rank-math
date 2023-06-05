@@ -52,6 +52,11 @@ class RMUtils {
 	 * @return \MyThemeShop\Database\Query_Builder
 	 */
 	public static function get_redirections_table() {
+		/** 
+		 * Query_Builder gives us the methods we need to interact with.
+		 *
+		 * @var \MyThemeShop\Database\Query_Builder
+		 */
 		return Database::table( 'rank_math_redirections' );
 	}
 
@@ -60,9 +65,11 @@ class RMUtils {
 	 *
 	 * @see \RankMath\Redirections\DB\get_redirections()
 	 *
-	 * @param array $args The arguments to filter the redirections with.
+	 * @param array<string,mixed> $args The arguments to filter the redirections with.
 	 *
 	 * @since @todo
+	 *
+	 * @return array<string,mixed>
 	 */
 	public static function get_redirections( array $args = [] ): array {
 		return DB::get_redirections( $args );
@@ -76,7 +83,7 @@ class RMUtils {
 	 * @param int    $id     ID of the record to search for.
 	 * @param string $status Status to filter with.
 	 *
-	 * @return bool|array
+	 * @return bool|array<string,mixed>
 	 */
 	public static function get_redirection_by_id( int $id, string $status = 'all' ) {
 		return DB::get_redirection_by_id( $id, $status );

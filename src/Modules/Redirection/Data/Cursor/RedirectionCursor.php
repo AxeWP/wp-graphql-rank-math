@@ -37,15 +37,21 @@ class RedirectionCursor {
 	/**
 	 * Copy of query_vars so we can modify them safely
 	 *
-	 * @var array
+	 * @var array<string,mixed>
 	 */
 	public $query_vars = [];
 
+	/**
+	 * Constructor
+	 *
+	 * @param array<string,mixed> $query_args The query args.
+	 * @param string              $cursor The cursor.
+	 */
 	public function __construct( $query_args, $cursor = 'after' ) {
-		$this->query_vars = $query_args; 
+		$this->query_vars = $query_args;
 		$this->cursor     = $cursor;
 
-		// Get the cursor offset if any
+		// Get the cursor offset if any.
 		$offset_key = 'graphql_' . $cursor . '_cursor';
 		$offset     = $this->get_query_var( $offset_key );
 
@@ -104,10 +110,10 @@ class RedirectionCursor {
 	/**
 	 * Return the additional AND operators for the where statement
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	public function get_where() {
-		// If we have a bad cursor, just return an empty string
+		// If we have a bad cursor, just return an empty array.
 		if ( ! $this->is_valid_offset_and_node() ) {
 			return [];
 		}
@@ -120,9 +126,9 @@ class RedirectionCursor {
 			$comparison_value = (int) $comparison_value;
 		}
 
-		return [ 
-			'column'   => $orderby, 
-			'operator' => $compare, 
+		return [
+			'column'   => $orderby,
+			'operator' => $compare,
 			'value'    => $comparison_value,
 		];
 	}
