@@ -1,6 +1,6 @@
 <?php
 /**
- * The SEO Twitter Card Type enum.
+ * The Redirection default Behavior enum.
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Type\Enum
  */
@@ -17,7 +17,7 @@ class RedirectionBehaviorEnum extends EnumType {
 	 * {@inheritDoc}
 	 */
 	protected static function type_name(): string {
-		return 'RedirectionBehavior';
+		return 'RedirectionBehaviorEnum';
 	}
 
 	/**

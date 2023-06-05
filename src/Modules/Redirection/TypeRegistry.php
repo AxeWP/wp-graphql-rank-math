@@ -8,10 +8,11 @@
 
 namespace WPGraphQL\RankMath\Modules\Redirection;
 
-use WPGraphQL\RankMath\Modules\Redirection\Fields\GeneralSettings;
-use WPGraphQL\RankMath\Modules\Redirection\Type\Enum\RedirectionBehaviorEnum;
-use WPGraphQL\RankMath\Modules\Redirection\Type\Enum\RedirectionTypeEnum;
-use WPGraphQL\RankMath\Modules\Redirection\Type\WPObject\RedirectionSettings;
+use WPGraphQL\RankMath\Modules\Redirection\Connection;
+use WPGraphQL\RankMath\Modules\Redirection\Fields;
+use WPGraphQL\RankMath\Modules\Redirection\Type\Enum;
+use WPGraphQL\RankMath\Modules\Redirection\Type\Input;
+use WPGraphQL\RankMath\Modules\Redirection\Type\WPObject;
 use WPGraphQL\RankMath\Utils\RMUtils;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 
@@ -32,8 +33,10 @@ class TypeRegistry implements Registrable {
 
 		// Register the types.
 		add_filter( 'graphql_seo_registered_enum_classes', [ self::class, 'enums' ] );
+		add_filter( 'graphql_seo_registered_input_classes', [ self::class, 'inputs' ] );
 		add_filter( 'graphql_seo_registered_object_classes', [ self::class, 'objects' ] );
 		add_filter( 'graphql_seo_registered_field_classes', [ self::class, 'fields' ] );
+		add_filter( 'graphql_seo_registered_connection_classes', [ self::class, 'connections' ] );
 	}
 
 	/**
@@ -45,12 +48,30 @@ class TypeRegistry implements Registrable {
 	 */
 	public static function enums( array $existing_classes ): array {
 		$classes_to_register = [
-			RedirectionTypeEnum::class,
-			RedirectionBehaviorEnum::class,
+			Enum\RedirectionBehaviorEnum::class,
+			Enum\RedirectionComparisonTypeEnum::class,
+			Enum\RedirectionConnectionOrderByEnum::class,
+			Enum\RedirectionStatusEnum::class,
+			Enum\RedirectionTypeEnum::class,
 		];
 
 		return array_merge( $existing_classes, $classes_to_register );
 	}
+
+	/**
+	 * List of Input classes to register.
+	 *
+	 * @param class-string[] $existing_classes The existing classes.
+	 *
+	 * @return class-string[]
+	 */
+	public static function inputs( array $existing_classes ): array {
+		$classes_to_register = [
+			Input\RedirectionConnectionOrderbyInput::class,
+		];
+
+		return array_merge( $existing_classes, $classes_to_register );
+	} 
 
 	/**
 	 * List of Object classes to register.
@@ -61,7 +82,9 @@ class TypeRegistry implements Registrable {
 	 */
 	public static function objects( array $existing_classes ): array {
 		$classes_to_register = [
-			RedirectionSettings::class,
+			WPObject\RedirectionSettings::class,
+			WPObject\RedirectionSource::class,
+			WPObject\Redirection::class,
 		];
 
 		return array_merge( $existing_classes, $classes_to_register );
@@ -76,7 +99,23 @@ class TypeRegistry implements Registrable {
 	 */
 	public static function fields( array $existing_classes ): array {
 		$classes_to_register = [
-			GeneralSettings::class,
+			Fields\GeneralSettings::class,
+			Fields\RootQuery::class,
+		];
+
+		return array_merge( $existing_classes, $classes_to_register );
+	}
+
+	/**
+	 * List of Connection classes to register.
+	 *
+	 * @param class-string[] $existing_classes The xisting classes.
+	 *
+	 * @return class-string[]
+	 */
+	public static function connections( array $existing_classes ): array {
+		$classes_to_register = [
+			Connection\RedirectionConnection::class,
 		];
 
 		return array_merge( $existing_classes, $classes_to_register );

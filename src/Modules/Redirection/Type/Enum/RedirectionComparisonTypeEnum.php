@@ -1,6 +1,6 @@
 <?php
 /**
- * The Redirection type enum.
+ * The Redirection Comparison Type enum.
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Type\Enum
  */
@@ -12,33 +12,33 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\EnumType;
 use WPGraphQL\Type\WPEnumType;
 
 /**
- * Class - RedirectionTypeEnum
+ * Class - RedirectionComparisonTypeEnum
  */
-class RedirectionTypeEnum extends EnumType {
+class RedirectionComparisonTypeEnum extends EnumType {
 	/**
 	 * {@inheritDoc}
 	 */
 	protected static function type_name(): string {
-		return 'RedirectionTypeEnum';
+		return 'RedirectionComparisonTypeEnum';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public static function get_description(): string {
-		return __( 'The Redirection type.', 'wp-graphql-rank-math' );
+		return __( 'The Redirection comparison type.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public static function get_values(): array {
-		$redirection_types = Helper::choices_redirection_types();
+		$redirection_types = Helper::choices_comparison_types();
 
 		$values = [];
 
 		foreach ( $redirection_types as $value => $description ) {
-			$values[ WPEnumType::get_safe_name( 'REDIRECT_' . (string) $value ) ] = [
+			$values[ WPEnumType::get_safe_name( $value ) ] = [
 				'description' => $description,
 				'value'       => $value,
 			];
