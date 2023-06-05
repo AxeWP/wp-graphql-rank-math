@@ -28,7 +28,7 @@
 	],
 	"require": {
 		"php": ">=7.4 || ^8.0 || ^8.1",
-		"axepress/wp-graphql-plugin-boilerplate": "dev-dev/remove-type_registry-property"
+		"axepress/wp-graphql-plugin-boilerplate": "0.0.9"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^3.0",
@@ -48,9 +48,8 @@
 		"phpstan/extension-installer": "^1.1",
 		"szepeviktor/phpstan-wordpress": "^1.0",
 		"axepress/wp-graphql-stubs": "^1.12",
-		"axepress/wp-graphql-cs": "dev-main",
-		"wp-cli/wp-cli-bundle": "^2.8",
-		"wp-cli/wp-cli": "dev-main",
+		"axepress/wp-graphql-cs": "^1.0.0-beta",
+		"wp-cli/wp-cli-bundle": "^2.8.1",
 		"php-coveralls/php-coveralls": "^2.5"
 	},
 	"config": {
