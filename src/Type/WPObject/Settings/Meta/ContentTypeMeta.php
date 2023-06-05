@@ -21,25 +21,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - ContentTypeMeta
  */
 class ContentTypeMeta extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'ContentTypeMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Post Type settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function register() : void {
+	public static function register(): void {
 		/** @var \WP_Post_Type[] */
 		$allowed_post_types = \WPGraphQL::get_allowed_post_types( 'objects', [ 'public' => true ] );
 
@@ -76,7 +75,7 @@ class ContentTypeMeta extends ObjectType {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		/** @var \WP_Post_Type[] */
 		$allowed_post_types = \WPGraphQL::get_allowed_post_types( 'objects', [ 'public' => true ] );
 
@@ -106,8 +105,10 @@ class ContentTypeMeta extends ObjectType {
 	 * Get the fields for the provided content type.
 	 *
 	 * @param \WP_Post_Type $post_type_object .
+	 *
+	 * @return array<string, array<string, mixed>>
 	 */
-	public static function get_child_type_fields( \WP_Post_Type $post_type_object ) : array {
+	public static function get_child_type_fields( \WP_Post_Type $post_type_object ): array {
 		$fields = [
 			'title'                   => [
 				'type'        => 'String',
@@ -168,7 +169,7 @@ class ContentTypeMeta extends ObjectType {
 			'socialImage'             => [
 				'type'        => 'MediaItem',
 				'description' => __( 'The default image to display when sharing this post type on social media', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source, array $args, AppContext $context ) {
+				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['socialImage'] ) ? $context->get_loader( 'post' )->load_deferred( $source['socialImage'] ) : null;
 				},
 			],
@@ -197,7 +198,7 @@ class ContentTypeMeta extends ObjectType {
 			$fields['primaryTaxonomy'] = [
 				'type'        => 'TaxonomyEnum',
 				'description' => __( 'The taxonomy used with the Primary Term Feature and displayed in the Breadcrumbs.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) use ( $allowed_taxonomies ) {
+				'resolve'     => static function ( $source ) use ( $allowed_taxonomies ) {
 					if ( ! in_array( $source, $allowed_taxonomies, true ) ) {
 						throw new UserError(
 							sprintf(

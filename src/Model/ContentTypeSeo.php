@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \GraphQL\Error\Error;
+use GraphQL\Error\Error;
 use GraphQL\Error\UserError;
 use WPGraphQL;
 
@@ -29,12 +29,11 @@ class ContentTypeSeo extends Seo {
 	 */
 	protected string $prefix;
 
-
 	/**
 	 * Constructor.
 	 *
 	 * @param string $post_type .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( string $post_type ) {
 		$object = get_post_type_object( $post_type );
@@ -69,7 +68,7 @@ class ContentTypeSeo extends Seo {
 			$this->fields = array_merge(
 				$this->fields,
 				[
-					'breadcrumbTitle' => fn() : ?string => ! empty( $this->data->labels->singular_name ) ? $this->data->labels->singular_name : null,
+					'breadcrumbTitle' => fn (): ?string => ! empty( $this->data->labels->singular_name ) ? $this->data->labels->singular_name : null,
 
 				]
 			);
@@ -79,7 +78,7 @@ class ContentTypeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function get_object_type() : string {
+	public function get_object_type(): string {
 		$post_types = WPGraphQL::get_allowed_post_types( 'objects' );
 
 		return $post_types[ $this->data->name ]->graphql_single_name;
@@ -88,9 +87,9 @@ class ContentTypeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no archive URI.
+	 * @throws \GraphQL\Error\UserError If no archive URI.
 	 */
-	protected function get_object_url() : string {
+	protected function get_object_url(): string {
 		$term_link = get_post_type_archive_link( $this->data->name );
 
 		if ( false === $term_link ) {

@@ -13,44 +13,34 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - Article
  */
 class Article extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'OpenGraphArticle';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The OpenGraph Article meta.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'modifiedTime'  => [
 				'type'        => 'String',
 				'description' => __( 'The date modified.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) :?string => ! empty( $source['modified_time'] ) ? $source['modified_time'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['modified_time'] ) ? $source['modified_time'] : null,
 			],
 			'publishedTime' => [
 				'type'        => 'String',
 				'description' => __( 'The date published.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) :?string => ! empty( $source['published_time'] ) ? $source['published_time'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['published_time'] ) ? $source['published_time'] : null,
 			],
 			'publisher'     => [
 				'type'        => 'String',
@@ -63,7 +53,7 @@ class Article extends ObjectType {
 			'tags'          => [
 				'type'        => [ 'list_of' => 'String' ],
 				'description' => __( 'The article tags.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => static function ( $source ): ?array {
 					$value = ! empty( $source['tag'] ) ? $source['tag'] : null;
 
 					if ( is_string( $value ) ) {
@@ -76,7 +66,7 @@ class Article extends ObjectType {
 			'section'       => [
 				'type'        => 'String',
 				'description' => __( 'The article category.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) :?string => ! empty( $source['section'] ) ? $source['section'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['section'] ) ? $source['section'] : null,
 			],
 		];
 	}

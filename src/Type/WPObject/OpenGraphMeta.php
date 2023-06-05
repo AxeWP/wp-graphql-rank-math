@@ -15,44 +15,34 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - OpenGraphMeta
  */
 class OpenGraphMeta extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'OpenGraphMeta';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The OpenGraph meta.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'articleMeta'       => [
 				'type'        => OpenGraph\Article::get_type_name(),
 				'description' => __( 'The OpenGraph Article meta.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => ! empty( $source['article'] ) ? $source['article'] : null,
+				'resolve'     => static fn ( $source ): ?array => ! empty( $source['article'] ) ? $source['article'] : null,
 			],
 			'alternateLocales'  => [
 				'type'        => [ 'list_of' => OpenGraphLocaleEnum::get_type_name() ],
 				'description' => __( 'A list of other locales this page is available in', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => static function ( $source ): ?array {
 					$value = ! empty( $source['og']['locale:alternate'] ) ? $source['og']['locale:alternate'] : null;
 
 					if ( is_string( $value ) ) {
@@ -65,12 +55,12 @@ class OpenGraphMeta extends ObjectType {
 			'description'       => [
 				'type'        => 'String',
 				'description' => __( 'A brief description of the content, usually between 2 and 4 sentences. ', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['og']['description'] ) ? $source['og']['description'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['description'] ) ? $source['og']['description'] : null,
 			],
 			'image'             => [
 				'type'        => OpenGraph\Image::get_type_name(),
 				'description' => __( 'The OpenGraph image meta', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => static function ( $source ): ?array {
 					$values = [];
 
 					// The URL is stored in it's own key.
@@ -89,23 +79,23 @@ class OpenGraphMeta extends ObjectType {
 			'facebookMeta'      => [
 				'type'        => OpenGraph\Facebook::get_type_name(),
 				'description' => __( 'The Facebook OpenGraph meta values.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => ! empty( $source['fb'] ) ? $source['fb'] : null,
+				'resolve'     => static fn ( $source ): ?array => ! empty( $source['fb'] ) ? $source['fb'] : null,
 				
 			],
 			'locale'            => [
 				'type'        => OpenGraphLocaleEnum::get_type_name(),
 				'description' => __( 'The locale of the resource.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['og']['locale'] ) ? $source['og']['locale'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['locale'] ) ? $source['og']['locale'] : null,
 			],
 			'productMeta'       => [
 				'type'        => OpenGraph\Product::get_type_name(),
 				'description' => __( 'The Facebook OpenGraph meta values.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => ! empty( $source['og']['product'] ) ? $source['og']['product'] : null,
+				'resolve'     => static fn ( $source ): ?array => ! empty( $source['og']['product'] ) ? $source['og']['product'] : null,
 			],
 			'slackEnhancedData' => [
 				'type'        => [ 'list_of' => OpenGraph\SlackEnhancedData::get_type_name() ],
 				'description' => __( 'The Slack Enhanced Data meta values.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) : ?array {
+				'resolve'     => static function ( $source ): ?array {
 					$values  = [];
 					$counter = 1;
 
@@ -123,38 +113,38 @@ class OpenGraphMeta extends ObjectType {
 			'siteName'          => [
 				'type'        => 'String',
 				'description' => __( 'The name of the site this resource is associated with.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['og']['site_name'] ) ? $source['og']['site_name'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['site_name'] ) ? $source['og']['site_name'] : null,
 			],
 			'title'             => [
 				'type'        => 'String',
 				'description' => __( 'The title of your object as it should appear within the graph.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['og']['title'] ) ? $source['og']['title'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['title'] ) ? $source['og']['title'] : null,
 			],
 			'twitterMeta'       => [
 				'type'        => OpenGraph\Twitter::get_type_name(),
 				'description' => __( 'The Twitter OpenGraph meta values.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => ! empty( $source['twitter'] ) ? $source['twitter'] : null,
+				'resolve'     => static fn ( $source ): ?array => ! empty( $source['twitter'] ) ? $source['twitter'] : null,
 			],
 			
 			'type'              => [
 				'type'        => 'String',
 				'description' => __( 'The OpenGraph object type.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['og']['type'] ) ? $source['og']['type'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['type'] ) ? $source['og']['type'] : null,
 			],
 			'updatedTime'       => [
 				'type'        => 'String',
 				'description' => __( 'The updated time', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['og']['updated_time'] ) ? $source['og']['updated_time'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['updated_time'] ) ? $source['og']['updated_time'] : null,
 			],
 			'url'               => [
 				'type'        => 'String',
 				'description' => __( 'The canonical URL of your object that will be used as its permanent ID in the graph.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['og']['url'] ) ? $source['og']['url'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['url'] ) ? $source['og']['url'] : null,
 			],
 			'videoMeta'         => [
 				'type'        => OpenGraph\Video::get_type_name(),
 				'description' => __( 'The Twitter OpenGraph meta values.', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source ) : ?array {
+				'resolve'     => static function ( $source ): ?array {
 					$values = ! empty( $source['video'] ) ? $source['video'] : [];
 
 					if ( isset( $source['og']['video'] ) ) {

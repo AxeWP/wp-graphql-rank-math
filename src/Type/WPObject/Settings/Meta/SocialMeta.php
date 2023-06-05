@@ -13,25 +13,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - SocialMeta
  */
 class SocialMeta extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'SocialMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Social settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'facebookPageUrl'   => [
 				'type'        => 'String',

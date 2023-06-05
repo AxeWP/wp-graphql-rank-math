@@ -26,6 +26,6 @@ if ( ! interface_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Ty
 		 *   defaultValue?: string
 		 * }>
 		 */
-		public static function get_fields() : array;
+		public static function get_fields(): array;
 	}
 }

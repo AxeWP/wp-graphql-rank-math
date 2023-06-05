@@ -33,6 +33,6 @@ if ( ! interface_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Ty
 		 *   resolve?: callable,
 		 * }>
 		 */
-		public static function get_connections() : array;
+		public static function get_connections(): array;
 	}
 }

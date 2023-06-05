@@ -16,25 +16,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
  * Class - HomepageMeta
  */
 class HomepageMeta extends ObjectType implements TypeWithInterfaces {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'HomepageMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Homepage settings. Only used when the Settings > Reading > Your homepage displays is set to `Your latest posts`.', 'wp-graphql-rank-math' );
 	}
 
 		/**
 		 * {@inheritDoc}
 		 */
-	public static function get_interfaces() : array {
+	public static function get_interfaces(): array {
 		return [
 			MetaSettingWithRobots::get_type_name(),
 		];
@@ -43,7 +42,7 @@ class HomepageMeta extends ObjectType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'title'               => [
 				'type'        => 'String',
@@ -68,7 +67,7 @@ class HomepageMeta extends ObjectType implements TypeWithInterfaces {
 			'socialImage'         => [
 				'type'        => 'MediaItem',
 				'description' => __( 'Image displayed when your homepage is shared on Facebook and other social networks.', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source, array $args, AppContext $context ) {
+				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['socialImageId'] ) ? $context->get_loader( 'post' )->load_deferred( $source['socialImageId'] ) : null;
 				},
 			],

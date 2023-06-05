@@ -10,7 +10,6 @@ namespace WPGraphQL\RankMath\Type\WPInterface;
 
 use RankMath\Frontend\Breadcrumbs as RMBreadcrumbs;
 use RankMath\Helper;
-use WPGraphQL\Model\Model;
 use WPGraphQL\RankMath\Model\ContentNodeSeo;
 use WPGraphQL\RankMath\Model\ContentTypeSeo;
 use WPGraphQL\RankMath\Model\TermNodeSeo;
@@ -30,21 +29,21 @@ class Seo extends InterfaceType {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'Seo';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'Base SEO fields shared across WP types.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		$fields = [
 			'title'           => [
 				'type'        => 'String',
@@ -90,7 +89,7 @@ class Seo extends InterfaceType {
 			$fields['breadcrumbs'] = [
 				'type'        => [ 'list_of' => Breadcrumbs::get_type_name() ],
 				'description' => __( 'The breadcrumbs trail for the given object', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source ) {
+				'resolve'     => static function ( $source ) {
 					if ( $source instanceof UserSeo ) {
 						// RankMath uses the global $author for generating crumbs.
 						global $author;
@@ -102,7 +101,7 @@ class Seo extends InterfaceType {
 					// Get the crumbs and shape them.
 					$crumbs      = RMBreadcrumbs::get()->get_crumbs();
 					$breadcrumbs = array_map(
-						function( $crumb ) {
+						static function ( $crumb ) {
 							return [
 								'text'     => $crumb[0] ?? null,
 								'url'      => $crumb[1] ?? null,
@@ -129,7 +128,7 @@ class Seo extends InterfaceType {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @param Model $value The value from the resolver of the parent field.
+	 * @param \WPGraphQL\Model\Model $value The value from the resolver of the parent field.
 	 */
 	public static function get_resolved_type_name( $value ): ?string {
 		switch ( true ) {
@@ -153,7 +152,7 @@ class Seo extends InterfaceType {
 		 * Filters the GraphQL Object type name for the given SEO model.
 		 *
 		 * @param string|null $type_name The GraphQL type name for the SEO Object.
-		 * @param Model       $model     The SEO model for the type.
+		 * @param \WPGraphQL\Model\Model $model The SEO model for the type.
 		 */
 		$type_name = apply_filters( 'graphql_seo_resolved_type_name', $type_name, $value );
 

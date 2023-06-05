@@ -7,8 +7,7 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \GraphQL\Error\Error;
-use GraphQL\Error\UserError;
+use GraphQL\Error\Error;
 
 /**
  * Class - UserSeo
@@ -34,7 +33,7 @@ class UserSeo extends Seo {
 	 * Constructor.
 	 *
 	 * @param int $user_id .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( int $user_id ) {
 		$object = get_user_by( 'id', $user_id );
@@ -56,26 +55,26 @@ class UserSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setup() : void {
+	public function setup(): void {
 		global $wp_query, $post, $authordata;
 
-		// Store variables for resetting at tear down
+		// Store variables for resetting at tear down.
 		$this->global_post       = $post;
 		$this->global_authordata = $authordata;
 
 		if ( $this->data instanceof \WP_User ) {
 
-			// Reset postdata
+			// Reset postdata.
 			$wp_query->reset_postdata();
 
-			// Parse the query to setup global state
+			// Parse the query to setup global state.
 			$wp_query->parse_query(
 				[
 					'author_name' => $this->data->user_nicename,
 				]
 			);
 
-			// Setup globals
+			// Setup globals.
 			$wp_query->is_author         = true;
 			$GLOBALS['authordata']       = $this->data; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 			$wp_query->queried_object    = get_user_by( 'id', $this->data->ID );
@@ -107,8 +106,8 @@ class UserSeo extends Seo {
 			$this->fields = array_merge(
 				$this->fields,
 				[
-					'breadcrumbTitle' => fn() : ?string => $this->get_meta( 'breadcrumb_title', '', $this->data->display_name ) ?: null,
-					'ID'              => fn(): int => $this->database_id,
+					'breadcrumbTitle' => fn (): ?string => $this->get_meta( 'breadcrumb_title', '', $this->data->display_name ) ?: null,
+					'ID'              => fn (): int => $this->database_id,
 				]
 			);
 		}
@@ -117,17 +116,16 @@ class UserSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function get_object_type() : string {
+	public function get_object_type(): string {
 		return 'User';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no valid term link.
+	 * @throws \GraphQL\Error\UserError If no valid term link.
 	 */
-	protected function get_object_url() : string {
-		$author_url = get_author_posts_url( $this->database_id );
-		return $author_url;
+	protected function get_object_url(): string {
+		return get_author_posts_url( $this->database_id );
 	}
 }

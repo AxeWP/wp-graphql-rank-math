@@ -40,7 +40,7 @@ class ContentNodeSeo extends Seo {
 	 * Constructor.
 	 *
 	 * @param int $post_id .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( int $post_id ) {
 		$object = get_post( $post_id );
@@ -62,7 +62,7 @@ class ContentNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setup() : void {
+	public function setup(): void {
 		global $wp_query, $post;
 
 		/**
@@ -155,22 +155,22 @@ class ContentNodeSeo extends Seo {
 			$this->fields = array_merge(
 				$this->fields,
 				[
-					'breadcrumbTitle' => fn() : ?string => $this->get_meta( 'breadcrumb_title', '', get_the_title( $this->database_id ) ) ?: null,
-					'isPillarContent' => fn() : bool => ! empty( $this->get_meta( 'pillar_content' ) ),
-					'seoScore'        => fn() => [
-						'hasFrontendScore' => fn() : bool => rank_math()->frontend_seo_score->score_enabled(),
-						'badgeHtml'        => function (): ?string {
+					'breadcrumbTitle' => fn (): ?string => $this->get_meta( 'breadcrumb_title', '', get_the_title( $this->database_id ) ) ?: null,
+					'isPillarContent' => fn (): bool => ! empty( $this->get_meta( 'pillar_content' ) ),
+					'seoScore'        => fn () => [
+						'hasFrontendScore' => static fn (): bool => rank_math()->frontend_seo_score->score_enabled(),
+						'badgeHtml'        => static function (): ?string {
 							$output = rank_math_get_seo_score();
 							$output = ! empty( $output ) ? str_replace( [ "\n", "\t", "\r" ], '', $output ) : null;
 
 							return ! empty( $output ) ? $output : null;
 							},
-						'rating'           => function() : ?string {
+						'rating'           => function (): ?string {
 							$score = rank_math()->frontend_seo_score->get_score( $this->database_id );
 
 							return rank_math()->frontend_seo_score->get_rating( (int) $score ) ?: null;
 						},
-						'score'            => fn() : int => (int) rank_math()->frontend_seo_score->get_score( $this->database_id ),
+						'score'            => fn (): int => (int) rank_math()->frontend_seo_score->get_score( $this->database_id ),
 					],
 				]
 			);
@@ -180,7 +180,7 @@ class ContentNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function get_object_type() : string {
+	public function get_object_type(): string {
 		$post_types        = WPGraphQL::get_allowed_post_types( 'objects' );
 		$current_post_type = $this->data->post_type;
 
@@ -195,9 +195,9 @@ class ContentNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no post permalink.
+	 * @throws \GraphQL\Error\UserError If no post permalink.
 	 */
-	protected function get_object_url() : string {
+	protected function get_object_url(): string {
 		$permalink = get_permalink( $this->database_id );
 
 		if ( false === $permalink ) {

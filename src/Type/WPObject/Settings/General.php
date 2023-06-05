@@ -17,34 +17,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - General
  */
 class General extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'General';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO general site settings', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'breadcrumbs'         => [
 				'type'        => BreadcrumbsConfig::get_type_name(),
@@ -80,6 +70,4 @@ class General extends ObjectType {
 			],
 		];
 	}
-
-
 }

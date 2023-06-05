@@ -16,9 +16,9 @@ class CoreSchemaFilters implements Registrable {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function init() : void {
-		add_filter( 'graphql_seo_type_prefix', [ __CLASS__, 'get_type_prefix' ] );
-		add_filter( 'graphql_allowed_fields_on_restricted_type', [ __CLASS__, 'allow_seo_on_post_types' ], 10, 2 );
+	public static function init(): void {
+		add_filter( 'graphql_seo_type_prefix', [ self::class, 'get_type_prefix' ] );
+		add_filter( 'graphql_allowed_fields_on_restricted_type', [ self::class, 'allow_seo_on_post_types' ], 10, 2 );
 	}
 
 	/**
@@ -26,7 +26,7 @@ class CoreSchemaFilters implements Registrable {
 	 *
 	 * @param string $type_name the non-prefixed type name.
 	 */
-	public static function get_type_prefix( string $type_name = null ) : string {
+	public static function get_type_prefix( string $type_name = null ): string {
 		return ! empty( $type_name ) ? $type_name : 'RankMath';
 	}
 
@@ -35,8 +35,10 @@ class CoreSchemaFilters implements Registrable {
 	 *
 	 * @param string[] $allowed_fields .
 	 * @param string   $model_name .
+	 *
+	 * @return string[]
 	 */
-	public static function allow_seo_on_post_types( array $allowed_fields, string $model_name ) : array {
+	public static function allow_seo_on_post_types( array $allowed_fields, string $model_name ): array {
 		if ( 'PostTypeObject' === $model_name ) {
 			$allowed_fields[] = 'seo';
 		}

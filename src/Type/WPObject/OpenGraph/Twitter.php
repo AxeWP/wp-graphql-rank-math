@@ -14,34 +14,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - Twitter
  */
 class Twitter extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'OpenGraphTwitter';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The OpenGraph Twitter meta.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'card'                    => [
 				'type'        => TwitterCardTypeEnum::get_type_name(),
@@ -58,32 +48,32 @@ class Twitter extends ObjectType {
 			'appCountry'              => [
 				'type'        => 'String',
 				'description' => __( 'The app country.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?string => ! empty( $source['app:country'] ) ? $source['app:country'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['app:country'] ) ? $source['app:country'] : null,
 			],
 			'ipadApp'                 => [
 				'type'        => TwitterApp::get_type_name(),
 				'description' => __( 'The Twitter iPad app meta', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => self::get_app_meta( $source, 'ipad' ),
+				'resolve'     => static fn ( $source ): ?array => self::get_app_meta( $source, 'ipad' ),
 			],
 			'iphoneApp'               => [
 				'type'        => TwitterApp::get_type_name(),
 				'description' => __( 'The Twitter iPhone app meta', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => self::get_app_meta( $source, 'iphone' ),
+				'resolve'     => static fn ( $source ): ?array => self::get_app_meta( $source, 'iphone' ),
 			],
 			'googleplayApp'           => [
 				'type'        => TwitterApp::get_type_name(),
 				'description' => __( 'The Twitter Google Play app meta', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?array => self::get_app_meta( $source, 'googleplay' ),
+				'resolve'     => static fn ( $source ): ?array => self::get_app_meta( $source, 'googleplay' ),
 			],
 			'playerUrl'               => [
 				'type'        => 'Integer',
 				'description' => __( 'URL of the twitter player.', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?int => ! empty( $source['player'] ) ? $source['player'] : null,
+				'resolve'     => static fn ( $source ): ?int => ! empty( $source['player'] ) ? $source['player'] : null,
 			],
 			'playerStream'            => [
 				'type'        => 'String',
 				'description' => __( 'URL to raw video or audio stream', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?int => ! empty( $source['player:stream'] ) ? $source['player:stream'] : null,
+				'resolve'     => static fn ( $source ): ?int => ! empty( $source['player:stream'] ) ? $source['player:stream'] : null,
 			],
 			'site'                    => [
 				'type'        => 'String',
@@ -92,7 +82,7 @@ class Twitter extends ObjectType {
 			'playerStreamContentType' => [
 				'type'        => 'String',
 				'description' => __( 'The content type of the stream', 'wp-graphql-rank-math' ),
-				'resolve'     => fn( $source ) : ?int => ! empty( $source['player:stream:content_type'] ) ? $source['player:stream:content_type'] : null,
+				'resolve'     => static fn ( $source ): ?int => ! empty( $source['player:stream:content_type'] ) ? $source['player:stream:content_type'] : null,
 			],
 			'image'                   => [
 				'type'        => 'String',
@@ -109,10 +99,12 @@ class Twitter extends ObjectType {
 	/**
 	 * Get the app meta for the twitter app type.
 	 *
-	 * @param array  $source The values from the resolver.
-	 * @param string $type The app type.
+	 * @param array<string, mixed> $source The values from the resolver.
+	 * @param string               $type The app type.
+	 *
+	 * @return ?array<string, mixed>
 	 */
-	protected static function get_app_meta( $source, $type ) : ?array {
+	protected static function get_app_meta( array $source, string $type ): ?array {
 		$values = [];
 
 		if ( ! empty( $source[ 'app:name:' . $type ] ) ) {

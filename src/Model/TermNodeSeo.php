@@ -7,10 +7,10 @@
 
 namespace WPGraphQL\RankMath\Model;
 
-use \GraphQL\Error\Error;
+use GraphQL\Error\Error;
 use GraphQL\Error\UserError;
-use WP_Term;
 use WPGraphQL;
+use WP_Term;
 
 /**
  * Class - TermNodeSeo
@@ -30,12 +30,11 @@ class TermNodeSeo extends Seo {
 	 */
 	protected string $prefix;
 
-
 	/**
 	 * Constructor.
 	 *
 	 * @param int $term_id .
-	 * @throws Error .
+	 * @throws \GraphQL\Error\Error .
 	 */
 	public function __construct( int $term_id ) {
 		/** @var ?\WP_Term $object */
@@ -58,7 +57,7 @@ class TermNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setup() : void {
+	public function setup(): void {
 		global $wp_query, $post;
 
 		/**
@@ -119,7 +118,7 @@ class TermNodeSeo extends Seo {
 			$this->fields = array_merge(
 				$this->fields,
 				[
-					'breadcrumbTitle' => fn() : ?string => $this->get_meta( 'breadcrumb_title', '', $this->data->name ) ?: null,
+					'breadcrumbTitle' => fn (): ?string => $this->get_meta( 'breadcrumb_title', '', $this->data->name ) ?: null,
 
 				]
 			);
@@ -129,7 +128,7 @@ class TermNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function get_object_type() : string {
+	public function get_object_type(): string {
 		$taxonomies = WPGraphQL::get_allowed_taxonomies( 'objects' );
 
 		return $taxonomies[ $this->data->taxonomy ]->graphql_single_name;
@@ -138,9 +137,9 @@ class TermNodeSeo extends Seo {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @throws UserError If no valid term link.
+	 * @throws \GraphQL\Error\UserError If no valid term link.
 	 */
-	protected function get_object_url() : string {
+	protected function get_object_url(): string {
 		$term_link = get_term_link( $this->database_id );
 
 		if ( is_wp_error( $term_link ) ) {

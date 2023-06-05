@@ -13,25 +13,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - BreadcrumbsConfig
  */
 class BreadcrumbsConfig extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'BreadcrumbsConfig';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO breadcrumbs settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		$fields = [
 			'separator'             => [
 				'type'        => 'String',
@@ -88,5 +87,4 @@ class BreadcrumbsConfig extends ObjectType {
 
 		return $fields;
 	}
-
 }

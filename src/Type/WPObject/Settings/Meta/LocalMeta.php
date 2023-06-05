@@ -15,25 +15,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - LocalMeta
  */
 class LocalMeta extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'LocalMetaSettings';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Local settings.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'type' => [
 				'type'        => KnowledgeGraphTypeEnum::get_type_name(),
@@ -46,7 +45,7 @@ class LocalMeta extends ObjectType {
 			'logo' => [
 				'type'        => 'MediaItem',
 				'description' => __( 'The logo to be used in the Google\'s Knowledge Graph.', 'wp-graphql-rank-math' ),
-				'resolve'     => function ( $source, array $args, AppContext $context ) {
+				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['logoId'] ) ? $context->get_loader( 'post' )->load_deferred( $source['logoId'] ) : null;
 				},
 			],

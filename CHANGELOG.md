@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- chore: Implement `axepress/wp-graphql-cs` ruleset for PHP_CodeSniffer.
 
 ## v0.0.12
 - fix: Use correct post type when querying for `ContentNodeSeo` on revisions. Props @idflood

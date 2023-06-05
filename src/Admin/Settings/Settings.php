@@ -7,7 +7,7 @@
 
 namespace WPGraphQL\RankMath\Admin\Settings;
 
-use \WPGraphQL\Admin\Settings\SettingsRegistry;
+use WPGraphQL\Admin\Settings\SettingsRegistry;
 
 /**
  * Class - Settings
@@ -16,7 +16,7 @@ class Settings {
 	/**
 	 * An instance of the Settings API.
 	 *
-	 * @var ?SettingsRegistry
+	 * @var ?\WPGraphQL\Admin\Settings\SettingsRegistry
 	 */
 	private static $settings_api;
 
@@ -30,15 +30,15 @@ class Settings {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function init() : void {
-		add_action( 'admin_init', [ __CLASS__, 'register_settings' ] );
+	public static function init(): void {
+		add_action( 'admin_init', [ self::class, 'register_settings' ] );
 	}
 
 	/**
 	 * Gets an instance of the WPGraphQL settings api.
 	 */
-	public static function get_settings_api() : SettingsRegistry {
-		if ( ! isset( self::$settings_api ) ) {
+	public static function get_settings_api(): SettingsRegistry {
+		if ( ! isset( self::$settings_api ) || ! self::$settings_api instanceof SettingsRegistry ) {
 			self::$settings_api = new SettingsRegistry();
 		}
 
@@ -48,7 +48,7 @@ class Settings {
 	/**
 	 * Registers the settings to WPGraphQL
 	 */
-	public static function register_settings() : void {
+	public static function register_settings(): void {
 		$settings_api = self::get_settings_api();
 
 		$settings_api->register_fields(

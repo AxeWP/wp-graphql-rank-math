@@ -13,26 +13,25 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - Webmaster
  */
 class Webmaster extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'Webmaster';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The RankMath SEO Webmaster Tools settings', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
-		$fields = [
+	public static function get_fields(): array {
+		return [
 			'baidu'     => [
 				'type'        => 'String',
 				'description' => __( 'The Baidu Webmaster Tools verification HTML code or ID.', 'wp-graphql-rank-math' ),
@@ -58,8 +57,5 @@ class Webmaster extends ObjectType {
 				'description' => __( 'The Yandex verification HTML code or ID.', 'wp-graphql-rank-math' ),
 			],
 		];
-
-		return $fields;
 	}
-
 }

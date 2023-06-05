@@ -23,12 +23,8 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
-	 *
-	 * @param \WPGraphQL\Registry\TypeRegistry $type_registry
 	 */
-	public static function register( $type_registry = null ): void {
-		self::$type_registry = $type_registry;
-
+	public static function register(): void {
 		register_graphql_interface_type( static::type_name(), static::get_type_config() );
 
 		/**
@@ -49,32 +45,34 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 			]
 		);
 
+		// @todo only apply to ContentTypes that have SEO data.
+
 		register_graphql_interfaces_to_types( self::type_name(), $types_with_seo );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'NodeWithRankMathSeo';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'A node with RankMath SEO data.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'seo' => [
 				'type'        => Seo::get_type_name(),
 				'description' => __( 'The RankMath SEO data for the node.', 'wp-graphql-rank-math' ),
-				'resolve'     => function( $source ) {
+				'resolve'     => static function ( $source ) {
 					if ( ! $source instanceof Model ) {
 						return null;
 					}
@@ -100,16 +98,16 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_interfaces() : array {
+	public static function get_interfaces(): array {
 		return [ 'Node' ];
 	}
 
 	/**
 	 * Gets the SEO model class for a given node model.
 	 *
-	 * @param Model $node_model The node model.
+	 * @param \WPGraphQL\Model\Model $node_model The node model.
 	 */
-	private static function get_model_for_node( Model $node_model ) : ?Model {
+	private static function get_model_for_node( Model $node_model ): ?Model {
 		// A map of the node models to their corresponding SEO model classes.
 		switch ( true ) {
 			case $node_model instanceof \WPGraphQL\Model\Post:
@@ -133,8 +131,8 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		 *
 		 * @since 0.0.8
 		 *
-		 * @param Model|null $seo_model The SEO model class to use.
-		 * @param Model       $node_model The Model for the node.
+		 * @param \WPGraphQL\Model\Model|null $seo_model The SEO model class to use.
+		 * @param \WPGraphQL\Model\Model $node_model The Model for the node.
 		 */
 		$seo_model = apply_filters( 'graphql_seo_resolved_model', $seo_model, $node_model );
 

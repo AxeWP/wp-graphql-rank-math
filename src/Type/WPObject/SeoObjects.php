@@ -23,7 +23,7 @@ class SeoObjects implements Registrable {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function init() : void {
+	public static function init(): void {
 		add_action( 'graphql_register_types', [ static::class, 'register' ] );
 	}
 

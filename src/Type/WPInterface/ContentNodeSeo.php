@@ -8,7 +8,6 @@
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use WPGraphQL\Model\Model;
 use WPGraphQL\RankMath\Type\WPObject\SeoScore;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
@@ -23,14 +22,14 @@ class ContentNodeSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'ContentNodeSeo';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
+	protected static function get_type_config(): array {
 		$config = parent::get_type_config();
 
 		$config['eagerlyLoadType'] = true;
@@ -41,14 +40,14 @@ class ContentNodeSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The seo data for Post Objects', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'isPillarContent' => [
 				'type'        => 'Boolean',
@@ -64,16 +63,16 @@ class ContentNodeSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_interfaces() : array {
+	public static function get_interfaces(): array {
 		return [ Seo::get_type_name() ];
 	}
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @param Model $value The model.
+	 * @param \WPGraphQL\Model\Model $value The model.
 	 */
-	public static function get_resolved_type_name( $value ) : ?string {
+	public static function get_resolved_type_name( $value ): ?string {
 		$type_name = null;
 
 		if ( isset( $value->post_type ) ) {

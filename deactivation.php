@@ -11,8 +11,8 @@ if ( ! function_exists( 'graphql_seo_deactivation_callback' ) ) {
 	 *
 	 * This cleans up data that WPGraphQL stores.
 	 */
-	function graphql_seo_deactivation_callback() : callable {
-		return function() : void {
+	function graphql_seo_deactivation_callback(): callable {
+		return static function (): void {
 
 			// Fire an action when WPGraphQL is de-activating.
 			do_action( 'graphql_seo_deactivate' );
@@ -27,7 +27,7 @@ if ( ! function_exists( 'graphql_seo_delete_data' ) ) {
 	/**
 	 * Delete data on deactivation.
 	 */
-	function graphql_seo_delete_data() : void {
+	function graphql_seo_delete_data(): void {
 
 		// Check if the plugin is set to delete data or not.
 		$delete_data = graphql_seo_get_setting( 'delete_data_on_deactivate' );

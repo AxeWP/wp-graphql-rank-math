@@ -14,34 +14,24 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
  * Class - SeoScore
  */
 class SeoScore extends ObjectType {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function type_name() : string {
+	protected static function type_name(): string {
 		return 'SeoScore';
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected static function get_type_config() : array {
-		$config = parent::get_type_config();
-
-		return $config;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function get_description() : string {
+	public static function get_description(): string {
 		return __( 'The Seo score information.', 'wp-graphql-rank-math' );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public static function get_fields() : array {
+	public static function get_fields(): array {
 		return [
 			'badgeHtml'        => [
 				'type'        => 'String',
