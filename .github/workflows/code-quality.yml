@@ -15,7 +15,7 @@ jobs:
     name: Check code
     services:
       mariadb:
-        image: mariadb
+        image: mariadb:10
         ports:
           - 3306:3306
         env:
