@@ -65,16 +65,14 @@ class RedirectionCursor {
 	 *
 	 * This is cached internally so it should not generate additionl queries.
 	 *
-	 * @return mixed|null;
+	 * @return ?array<string,mixed>
 	 */
 	public function get_cursor_node() {
 		if ( ! $this->cursor_offset ) {
 			return null;
 		}
 
-		$redirection = RMUtils::get_redirection_by_id( $this->cursor_offset );
-
-		return false !== $redirection ? $redirection : null;
+		return RMUtils::get_redirection_by_id( $this->cursor_offset );
 	}
 
 	/**

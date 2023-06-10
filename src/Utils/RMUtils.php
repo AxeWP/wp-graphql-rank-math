@@ -78,14 +78,32 @@ class RMUtils {
 	/**
 	 * Get a redirection by its ID.
 	 *
-	 * @see \RankMath\Redirections\DB\get_redirection_by_id()
+	 * Mimics \RankMath\Redirections\DB\get_redirection_by_id().
+	 * Uses a direct database query, since RankMath uses a static table instance internally.
 	 *
-	 * @param int    $id     ID of the record to search for.
-	 * @param string $status Status to filter with.
+	 * @see https://support.rankmath.com/ticket/adding-where-clause-to-redirection-query-overwrites-existing-query/
 	 *
-	 * @return bool|array<string,mixed>
+	 * @param int $id     ID of the record to search for.
+	 *
+	 * @return ?array<string,mixed>
 	 */
-	public static function get_redirection_by_id( int $id, string $status = 'all' ) {
-		return DB::get_redirection_by_id( $id, $status );
+	public static function get_redirection_by_id( int $id ) {
+		$result = wp_cache_get( 'rm_redirection_' . $id, 'rm_redirections' );
+
+		if ( false === $result ) {
+			global $wpdb;
+
+			$result = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+				$wpdb->prepare(
+					"SELECT * FROM {$wpdb->prefix}rank_math_redirections WHERE id = %d LIMIT 1",
+					$id
+				),
+				ARRAY_A
+			);
+
+			wp_cache_set( 'rm_redirection_' . $id, $result, 'rm_redirections' );
+		}
+
+		return ! empty( $result ) ? $result : null;
 	}
 }
