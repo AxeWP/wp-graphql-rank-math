@@ -312,8 +312,6 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 	}
 
 	public function testForwardPaginationOrderedByDateCreated() {
-		wp_set_current_user( $this->admin );
-
 		$this->forwardPagination(
 			[
 				'where' => [
@@ -331,8 +329,6 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 	}
 
 	public function testBackwardPaginationOrderedByDateCreated() {
-		wp_set_current_user( $this->admin );
-
 		$this->backwardPagination(
 			[
 				'orderby' => [
@@ -343,6 +339,34 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 			[
 				'order_by' => 'created',
 				'order'    => 'ASC',
+			]
+		);
+	}
+
+	public function testForwardPaginationOrderedByRedirectUrl() {
+		$this->forwardPagination(
+			[
+				'where' => [
+					'orderby' => [
+						'field' => 'REDIRECT_TO_URL',
+					],
+				],
+			],
+			[
+				'order_by' => 'url_to',
+			]
+		);
+	}
+
+	public function testBackwardPaginationOrderedByRedirectUrl() {
+		$this->backwardPagination(
+			[
+				'orderby' => [
+					'field' => 'REDIRECT_TO_URL',
+				],
+			],
+			[
+				'order_by' => 'url_to',
 			]
 		);
 	}
