@@ -73,7 +73,7 @@ class RMUtils {
 	 */
 	public static function get_redirections( array $args = [] ): array {
 		return DB::get_redirections( $args );
-	} 
+	}
 
 	/**
 	 * Get a redirection by its ID.
