@@ -78,16 +78,29 @@ class RMUtils {
 	/**
 	 * Get a redirection by its ID.
 	 *
-	 * Mimics \RankMath\Redirections\DB\get_redirection_by_id().
-	 * Uses a direct database query, since RankMath uses a static table instance internally.
+	 * @see \RankMath\Redirections\DB\get_redirection_by_id()
 	 *
-	 * @see https://support.rankmath.com/ticket/adding-where-clause-to-redirection-query-overwrites-existing-query/
+	 * @param int    $id     ID of the record to search for.
+	 * @param string $status Status to filter with.
 	 *
-	 * @param int $id     ID of the record to search for.
-	 *
-	 * @return ?array<string,mixed>
+	 * @return bool|array<string,mixed>
 	 */
-	public static function get_redirection_by_id( int $id ) {
+	public static function get_redirection_by_id( int $id, string $status = 'all' ) {
+		return DB::get_redirection_by_id( $id, $status );
+	}
+
+	/**
+	 * Gets a redirection directly from the database.
+	 *
+	 * This allows us to check for redirections without having to reset the existing DB::$table.
+	 *
+	 * @see https://support.rankmath.com/ticket/adding-where-clause-to-redirection-query-overwrites-existing-query
+	 *
+	 * @param int $id ID of the redirection to get.
+	 *
+	 * @return array<string,mixed>|null
+	 */
+	public static function get_redirection_from_db( int $id ) {
 		$result = wp_cache_get( 'rm_redirection_' . $id, 'rm_redirections' );
 
 		if ( false === $result ) {

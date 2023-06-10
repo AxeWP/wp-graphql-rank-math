@@ -72,7 +72,8 @@ class RedirectionCursor {
 			return null;
 		}
 
-		return RMUtils::get_redirection_by_id( $this->cursor_offset );
+		// We don't want to reset the sql clauses.
+		return RMUtils::get_redirection_from_db( $this->cursor_offset );
 	}
 
 	/**
@@ -81,11 +82,7 @@ class RedirectionCursor {
 	 * @return string
 	 */
 	public function get_cursor_compare() {
-		if ( 'before' === $this->cursor ) {
-			return '>';
-		}
-
-		return '<';
+		return 'DESC' === $this->query_vars['order'] ? '<' : '>';
 	}
 
 	/**

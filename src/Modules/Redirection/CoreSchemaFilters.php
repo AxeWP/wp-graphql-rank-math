@@ -28,6 +28,8 @@ class CoreSchemaFilters implements Registrable {
 
 		add_filter( 'graphql_data_loaders', [ self::class, 'register_loaders' ], 10, 2 );
 
+		add_filter( 'rank_math_clauses_order_by', [ self::class, 'dedupe_pagination_clauses' ] );
+		add_filter( 'rank_math_clauses_where', [ self::class, 'dedupe_pagination_clauses' ] );
 		add_action( 'rank_math/redirection/get_redirections_query', [ self::class, 'add_redirection_pagination_support' ], 10, 2 );
 	}
 
@@ -84,7 +86,30 @@ class CoreSchemaFilters implements Registrable {
 			}
 		}
 
+		// // Add cursor stabilization
+		$orderby_dir = isset( $args['graphql_cursor_compare'] ) && '>' === $args['graphql_cursor_compare'] ? 'ASC' : 'DESC';
+		$current_table->orderBy( 'id', $orderby_dir );
+
 		// Set the table back to the reference.
 		$table = $current_table;
+	}
+
+	/**
+	 * Deduplicates clauses on the Rank Math table instance.
+	 *
+	 * These are caused when paginating, since the $table is a static instance.
+	 *
+	 * @param string[] $clauses The clauses to dedupe.
+	 *
+	 * @return string[]
+	 */
+	public static function dedupe_pagination_clauses( array $clauses ): array {
+		// Return early if its not a GraphQL request.
+		if ( true !== is_graphql_request() ) {
+			return $clauses;
+		}
+
+		// Dedupe the clauses.
+		return array_unique( $clauses );
 	}
 }

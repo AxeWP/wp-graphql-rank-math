@@ -67,6 +67,8 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 		/**
 		 * Set the before and after cursors. This will modify the query in CoreSchemaFilters::add_redirection_pagination_support()
 		 */
+		$query_args['graphql_cursor_compare'] = ! empty( $last ) ? '>' : '<';
+
 		if ( ! empty( $this->args['after'] ) ) {
 			$query_args['graphql_after_cursor'] = $this->get_after_offset();
 		}
@@ -82,18 +84,19 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	 * {@inheritDoc}
 	 */
 	public function get_query() {
-		error_log( 'args' . print_r( $this->query_args, true ) );
-		$query = RMUtils::get_redirections( $this->query_args );
+		if ( ! isset( $this->query ) ) {
+			$query = RMUtils::get_redirections( $this->query_args );
 
-		error_log( 'query' . print_r( $query, true ) );
+			// Prime the cache for each of the queried redirections.
+			$loader = $this->getLoader();
+			foreach ( $query['redirections'] as $redirection ) {
+				$loader->prime( $redirection['id'], $redirection );
+			}
 
-		// Prime the cache for each of the queried redirections.
-		$loader = $this->getLoader();
-		foreach ( $query['redirections'] as $redirection ) {
-			$loader->prime( $redirection['id'], $redirection );
+			$this->query = $query;
 		}
 
-		return $query;
+		return $this->query;
 	}
 
 	/**
