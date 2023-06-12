@@ -19,6 +19,9 @@ class CoreSchemaFilters implements Registrable {
 	public static function init(): void {
 		add_filter( 'graphql_seo_type_prefix', [ self::class, 'get_type_prefix' ] );
 		add_filter( 'graphql_allowed_fields_on_restricted_type', [ self::class, 'allow_seo_on_post_types' ], 10, 2 );
+
+		// Modules.
+		Modules\Redirection\CoreSchemaFilters::init();
 	}
 
 	/**

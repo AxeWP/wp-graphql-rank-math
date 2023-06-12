@@ -75,7 +75,7 @@ class Settings extends Model {
 					'shouldIndexPaginatedPages'    => empty( $this->data['titles']['noindex_paginated_pages'] ),
 					'shouldIndexArchiveSubpages'   => empty( $this->data['titles']['noindex_archive_subpages'] ),
 					'shouldIndexPasswordProtected' => empty( $this->data['titles']['noindex_password_protected'] ),
-				],  
+				],
 			];
 
 			if ( in_array( 'sitemap', $this->active_modules, true ) ) {
@@ -154,6 +154,13 @@ class Settings extends Model {
 			],
 			'rssBeforeContent'    => ! empty( $this->data['general']['rss_before_content'] ) ? $this->data['general']['rss_before_content'] : null,
 			'rssAfterContent'     => ! empty( $this->data['general']['rss_after_content'] ) ? $this->data['general']['rss_after_content'] : null,
+			'redirections'        => [
+				'hasDebug'          => ! empty( $this->data['general']['redirect_debug'] ),
+				'fallbackBehavior'  => ! empty( $this->data['general']['redirections_fallback'] ) ? $this->data['general']['redirections_fallback'] : 'default',
+				'fallbackCustomUrl' => ! empty( $this->data['general']['redirections_custom_url'] ) ? $this->data['general']['redirections_custom_url'] : null,
+				'redirectionType'   => ! empty( $this->data['general']['redirections_header_code'] ) ? $this->data['general']['redirections_header_code'] : '301',
+				'hasAutoPostDirect' => ! empty( $this->data['general']['redirections_post_redirect'] ),
+			],
 		];
 	}
 

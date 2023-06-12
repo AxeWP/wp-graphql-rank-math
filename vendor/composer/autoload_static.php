@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit4fea9987bc99465e9594d2332e75bb19
+class ComposerStaticInite6eca6fb9e92fec0bc036a900dde748d
 {
     public static $files = array (
         'd93954ca8a74d7e67246db741a580590' => __DIR__ . '/../..' . '/access-functions.php',
@@ -44,6 +44,24 @@ class ComposerStaticInit4fea9987bc99465e9594d2332e75bb19
         'WPGraphQL\\RankMath\\Model\\Settings' => __DIR__ . '/../..' . '/src/Model/Settings.php',
         'WPGraphQL\\RankMath\\Model\\TermNodeSeo' => __DIR__ . '/../..' . '/src/Model/TermNodeSeo.php',
         'WPGraphQL\\RankMath\\Model\\UserSeo' => __DIR__ . '/../..' . '/src/Model/UserSeo.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Connection\\RedirectionConnection' => __DIR__ . '/../..' . '/src/Modules/Redirection/Connection/RedirectionConnection.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\CoreSchemaFilters' => __DIR__ . '/../..' . '/src/Modules/Redirection/CoreSchemaFilters.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Data\\Connection\\RedirectionConnectionResolver' => __DIR__ . '/../..' . '/src/Modules/Redirection/Data/Connection/RedirectionConnectionResolver.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Data\\Cursor\\RedirectionCursor' => __DIR__ . '/../..' . '/src/Modules/Redirection/Data/Cursor/RedirectionCursor.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Data\\Loader\\RedirectionsLoader' => __DIR__ . '/../..' . '/src/Modules/Redirection/Data/Loader/RedirectionsLoader.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Fields\\GeneralSettings' => __DIR__ . '/../..' . '/src/Modules/Redirection/Fields/GeneralSettings.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Fields\\RootQuery' => __DIR__ . '/../..' . '/src/Modules/Redirection/Fields/RootQuery.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Model\\Redirection' => __DIR__ . '/../..' . '/src/Modules/Redirection/Model/Redirection.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\TypeRegistry' => __DIR__ . '/../..' . '/src/Modules/Redirection/TypeRegistry.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\Enum\\RedirectionBehaviorEnum' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/Enum/RedirectionBehaviorEnum.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\Enum\\RedirectionComparisonTypeEnum' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/Enum/RedirectionComparisonTypeEnum.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\Enum\\RedirectionConnectionOrderByEnum' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/Enum/RedirectionConnectionOrderByEnum.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\Enum\\RedirectionStatusEnum' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/Enum/RedirectionStatusEnum.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\Enum\\RedirectionTypeEnum' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/Enum/RedirectionTypeEnum.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\Input\\RedirectionConnectionOrderbyInput' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/Input/RedirectionConnectionOrderbyInput.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\WPObject\\Redirection' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/WPObject/Redirection.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\WPObject\\RedirectionSettings' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/WPObject/RedirectionSettings.php',
+        'WPGraphQL\\RankMath\\Modules\\Redirection\\Type\\WPObject\\RedirectionSource' => __DIR__ . '/../..' . '/src/Modules/Redirection/Type/WPObject/RedirectionSource.php',
         'WPGraphQL\\RankMath\\TypeRegistry' => __DIR__ . '/../..' . '/src/TypeRegistry.php',
         'WPGraphQL\\RankMath\\Type\\Enum\\ArticleTypeEnum' => __DIR__ . '/../..' . '/src/Type/Enum/ArticleTypeEnum.php',
         'WPGraphQL\\RankMath\\Type\\Enum\\BulkEditingTypeEnum' => __DIR__ . '/../..' . '/src/Type/Enum/BulkEditingTypeEnum.php',
@@ -96,6 +114,7 @@ class ComposerStaticInit4fea9987bc99465e9594d2332e75bb19
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\ContentType' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap/ContentType.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\General' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap/General.php',
         'WPGraphQL\\RankMath\\Type\\WPObject\\Settings\\Sitemap\\Taxonomy' => __DIR__ . '/../..' . '/src/Type/WPObject/Settings/Sitemap/Taxonomy.php',
+        'WPGraphQL\\RankMath\\Utils\\RMUtils' => __DIR__ . '/../..' . '/src/Utils/RMUtils.php',
         'WPGraphQL\\RankMath\\Utils\\Utils' => __DIR__ . '/../..' . '/src/Utils/Utils.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Abstracts\\ConnectionType' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/ConnectionType.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Abstracts\\EnumType' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/EnumType.php',
@@ -120,9 +139,9 @@ class ComposerStaticInit4fea9987bc99465e9594d2332e75bb19
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit4fea9987bc99465e9594d2332e75bb19::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit4fea9987bc99465e9594d2332e75bb19::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit4fea9987bc99465e9594d2332e75bb19::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite6eca6fb9e92fec0bc036a900dde748d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite6eca6fb9e92fec0bc036a900dde748d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite6eca6fb9e92fec0bc036a900dde748d::$classMap;
 
         }, null, ClassLoader::class);
     }

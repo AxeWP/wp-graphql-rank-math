@@ -9,6 +9,7 @@ namespace WPGraphQL\RankMath;
 
 use Exception;
 use WPGraphQL\RankMath\Fields;
+use WPGraphQL\RankMath\Modules\Redirection\TypeRegistry as RedirectionTypeRegistry;
 use WPGraphQL\RankMath\Type\Enum;
 use WPGraphQL\RankMath\Type\WPInterface;
 use WPGraphQL\RankMath\Type\WPObject;
@@ -47,7 +48,12 @@ class TypeRegistry {
 		 */
 		do_action( 'graphql_seo_before_register_types' );
 
+		// Register individual modules.
+		RedirectionTypeRegistry::init();
+
+		// Initialize the registry.
 		self::initialize_registry();
+
 
 		/**
 		 * Fires after all types have been registered.

@@ -22,6 +22,8 @@
 	<arg name="extensions" value="php"/>
 	<!-- Enables parallel processing when available for faster results. -->
 	<arg name="parallel" value="20"/>
+	<!-- Whenever possible, cache the scan results and re-use those for unchanged files on the next scan. -->
+	<arg name="cache" value="tests/_output/phpcs-cache.json" />
 
 	<!-- Ruleset Config: set these to match your project constraints-->
 
