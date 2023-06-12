@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- feat: Expose Redirections to the GraphQL schema.
 - chore: Implement `axepress/wp-graphql-cs` ruleset for PHP_CodeSniffer.
 
 ## v0.0.12
