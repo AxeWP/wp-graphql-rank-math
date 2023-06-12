@@ -3,7 +3,7 @@
  * The Redirection connection Orderby Input.
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Type\Input
- * @since @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Modules\Redirection\Type\Input;

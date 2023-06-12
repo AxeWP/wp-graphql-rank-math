@@ -3,7 +3,7 @@
  * Utility functions for interacting with RankMath SEO.
  *
  * @package WPGraphQL\RankMath\Utils
- * @since @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Utils;
@@ -23,7 +23,7 @@ class RMUtils {
 	 *
 	 * @param string $module The module name.
 	 *
-	 * @since @todo
+	 * @since 0.0.13
 	 */
 	public static function is_module_active( string $module ): bool {
 		return Helper::is_module_active( $module );
@@ -36,7 +36,7 @@ class RMUtils {
 	 *
 	 * @param string $capability The capability name.
 	 *
-	 * @since @todo
+	 * @since 0.0.13
 	 */
 	public static function has_cap( string $capability ): bool {
 		return Helper::has_cap( $capability );
@@ -47,7 +47,7 @@ class RMUtils {
 	 *
 	 * @see \RankMath\Redirections\DB\table()
 	 *
-	 * @since @todo
+	 * @since 0.0.13
 	 *
 	 * @return \MyThemeShop\Database\Query_Builder
 	 */
@@ -67,7 +67,7 @@ class RMUtils {
 	 *
 	 * @param array<string,mixed> $args The arguments to filter the redirections with.
 	 *
-	 * @since @todo
+	 * @since 0.0.13
 	 *
 	 * @return array<string,mixed>
 	 */
@@ -83,6 +83,8 @@ class RMUtils {
 	 * @param int    $id     ID of the record to search for.
 	 * @param string $status Status to filter with.
 	 *
+	 * @since 0.0.13
+	 *
 	 * @return bool|array<string,mixed>
 	 */
 	public static function get_redirection_by_id( int $id, string $status = 'all' ) {
@@ -97,6 +99,8 @@ class RMUtils {
 	 * @see https://support.rankmath.com/ticket/adding-where-clause-to-redirection-query-overwrites-existing-query
 	 *
 	 * @param int $id ID of the redirection to get.
+	 *
+	 * @since 0.0.13
 	 *
 	 * @return array<string,mixed>|null
 	 */

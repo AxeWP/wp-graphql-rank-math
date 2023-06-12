@@ -1,10 +1,13 @@
 # Changelog
 
 ## Unreleased
+
+## v0.0.13
 - feat: Expose Redirections to the GraphQL schema.
 - dev: Convert HTML entities for `breadcrumbTitle`, `description`, and `title` fields to their corresponding characters. H/t @sdegetaus
-- docs: Relocate query docs to `docs/reference/queries.md`, and add docs on querying redirections, and included WordPress actions and filters.
 - chore: Implement `axepress/wp-graphql-cs` ruleset for PHP_CodeSniffer.
+- chore: Update Composer dependencies.
+- docs: Relocate query docs to `docs/reference/queries.md`, and add docs on querying redirections, and included WordPress actions and filters.
 
 ## v0.0.12
 - fix: Use correct post type when querying for `ContentNodeSeo` on revisions. Props @idflood

@@ -3,7 +3,7 @@
  * The Rank Math redirection connection resolver
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Data\Connection;
- * @since @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Modules\Redirection\Data\Connection;
