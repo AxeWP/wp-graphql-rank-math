@@ -2,6 +2,7 @@
 
 ## Unreleased
 - feat: Expose Redirections to the GraphQL schema.
+- dev: Convert HTML entities for `breadcrumbTitle`, `description`, and `title` fields to their corresponding characters. H/t @sdegetaus
 - chore: Implement `axepress/wp-graphql-cs` ruleset for PHP_CodeSniffer.
 
 ## v0.0.12

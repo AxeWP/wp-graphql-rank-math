@@ -155,7 +155,11 @@ class ContentNodeSeo extends Seo {
 			$this->fields = array_merge(
 				$this->fields,
 				[
-					'breadcrumbTitle' => fn (): ?string => $this->get_meta( 'breadcrumb_title', '', get_the_title( $this->database_id ) ) ?: null,
+					'breadcrumbTitle' => function (): ?string {
+						$title = $this->get_meta( 'breadcrumb_title', '', get_the_title( $this->database_id ) );
+
+						return ! empty( $title ) ? html_entity_decode( $title, ENT_QUOTES ) : null;
+					},
 					'isPillarContent' => fn (): bool => ! empty( $this->get_meta( 'pillar_content' ) ),
 					'seoScore'        => fn () => [
 						'hasFrontendScore' => static fn (): bool => rank_math()->frontend_seo_score->score_enabled(),

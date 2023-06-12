@@ -106,7 +106,11 @@ class UserSeo extends Seo {
 			$this->fields = array_merge(
 				$this->fields,
 				[
-					'breadcrumbTitle' => fn (): ?string => $this->get_meta( 'breadcrumb_title', '', $this->data->display_name ) ?: null,
+					'breadcrumbTitle' => function (): ?string {
+						$title = $this->get_meta( 'breadcrumb_title', '', $this->data->display_name );
+
+						return ! empty( $title ) ? html_entity_decode( $title, ENT_QUOTES ) : null;
+					},
 					'ID'              => fn (): int => $this->database_id,
 				]
 			);
