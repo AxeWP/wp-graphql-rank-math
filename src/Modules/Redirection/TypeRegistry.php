@@ -3,7 +3,7 @@
  * The module registry.
  *
  * @package WPGraphQL\RankMath\Modules\Redirection
- * @since   @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Modules\Redirection;

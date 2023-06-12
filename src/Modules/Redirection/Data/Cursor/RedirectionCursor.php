@@ -3,7 +3,7 @@
  * The Redirection cursor.
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Data\Cursor;
- * @since @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Modules\Redirection\Data\Cursor;

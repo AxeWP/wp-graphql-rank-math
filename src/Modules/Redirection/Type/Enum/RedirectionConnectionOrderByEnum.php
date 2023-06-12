@@ -3,7 +3,7 @@
  * The Redirection connection OrderBy enum.
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Type\Enum
- * @since @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Modules\Redirection\Type\Enum;

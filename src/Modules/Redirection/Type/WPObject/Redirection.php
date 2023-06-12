@@ -3,7 +3,7 @@
  * The Redirections GraphQL object.
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Type\WPObject
- * @since @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Modules\Redirection\Type\WPObject;

@@ -3,7 +3,7 @@
  * Registers the connections to Redirection
  *
  * @package WPGraphQL\RankMath\Modules\Redirection\Connection
- * @since @todo
+ * @since 0.0.13
  */
 
 namespace WPGraphQL\RankMath\Modules\Redirection\Connection;
