@@ -120,10 +120,14 @@ abstract class Seo extends Model {
 		if ( empty( $this->fields ) ) {
 			$this->fields = [
 				'title'         => function (): ?string {
-					return $this->helper->get_title() ?: null;
+					$title = $this->helper->get_title();
+
+					return ! empty( $title ) ? html_entity_decode( $title, ENT_QUOTES ) : null;
 				},
 				'description'   => function (): ?string {
-					return $this->helper->get_description() ?: null;
+					$description = $this->helper->get_description();
+
+					return ! empty( $description ) ? html_entity_decode( $description, ENT_QUOTES ) : null;
 				},
 				'robots'        => function (): ?array {
 					return $this->helper->get_robots() ?: null;
