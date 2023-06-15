@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- fix: Return expected seo data when querying custom taxonomy
 
 ## v0.0.13
 - feat: Expose Redirections to the GraphQL schema.
