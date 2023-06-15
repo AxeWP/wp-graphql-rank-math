@@ -297,6 +297,7 @@ abstract class Seo extends Model {
 		remove_all_actions( 'rank_math/opengraph/facebook' );
 		remove_all_actions( 'rank_math/opengraph/twitter' );
 		remove_all_actions( 'rank_math/opengraph/slack' );
+		wp();
 
 		if ( $headless->is_home ) {
 			$GLOBALS['wp_query']->is_home = true;
