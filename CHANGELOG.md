@@ -1,7 +1,9 @@
 # Changelog
 
 ## Unreleased
-- fix: Return expected seo data when querying custom taxonomy
+- fix: Fetch the correct SEO data when resolving custom taxonomy terms. Props @lucguerraz
+- dev!: Move `SEO::$global_authordata` property to the `UserSeo` model and make nullable.
+- dev: Move `seo.breadcrumbs` resolution from the `RankMathSeo` interface to the `SEO` model.
 
 ## v0.0.13
 - feat: Expose Redirections to the GraphQL schema.
