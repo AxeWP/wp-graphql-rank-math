@@ -7,6 +7,7 @@
 
 namespace WPGraphQL\RankMath\Model;
 
+use RankMath\Frontend\Breadcrumbs as RMBreadcrumbs;
 use RankMath\Helper as RMHelper;
 use RankMath\Paper\Paper;
 use WPGraphQL\Model\Model;
@@ -64,13 +65,6 @@ abstract class Seo extends Model {
 	protected $global_post;
 
 	/**
-	 * The global authordata at time of Model generation
-	 *
-	 * @var \WP_User
-	 */
-	protected $global_authordata;
-
-	/**
 	 * Constructor.
 	 *
 	 * @param \WP_User|\WP_Term|\WP_Post|\WP_Post_Type $object .
@@ -83,6 +77,7 @@ abstract class Seo extends Model {
 
 		$allowed_fields = array_merge(
 			[
+				'breadcrumbs',
 				'title',
 				'description',
 				'robots',
@@ -119,6 +114,7 @@ abstract class Seo extends Model {
 	protected function init() {
 		if ( empty( $this->fields ) ) {
 			$this->fields = [
+				'breadcrumbs'   => fn (): ?array => $this->get_breadcrumbs(),
 				'title'         => function (): ?string {
 					$title = $this->helper->get_title();
 
@@ -163,6 +159,34 @@ abstract class Seo extends Model {
 				},
 			];
 		}
+	}
+
+	/**
+	 * Gets and parses the breadcrumbs for the object.
+	 *
+	 * @return ?array<string, string|mixed>[] The breadcrumbs.
+	 */
+	protected function get_breadcrumbs(): ?array {
+		// Get the crumbs and shape them.
+		$crumbs      = RMBreadcrumbs::get()->get_crumbs();
+		$breadcrumbs = array_map(
+			static function ( $crumb ) {
+				return [
+					'text'     => $crumb[0] ?? null,
+					'url'      => $crumb[1] ?? null,
+					'isHidden' => ! empty( $crumb['hide_in_schema'] ),
+				];
+			},
+			$crumbs
+		);
+
+		// Pop the current item's title.
+		$remove_title = ( is_single( $this->database_id ) || is_page( $this->database_id ) ) && RMHelper::get_settings( 'general.breadcrumbs_remove_post_title' );
+		if ( $remove_title ) {
+			array_pop( $breadcrumbs );
+		}
+
+		return ! empty( $breadcrumbs ) ? $breadcrumbs : null;
 	}
 
 	/**
