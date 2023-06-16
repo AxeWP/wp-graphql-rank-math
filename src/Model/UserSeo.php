@@ -23,6 +23,13 @@ class UserSeo extends Seo {
 	protected $data;
 
 	/**
+	 * The global authordata at time of Model generation
+	 *
+	 * @var ?\WP_User
+	 */
+	protected $global_authordata;
+
+	/**
 	 * The settings prefix
 	 *
 	 * @var string
@@ -56,7 +63,7 @@ class UserSeo extends Seo {
 	 * {@inheritDoc}
 	 */
 	public function setup(): void {
-		global $wp_query, $post, $authordata;
+		global $wp_query, $post, $author, $authordata;
 
 		// Store variables for resetting at tear down.
 		$this->global_post       = $post;
@@ -77,7 +84,8 @@ class UserSeo extends Seo {
 			// Setup globals.
 			$wp_query->is_author         = true;
 			$GLOBALS['authordata']       = $this->data; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-			$wp_query->queried_object    = get_user_by( 'id', $this->data->ID );
+			$author                      = $this->data->ID; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound,SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable
+			$wp_query->queried_object    = $this->data;
 			$wp_query->queried_object_id = $this->data->ID;
 		}
 
@@ -91,8 +99,13 @@ class UserSeo extends Seo {
 	 * @return void
 	 */
 	public function tear_down() {
-		$GLOBALS['authordata'] = $this->global_authordata; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-		$GLOBALS['post']       = $this->global_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		global $author;
+		if ( $this->data instanceof \WP_User ) {
+			$author                = isset( $this->global_authordata ) ? $this->global_authordata->ID : null; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+			$GLOBALS['authordata'] = $this->global_authordata; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+			$GLOBALS['post']       = $this->global_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		}
+
 		wp_reset_postdata();
 	}
 

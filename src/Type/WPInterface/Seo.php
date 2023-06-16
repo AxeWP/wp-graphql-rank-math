@@ -8,7 +8,6 @@
 
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
-use RankMath\Frontend\Breadcrumbs as RMBreadcrumbs;
 use RankMath\Helper;
 use WPGraphQL\RankMath\Model\ContentNodeSeo;
 use WPGraphQL\RankMath\Model\ContentTypeSeo;
@@ -89,36 +88,6 @@ class Seo extends InterfaceType {
 			$fields['breadcrumbs'] = [
 				'type'        => [ 'list_of' => Breadcrumbs::get_type_name() ],
 				'description' => __( 'The breadcrumbs trail for the given object', 'wp-graphql-rank-math' ),
-				'resolve'     => static function ( $source ) {
-					if ( $source instanceof UserSeo ) {
-						// RankMath uses the global $author for generating crumbs.
-						global $author;
-
-						// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-						$author = $source->ID;
-					}
-
-					// Get the crumbs and shape them.
-					$crumbs      = RMBreadcrumbs::get()->get_crumbs();
-					$breadcrumbs = array_map(
-						static function ( $crumb ) {
-							return [
-								'text'     => $crumb[0] ?? null,
-								'url'      => $crumb[1] ?? null,
-								'isHidden' => ! empty( $crumb['hide_in_schema'] ),
-							];
-						},
-						$crumbs
-					);
-
-					// Pop the current item's title.
-					$remove_title = ( is_single( $source->database_id ) || is_page( $source->database_id ) ) && Helper::get_settings( 'general.breadcrumbs_remove_post_title' );
-					if ( $remove_title ) {
-						array_pop( $breadcrumbs );
-					}
-
-					return ! empty( $breadcrumbs ) ? $breadcrumbs : null;
-				},
 			];
 		}
 

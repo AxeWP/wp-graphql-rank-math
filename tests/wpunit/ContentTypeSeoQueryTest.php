@@ -1,13 +1,10 @@
 <?php
 
-use WPGraphQL\RankMath\Type\Enum\OpenGraphLocaleEnum;
-use WPGraphQL\RankMath\Type\Enum\TwitterCardTypeEnum;
 
 /**
  * Tests ContentType seo queries.
  */
 class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
-
 	public $admin;
 	public $tester;
 
@@ -45,6 +42,17 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		WPGraphQL::clear_schema();
 	}
 
+		/**
+		 * {@inheritDoc}
+		 */
+	public function tearDown(): void {
+		rank_math()->settings->set( 'general', 'breadcrumbs', false );
+
+		parent::tearDown();
+
+		$this->clearSchema();
+	}
+
 	/**
 	 * Tests rankMathSettings.general
 	 */
@@ -79,9 +87,9 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 							'seo',
 							[
 								$this->expectedField( 'breadcrumbTitle', 'Post' ),
-								$this->expectedField( 'canonicalUrl', static::IS_NULL ),
+								$this->expectedField( 'canonicalUrl', self::IS_NULL ),
 								$this->expectedField( 'description', 'Just another WordPress site' ),
-								$this->expectedField( 'focusKeywords', static::IS_NULL ),
+								$this->expectedField( 'focusKeywords', self::IS_NULL ),
 								$this->expectedField(
 									'robots',
 									[

@@ -60,13 +60,13 @@ class TermNodeSeo extends Seo {
 	public function setup(): void {
 		global $wp_query, $post;
 
-		/**
-		 * Store the global post before overriding
-		 */
+		// Store the global post before overriding.
 		$this->global_post = $post;
 
-		if ( $this->data instanceof WP_Term ) {
+		// Denylist globally-cached replacements.
+		add_filter( 'rank_math/replacements/non_cacheable', [ $this, 'non_cacheable_replacements' ] );
 
+		if ( $this->data instanceof WP_Term ) {
 			/**
 			 * Reset global post
 			 */
@@ -88,6 +88,12 @@ class TermNodeSeo extends Seo {
 						'tag' => $this->data->slug,
 					]
 				);
+			} else {
+				$wp_query->parse_query(
+					[
+						$this->data->taxonomy => $this->data->slug,
+					]
+				);
 			}
 
 			$wp_query->queried_object_id = $this->data->term_id;
@@ -104,7 +110,10 @@ class TermNodeSeo extends Seo {
 	 * @return void
 	 */
 	public function tear_down() {
+		remove_filter( 'rank_math/replacements/non_cacheable', [ $this, 'non_cacheable_replacements' ] );
+
 		$GLOBALS['post'] = $this->global_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+
 		wp_reset_postdata();
 	}
 
@@ -149,5 +158,21 @@ class TermNodeSeo extends Seo {
 			throw new UserError( $term_link->get_error_message() );
 		}
 		return $term_link;
+	}
+
+	/**
+	 * Adds SEO keys that should not be cached by the Rank Math replacements cache.
+	 *
+	 * @uses rank_math/replacements/non_cacheable
+	 *
+	 * @param string[] $args The keys that should not be cached.
+	 *
+	 * @return string[]
+	 */
+	public function non_cacheable_replacements( array $args ): array {
+		// This is necessary because RM (as of 1.0.117) does not set `term_description` to nocache.
+		$args[] = 'term_description';
+
+		return $args;
 	}
 }
