@@ -27,7 +27,7 @@
 		}
 	],
 	"require": {
-		"php": ">=7.4 || ^8.0 || ^8.1",
+		"php": ">=7.4",
 		"axepress/wp-graphql-plugin-boilerplate": "0.0.9"
 	},
 	"require-dev": {
@@ -114,10 +114,10 @@
 			"php ./vendor/bin/phpcs -i"
 		],
 		"check-cs": [
-			"php ./vendor/bin/phpcs src"
+			"php ./vendor/bin/phpcs"
 		],
 		"fix-cs": [
-			"php ./vendor/bin/phpcbf src"
+			"php ./vendor/bin/phpcbf"
 		],
 		"phpstan": [
 			"vendor/bin/phpstan analyze --ansi --memory-limit=1G"
