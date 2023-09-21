@@ -32,7 +32,7 @@ $I->sendPOST(
 		[
 			'query'     => '
 				query UserSeo( $id: ID! ) {
-					user( id: $id, idType: DATABASE_ID ){ 
+					user( id: $id, idType: DATABASE_ID ){
 						databaseId
 						seo {
 							fullHead

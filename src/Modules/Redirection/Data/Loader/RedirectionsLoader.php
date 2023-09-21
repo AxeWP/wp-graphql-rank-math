@@ -52,8 +52,8 @@ class RedirectionsLoader extends AbstractDataLoader {
 				throw new UserError(
 					sprintf(
 						// translators: %s is the redirection ID.
-						__( 'Redirection with ID "%s" does not exist.', 'wp-graphql-rank-math' ),
-						$key
+						esc_html__( 'Redirection with ID "%s" does not exist.', 'wp-graphql-rank-math' ),
+						esc_html( (string) $key )
 					),
 				);
 			}

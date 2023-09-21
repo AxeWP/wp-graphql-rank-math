@@ -48,8 +48,8 @@ class UserSeo extends Seo {
 			throw new Error(
 				sprintf(
 					// translators: post id .
-					__( 'Invalid user id %s passed to UserSeo model.', 'wp-graphql-rank-math' ),
-					$user_id,
+					esc_html__( 'Invalid user id %d passed to UserSeo model.', 'wp-graphql-rank-math' ),
+					absint( $user_id ),
 				)
 			);
 		}

@@ -16,7 +16,7 @@ $I->sendPOST(
 		[
 			'query' => '
 				query ContentTypeSeo {
-					contentType( id: "post", idType: NAME ){ 
+					contentType( id: "post", idType: NAME ){
 						name
 						seo {
 							fullHead

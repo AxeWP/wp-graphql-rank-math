@@ -43,8 +43,8 @@ class TermNodeSeo extends Seo {
 			throw new Error(
 				sprintf(
 					// translators: post id .
-					__( 'Invalid term id %s passed to TermNodeSeo model.', 'wp-graphql-rank-math' ),
-					$term_id,
+					esc_html__( 'Invalid term id %d passed to TermNodeSeo model.', 'wp-graphql-rank-math' ),
+					absint( $term_id ),
 				)
 			);
 		}
@@ -155,7 +155,7 @@ class TermNodeSeo extends Seo {
 		$term_link = get_term_link( $this->database_id );
 
 		if ( is_wp_error( $term_link ) ) {
-			throw new UserError( $term_link->get_error_message() );
+			throw new UserError( esc_html( $term_link->get_error_message() ) );
 		}
 		return $term_link;
 	}

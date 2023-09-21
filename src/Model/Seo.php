@@ -35,7 +35,7 @@ abstract class Seo extends Model {
 	/**
 	 * The current RankMath paper helper.
 	 *
-	 * @var \RankMath\Paper\Paper;
+	 * @var \RankMath\Paper\Paper
 	 */
 	protected $helper;
 
@@ -51,8 +51,8 @@ abstract class Seo extends Model {
 	 *
 	 * It's stored here to avoid having to query it multiple times.
 	 *
-	 * A `false` value is used to determine whether an attempt has already been made to fetch it. 
-	 * 
+	 * A `false` value is used to determine whether an attempt has already been made to fetch it.
+	 *
 	 * @var string|false|null
 	 */
 	protected $full_head;
@@ -67,13 +67,13 @@ abstract class Seo extends Model {
 	/**
 	 * Constructor.
 	 *
-	 * @param \WP_User|\WP_Term|\WP_Post|\WP_Post_Type $object .
+	 * @param \WP_User|\WP_Term|\WP_Post|\WP_Post_Type $wp_object .
 	 * @param string                                   $capability .
 	 * @param string[]                                 $allowed_fields .
 	 */
-	public function __construct( $object, $capability = '', $allowed_fields = [] ) {
+	public function __construct( $wp_object, $capability = '', $allowed_fields = [] ) {
 		$this->full_head = false;
-		$this->data      = $object;
+		$this->data      = $wp_object;
 
 		$allowed_fields = array_merge(
 			[
@@ -129,7 +129,7 @@ abstract class Seo extends Model {
 					return $this->helper->get_robots() ?: null;
 				},
 				'canonicalUrl'  => function (): ?string {
-					return $this->helper->get_canonical() ?: null; 
+					return $this->helper->get_canonical() ?: null;
 				},
 				'focusKeywords' => function (): ?array {
 					$keywords = $this->helper->get_keywords();
@@ -194,11 +194,11 @@ abstract class Seo extends Model {
 	 *
 	 * @param string $key The local meta key.
 	 * @param string $fallback Optional. The settings meta key.
-	 * @param string $default Optional. The default value.
+	 * @param string $default_value Optional. The default value.
 	 *
 	 * @return mixed|null
 	 */
-	protected function get_meta( string $key, string $fallback = '', string $default = '' ) {
+	protected function get_meta( string $key, string $fallback = '', string $default_value = '' ) {
 		$value = null;
 		if ( $this->data instanceof \WP_Post ) {
 			$value = RMHelper::get_post_meta( $key, $this->database_id );
@@ -209,13 +209,13 @@ abstract class Seo extends Model {
 		}
 
 		if ( empty( $value ) && ! empty( $fallback ) ) {
-			$value = RMHelper::get_settings( "titles.{$fallback}", $default );
+			$value = RMHelper::get_settings( "titles.{$fallback}", $default_value );
 			if ( ! empty( $value ) ) {
 				$value = RMHelper::replace_vars( $value, $this->data );
 			}
 		}
 
-		return ( ! empty( $value ) ? $value : $default ) ?: null;
+		return ( ! empty( $value ) ? $value : $default_value ) ?: null;
 	}
 
 	/**

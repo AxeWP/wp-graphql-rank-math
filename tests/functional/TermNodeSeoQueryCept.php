@@ -40,7 +40,7 @@ $I->sendPOST(
 		[
 			'query'     => '
 				query TermNodeSeo( $id: ID! ) {
-				termNode( id: $id, idType: DATABASE_ID ){ 
+				termNode( id: $id, idType: DATABASE_ID ){
 					databaseId
 					seo {
 						fullHead

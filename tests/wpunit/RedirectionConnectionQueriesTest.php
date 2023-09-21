@@ -138,7 +138,7 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 			[
 				'first' => 2,
 			],
-			$graphql_args 
+			$graphql_args
 		);
 
 
@@ -204,7 +204,7 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 			[
 				'last' => 2,
 			],
-			$graphql_args 
+			$graphql_args
 		);
 		unset( $variables['first'] );
 
@@ -231,7 +231,7 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 			[
 				'last' => 2,
 			],
-			$graphql_args 
+			$graphql_args
 		);
 
 
@@ -295,7 +295,7 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 			[
 				'first' => 2,
 			],
-			$graphql_args 
+			$graphql_args
 		);
 		unset( $variables['last'] );
 

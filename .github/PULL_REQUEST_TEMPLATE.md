@@ -26,4 +26,4 @@ Thanks for taking the time to submit a Pull Request.
 - [ ] My code follows the WordPress Coding Standards. <!-- Check code: `composer run check-cs`, Guidelines: https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/ -->
 - [ ] My code has proper inline documentation. <!-- Guidelines: https://developer.wordpress.org/coding-standards/inline-documentation-standards/php/ -->
 - [ ] I have added unit tests to verify the code works as intended.
-- [ ] The changes in this PR have been noted in CHANGELOG.md 
+- [ ] The changes in this PR have been noted in CHANGELOG.md

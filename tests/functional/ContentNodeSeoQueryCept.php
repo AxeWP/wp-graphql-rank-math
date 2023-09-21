@@ -40,7 +40,7 @@ $I->sendPOST(
 		[
 			'query'     => '
 				query contentNode( $id: ID!, $idType: ContentNodeIdTypeEnum ) {
-					contentNode( id: $id, idType: $idType ){ 
+					contentNode( id: $id, idType: $idType ){
 						databaseId
 						seo {
 							fullHead

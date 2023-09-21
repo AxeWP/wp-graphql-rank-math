@@ -10,7 +10,7 @@ License: GPL-3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
-== Upgrade Notice == 
+== Upgrade Notice ==
 == Frequently Asked Questions ==
 == Screenshots ==
 == Changelog ==
