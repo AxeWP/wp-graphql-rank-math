@@ -1,8 +1,8 @@
 === WPGraphQL for Rank Math ===
 Contributors: axepress, justlevine
 Tags: GraphQL, Gatsby, Headless, WPGraphQL, React, Rest, RankMath, Seo, Schema
-Requires at least: 5.4.1
-Tested up to: 6.2.2
+Requires at least: 5.6
+Tested up to: 6.3.1
 Requires PHP: 7.4
 Requires WPGraphQL: 1.8.1
 Stable tag: 0.0.14

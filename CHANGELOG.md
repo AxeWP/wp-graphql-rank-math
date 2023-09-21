@@ -4,6 +4,8 @@
 
 - chore: Update Composer dev-dependencies.
 - chore: Update WPGraphQL Coding Standards to v2.0.0-beta and lint.
+- ci: Test Plugin compatibility with WordPress 6.3.
+- chore: fix minimum supported WordPress version to be 5.6, which is the minimum requirement for RankMath 1.0.90.
 
 ## v0.0.14
 - fix: Fetch the correct SEO data when resolving custom taxonomy terms. Props @lucguerraz
