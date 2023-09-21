@@ -48,8 +48,8 @@ class ContentNodeSeo extends Seo {
 			throw new Error(
 				sprintf(
 					// translators: post id .
-					__( 'Invalid post id %s passed to ContentNodeSeo model.', 'wp-graphql-rank-math' ),
-					$post_id,
+					esc_html__( 'Invalid post id %d passed to ContentNodeSeo model.', 'wp-graphql-rank-math' ),
+					absint( $post_id ),
 				)
 			);
 		}
@@ -205,7 +205,7 @@ class ContentNodeSeo extends Seo {
 		$permalink = get_permalink( $this->database_id );
 
 		if ( false === $permalink ) {
-			throw new UserError( __( 'There is no URI for the provided content node', 'wp-graphql-rank-math' ) );
+			throw new UserError( esc_html__( 'There is no URI for the provided content node', 'wp-graphql-rank-math' ) );
 		}
 
 		return $permalink;

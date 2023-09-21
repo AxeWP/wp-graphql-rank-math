@@ -53,7 +53,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 	protected function get_query() : string {
 		return '
 			query contentNode( $id: ID!, $idType: ContentNodeIdTypeEnum, $asPreview: Boolean ) {
-				contentNode( id: $id, idType: $idType, asPreview: $asPreview ){ 
+				contentNode( id: $id, idType: $idType, asPreview: $asPreview ){
 					databaseId
 					seo {
 						breadcrumbs {

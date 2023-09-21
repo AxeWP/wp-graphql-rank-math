@@ -49,7 +49,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 		$query = '
 			query UserSeo( $id: ID! ) {
-				user( id: $id, idType: DATABASE_ID ){ 
+				user( id: $id, idType: DATABASE_ID ){
 					seo {
 						breadcrumbs {
 							text

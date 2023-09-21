@@ -3,6 +3,7 @@
 ## Unreleased
 
 - chore: Update Composer dev-dependencies.
+- chore: Update WPGraphQL Coding Standards to v2.0.0-beta and lint.
 
 ## v0.0.14
 - fix: Fetch the correct SEO data when resolving custom taxonomy terms. Props @lucguerraz

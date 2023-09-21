@@ -83,7 +83,7 @@ class TermNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 		$query = '
 			query TermNodeSeo( $id: ID! ) {
-				termNode( id: $id, idType: DATABASE_ID ){ 
+				termNode( id: $id, idType: DATABASE_ID ){
 					seo {
 						breadcrumbs {
 							text

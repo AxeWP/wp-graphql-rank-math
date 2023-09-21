@@ -25,7 +25,7 @@ class Settings extends Model {
 
 	/**
 	 * Array of active modules
-	 * 
+	 *
 	 * @var string[]
 	 */
 	protected array $active_modules;
@@ -41,7 +41,7 @@ class Settings extends Model {
 		$settings     = $settings_obj->all();
 
 		if ( empty( $settings ) ) {
-			throw new Exception( __( 'The Rank Math settings cannot be found', 'wp-graphql-rank-math' ) );
+			throw new Exception( esc_html__( 'The Rank Math settings cannot be found', 'wp-graphql-rank-math' ) );
 		}
 
 		$this->data = $settings;

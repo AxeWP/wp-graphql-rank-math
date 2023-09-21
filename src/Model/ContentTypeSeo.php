@@ -41,8 +41,8 @@ class ContentTypeSeo extends Seo {
 			throw new Error(
 				sprintf(
 					// translators: post type .
-					__( 'Invalid post type %s passed to ContentTypeSeo model.', 'wp-graphql-rank-math' ),
-					$post_type,
+					esc_html__( 'Invalid post type %s passed to ContentTypeSeo model.', 'wp-graphql-rank-math' ),
+					esc_html( $post_type ),
 				)
 			);
 		}
@@ -93,7 +93,7 @@ class ContentTypeSeo extends Seo {
 		$term_link = get_post_type_archive_link( $this->data->name );
 
 		if ( false === $term_link ) {
-			throw new UserError( __( 'There is no archive URI for the provided post type', 'wp-graphql-rank-math' ) );
+			throw new UserError( esc_html__( 'There is no archive URI for the provided post type', 'wp-graphql-rank-math' ) );
 		}
 
 		return $term_link;

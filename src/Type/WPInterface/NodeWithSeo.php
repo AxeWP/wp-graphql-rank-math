@@ -83,8 +83,8 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 						throw new UserError(
 							sprintf(
 								/* translators: %s: The name of the node type */
-								__( 'The %s type does not have a corresponding SEO model class.', 'wp-graphql-rank-math' ),
-								get_class( $source )
+								esc_html__( 'The %s type does not have a corresponding SEO model class.', 'wp-graphql-rank-math' ),
+								esc_html( get_class( $source ) )
 							)
 						);
 					}

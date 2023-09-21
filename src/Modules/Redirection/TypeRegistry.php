@@ -71,7 +71,7 @@ class TypeRegistry implements Registrable {
 		];
 
 		return array_merge( $existing_classes, $classes_to_register );
-	} 
+	}
 
 	/**
 	 * List of Object classes to register.

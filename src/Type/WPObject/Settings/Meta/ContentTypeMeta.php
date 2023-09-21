@@ -203,8 +203,8 @@ class ContentTypeMeta extends ObjectType {
 						throw new UserError(
 							sprintf(
 								// translators: taxonomy name.
-								__( 'The %s post type is not available in WPGraphQL', 'wp-graphql-rank-math' ),
-								$source
+								esc_html__( 'The %s post type is not available in WPGraphQL', 'wp-graphql-rank-math' ),
+								esc_html( $source )
 							)
 						);
 					}

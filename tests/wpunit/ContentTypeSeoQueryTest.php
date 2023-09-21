@@ -59,7 +59,7 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 	public function testContentTypeSeo() {
 		$query = '
 			query ContentTypeSeo {
-				contentType( id: "post", idType: NAME ){ 
+				contentType( id: "post", idType: NAME ){
 					seo {
 						breadcrumbTitle
 						canonicalUrl

@@ -104,7 +104,7 @@ class OpenGraphMeta extends ObjectType {
 							'label' => $source['twitter'][ 'label' . $counter ],
 							'data'  => $source['twitter'][ 'data' . $counter ],
 						];
-						$counter++;
+						++$counter;
 					}
 
 					return $values ?: null;
