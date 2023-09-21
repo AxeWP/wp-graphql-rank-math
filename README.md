@@ -20,8 +20,8 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 
 ## System Requirements
 
-* PHP 7.4+ | 8.0+ | 8.1+
-* WordPress 5.4.1+
+* PHP 7.4 - 8.1+
+* WordPress 5.6+
 * WPGraphQL 1.8.1+
 * RankMath SEO 1.0.90+
 
