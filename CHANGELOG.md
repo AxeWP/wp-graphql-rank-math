@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- chore: Update Composer dev-dependencies.
+
 ## v0.0.14
 - fix: Fetch the correct SEO data when resolving custom taxonomy terms. Props @lucguerraz
 - dev!: Move `SEO::$global_authordata` property to the `UserSeo` model and make nullable.
@@ -72,7 +74,7 @@
 
 ## v0.0.4 - OpenGraph Support
 - feat: Add `openGraph` data to `BaseSeoFields`.
-- chore: Update Composer deps. 
+- chore: Update Composer deps.
 
 ## v0.0.3
 - fix: Ensure `Model\Seo::focus_keywords` callback returns an array.
