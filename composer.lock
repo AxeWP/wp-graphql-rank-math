@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24e71a7219e40d232101a7df64146335",
+    "content-hash": "932174acdf200c50ef9bd69c2dba23aa",
     "packages": [
         {
             "name": "axepress/wp-graphql-plugin-boilerplate",
@@ -228,16 +228,16 @@
         },
         {
             "name": "axepress/wp-graphql-stubs",
-            "version": "v1.14.10",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AxeWP/wp-graphql-stubs.git",
-                "reference": "60601f1fe1798ba8168242320b36907f4fe2bb3b"
+                "reference": "1455a46043f758b77a49337c9520cb79c5a0a31f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AxeWP/wp-graphql-stubs/zipball/60601f1fe1798ba8168242320b36907f4fe2bb3b",
-                "reference": "60601f1fe1798ba8168242320b36907f4fe2bb3b",
+                "url": "https://api.github.com/repos/AxeWP/wp-graphql-stubs/zipball/1455a46043f758b77a49337c9520cb79c5a0a31f",
+                "reference": "1455a46043f758b77a49337c9520cb79c5a0a31f",
                 "shasum": ""
             },
             "require": {
@@ -268,7 +268,7 @@
             ],
             "support": {
                 "issues": "https://github.com/AxeWP/wp-graphql-stubs/issues",
-                "source": "https://github.com/AxeWP/wp-graphql-stubs/tree/v1.14.10"
+                "source": "https://github.com/AxeWP/wp-graphql-stubs/tree/v1.14.0"
             },
             "funding": [
                 {
@@ -276,7 +276,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-08-04T12:31:37+00:00"
+            "time": "2023-03-09T01:45:16+00:00"
         },
         {
             "name": "behat/gherkin",
