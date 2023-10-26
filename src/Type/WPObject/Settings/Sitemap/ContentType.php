@@ -41,7 +41,7 @@ class ContentType extends ObjectType implements TypeWithConnections {
 					$excluded_post_ids = Helper::get_settings( 'sitemap.exclude_posts' );
 
 					if ( ! empty( $excluded_post_ids ) ) {
-						$resolver->set_query_arg( 'post__not_in', $excluded_post_ids );
+						$resolver->set_query_arg( 'post__not_in', array_map( 'absint', explode( ',', $excluded_post_ids ) ) );
 					}
 
 					return $resolver->get_connection();
