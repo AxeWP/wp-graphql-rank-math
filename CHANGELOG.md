@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.0.16
+
+- fix: Return sitemap without excluded IDs.
+
 ## v0.0.15
 
 - chore: Update Composer dev-dependencies.
