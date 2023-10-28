@@ -2,9 +2,7 @@
 
 ## Unreleased
 
-## v0.0.16
-
-- fix: Return sitemap without excluded IDs.
+- fix: Correctly parse excluded Post/Term IDs when returning nodes for Sitemap. Props @marcinkrzeminski
 
 ## v0.0.15
 
