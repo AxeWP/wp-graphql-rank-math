@@ -30,7 +30,7 @@ class Taxonomy extends ObjectType implements TypeWithConnections {
 		return [
 			'connectedTerms' => [
 				'toType'      => 'TermNode',
-				'description' => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
+				'description' => __( 'The connected terms whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, $args, $context, $info ) {
 					if ( empty( $source['isInSitemap'] ) ) {
 						return null;
@@ -39,6 +39,7 @@ class Taxonomy extends ObjectType implements TypeWithConnections {
 					$resolver = new TermObjectConnectionResolver( $source, $args, $context, $info, $source['type'] );
 
 					$excluded_term_ids = Helper::get_settings( 'sitemap.exclude_terms' );
+					$excluded_term_ids = ! empty( $excluded_term_ids ) ? array_map( 'absint', explode( ',', $excluded_term_ids ) ) : null;
 
 					if ( ! empty( $excluded_term_ids ) ) {
 						$resolver->set_query_arg( 'exclude', $excluded_term_ids );

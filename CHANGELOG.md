@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- fix: Correctly parse excluded Post/Term IDs when returning nodes for Sitemap. Props @marcinkrzeminski
+
 ## v0.0.15
 
 - chore: Update Composer dev-dependencies.
