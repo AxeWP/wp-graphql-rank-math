@@ -30,7 +30,7 @@ class ContentType extends ObjectType implements TypeWithConnections {
 		return [
 			'connectedContentNodes' => [
 				'toType'      => 'ContentNode',
-				'description' => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
+				'description' => __( 'The connected content nodes whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, $args, $context, $info ) {
 					if ( empty( $source['isInSitemap'] ) ) {
 						return null;
@@ -39,9 +39,10 @@ class ContentType extends ObjectType implements TypeWithConnections {
 					$resolver = new PostObjectConnectionResolver( $source, $args, $context, $info, $source['type'] );
 
 					$excluded_post_ids = Helper::get_settings( 'sitemap.exclude_posts' );
+					$excluded_post_ids = ! empty( $excluded_post_ids ) ? array_map( 'absint', explode( ',', $excluded_post_ids ) ) : null;
 
 					if ( ! empty( $excluded_post_ids ) ) {
-						$resolver->set_query_arg( 'post__not_in', array_map( 'absint', explode( ',', $excluded_post_ids ) ) );
+						$resolver->set_query_arg( 'post__not_in', $excluded_post_ids );
 					}
 
 					return $resolver->get_connection();
