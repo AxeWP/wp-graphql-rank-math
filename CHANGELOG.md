@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.0.16
+
 - fix: Correctly parse excluded Post/Term IDs when returning nodes for Sitemap. Props @marcinkrzeminski
 - chore: Update Composer dev-dependencies.
 - chore!: Bump minimum supported WPGraphQL version to v1.14.0.
