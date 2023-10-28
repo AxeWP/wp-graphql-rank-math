@@ -3,6 +3,12 @@
 ## Unreleased
 
 - fix: Correctly parse excluded Post/Term IDs when returning nodes for Sitemap. Props @marcinkrzeminski
+- chore: Update Composer dev-dependencies.
+- chore!: Bump minimum supported WPGraphQL version to v1.14.0.
+- chore!: Bump minimum supported RankMath version to v1.0.201.
+- chore!: Bump minimum supported WordPress version to v6.0.
+- ci: Test Plugin Compatibility with WP 6.3.2 and PHP 8.2.
+
 
 ## v0.0.15
 

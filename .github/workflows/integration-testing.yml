@@ -21,10 +21,10 @@ jobs:
 
     strategy:
       matrix:
-        php: ["7.4", "8.0", "8.1"]
-        wordpress: ["6.3", "6.2", "6.1", "6.0", "5.9"]
+        php: ["7.4", "8.0", "8.1", "8.2"]
+        wordpress: ["6.3", "6.2", "6.1", "6.0" ]
         include:
-          - php: "8.1"
+          - php: "8.2"
             wordpress: "6.3"
             coverage: 1
         exclude:
@@ -32,6 +32,8 @@ jobs:
             wordpress: "6.3"
           - php: "7.4"
             wordpress: "6.2"
+          - php: "8.2"
+            wordpress: "6.0"
       fail-fast: false
 
     steps:
