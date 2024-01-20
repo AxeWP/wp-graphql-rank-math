@@ -90,8 +90,6 @@ abstract class Seo extends Model {
 		);
 
 		parent::__construct( $capability, $allowed_fields );
-
-		rank_math()->variables->setup();
 		// Seat up RM Globals.
 		$url = $this->get_object_url();
 
@@ -141,9 +139,9 @@ abstract class Seo extends Model {
 					return $head ?: null;
 				},
 				'jsonLd'        => static function () {
-					ob_start();
 					$json = new \RankMath\Schema\JsonLD();
 					$json->setup();
+					ob_start();
 					$json->json_ld();
 					$output = ob_get_clean();
 
@@ -272,7 +270,7 @@ abstract class Seo extends Model {
 	protected function parse_og_tags( string $head ): ?array {
 		$tags = [];
 
-		if ( preg_match_all( '/<meta (property|name)="([^"]+):([^"]+)" content="([^"]+)" \/>/', $head, $matches ) ) {
+		if ( preg_match_all( '/<meta (property|name)="([^"]+)" content="([^"]+)" \/>/', $head, $matches ) ) {
 			$this->save_tags_from_matches( $matches, $tags );
 		}
 
@@ -287,19 +285,22 @@ abstract class Seo extends Model {
 	 */
 	private function save_tags_from_matches( array $matches, array &$tags ): void {
 		// $matches[2] contains the OpenGraph prefix (og, article, twitter, etc ).
-		foreach ( $matches[2] as $key => $prefix ) {
-			$property = $matches[3][ $key ];
-			$value    = $matches[4][ $key ];
+		foreach ( $matches[2] as $key => $match ) {
+			// Each `:` is a new level.
+			$parts   = explode( ':', $match );
+			$pointer = &$tags;
 
-			// If meta tag already exists, save the values as an array.
-			if ( isset( $tags[ $prefix ][ $property ] ) ) {
-				if ( ! is_array( $tags[ $prefix ][ $property ] ) ) {
-					$tags[ $prefix ][ $property ] = [ $tags[ $prefix ][ $property ] ];
+			// Loop through each part and build the array.
+			foreach ( $parts as $part ) {
+				if ( ! isset( $pointer[ $part ] ) ) {
+					$pointer[ $part ] = [];
 				}
-				$tags[ $prefix ][ $property ][] = $value;
-			} else {
-				$tags[ $prefix ][ $property ] = $value;
+
+				$pointer = &$pointer[ $part ];
 			}
+
+			// Save the value.
+			$pointer = $matches[3][ $key ];
 		}
 	}
 
@@ -330,6 +331,7 @@ abstract class Seo extends Model {
 
 		// Setup Rank Math.
 		rank_math()->variables->setup();
+		rank_math()->manager->load_modules();
 		new \RankMath\Frontend\Frontend();
 	}
 }
