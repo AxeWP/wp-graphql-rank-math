@@ -90,6 +90,7 @@ abstract class Seo extends Model {
 		);
 
 		parent::__construct( $capability, $allowed_fields );
+
 		// Seat up RM Globals.
 		$url = $this->get_object_url();
 

@@ -7,6 +7,7 @@
  * @property \RankMath\Settings $settings
  * @property \RankMath\Frontend_SEO_Score $frontend_seo_score
  * @property \RankMath\Replace_Variables\Manager $variables
+ * @property \RankMath\Module\Manager $manager
  */
 final class RankMath {
 }

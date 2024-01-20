@@ -7,6 +7,7 @@
 class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	public $admin;
 	public $tester;
+	public $database_ids = [];
 
 	/**
 	 * {@inheritDoc}
@@ -39,6 +40,15 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		// Set site subtitle to Just another WordPress site. Since WP 6.1 removes it
 		update_option( 'blogdescription', 'Just another WordPress site' );
 
+		for( $i = 0; $i < 5; $i++ ) {
+			$this->database_ids[] = $this->factory()->post->create(
+				[
+					'post_type' => 'post',
+					'post_date' => date( 'Y-m-d H:i:s', strtotime( "-{$i} days" ) ),
+				]
+			);
+		}
+
 		WPGraphQL::clear_schema();
 	}
 
@@ -47,6 +57,10 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		 */
 	public function tearDown(): void {
 		rank_math()->settings->set( 'general', 'breadcrumbs', false );
+
+		foreach( $this->database_ids as $id ) {
+			wp_delete_post( $id, true );
+		}
 
 		parent::tearDown();
 
@@ -70,6 +84,23 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 						}
 						robots
 						title
+					}
+					contentNodes {
+						nodes {
+							... on Post {
+								title
+								date
+							}
+							seo {
+								breadcrumbTitle
+								title
+								openGraph {
+									articleMeta {
+										publishedTime
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -104,6 +135,18 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 				),
 			]
 		);
+
+		// Test the content nodes keep their state.
+		$actual_content_nodes = $actual['data']['contentType']['contentNodes']['nodes'];
+		$this->assertNotEmpty( $actual_content_nodes );
+		foreach( $actual_content_nodes as $node ) {
+			$breadcrumb = $node['seo']['breadcrumbTitle'] ?? null;
+			$date = $node['seo']['openGraph']['articleMeta']['publishedTime'] ?? null;
+			$this->assertNotEmpty( $breadcrumb );
+			$this->assertNotEmpty( $date );
+			$this->assertStringStartsWith( $breadcrumb, $node['title'] );
+			$this->assertStringStartsWith( $node['date'], $date );
+		}
 
 		// Test individual values:
 		$this->assertStringContainsString( '<script type="application/ld+json" class="rank-math-schema">', $actual['data']['contentType']['seo']['jsonLd']['raw'] );
