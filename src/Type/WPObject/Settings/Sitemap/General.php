@@ -33,8 +33,9 @@ class General extends ObjectType {
 	public static function get_fields(): array {
 		return [
 			'canPingSearchEngines'    => [
-				'type'        => 'Boolean',
-				'description' => __( 'Whether to notify search engines when the sitemap is updated.', 'wp-graphql-rank-math' ),
+				'type'              => 'Boolean',
+				'deprecationReason' => __( 'This feature is no longer supported by Google, and has been removed from RankMath v1.0.211+.', 'wp-graphql-rank-math' ),
+				'description'       => __( 'Whether to notify search engines when the sitemap is updated.', 'wp-graphql-rank-math' ),
 			],
 			'excludedPostDatabaseIds' => [
 				'type'        => [ 'list_of' => 'Int' ],

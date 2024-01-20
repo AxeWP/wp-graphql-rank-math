@@ -362,7 +362,7 @@ class Settings extends Model {
 	 */
 	private function sitemap_general_fields(): array {
 		return [
-			'canPingSearchEngines'    => ! empty( $this->data['sitemap']['ping_search_engines'] ),
+			'canPingSearchEngines'    => false,
 			'excludedPostDatabaseIds' => ! empty( $this->data['sitemap']['exclude_posts'] ) ? array_map( 'absint', explode( ',', $this->data['sitemap']['exclude_posts'] ) ) : null,
 			'excludedTermDatabaseIds' => ! empty( $this->data['sitemap']['exclude_terms'] ) ? array_map( 'absint', explode( ',', $this->data['sitemap']['exclude_terms'] ) ) : null,
 			'hasFeaturedImage'        => ! empty( $this->data['sitemap']['include_featured_image'] ),
