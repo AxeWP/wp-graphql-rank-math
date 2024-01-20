@@ -27,9 +27,9 @@ class CoreSchemaFilters implements Registrable {
 	/**
 	 * Prefixes all plugin GraphQL types.
 	 *
-	 * @param string $type_name the non-prefixed type name.
+	 * @param ?string $type_name the non-prefixed type name.
 	 */
-	public static function get_type_prefix( string $type_name = null ): string {
+	public static function get_type_prefix( ?string $type_name = null ): string {
 		return ! empty( $type_name ) ? $type_name : 'RankMath';
 	}
 

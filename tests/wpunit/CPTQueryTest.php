@@ -118,9 +118,6 @@ class CPTQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 							title
 							type
 							url
-							
-							
-							
 						}
 					}
 				}

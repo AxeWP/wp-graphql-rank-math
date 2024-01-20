@@ -28,7 +28,7 @@ abstract class Seo extends Model {
 	/**
 	 * The database id for the current object.
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected int $database_id;
 
