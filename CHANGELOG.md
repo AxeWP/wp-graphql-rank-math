@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- fix: Deprecate `rankMathSettings.sitemaps.general.canPingSearchEngines`, as it was remove in RankMath v1.0.211.
+
 ## v0.0.16
 
 - fix: Correctly parse excluded Post/Term IDs when returning nodes for Sitemap. Props @marcinkrzeminski

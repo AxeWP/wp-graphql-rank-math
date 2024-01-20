@@ -504,7 +504,6 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						}
 					}
 					general {
-						canPingSearchEngines
 						excludedPostDatabaseIds
 						excludedTermDatabaseIds
 						hasFeaturedImage
@@ -573,7 +572,6 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 								$this->expectedObject(
 									'general',
 									[
-										$this->expectedField( 'canPingSearchEngines', true ),
 										$this->expectedField( 'excludedPostDatabaseIds', static::IS_NULL ),
 										$this->expectedField( 'excludedTermDatabaseIds', static::IS_NULL ),
 										$this->expectedField( 'hasFeaturedImage', false ),
