@@ -268,5 +268,9 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 				),
 			]
 		);
+
+		// cleanup.
+		wp_delete_post( $draft_id, true );
+		wp_delete_post( $revision_id, true );
 	}
 }

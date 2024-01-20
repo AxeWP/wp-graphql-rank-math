@@ -23,7 +23,7 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 			]
 		);
 
-		$page_id = $this->factory()->post->create(
+		$this->page_id = $this->factory()->post->create(
 			[
 				'post_type'    => 'page',
 				'post_status'  => 'publish',
@@ -43,7 +43,7 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 		);
 
 		update_option( 'show_on_front', 'page' );
-		update_option( 'page_for_posts', $page_id );
+		update_option( 'page_for_posts', $this->page_id );
 
 		Helper::update_modules( [ 'sitemap' => 'on' ] );
 		rank_math()->settings->set( 'general', 'breadcrumbs', false );

@@ -139,6 +139,7 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		// Test the content nodes keep their state.
 		$actual_content_nodes = $actual['data']['contentType']['contentNodes']['nodes'];
 		$this->assertNotEmpty( $actual_content_nodes );
+
 		foreach( $actual_content_nodes as $node ) {
 			$breadcrumb = $node['seo']['breadcrumbTitle'] ?? null;
 			$date = $node['seo']['openGraph']['articleMeta']['publishedTime'] ?? null;
