@@ -25,7 +25,7 @@ class ContentNodeSeo extends Seo {
 	/**
 	 * The database id for the current object.
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected int $database_id;
 
