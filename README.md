@@ -11,7 +11,7 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 
 -----
 
-![Packagist License](https://img.shields.io/packagist/l/axepress/wp-graphql-rank-math?color=green) ![Packagist Version](https://img.shields.io/packagist/v/axepress/wp-graphql-rank-math?label=stable) ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/AxeWP/wp-graphql-rank-math/0.0.16) ![GitHub forks](https://img.shields.io/github/forks/AxeWP/wp-graphql-rank-math?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/AxeWP/wp-graphql-rank-math?style=social)<br />
+![Packagist License](https://img.shields.io/packagist/l/axepress/wp-graphql-rank-math?color=green) ![Packagist Version](https://img.shields.io/packagist/v/axepress/wp-graphql-rank-math?label=stable) ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/AxeWP/wp-graphql-rank-math/0.1.0) ![GitHub forks](https://img.shields.io/github/forks/AxeWP/wp-graphql-rank-math?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/AxeWP/wp-graphql-rank-math?style=social)<br />
 ![CodeQuality](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/code-quality.yml?branch=develop&label=Code%20Quality)
 ![Integration Tests](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/integration-testing.yml?branch=develop&label=Integration%20Testing)
 ![Coding Standards](https://img.shields.io/github/actions/workflow/status/axewp/wp-graphql-rank-math/code-standard.yml?branch=develop&label=WordPress%20Coding%20Standards)
@@ -32,6 +32,7 @@ Adds WPGraphQL support for [Rank Math SEO](https://rankmath.com/). Built with [W
 3. Download the [latest release](https://github.com/AxeWP/wp-graphql-rank-math/releases) `.zip` file, upload it to your WordPress install, and activate the plugin.
 
 ### With Composer
+
 ```console
 composer require axepress/wp-graphql-rank-math
 ```
@@ -55,7 +56,6 @@ Basic support is provided for free, both in [this repo](https://github.com/axewp
 Priority support and custom development is available to [our Sponsors](https://github.com/sponsors/AxeWP).
 
 <a href="https://github.com/sponsors/AxeWP" alt="GitHub Sponsors"><img src="https://img.shields.io/static/v1?label=Sponsor%20Us%20%40%20AxeWP&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86&style=for-the-badge" /></a>
-
 
 ## Supported Features
 
@@ -88,14 +88,14 @@ Priority support and custom development is available to [our Sponsors](https://g
 
 ### Getting Started ( 🎯 You are here! )
 
-- [System Requirements](#system-requirements)
-- [Installation](#quick-install)
+* [System Requirements](#system-requirements)
+* [Installation](#quick-install)
 
 ### Reference
 
-- [GraphQL Queries](./docs/reference/queries.md)
-- [WordPress Actions](./docs/reference/actions.md)
-- [WordPress Filters](./docs/reference/filters.md)
+* [GraphQL Queries](./docs/reference/queries.md)
+* [WordPress Actions](./docs/reference/actions.md)
+* [WordPress Filters](./docs/reference/filters.md)
 
 ## Testing
 

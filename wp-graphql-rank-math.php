@@ -7,7 +7,7 @@
  * Author: AxePress
  * Author URI: https://github.com/AxeWP
  * Update URI: https://github.com/AxeWP/wp-graphql-rank-math
- * Version: 0.0.16
+ * Version: 0.1.0
  * Text Domain: wp-graphql-rank-math
  * Domain Path: /languages
  * Requires at least: 6.0
@@ -20,7 +20,7 @@
  * @package WPGraphQL\RankMath
  * @author axepress
  * @license GPL-3
- * @version 0.0.16
+ * @version 0.1.0
  */
 
 // Exit if accessed directly.
