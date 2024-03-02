@@ -90,7 +90,7 @@ class OpenGraphMeta extends ObjectType {
 			'productMeta'       => [
 				'type'        => OpenGraph\Product::get_type_name(),
 				'description' => __( 'The Facebook OpenGraph meta values.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?array => ! empty( $source['og']['product'] ) ? $source['og']['product'] : null,
+				'resolve'     => static fn ( $source ) => ! empty( $source['product'] ) ? $source['product'] : null,
 			],
 			'slackEnhancedData' => [
 				'type'        => [ 'list_of' => OpenGraph\SlackEnhancedData::get_type_name() ],

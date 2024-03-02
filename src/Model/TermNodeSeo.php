@@ -97,7 +97,7 @@ class TermNodeSeo extends Seo {
 			}
 
 			$wp_query->queried_object_id = $this->data->term_id;
-			$wp_query->queried_object    = get_term( $this->data->term_id, $this->data->taxonomy );
+			$wp_query->queried_object    = $this->data;
 		}
 
 		parent::setup();
