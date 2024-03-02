@@ -31,7 +31,7 @@
 		"axepress/wp-graphql-plugin-boilerplate": "0.0.9"
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "^3.0",
+		"lucatume/wp-browser": "<3.5",
 		"codeception/lib-innerbrowser": "^1.0",
 		"codeception/module-asserts": "^1.0",
 		"codeception/module-cli": "^1.0",
