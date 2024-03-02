@@ -3,6 +3,7 @@
 ## Unreleased
 
 - fix: Deprecate `rankMathSettings.sitemaps.general.canPingSearchEngines`, as it was removed in RankMath v1.0.211.
+- chore: Pin WPBrowser to v3.4.x to avoid breaking changes in v3.5+.
 
 This release was sponsored by [Red Rocks Web Development](https://redrockswebdevelopment.com/) 😍.
 
