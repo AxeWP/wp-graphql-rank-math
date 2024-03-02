@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-- fix: Deprecate `rankMathSettings.sitemaps.general.canPingSearchEngines`, as it was remove in RankMath v1.0.211.
+- fix: Deprecate `rankMathSettings.sitemaps.general.canPingSearchEngines`, as it was removed in RankMath v1.0.211.
+
+This release was sponsored by [Red Rocks Web Development](https://redrockswebdevelopment.com/) 😍.
 
 ## v0.0.16
 
