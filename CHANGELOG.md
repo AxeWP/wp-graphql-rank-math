@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## v0.1.0
+
+This _minor_ release bumps the plugin version to 0.1.0! However, there are **no breaking changes** in this release.
+
+Additionally, we fixed a few bugs regarding `seo.openGraph` resolution, and deprecated a setting that was removed in RankMath v1.0.211.
+
+The reason for the version bump is to make it easier to update future releases in accordance with our [versioning policy](README.md#updating-and-versioning). While the plugin version number is indicative of the (projected) schema maturity and not the underlying code (which has been used in enteprise production environments for almost two years), the new features and improvements that would warrant major changes to the schema are currently blocked upstream. By bumping to v0.1.0, we can continue to push patch releases in the meantime without users having to worry about breaking changes.
+
+### What's changed
+
 - fix: Deprecate `rankMathSettings.sitemaps.general.canPingSearchEngines`, as it was removed in RankMath v1.0.211.
 - fix: Improve SEO `head` data fetching to load Rank Math modules more consistently.
 - fix: Correctly parse OG product meta data when resolving `seo.OpenGraph`. H/t @joanpzen
