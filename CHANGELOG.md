@@ -6,6 +6,7 @@
 - fix: Improve SEO `head` data fetching to load Rank Math modules more consistently.
 - fix: Correctly parse OG product meta data when resolving `seo.OpenGraph`. H/t @joanpzen
 - chore: Pin WPBrowser to v3.4.x to avoid breaking changes in v3.5+.
+- ci: Test plugin compatibility against WordPress 6.4.2
 
 This release was sponsored by [Red Rocks Web Development](https://redrockswebdevelopment.com/) 😍.
 

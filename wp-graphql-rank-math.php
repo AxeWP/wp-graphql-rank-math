@@ -11,7 +11,7 @@
  * Text Domain: wp-graphql-rank-math
  * Domain Path: /languages
  * Requires at least: 6.0
- * Tested up to: 6.3.2
+ * Tested up to: 6.4.2
  * Requires PHP: 7.4
  * WPGraphQL requires at least: 1.14.0
  * License: GPL-3
@@ -53,7 +53,7 @@ if ( ! function_exists( 'graphql_seo_constants' ) ) {
 	function graphql_seo_constants(): void {
 		// Plugin version.
 		if ( ! defined( 'WPGRAPHQL_SEO_VERSION' ) ) {
-			define( 'WPGRAPHQL_SEO_VERSION', '0.0.16' );
+			define( 'WPGRAPHQL_SEO_VERSION', '0.1.0' );
 		}
 
 		// Plugin Folder Path.
