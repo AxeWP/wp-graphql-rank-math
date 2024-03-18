@@ -32,25 +32,29 @@ class SocialMeta extends ObjectType {
 	 */
 	public static function get_fields(): array {
 		return [
-			'facebookPageUrl'   => [
+			'facebookPageUrl'    => [
 				'type'        => 'String',
 				'description' => __( 'The complete Facebook page URL.', 'wp-graphql-rank-math' ),
 			],
-			'facebookAuthorUrl' => [
+			'facebookAuthorUrl'  => [
 				'type'        => 'String',
 				'description' => __( 'The personal Facebook profile URL used to show authorship when articles are shared on Facebook.', 'wp-graphql-rank-math' ),
 			],
-			'facebookAdminId'   => [
+			'facebookAdminId'    => [
 				'type'        => [ 'list_of' => 'Int' ],
 				'description' => __( 'A list of numeric Facebook admin User Ids.', 'wp-graphql-rank-math' ),
 			],
-			'facebookAppId'     => [
+			'facebookAppId'      => [
 				'type'        => 'Int',
 				'description' => __( 'The facebook Facebook app ID.', 'wp-graphql-rank-math' ),
 			],
-			'twitterAuthorName' => [
+			'twitterAuthorName'  => [
 				'type'        => 'String',
 				'description' => __( 'Twitter Username of the auther used in the `twitter:creater` tag.', 'wp-graphql-rank-math' ),
+			],
+			'additionalProfiles' => [
+				'type'        => 'String',
+				'description' => __( 'Additional social profile URLs.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}
