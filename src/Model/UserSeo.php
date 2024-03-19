@@ -125,6 +125,7 @@ class UserSeo extends Seo {
 						return ! empty( $title ) ? html_entity_decode( $title, ENT_QUOTES ) : null;
 					},
 					'ID'              => fn (): int => $this->database_id,
+					'social'          => fn (): array => $this->meta_social_fields(),
 				]
 			);
 		}
@@ -144,5 +145,22 @@ class UserSeo extends Seo {
 	 */
 	protected function get_object_url(): string {
 		return get_author_posts_url( $this->database_id );
+	}
+
+	/**
+	 * Resolve meta social fields.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private function meta_social_fields(): array {
+		$facebook_profile_url = get_user_meta( $this->database_id, 'facebook', true );
+		$twitter_user_name    = get_user_meta( $this->database_id, 'twitter', true );
+		$additional_profiles  = get_user_meta( $this->database_id, 'additional_profile_urls', true );
+
+		return [
+			'facebookProfileUrl' => ! empty( $facebook_profile_url ) ? $facebook_profile_url : null,
+			'twitterUserName'    => ! empty( $twitter_user_name ) ? $twitter_user_name : null,
+			'additionalProfiles' => ! empty( $additional_profiles ) ? explode( ',', $additional_profiles ) : null,
+		];
 	}
 }

@@ -11,6 +11,7 @@ namespace WPGraphQL\RankMath\Type\WPObject;
 use WPGraphQL;
 use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo;
 use WPGraphQL\RankMath\Type\WPInterface\Seo;
+use WPGraphQL\RankMath\Type\WPInterface\SocialSeo;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
 
@@ -83,7 +84,7 @@ class SeoObjects implements Registrable {
 			graphql_format_type_name( 'RankMathUserSeo' ),
 			[
 				'description'     => __( 'The user object SEO data', 'wp-graphql-rank-math' ),
-				'interfaces'      => [ Seo::get_type_name() ],
+				'interfaces'      => [ Seo::get_type_name(), SocialSeo::get_type_name() ],
 				'fields'          => [],
 				'eagerlyLoadType' => true,
 			]
