@@ -53,7 +53,7 @@ class SocialMeta extends ObjectType {
 				'description' => __( 'Twitter Username of the auther used in the `twitter:creater` tag.', 'wp-graphql-rank-math' ),
 			],
 			'additionalProfiles' => [
-				'type'        => 'String',
+				'type'        => [ 'list_of' => 'String' ],
 				'description' => __( 'Additional social profile URLs.', 'wp-graphql-rank-math' ),
 			],
 		];
