@@ -297,7 +297,7 @@ abstract class Seo extends Model {
 				if ( ! isset( $pointer[ $part ] ) ) {
 					$pointer[ $part ] = [];
 				} elseif ( ! is_array( $pointer[ $part ] ) ) {
-					$pointer[ $part ] = [$pointer[ $part ]];
+					$pointer[ $part ] = [ $pointer[ $part ] ];
 				}
 
 				$pointer = &$pointer[ $part ];
