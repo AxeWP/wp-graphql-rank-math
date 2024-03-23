@@ -293,8 +293,11 @@ abstract class Seo extends Model {
 
 			// Loop through each part and build the array.
 			foreach ( $parts as $part ) {
+				// Ensure the part is an array.
 				if ( ! isset( $pointer[ $part ] ) ) {
 					$pointer[ $part ] = [];
+				} elseif ( ! is_array( $pointer[ $part ] ) ) {
+					$pointer[ $part ] = [$pointer[ $part ]];
 				}
 
 				$pointer = &$pointer[ $part ];

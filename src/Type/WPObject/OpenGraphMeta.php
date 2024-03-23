@@ -61,16 +61,10 @@ class OpenGraphMeta extends ObjectType {
 				'type'        => OpenGraph\Image::get_type_name(),
 				'description' => __( 'The OpenGraph image meta', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ): ?array {
-					$values = [];
-
-					// The URL is stored in it's own key.
-					if ( ! empty( $source['og']['image'] ) ) {
-						$values['url'] = $source['og']['image'];
-					}
-
-					// The rest of the data is stored in an array.
-					if ( ! empty( $source['og:image'] ) ) {
-						$values = array_merge( $values, $source['og:image'] );
+					$values = ! empty( $source['og']['image'] ) ? $source['og']['image'] : [];
+					
+					if ( ! empty( $source['og']['image'][0] ) ) {
+						$values['url'] = $source['og']['image'][0];
 					}
 
 					return ! empty( $values ) ? $values : null;

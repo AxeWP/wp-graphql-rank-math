@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- fix: Correctly resolve `seo.openGraph.image` field when parsed value is a string.
+
 ## v0.1.0
 
 This _minor_ release bumps the plugin version to 0.1.0! However, there are **no breaking changes** in this release.
