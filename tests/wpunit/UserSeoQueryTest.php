@@ -65,6 +65,11 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						}
 						robots
 						title
+						... on RankMathUserSeo {
+							additionalProfiles
+							facebookProfileUrl
+							twitterUserName
+						}
 					}
 				}
 			}
@@ -103,6 +108,9 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 									]
 								),
 								$this->expectedField( 'title', 'display - Test' ),
+								$this->expectedField( 'additionalProfiles', static::IS_NULL ),
+								$this->expectedField( 'facebookProfileUrl', static::IS_NULL ),
+								$this->expectedField( 'twitterUserName', static::IS_NULL ),
 							]
 						),
 					]

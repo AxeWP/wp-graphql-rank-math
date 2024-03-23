@@ -84,7 +84,20 @@ class SeoObjects implements Registrable {
 			[
 				'description'     => __( 'The user object SEO data', 'wp-graphql-rank-math' ),
 				'interfaces'      => [ Seo::get_type_name() ],
-				'fields'          => [],
+				'fields'          => [
+					'facebookProfileUrl' => [
+						'type'        => 'String',
+						'description' => __( 'The complete Facebook profile URL.', 'wp-graphql-rank-math' ),
+					],
+					'twitterUserName'    => [
+						'type'        => 'String',
+						'description' => __( 'Twitter Username of the user.', 'wp-graphql-rank-math' ),
+					],
+					'additionalProfiles' => [
+						'type'        => [ 'list_of' => 'String' ],
+						'description' => __( 'Additional social profile URLs to add to the sameAs property.', 'wp-graphql-rank-math' ),
+					],
+				],
 				'eagerlyLoadType' => true,
 			]
 		);
