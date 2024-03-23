@@ -310,6 +310,7 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						facebookAuthorUrl
 						facebookPageUrl
 						twitterAuthorName
+						additionalProfiles
 					}
 					taxonomies {
 						category {
@@ -432,6 +433,7 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 										$this->expectedField( 'faceboookAuthorUrl', static::IS_NULL ),
 										$this->expectedField( 'facebookPageUrl', static::IS_NULL ),
 										$this->expectedField( 'twitterAuthorName', static::IS_NULL ),
+										$this->expectedField( 'additionalProfiles', static::IS_NULL ),
 									]
 								),
 								$this->expectedObject(
@@ -613,5 +615,4 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 		update_option( 'rank-math-options-titles', $title_options );
 	}
-
 }
