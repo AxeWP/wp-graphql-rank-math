@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## v0.1.1
+
+This _minor_ release adds support for more social fields in the `RankMathSocialMetaSettings` and `RankMathUserSeo` types. Additionally, it fixes a bug where the `seo.openGraph.image` field would fail to resolve if provided a string image.
+
+There are **no breaking changes**.
+
+### What's changed
+
 - feat: Expose `additionalProfiles` field on `RankMathSocialMetaSettings`. props: @colis 🙌
 - feat: Expose `facebookProfileUrl`, `twitterUserName`, and `additionalProfiles` social fields on `RankMathUserSeo`. props: @colis 🙌
 - fix: Correctly resolve `seo.openGraph.image` field when parsed value is a string.
