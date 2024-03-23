@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- feat: Expose `additionalProfiles` field on `RankMathSocialMetaSettings`. props: @colis 🙌
+- feat: Expose `facebookProfileUrl`, `twitterUserName`, and `additionalProfiles` social fields on `RankMathUserSeo`. props: @colis 🙌
 - fix: Correctly resolve `seo.openGraph.image` field when parsed value is a string.
 
 ## v0.1.0
