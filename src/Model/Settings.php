@@ -9,6 +9,7 @@ namespace WPGraphQL\RankMath\Model;
 
 use Exception;
 use RankMath\Helper;
+use RankMath\Helpers\Arr;
 use RankMath\Sitemap\Router;
 use WPGraphQL\Model\Model;
 
@@ -214,7 +215,7 @@ class Settings extends Model {
 			'facebookAdminId'    => ! empty( $this->data['titles']['facebook_admin_id'] ) ? $this->data['titles']['facebook_admin_id'] : null,
 			'facebookAppId'      => ! empty( $this->data['titles']['facebook_app_id'] ) ? $this->data['titles']['facebook_app_id'] : null,
 			'twitterAuthorName'  => ! empty( $this->data['titles']['twitter_author_names'] ) ? $this->data['titles']['twitter_author_names'] : null,
-			'additionalProfiles' => ! empty( $this->data['titles']['social_additional_profiles'] ) ? explode( ',', $this->data['titles']['social_additional_profiles'] ) : null,
+			'additionalProfiles' => ! empty( $this->data['titles']['social_additional_profiles'] ) ? Arr::from_string( $this->data['titles']['social_additional_profiles'], PHP_EOL ) : null,
 		];
 	}
 

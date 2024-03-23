@@ -615,5 +615,4 @@ class SettingsQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 
 		update_option( 'rank-math-options-titles', $title_options );
 	}
-
 }

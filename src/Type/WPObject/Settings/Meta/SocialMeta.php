@@ -54,7 +54,7 @@ class SocialMeta extends ObjectType {
 			],
 			'additionalProfiles' => [
 				'type'        => [ 'list_of' => 'String' ],
-				'description' => __( 'Additional social profile URLs.', 'wp-graphql-rank-math' ),
+				'description' => __( 'Additional social profile URLs to add to the sameAs property for the Organization Schema.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}
