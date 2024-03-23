@@ -110,14 +110,9 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 									]
 								),
 								$this->expectedField( 'title', 'display - Test' ),
-								$this->expectedObject(
-									'social',
-									[
-										$this->expectedField( 'additionalProfiles', static::IS_NULL ),
-										$this->expectedField( 'facebookProfileUrl', static::IS_NULL ),
-										$this->expectedField( 'twitterUserName', static::IS_NULL ),
-									]
-								),
+								$this->expectedField( 'additionalProfiles', static::IS_NULL ),
+								$this->expectedField( 'facebookProfileUrl', static::IS_NULL ),
+								$this->expectedField( 'twitterUserName', static::IS_NULL ),
 							]
 						),
 					]

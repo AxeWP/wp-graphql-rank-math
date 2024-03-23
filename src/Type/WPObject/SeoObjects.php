@@ -11,7 +11,6 @@ namespace WPGraphQL\RankMath\Type\WPObject;
 use WPGraphQL;
 use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo;
 use WPGraphQL\RankMath\Type\WPInterface\Seo;
-use WPGraphQL\RankMath\Type\WPInterface\SocialSeo;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
 
@@ -84,8 +83,21 @@ class SeoObjects implements Registrable {
 			graphql_format_type_name( 'RankMathUserSeo' ),
 			[
 				'description'     => __( 'The user object SEO data', 'wp-graphql-rank-math' ),
-				'interfaces'      => [ Seo::get_type_name(), SocialSeo::get_type_name() ],
-				'fields'          => [],
+				'interfaces'      => [ Seo::get_type_name() ],
+				'fields'          => [
+					'facebookProfileUrl' => [
+						'type'        => 'String',
+						'description' => __( 'The complete Facebook profile URL.', 'wp-graphql-rank-math' ),
+					],
+					'twitterUserName'    => [
+						'type'        => 'String',
+						'description' => __( 'Twitter Username of the user.', 'wp-graphql-rank-math' ),
+					],
+					'additionalProfiles' => [
+						'type'        => [ 'list_of' => 'String' ],
+						'description' => __( 'Additional social profile URLs to add to the sameAs property.', 'wp-graphql-rank-math' ),
+					],
+				],
 				'eagerlyLoadType' => true,
 			]
 		);

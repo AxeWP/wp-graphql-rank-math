@@ -101,9 +101,9 @@ $I->assertEquals( 'Posts', $response_array['data']['user']['seo']['openGraph']['
 $I->assertEquals( 'SUMMARY_LARGE_IMAGE', $response_array['data']['user']['seo']['openGraph']['twitterMeta']['card'] );
 $I->assertEmpty( $response_array['data']['user']['seo']['openGraph']['twitterMeta']['description'] );
 $I->assertEquals( 'testuser - Test', $response_array['data']['user']['seo']['openGraph']['twitterMeta']['title'] );
-$I->assertEmpty( $response_array['data']['user']['seo']['social']['additionalProfiles'] );
-$I->assertEmpty( $response_array['data']['user']['seo']['social']['facebookProfileUrl'] );
-$I->assertEmpty( $response_array['data']['user']['seo']['social']['twitterUserName'] );
+$I->assertEmpty( $response_array['data']['user']['seo']['additionalProfiles'] );
+$I->assertEmpty( $response_array['data']['user']['seo']['facebookProfileUrl'] );
+$I->assertEmpty( $response_array['data']['user']['seo']['twitterUserName'] );
 
 
 

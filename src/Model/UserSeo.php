@@ -119,13 +119,20 @@ class UserSeo extends Seo {
 			$this->fields = array_merge(
 				$this->fields,
 				[
-					'breadcrumbTitle' => function (): ?string {
+					'breadcrumbTitle'    => function (): ?string {
 						$title = $this->get_meta( 'breadcrumb_title', '', $this->data->display_name );
 
 						return ! empty( $title ) ? html_entity_decode( $title, ENT_QUOTES ) : null;
 					},
-					'ID'              => fn (): int => $this->database_id,
-					'social'          => fn (): array => $this->meta_social_fields(),
+					'ID'                 => fn (): int => $this->database_id,
+					'facebookProfileUrl' => fn (): ?string => get_user_meta( $this->database_id, 'facebook', true ) ?: null,
+					'twitterUserName'    => fn (): ?string => get_user_meta( $this->database_id, 'twitter', true ) ?: null,
+					'additionalProfiles' => function (): ?array {
+						$additional_profiles = get_user_meta( $this->database_id, 'additional_profile_urls', true );
+
+						return ! empty( $additional_profiles ) ? explode( ' ', $additional_profiles ) : null;
+					},
+
 				]
 			);
 		}
@@ -145,22 +152,5 @@ class UserSeo extends Seo {
 	 */
 	protected function get_object_url(): string {
 		return get_author_posts_url( $this->database_id );
-	}
-
-	/**
-	 * Resolve meta social fields.
-	 *
-	 * @return array<string, mixed>
-	 */
-	private function meta_social_fields(): array {
-		$facebook_profile_url = get_user_meta( $this->database_id, 'facebook', true );
-		$twitter_user_name    = get_user_meta( $this->database_id, 'twitter', true );
-		$additional_profiles  = get_user_meta( $this->database_id, 'additional_profile_urls', true );
-
-		return [
-			'facebookProfileUrl' => ! empty( $facebook_profile_url ) ? $facebook_profile_url : null,
-			'twitterUserName'    => ! empty( $twitter_user_name ) ? $twitter_user_name : null,
-			'additionalProfiles' => ! empty( $additional_profiles ) ? explode( ',', $additional_profiles ) : null,
-		];
 	}
 }

@@ -140,7 +140,6 @@ class TypeRegistry {
 			WPInterface\Seo::class,
 			WPInterface\ContentNodeSeo::class,
 			WPInterface\NodeWithSeo::class,
-			WPInterface\SocialSeo::class,
 		];
 
 		/**
@@ -164,7 +163,6 @@ class TypeRegistry {
 			WPObject\SeoScore::class,
 			WPObject\JsonLd::class,
 			WPObject\Breadcrumbs::class,
-			WPObject\UserSocialMeta::class,
 
 			// Open Graph.
 			WPObject\OpenGraph\Article::class,
