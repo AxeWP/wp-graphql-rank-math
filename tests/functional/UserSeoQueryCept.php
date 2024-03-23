@@ -57,11 +57,9 @@ $I->sendPOST(
 								}
 							}
 							... on RankMathUserSeo {
-								social {
-									additionalProfiles
-									facebookProfileUrl
-									twitterUserName
-								}
+								additionalProfiles
+								facebookProfileUrl
+								twitterUserName
 							}
 						}
 					}
