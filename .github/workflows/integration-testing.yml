@@ -40,8 +40,12 @@ jobs:
           - php: "7.4"
             wordpress: "6.0"
         exclude:
+          # Old WP versions that dont support newer PHP versions
           - php: "8.2"
             wordpress: "6.0"
+          # New WP versions that dont support older PHP versions
+          - php: "8.0"
+            wordpress: "6.5"
       fail-fast: false
 
     steps:
