@@ -30,7 +30,7 @@ class RedirectionConnection extends ConnectionType {
 	 * {@inheritDoc}
 	 */
 	public static function register(): void {
-		/** @var array $config */
+		/** @var array<string,mixed> $config */
 		$config = self::get_connection_config(
 			[
 				'fromType'       => 'RootQuery',

@@ -5,6 +5,5 @@
  * @package WPGraphQL/RankMath
  */
 
-define( 'WPGRAPHQL_SEO_AUTOLOAD', true );
 define( 'WPGRAPHQL_SEO_PLUGIN_FILE', 'wp-graphql-rank-math.php' );
 define( 'WPGRAPHQL_SEO_VERSION', '0.1.1' );

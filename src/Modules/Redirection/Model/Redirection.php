@@ -65,6 +65,8 @@ class Redirection extends Model {
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @return void
 	 */
 	protected function init() {
 		if ( empty( $this->fields ) ) {
