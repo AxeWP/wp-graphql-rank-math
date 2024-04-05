@@ -58,10 +58,12 @@
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"phpstan/extension-installer": true
 		},
-		"optimize-autoloader": true,
 		"platform": {
 			"php": "7.4"
 		},
+		"preferred-install": "dist",
+		"sort-packages": true,
+		"optimize-autoloader": true,
 		"process-timeout": 0
 	},
 	"autoload": {
@@ -87,13 +89,10 @@
 			"classmap_prefix": "WPGraphQL_RankMath_",
 			"constant_prefix": "WPGRAPHQL_SEO_",
 			"include_modified_date": false,
-			"delete_vendor_files": true,
+			"delete_vendor_packages": true,
 			"packages": [
 				"axepress/wp-graphql-plugin-boilerplate"
-			],
-			"excluded_from_prefix": {
-				"file_patterns": ["/psr.*/"]
-			}
+			]
 		}
 	},
 	"scripts": {
@@ -123,8 +122,11 @@
 		"phpstan": [
 			"vendor/bin/phpstan analyze --ansi --memory-limit=1G"
 		],
+		"strauss-install": [
+			"test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/download/0.17.0/strauss.phar"
+		],
 		"strauss": [
-			"test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/download/0.14.0/strauss.phar",
+			"@strauss-install",
 			"@php bin/strauss.phar",
 			"composer dump-autoload --optimize"
 		],
