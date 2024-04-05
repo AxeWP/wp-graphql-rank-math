@@ -1,9 +1,24 @@
 parameters:
 		level: 8
+		treatPhpDocTypesAsCertain: false
 		inferPrivatePropertyTypeFromConstructor: true
-		checkMissingIterableValueType: false
+		checkAlwaysTrueCheckTypeFunctionCall: true
+		checkAlwaysTrueInstanceof: true
+		checkAlwaysTrueStrictComparison: true
+		checkExplicitMixedMissingReturn: true
+		checkFunctionNameCase: true
+		checkInternalClassCaseSensitivity: true
+		checkMissingIterableValueType: true
+		checkTooWideReturnTypesInProtectedAndPublicMethods: true
+		polluteScopeWithAlwaysIterableForeach: false
+		polluteScopeWithLoopInitialAssignments: false
+		reportAlwaysTrueInLastCondition: true
+		reportStaticMethodSignatures: true
+		reportWrongPhpDocTypeInVarTag: true
 		featureToggles:
 			disableRuntimeReflectionProvider: true
+		dynamicConstantNames:
+			- WPGRAPHQL_SEO_AUTOLOAD
 		stubFiles:
 			# Simulate added properties
 			- phpstan/rank-math.stub

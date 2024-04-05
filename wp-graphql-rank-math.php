@@ -91,7 +91,7 @@ if ( ! function_exists( 'graphql_seo_dependencies_not_ready' ) ) {
 		$deps = [];
 
 		// WPGraphQL Check.
-		if ( ! class_exists( '\WPGraphQL' ) || ( defined( 'WPGRAPHQL_VERSION' ) && version_compare( WPGRAPHQL_VERSION, $wpgraphql_version, '<' ) ) ) { // @phpstan-ignore-line
+		if ( ! class_exists( '\WPGraphQL' ) || ( defined( 'WPGRAPHQL_VERSION' ) && version_compare( WPGRAPHQL_VERSION, $wpgraphql_version, '<' ) ) ) {
 			$deps['WPGraphQL'] = $wpgraphql_version;
 		}
 

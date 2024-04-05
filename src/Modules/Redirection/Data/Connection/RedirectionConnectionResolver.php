@@ -19,7 +19,7 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @var ?array
+	 * @var ?array<string,mixed>
 	 */
 	protected $query;
 
