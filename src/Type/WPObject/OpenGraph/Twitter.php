@@ -92,7 +92,7 @@ class Twitter extends ObjectType {
 				'type'        => 'String',
 				'description' => __( '@username of content creator', 'wp-graphql-rank-math' ),
 			],
-			
+
 		];
 	}
 
@@ -116,7 +116,7 @@ class Twitter extends ObjectType {
 		if ( ! empty( $source[ 'app:url:' . $type ] ) ) {
 			$values['url'] = $source[ 'app:url:' . $type ];
 		}
-	
+
 		return $values ?: null;
 	}
 }

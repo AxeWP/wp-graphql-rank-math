@@ -79,7 +79,7 @@ class ContentType extends ObjectType implements TypeWithConnections {
 				'type'        => 'ContentTypeEnum',
 				'description' => __( 'The content type.', 'wp-graphql-rank-math' ),
 			],
-			
+
 		];
 	}
 }

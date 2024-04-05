@@ -53,7 +53,7 @@ class Image extends ObjectType {
 				'type'        => 'Float',
 				'description' => __( 'Height of image in pixels. ', 'wp-graphql-rank-math' ),
 			],
-			
+
 		];
 	}
 }

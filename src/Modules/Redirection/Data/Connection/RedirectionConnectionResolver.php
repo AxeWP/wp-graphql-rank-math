@@ -72,7 +72,7 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 		if ( ! empty( $this->args['after'] ) ) {
 			$query_args['graphql_after_cursor'] = $this->get_after_offset();
 		}
-		
+
 		if ( ! empty( $this->args['before'] ) ) {
 			$query_args['graphql_before_cursor'] = $this->get_before_offset();
 		}

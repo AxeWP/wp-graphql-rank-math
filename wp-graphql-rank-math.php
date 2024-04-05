@@ -95,7 +95,7 @@ if ( ! function_exists( 'graphql_seo_dependencies_not_ready' ) ) {
 			$deps['WPGraphQL'] = $wpgraphql_version;
 		}
 
-		if ( ! class_exists( '\RankMath' ) || defined( 'RANK_MATH_VERSION' ) && version_compare( RANK_MATH_VERSION, $rankmath_version, '<' ) ) {
+		if ( ! class_exists( '\RankMath' ) || ( defined( 'RANK_MATH_VERSION' ) && version_compare( RANK_MATH_VERSION, $rankmath_version, '<' ) ) ) {
 			$deps['RankMath SEO'] = $rankmath_version;
 		}
 
