@@ -2,7 +2,7 @@
 Contributors: axepress, justlevine
 Tags: GraphQL, Gatsby, Headless, WPGraphQL, React, Rest, RankMath, Seo, Schema
 Requires at least: 6.0
-Tested up to: 6.4.3
+Tested up to: 6.5.0
 Requires PHP: 7.4
 Requires WPGraphQL: 1.14.0
 Stable tag: 0.1.1

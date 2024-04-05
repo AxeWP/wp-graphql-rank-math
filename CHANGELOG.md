@@ -3,6 +3,8 @@
 ## Unreleased
 
 - chore: Update Composer dev-deps and fix newly-surfaced PHPCS smells.
+- ci: Update GitHub Actions to latest versions.
+- ci: Test plugin compatibility with WordPress 6.5.0.
 
 ## v0.1.1
 
