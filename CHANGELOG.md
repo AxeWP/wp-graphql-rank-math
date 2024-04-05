@@ -6,6 +6,7 @@
 - chore: Implement PHPStan strict rules.
 - ci: Update GitHub Actions to latest versions.
 - ci: Test plugin compatibility with WordPress 6.5.0.
+- ci: Update Strauss to v0.17.0
 
 ## v0.1.1
 
