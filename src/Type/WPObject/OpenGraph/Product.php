@@ -55,7 +55,7 @@ class Product extends ObjectType {
 				'type'        => OpenGraphProductAvailabilityEnum::get_type_name(),
 				'description' => __( 'The currency of the object price.', 'wp-graphql-rank-math' ),
 			],
-			
+
 		];
 	}
 }

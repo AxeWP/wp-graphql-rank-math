@@ -58,7 +58,6 @@ class RedirectionsLoader extends AbstractDataLoader {
 				);
 			}
 
-
 			$loaded[ $key ] = $redirections[ $index ];
 		}
 

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- chore: Update Composer dev-deps and fix newly-surfaced PHPCS smells.
+
 ## v0.1.1
 
 This _minor_ release adds support for more social fields in the `RankMathSocialMetaSettings` and `RankMathUserSeo` types. Additionally, it fixes a bug where the `seo.openGraph.image` field would fail to resolve if provided a string image.

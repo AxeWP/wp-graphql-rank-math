@@ -62,7 +62,7 @@ class OpenGraphMeta extends ObjectType {
 				'description' => __( 'The OpenGraph image meta', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ): ?array {
 					$values = ! empty( $source['og']['image'] ) ? $source['og']['image'] : [];
-					
+
 					if ( ! empty( $source['og']['image'][0] ) ) {
 						$values['url'] = $source['og']['image'][0];
 					}
@@ -74,7 +74,7 @@ class OpenGraphMeta extends ObjectType {
 				'type'        => OpenGraph\Facebook::get_type_name(),
 				'description' => __( 'The Facebook OpenGraph meta values.', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?array => ! empty( $source['fb'] ) ? $source['fb'] : null,
-				
+
 			],
 			'locale'            => [
 				'type'        => OpenGraphLocaleEnum::get_type_name(),
@@ -119,7 +119,7 @@ class OpenGraphMeta extends ObjectType {
 				'description' => __( 'The Twitter OpenGraph meta values.', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?array => ! empty( $source['twitter'] ) ? $source['twitter'] : null,
 			],
-			
+
 			'type'              => [
 				'type'        => 'String',
 				'description' => __( 'The OpenGraph object type.', 'wp-graphql-rank-math' ),

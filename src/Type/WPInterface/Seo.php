@@ -80,7 +80,7 @@ class Seo extends InterfaceType {
 				'type'        => OpenGraphMeta::get_type_name(),
 				'description' => __( 'The open graph meta properties.', 'wp-graphql-rank-math' ),
 			],
-			
+
 		];
 
 		// Add breadcrumbs field.

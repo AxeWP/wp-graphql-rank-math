@@ -54,7 +54,6 @@ class TypeRegistry {
 		// Initialize the registry.
 		self::initialize_registry();
 
-
 		/**
 		 * Fires after all types have been registered.
 		 */
