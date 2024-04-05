@@ -11,7 +11,7 @@
  * Text Domain: wp-graphql-rank-math
  * Domain Path: /languages
  * Requires at least: 6.0
- * Tested up to: 6.4.2
+ * Tested up to: 6.5.0
  * Requires PHP: 7.4
  * WPGraphQL requires at least: 1.14.0
  * License: GPL-3
