@@ -5,6 +5,8 @@
  * @package \WPGraphQL\RankMath\Modules\Redirection\Model
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Modules\Redirection\Model;
 
 use GraphQLRelay\Relay;
@@ -101,7 +103,7 @@ class Redirection extends Model {
 					return ! empty( $serialized_sources ) ? maybe_unserialize( $serialized_sources ) : null;
 				},
 				'status'              => fn (): ?string => ! empty( $this->data['status'] ) ? $this->data['status'] : null,
-				'type'                => fn (): ?int => ! empty( $this->data['header_code'] ) ? $this->data['header_code'] : null,
+				'type'                => fn (): ?string => ! empty( $this->data['header_code'] ) ? $this->data['header_code'] : null,
 			];
 		}
 	}

@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Modules\Redirection\Data\Loader
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Modules\Redirection\Data\Loader;
 
 use GraphQL\Error\UserError;

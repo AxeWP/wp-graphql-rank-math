@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Type\WPObject\Settings\General
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\General;
 
 use WPGraphQL\RankMath\Type\Enum\SeoScorePositionEnum;

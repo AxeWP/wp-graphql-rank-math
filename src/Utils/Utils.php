@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Utils\Utils;
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Utils;
 
 /**

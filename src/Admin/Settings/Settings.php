@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Admin\Settings
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Admin\Settings;
 
 use WPGraphQL\Admin\Settings\SettingsRegistry;

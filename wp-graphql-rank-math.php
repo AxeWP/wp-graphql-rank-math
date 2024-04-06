@@ -23,6 +23,8 @@
  * @version 0.1.1
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath;
 
 // Exit if accessed directly.

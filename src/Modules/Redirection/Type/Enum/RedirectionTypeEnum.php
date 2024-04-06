@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Modules\Redirection\Type\Enum
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Modules\Redirection\Type\Enum;
 
 use RankMath\Helper;

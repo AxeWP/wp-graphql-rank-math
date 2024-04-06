@@ -5,6 +5,8 @@
  * @package WPGraphQL\Fields
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Fields;
 
 use WPGraphQL\RankMath\Model\Settings as ModelSettings;

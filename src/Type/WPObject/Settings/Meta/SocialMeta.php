@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Type\WPObject\Settings\Meta
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Type\WPObject\Settings\Meta;
 
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;

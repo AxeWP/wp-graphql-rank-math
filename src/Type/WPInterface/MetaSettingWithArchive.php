@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Type\WPInterface
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
