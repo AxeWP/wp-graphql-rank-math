@@ -5,9 +5,10 @@
  * @package AxeWP\GraphQL\Traits
  *
  * @license GPL-3.0-or-later
- * Modified by AxePress Development using Strauss.
- * @see https://github.com/BrianHenryIE/strauss
+ * Modified by AxePress Development using {@see https://github.com/BrianHenryIE/strauss}.
  */
+
+declare( strict_types=1 );
 
 namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits;
 
@@ -26,14 +27,13 @@ if ( ! trait_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTr
 		 * @throws \Exception When the implementing class has no type name.
 		 */
 		final public static function get_type_name(): string {
-			if ( ! method_exists( static::class, 'type_name' ) ) {
+			if ( ! is_callable( [ static::class, 'type_name' ] ) ) {
 				throw new Exception(
 				// translators: the implementing class.
-					sprintf( __( 'To use TypeNameTrait, a %s must implement a `type_name()` method.', 'wp-graphql-plugin-name' ), static::class )
+					sprintf( esc_html__( 'To use TypeNameTrait, a %s must implement a `type_name()` method.', 'wp-graphql-plugin-name' ), static::class )
 				);
 			}
 
-			// @phpstan-ignore-next-line
 			$type_name = static::type_name();
 
 			$hook_prefix = Helper::hook_prefix();

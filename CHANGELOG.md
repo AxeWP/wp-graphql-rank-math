@@ -10,6 +10,7 @@
 - chore: Refactor autoloader logic to `Autoloader` class.
 - chore: Update Composer dev-deps and fix newly-surfaced PHPCS smells.
 - chore: Implement PHPStan strict rules.
+- chore: Update WPGraphQL Plugin Boilerplate to v0.1.0.
 - ci: Update GitHub Actions to latest versions.
 - ci: Test plugin compatibility with WordPress 6.5.0.
 - ci: Update Strauss to v0.17.0

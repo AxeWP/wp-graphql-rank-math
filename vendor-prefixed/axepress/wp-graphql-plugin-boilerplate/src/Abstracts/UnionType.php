@@ -5,9 +5,10 @@
  * @package AxeWP\GraphQL\Abstracts
  *
  * @license GPL-3.0-or-later
- * Modified by AxePress Development using Strauss.
- * @see https://github.com/BrianHenryIE/strauss
+ * Modified by AxePress Development using {@see https://github.com/BrianHenryIE/strauss}.
  */
+
+declare( strict_types=1 );
 
 namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts;
 
