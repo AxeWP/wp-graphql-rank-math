@@ -35,6 +35,7 @@ class ComposerStaticInit0e21517c8407dd3be5d5cb3416c889d5
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'WPGraphQL\\RankMath\\Admin\\Settings\\Settings' => __DIR__ . '/../..' . '/src/Admin/Settings/Settings.php',
+        'WPGraphQL\\RankMath\\Autoloader' => __DIR__ . '/../..' . '/src/Autoloader.php',
         'WPGraphQL\\RankMath\\CoreSchemaFilters' => __DIR__ . '/../..' . '/src/CoreSchemaFilters.php',
         'WPGraphQL\\RankMath\\Fields\\RootQuery' => __DIR__ . '/../..' . '/src/Fields/RootQuery.php',
         'WPGraphQL\\RankMath\\Main' => __DIR__ . '/../..' . '/src/Main.php',

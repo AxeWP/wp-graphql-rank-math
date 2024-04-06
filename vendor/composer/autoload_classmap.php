@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'WPGraphQL\\RankMath\\Admin\\Settings\\Settings' => $baseDir . '/src/Admin/Settings/Settings.php',
+    'WPGraphQL\\RankMath\\Autoloader' => $baseDir . '/src/Autoloader.php',
     'WPGraphQL\\RankMath\\CoreSchemaFilters' => $baseDir . '/src/CoreSchemaFilters.php',
     'WPGraphQL\\RankMath\\Fields\\RootQuery' => $baseDir . '/src/Fields/RootQuery.php',
     'WPGraphQL\\RankMath\\Main' => $baseDir . '/src/Main.php',
