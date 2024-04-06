@@ -28,7 +28,7 @@
 	],
 	"require": {
 		"php": ">=7.4",
-		"axepress/wp-graphql-plugin-boilerplate": "0.0.9"
+		"axepress/wp-graphql-plugin-boilerplate": "^0.1.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "<3.5",

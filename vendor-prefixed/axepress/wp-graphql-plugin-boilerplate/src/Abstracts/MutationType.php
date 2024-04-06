@@ -5,9 +5,10 @@
  * @package AxeWP\GraphQL\Abstracts
  *
  * @license GPL-3.0-or-later
- * Modified by AxePress Development using Strauss.
- * @see https://github.com/BrianHenryIE/strauss
+ * Modified by AxePress Development using {@see https://github.com/BrianHenryIE/strauss}.
  */
+
+declare( strict_types=1 );
 
 namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts;
 
@@ -20,28 +21,14 @@ if ( ! class_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\Mutatio
 		/**
 		 * Gets the input fields for the mutation.
 		 *
-		 * @return array<string, array{
-		 *   type: string|array<string, string | array<string, string>>,
-		 *   description: string,
-		 *   defaultValue?: string
-		 * }>
+		 * @return array<string,array{type:string|array<string,string|array<string,string>>,description:string,defaultValue?:string}>
 		 */
 		abstract public static function get_input_fields(): array;
 
 		/**
 		 * Gets the fields for the type.
 		 *
-		 * @return array<string, array{
-		 *   type: string|array<string, string | array<string, string>>,
-		 *   description: string,
-		 *   args?: array<string, array{
-		 *     type: string|array<string, string | array<string, string>>,
-		 *     description: string,
-		 *     defaultValue?: mixed
-		 *   }>,
-		 *   resolve?: callable,
-		 *   deprecationReason?: string,
-		 * }>
+		 * @return array<string,array{type:string|array<string,string|array<string,string>>,description:string,args?:array<string,array{type:string|array<string,string|array<string,string>>,description:string,defaultValue?:mixed}>,resolve?:callable,deprecationReason?:string}>
 		 */
 		abstract public static function get_output_fields(): array;
 

@@ -5,9 +5,10 @@
  * @package AxeWP\GraphQL\Helper
  *
  * @license GPL-3.0-or-later
- * Modified by AxePress Development using Strauss.
- * @see https://github.com/BrianHenryIE/strauss
+ * Modified by AxePress Development using {@see https://github.com/BrianHenryIE/strauss}.
  */
+
+declare( strict_types=1 );
 
 namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper;
 
@@ -17,11 +18,11 @@ if ( ! class_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Helper' ) 
 	 * Class - Helper
 	 */
 	class Helper {
-				/**
-				 * The hook prefix for the plugin.
-				 *
-				 * @var string
-				 */
+		/**
+		 * The hook prefix for the plugin.
+		 *
+		 * @var string
+		 */
 		public static string $hook_prefix;
 
 		/**
