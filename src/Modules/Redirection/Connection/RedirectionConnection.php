@@ -6,6 +6,8 @@
  * @since 0.0.13
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Modules\Redirection\Connection;
 
 use GraphQL\Type\Definition\ResolveInfo;

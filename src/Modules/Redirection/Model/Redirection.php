@@ -5,6 +5,8 @@
  * @package \WPGraphQL\RankMath\Modules\Redirection\Model
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Modules\Redirection\Model;
 
 use GraphQLRelay\Relay;

@@ -6,6 +6,8 @@
  * @since 0.0.8
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Type\WPInterface;
 
 use WPGraphQL\RankMath\Type\WPObject\SeoScore;

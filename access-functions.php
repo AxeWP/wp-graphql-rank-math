@@ -5,6 +5,8 @@
  * @package WPGraphQL/RankMath
  */
 
+declare( strict_types = 1 );
+
 if ( ! function_exists( 'graphql_seo_get_setting' ) ) {
 	/**
 	 * Get an option value from the plugin settings.

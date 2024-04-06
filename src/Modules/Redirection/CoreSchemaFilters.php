@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Modules\Redirection
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Modules\Redirection;
 
 use WPGraphQL\AppContext;

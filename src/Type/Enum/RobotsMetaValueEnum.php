@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Type\Enum
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Type\Enum;
 
 use RankMath\Helper;

@@ -5,6 +5,8 @@
  * @package \WPGraphQL\RankMath\Model
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Model;
 
 use Exception;

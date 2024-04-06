@@ -4,6 +4,7 @@
 
 - fix: Plugin versions in dependency check logic is now in sync with the version requirements.
 - chore!: Add `WPGraphQL/RankMath` namespace to root-level files ( `activation.php`, `deactivation.php`, `wp-graphql-rank-math.php` ).
+- chore: Declare `strict_types` in all PHP files.
 - chore: Refactor autoloader logic to `Autoloader` class.
 - chore: Update Composer dev-deps and fix newly-surfaced PHPCS smells.
 - chore: Implement PHPStan strict rules.

@@ -5,6 +5,8 @@
  * @package WPGraphQL\RankMath\Type\WPObject
  */
 
+declare( strict_types = 1 );
+
 namespace WPGraphQL\RankMath\Type\WPObject\OpenGraph;
 
 use WPGraphQL\RankMath\Type\Enum\OpenGraphProductAvailabilityEnum;
