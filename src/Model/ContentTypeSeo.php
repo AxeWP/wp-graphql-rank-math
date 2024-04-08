@@ -11,6 +11,7 @@ namespace WPGraphQL\RankMath\Model;
 
 use GraphQL\Error\Error;
 use GraphQL\Error\UserError;
+use RankMath\Helper as RMHelper;
 use WPGraphQL;
 
 /**
@@ -53,11 +54,49 @@ class ContentTypeSeo extends Seo {
 
 		$allowed_fields = [ 'breadcrumbTitle' ];
 
-		global $wp_query;
-
-		$wp_query->parse_query( [ 'post_type' => $post_type ] );
-
 		parent::__construct( $object, $capability, $allowed_fields );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function setup(): void {
+		global $wp_query, $post;
+
+		// Store the global post before overriding.
+		$this->global_post = $post;
+
+		if ( $this->data instanceof \WP_Post_Type ) {
+			/**
+			 * Reset global post
+			 */
+			$GLOBALS['post'] = get_post( 0 ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		}
+
+		// Store the global post before overriding.
+		$this->global_post = $post;
+
+		/**
+		 * Parse the query to tell WordPress how to setup the global state.
+		 */
+		$wp_query->parse_query( [ 'post_type' => $this->data->name ] );
+
+		$wp_query->queried_object_id = $this->data->name;
+		$wp_query->queried_object    = $this->data;
+
+		parent::setup();
+	}
+
+	/**
+	 * Reset global state after the model fields
+	 * have been generated
+	 *
+	 * @return void
+	 */
+	public function tear_down() {
+		$GLOBALS['post'] = $this->global_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+
+		wp_reset_postdata();
 	}
 
 	/**
@@ -75,6 +114,45 @@ class ContentTypeSeo extends Seo {
 				]
 			);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function get_breadcrumbs(): ?array {
+		$breadcrumbs = parent::get_breadcrumbs();
+
+		// For non posts, we return the breadcrumbs as-is.
+		if ( empty( $breadcrumbs ) || 'post' !== $this->data->name ) {
+			return $breadcrumbs;
+		}
+
+		/**
+		 * @todo This is a workaround since WPGraphQL doesnt support an archive type.
+		 */
+
+		$blog_id = get_option( 'page_for_posts' );
+
+		if ( ! $blog_id ) {
+			return $breadcrumbs;
+		}
+
+		$should_show_blog = RMHelper::get_settings( 'general.breadcrumbs_blog_page' );
+
+		if ( ! $should_show_blog || 'page' !== get_option( 'show_on_front' ) ) {
+			return $breadcrumbs;
+		}
+
+		$breadcrumb_title = RMHelper::get_post_meta( 'breadcrumb_title', $blog_id ) ?: get_the_title( $blog_id );
+		$permalink        = get_permalink( $blog_id );
+
+		$breadcrumbs[] = [
+			'text'     => $breadcrumb_title ?: null,
+			'url'      => $permalink ?: null,
+			'isHidden' => false,
+		];
+
+		return $breadcrumbs;
 	}
 
 	/**

@@ -3,6 +3,7 @@
 ## Unreleased
 
 - feat: Add plugin dependencies header.
+- fix: Improve handling of `ContentTypeSeo` and prevent fatal error when generating breadcrumbs. H/t @MonPetitUd
 - fix: Plugin versions in dependency check logic is now in sync with the version requirements.
 - fix: Update the return type of the `type` field in the `Redirection` model to correctly return a `?string`.
 - chore!: Add `WPGraphQL/RankMath` namespace to root-level files ( `activation.php`, `deactivation.php`, `wp-graphql-rank-math.php` ).

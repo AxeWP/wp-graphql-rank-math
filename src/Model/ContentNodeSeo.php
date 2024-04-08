@@ -11,6 +11,7 @@ namespace WPGraphQL\RankMath\Model;
 
 use GraphQL\Error\Error;
 use GraphQL\Error\UserError;
+use RankMath\Helper as RMHelper;
 use WPGraphQL;
 
 /**
@@ -181,6 +182,25 @@ class ContentNodeSeo extends Seo {
 				]
 			);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function get_breadcrumbs(): ?array {
+		$breadcrumbs = parent::get_breadcrumbs();
+
+		if ( empty( $breadcrumbs ) ) {
+			return null;
+		}
+
+		$remove_title = ( is_single( $this->database_id ) || is_page( $this->database_id ) ) && RMHelper::get_settings( 'general.breadcrumbs_remove_post_title' );
+
+		if ( $remove_title ) {
+			array_pop( $breadcrumbs );
+		}
+
+		return ! empty( $breadcrumbs ) ? $breadcrumbs : null;
 	}
 
 	/**
