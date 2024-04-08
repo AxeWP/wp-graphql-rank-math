@@ -79,6 +79,10 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 						return null;
 					}
 
+					if ( empty( $source->uri ) ) {
+						return null;
+					}
+
 					$model = self::get_model_for_node( $source );
 
 					if ( empty( $model ) ) {

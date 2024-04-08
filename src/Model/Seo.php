@@ -92,11 +92,6 @@ abstract class Seo extends Model {
 		);
 
 		parent::__construct( $capability, $allowed_fields );
-
-		// Seat up RM Globals.
-		$url = $this->get_object_url();
-
-		$this->setup_post_head( $url );
 	}
 
 	/**
@@ -107,6 +102,11 @@ abstract class Seo extends Model {
 		/** @var \RankMath\Paper\Paper $paper */
 		$paper        = Paper::get();
 		$this->helper = $paper;
+
+		// Seat up RM Globals.
+		$url = $this->get_object_url();
+
+		$this->setup_post_head( $url );
 	}
 
 	/**
@@ -169,9 +169,18 @@ abstract class Seo extends Model {
 	 */
 	protected function get_breadcrumbs(): ?array {
 		// Get the crumbs and shape them.
-		$crumbs      = RMBreadcrumbs::get()->get_crumbs();
+		$crumbs = RMBreadcrumbs::get()->get_crumbs();
+
+		if ( empty( $crumbs ) ) {
+			return null;
+		}
+
 		$breadcrumbs = array_map(
 			static function ( $crumb ) {
+				if ( empty( $crumb[1] ) && empty( $crumb[0] ) ) {
+					return null;
+				}
+
 				return [
 					'text'     => $crumb[0] ?? null,
 					'url'      => $crumb[1] ?? null,
@@ -181,11 +190,7 @@ abstract class Seo extends Model {
 			$crumbs
 		);
 
-		// Pop the current item's title.
-		$remove_title = ( is_single( $this->database_id ) || is_page( $this->database_id ) ) && RMHelper::get_settings( 'general.breadcrumbs_remove_post_title' );
-		if ( $remove_title ) {
-			array_pop( $breadcrumbs );
-		}
+		$breadcrumbs = array_filter( $breadcrumbs );
 
 		return ! empty( $breadcrumbs ) ? $breadcrumbs : null;
 	}
