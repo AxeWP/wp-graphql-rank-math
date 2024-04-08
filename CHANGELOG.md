@@ -1,6 +1,17 @@
 # Changelog
 
-## Unreleased
+## [Unreleased]
+
+## [0.2.0]
+
+This _major_ release refactors the plugin's root files to use the `WPGraphQL/RankMath` namespace. We've also added explicit support for WordPress 6.5 (including the new Plugin Dependencies feature), squashed a few bugs, and more.
+
+> **Note:* 
+
+> Although this release technically contains breaking changes, these changes are limited to developers directly extending the wp-graphql-rank-math.php, activation.php, deactivation.php files, and the WPGraphQL\RankMath\Main class.
+> If you are using the plugin as intended, you should not experience any issues when upgrading.
+
+### What's changed
 
 - feat: Add plugin dependencies header.
 - fix: Improve handling of `ContentTypeSeo` and prevent fatal error when generating breadcrumbs. H/t @MonPetitUd
