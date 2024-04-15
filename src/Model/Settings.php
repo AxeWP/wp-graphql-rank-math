@@ -243,7 +243,7 @@ class Settings extends Model {
 	private function meta_homepage_fields(): ?array {
 		return 'page' !== get_option( 'show_on_front' ) ? [
 			'advancedRobotsMeta'  => $this->advanced_robots_meta( 'homepage_advanced_robots' ),
-			'description'         => ! empty( $this->data['titles']['homepage_description'] ) ? $this->data['titles']['author_archive_description'] : null,
+			'description'         => ! empty( $this->data['titles']['homepage_description'] ) ? $this->data['titles']['homepage_description'] : null,
 			'hasCustomRobotsMeta' => ! empty( $this->data['titles']['homepage_custom_robots'] ),
 			'robotsMeta'          => ! empty( $this->data['titles']['homepage_robots'] ) ? $this->data['titles']['homepage_robots'] : null,
 			'socialDescription'   => ! empty( $this->data['titles']['homepage_facebook_description'] ) ? $this->data['titles']['homepage_facebook_description'] : null,
