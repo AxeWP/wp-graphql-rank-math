@@ -16,6 +16,8 @@ use WPGraphQL\RankMath\Utils\RMUtils;
 
 /**
  * Class RedirectionConnectionResolver
+ *
+ * @extends \WPGraphQL\Data\Connection\AbstractConnectionResolver<array<string,mixed>>
  */
 class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	/**
@@ -87,7 +89,7 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	 */
 	public function get_query() {
 		if ( ! isset( $this->query ) ) {
-			$query = RMUtils::get_redirections( $this->query_args );
+			$query = RMUtils::get_redirections( $this->query_args ?? [] );
 
 			// Prime the cache for each of the queried redirections.
 			$loader = $this->getLoader();
@@ -105,7 +107,7 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	 * {@inheritDoc}
 	 */
 	public function should_execute() {
-		if ( 'active' === $this->query_args['status'] ) {
+		if ( isset( $this->query_args['status'] ) && 'active' === $this->query_args['status'] ) {
 			return true;
 		}
 

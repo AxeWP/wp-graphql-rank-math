@@ -1,7 +1,8 @@
 # Changelog
 
 ## [Unreleased]
-- chore: Update Composer dev-dependencies to latest versions.
+- chore: Update Composer dev-dependencies to latest versions and address uncovered lints.
+- tests: Update compatibility with `wp-graphql-test-case@3.0.1`.
 
 ## [0.2.0]
 
