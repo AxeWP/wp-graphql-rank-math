@@ -63,7 +63,7 @@ query GetContentNodeSeo {
 - tests: Update compatibility with `wp-graphql-test-case@3.0.1`.
 
 
-## [0.3.0]
+## [0.2.0]
 
 This _major_ release refactors the plugin's root files to use the `WPGraphQL/RankMath` namespace. We've also added explicit support for WordPress 6.5 (including the new Plugin Dependencies feature), squashed a few bugs, and more.
 
