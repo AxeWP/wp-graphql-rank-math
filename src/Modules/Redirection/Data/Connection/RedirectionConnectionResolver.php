@@ -22,41 +22,33 @@ use WPGraphQL\RankMath\Utils\RMUtils;
 class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	/**
 	 * {@inheritDoc}
-	 *
-	 * @var ?array<string,mixed>
 	 */
-	protected $query;
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function get_loader_name() {
+	protected function loader_name(): string {
 		return RedirectionsLoader::$name;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public function get_query_args() {
+	protected function prepare_query_args( array $args ): array {
 		/**
 		 * Prepare for later use
 		 */
-		$last  = ! empty( $this->args['last'] ) ? $this->args['last'] : null;
-		$first = ! empty( $this->args['first'] ) ? $this->args['first'] : null;
+		$last = ! empty( $args['last'] ) ? $args['last'] : null;
 
 		$query_args = [];
 
-		if ( ! empty( $this->args['where']['search'] ) ) {
-			$query_args['search'] = $this->args['where']['search'];
+		if ( ! empty( $args['where']['search'] ) ) {
+			$query_args['search'] = $args['where']['search'];
 		}
 
-		$query_args['status'] = ! empty( $this->args['where']['status'] ) ? $this->args['where']['status'] : 'active';
+		$query_args['status'] = ! empty( $args['where']['status'] ) ? $args['where']['status'] : 'active';
 
-		if ( ! empty( $this->args['where']['orderby']['field'] ) ) {
-			$query_args['orderby'] = $this->args['where']['orderby']['field'];
+		if ( ! empty( $args['where']['orderby']['field'] ) ) {
+			$query_args['orderby'] = $args['where']['orderby']['field'];
 		}
 
-		$query_args['order'] = ! empty( $this->args['where']['orderby']['order'] ) ? $this->args['where']['orderby']['order'] : 'DESC';
+		$query_args['order'] = ! empty( $args['where']['orderby']['order'] ) ? $args['where']['orderby']['order'] : 'DESC';
 
 		// If $last is set, we need to reverse the order.
 		if ( ! empty( $last ) ) {
@@ -66,18 +58,18 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 		/**
 		 * Set limit the highest value of $first and $last, with a (filterable) max of 100
 		 */
-		$query_args['limit'] = $this->one_to_one ? 1 : min( max( absint( $first ), absint( $last ), 10 ), $this->query_amount ) + 1;
+		$query_args['limit'] = $this->one_to_one ? 1 : $this->get_query_amount() + 1;
 
 		/**
 		 * Set the before and after cursors. This will modify the query in CoreSchemaFilters::add_redirection_pagination_support()
 		 */
 		$query_args['graphql_cursor_compare'] = ! empty( $last ) ? '>' : '<';
 
-		if ( ! empty( $this->args['after'] ) ) {
+		if ( ! empty( $args['after'] ) ) {
 			$query_args['graphql_after_cursor'] = $this->get_after_offset();
 		}
 
-		if ( ! empty( $this->args['before'] ) ) {
+		if ( ! empty( $args['before'] ) ) {
 			$query_args['graphql_before_cursor'] = $this->get_before_offset();
 		}
 
@@ -87,27 +79,27 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function get_query() {
-		if ( ! isset( $this->query ) ) {
-			$query = RMUtils::get_redirections( $this->query_args ?? [] );
+	protected function query( array $query_args ) {
+		$query = RMUtils::get_redirections( $query_args );
 
-			// Prime the cache for each of the queried redirections.
-			$loader = $this->getLoader();
+		// Prime the cache for each of the queried redirections.
+		$loader = $this->get_loader();
+		if ( isset( $query['redirections'] ) ) {
 			foreach ( $query['redirections'] as $redirection ) {
 				$loader->prime( $redirection['id'], $redirection );
 			}
-
-			$this->query = $query;
 		}
 
-		return $this->query;
+		return $query;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function should_execute() {
-		if ( isset( $this->query_args['status'] ) && 'active' === $this->query_args['status'] ) {
+		$query_args = $this->get_query_args();
+
+		if ( isset( $query_args['status'] ) && 'active' === $query_args['status'] ) {
 			return true;
 		}
 
@@ -126,7 +118,8 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 	 */
 	public function get_ids_from_query() {
 		$ids     = [];
-		$queried = $this->query['redirections'] ?? [];
+		$query   = $this->get_query();
+		$queried = ! empty( $query['redirections'] ) ? $query['redirections'] : [];
 
 		if ( empty( $queried ) ) {
 			return $ids;
@@ -135,7 +128,8 @@ class RedirectionConnectionResolver extends AbstractConnectionResolver {
 		$ids = array_column( $queried, 'id' );
 
 		// If we're going backwards, we need to reverse the array.
-		if ( ! empty( $this->args['last'] ) ) {
+		$args = $this->get_args();
+		if ( ! empty( $args['last'] ) ) {
 			$ids = array_reverse( $ids );
 		}
 
