@@ -1,14 +1,69 @@
 # Changelog
 
 ## [Unreleased]
+
+## [0.3.0]
+
+This _major_ releases simplifies the GraphQL schema by narrowing the `seo` field types to their implementations. We've also bumped the minimum version of WPGraphQL to v1.26.0 and refactored the `RedirectionConnectionResolver` to use the improved lifecycle methods introduced in that release.
+
+### Upgrade Notes
+
+This release contains breaking changes to the schema. Instead of the `seo` field returning a generic `RankMathSeo` object, it now returns a more specific object based on the node type. For example, a `Post` node will return a `RankMathPostObjectSeo` object, while a `Category` node will return a `RankMathCategoryTermSeo` object.
+
+In _most_ cases, you should not need to update your queries, as the schema should resolve the correct type based on the node type. However, if you are using inline fragments on the `seo` field inside your query that are not actually resolvable, you will need to remove them from your queries.
+
+E.g.
+
+```graphql
+query GetContentNodeSeo {
+  contentNodes {
+    nodes {
+      ... on Post {
+        seo {
+          # The old way will still work,
+          # but is now redundant.
+          ... on RankMathPostObjectSeo {
+            ...MyPostSeoFragment
+          }
+
+          # This will now also work, and is the preferred way,
+          # since `seo` is always a `RankMathPostObjectSeo` type.
+          ...MyPostSeoFragment
+
+          # This needs to be removed, since `Post` isnt a `User`
+          ... on RankMathUserSeo {
+            ...MyUserSeoFragment
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Breaking Schema Changes
+- Field `Category.seo` changed type from `RankMathSeo` to `RankMathCategoryTermSeo`
+- Field `ContentNode.seo` changed type from `RankMathSeo` to `RankMathContentNodeSeo`
+- Field `HierarchicalContentNode.seo` changed type from `RankMathSeo` to `RankMathContentNodeSeo`
+- Field `MediaItem.seo` changed type from `RankMathSeo` to `RankMathMediaItemObjectSeo`
+- Field `Page.seo` changed type from `RankMathSeo` to `RankMathPageObjectSeo`
+- Field `Post.seo` changed type from `RankMathSeo` to `RankMathPostObjectSeo`
+- Field `PostFormat.seo` changed type from `RankMathSeo` to `RankMathPostFormatTermSeo`
+- Field `Tag.seo` changed type from `RankMathSeo` to `RankMathTagTermSeo`
+- Field `User.seo` changed type from `RankMathSeo` to `RankMathUserSeo`
+
+### What's Changed
+
 - feat!: Narrow `seo` field types to their implementations.
-- chore!: Bump minimum supported WPGraphQL version to v1.26.0.
-- dev: Update `RedirectionConnectionResolver` for v1.26.0 compatibility.
 - fix: Correctly resolve `rankMathSettings.homepage.description` field. Props @offminded 🙌
+- dev: Update `RedirectionConnectionResolver` for v1.26.0 compatibility.
+- chore!: Bump minimum supported WPGraphQL version to v1.26.0.
 - chore: Update Composer dev-dependencies to latest versions and address uncovered lints.
+- chore: Update Strauss to v0.19.1
 - tests: Update compatibility with `wp-graphql-test-case@3.0.1`.
 
-## [0.2.0]
+
+## [0.3.0]
 
 This _major_ release refactors the plugin's root files to use the `WPGraphQL/RankMath` namespace. We've also added explicit support for WordPress 6.5 (including the new Plugin Dependencies feature), squashed a few bugs, and more.
 
