@@ -14,7 +14,7 @@
  * Tested up to: 6.5.0
  * Requires PHP: 7.4
  * Requires Plugins: wp-graphql, seo-by-rank-math
- * WPGraphQL requires at least: 1.14.0
+ * WPGraphQL requires at least: 1.26.0
  * License: GPL-3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
@@ -96,7 +96,7 @@ if ( file_exists( __DIR__ . '/deactivation.php' ) ) {
  * @return array<string, string> List of dependencies that are not ready.
  */
 function dependencies_not_ready(): array {
-	$wpgraphql_version = '1.14.0';
+	$wpgraphql_version = '1.26.0';
 	$rankmath_version  = '1.0.201';
 
 	$deps = [];
