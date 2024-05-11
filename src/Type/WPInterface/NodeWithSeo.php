@@ -55,6 +55,8 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 
 		// Narrow down ContentNode types.
 		Utils::overload_graphql_field_type( 'ContentNode', 'seo', WPInterfaceContentNodeSeo::get_type_name() );
+		// This is necessary because the filter doesn't work for inheritance.
+		Utils::overload_graphql_field_type( 'HierarchicalContentNode', 'seo', WPInterfaceContentNodeSeo::get_type_name() );
 	}
 
 	/**
