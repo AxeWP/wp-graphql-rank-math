@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- chore: Update Composer dev-dependencies to latest versions.
 
 ## [0.2.0]
 
