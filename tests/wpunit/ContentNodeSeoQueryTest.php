@@ -70,14 +70,12 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 						jsonLd {
 							raw
 						}
-						... on RankMathContentNodeSeo {
-							isPillarContent
-							seoScore {
-								badgeHtml
-								hasFrontendScore
-								rating
-								score
-							}
+						isPillarContent
+						seoScore {
+							badgeHtml
+							hasFrontendScore
+							rating
+							score
 						}
 					}
 				}

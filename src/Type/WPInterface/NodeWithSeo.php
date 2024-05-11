@@ -16,6 +16,8 @@ use WPGraphQL\RankMath\Model\ContentNodeSeo;
 use WPGraphQL\RankMath\Model\ContentTypeSeo;
 use WPGraphQL\RankMath\Model\TermNodeSeo;
 use WPGraphQL\RankMath\Model\UserSeo;
+use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo as WPInterfaceContentNodeSeo;
+use WPGraphQL\RankMath\Utils\Utils;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 
@@ -50,6 +52,9 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		// @todo only apply to ContentTypes that have SEO data.
 
 		register_graphql_interfaces_to_types( self::type_name(), $types_with_seo );
+
+		// Narrow down ContentNode types.
+		Utils::overload_field_type( 'ContentNode', 'seo', WPInterfaceContentNodeSeo::get_type_name() );
 	}
 
 	/**

@@ -65,11 +65,9 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 						}
 						robots
 						title
-						... on RankMathUserSeo {
-							additionalProfiles
-							facebookProfileUrl
-							twitterUserName
-						}
+						additionalProfiles
+						facebookProfileUrl
+						twitterUserName
 					}
 				}
 			}
