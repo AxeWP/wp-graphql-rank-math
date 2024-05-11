@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- fix: Correctly resolve `rankMathSettings.homepage.description` field. Props @offminded 🙌
 - chore: Update Composer dev-dependencies to latest versions and address uncovered lints.
 - tests: Update compatibility with `wp-graphql-test-case@3.0.1`.
 
