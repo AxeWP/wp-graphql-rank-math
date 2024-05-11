@@ -54,7 +54,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		register_graphql_interfaces_to_types( self::type_name(), $types_with_seo );
 
 		// Narrow down ContentNode types.
-		Utils::overload_field_type( 'ContentNode', 'seo', WPInterfaceContentNodeSeo::get_type_name() );
+		Utils::overload_graphql_field_type( 'ContentNode', 'seo', WPInterfaceContentNodeSeo::get_type_name() );
 	}
 
 	/**

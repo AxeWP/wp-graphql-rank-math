@@ -52,7 +52,7 @@ class SeoObjects implements Registrable {
 			);
 
 			// Register Post Object's SEO field.
-			Utils::overload_field_type( $post_type->graphql_single_name, 'seo', $type_name_for_post_object );
+			Utils::overload_graphql_field_type( $post_type->graphql_single_name, 'seo', $type_name_for_post_object );
 
 			// Register Post Type seo.
 			$type_name_for_post_type = 'RankMath' . graphql_format_type_name( $post_type->graphql_single_name . 'TypeSeo' );
@@ -86,7 +86,7 @@ class SeoObjects implements Registrable {
 			);
 
 			// Register Term Object's SEO field.
-			Utils::overload_field_type( $taxonomy->graphql_single_name, 'seo', $type_name_for_term );
+			Utils::overload_graphql_field_type( $taxonomy->graphql_single_name, 'seo', $type_name_for_term );
 		}
 
 		// Register user object seo.
@@ -115,6 +115,6 @@ class SeoObjects implements Registrable {
 		);
 
 		// Register User Object's SEO field.
-		Utils::overload_field_type( 'User', 'seo', $type_name_for_user );
+		Utils::overload_graphql_field_type( 'User', 'seo', $type_name_for_user );
 	}
 }

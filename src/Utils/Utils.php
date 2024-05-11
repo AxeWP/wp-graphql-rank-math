@@ -71,7 +71,7 @@ class Utils {
 	 * @param string $field_name  The field name to overload.
 	 * @param string $new_type_name The new GraphQL type name to use.
 	 */
-	public static function overload_field_type( string $object_type, string $field_name, string $new_type_name ): void {
+	public static function overload_graphql_field_type( string $object_type, string $field_name, string $new_type_name ): void {
 		add_filter(
 			'graphql_' . $object_type . '_fields',
 			static function ( array $fields ) use ( $field_name, $new_type_name ) {
