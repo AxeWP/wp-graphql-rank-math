@@ -13,6 +13,7 @@ namespace WPGraphQL\RankMath\Type\WPObject;
 use WPGraphQL;
 use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo;
 use WPGraphQL\RankMath\Type\WPInterface\Seo;
+use WPGraphQL\RankMath\Utils\Utils;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
 
@@ -37,9 +38,10 @@ class SeoObjects implements Registrable {
 
 		foreach ( $post_types as $post_type ) {
 			/** @var \WP_Post_Type $post_type */
-			// Register Post Objects seo.
+			$type_name_for_post_object = 'RankMath' . graphql_format_type_name( $post_type->graphql_single_name . 'ObjectSeo' );
+			// Register Post Object seo.
 			register_graphql_object_type(
-				'RankMath' . graphql_format_type_name( $post_type->graphql_single_name . 'ObjectSeo' ),
+				$type_name_for_post_object,
 				[
 					// translators: %s is the post type name.
 					'description'     => sprintf( __( 'The %s post object SEO data', 'wp-graphql-rank-math' ), $post_type->name ),
@@ -49,9 +51,13 @@ class SeoObjects implements Registrable {
 				]
 			);
 
+			// Register Post Object's SEO field.
+			Utils::overload_graphql_field_type( $post_type->graphql_single_name, 'seo', $type_name_for_post_object );
+
 			// Register Post Type seo.
+			$type_name_for_post_type = 'RankMath' . graphql_format_type_name( $post_type->graphql_single_name . 'TypeSeo' );
 			register_graphql_object_type(
-				'RankMath' . graphql_format_type_name( $post_type->graphql_single_name . 'TypeSeo' ),
+				$type_name_for_post_type,
 				[
 					// translators: %s is the post type name.
 					'description'     => sprintf( __( 'The %s post type object SEO data', 'wp-graphql-rank-math' ), $post_type->name ),
@@ -67,9 +73,9 @@ class SeoObjects implements Registrable {
 
 		foreach ( $taxonomies as $taxonomy ) {
 			/** @var \WP_Taxonomy $taxonomy */
-			$name = 'RankMath' . graphql_format_type_name( $taxonomy->graphql_single_name . 'TermSeo' );
+			$type_name_for_term = 'RankMath' . graphql_format_type_name( $taxonomy->graphql_single_name . 'TermSeo' );
 			register_graphql_object_type(
-				$name,
+				$type_name_for_term,
 				[
 					// translators: %s is the tax term name.
 					'description'     => sprintf( __( 'The %s term object SEO data', 'wp-graphql-rank-math' ), $taxonomy->name ),
@@ -78,11 +84,15 @@ class SeoObjects implements Registrable {
 					'eagerlyLoadType' => true,
 				]
 			);
+
+			// Register Term Object's SEO field.
+			Utils::overload_graphql_field_type( $taxonomy->graphql_single_name, 'seo', $type_name_for_term );
 		}
 
 		// Register user object seo.
+		$type_name_for_user = 'RankMathUserSeo';
 		register_graphql_object_type(
-			graphql_format_type_name( 'RankMathUserSeo' ),
+			$type_name_for_user,
 			[
 				'description'     => __( 'The user object SEO data', 'wp-graphql-rank-math' ),
 				'interfaces'      => [ Seo::get_type_name() ],
@@ -103,5 +113,8 @@ class SeoObjects implements Registrable {
 				'eagerlyLoadType' => true,
 			]
 		);
+
+		// Register User Object's SEO field.
+		Utils::overload_graphql_field_type( 'User', 'seo', $type_name_for_user );
 	}
 }

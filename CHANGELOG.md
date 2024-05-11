@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- feat!: Narrow `seo` field types to their implementations.
 - chore!: Bump minimum supported WPGraphQL version to v1.26.0.
 - dev: Update `RedirectionConnectionResolver` for v1.26.0 compatibility.
 - fix: Correctly resolve `rankMathSettings.homepage.description` field. Props @offminded 🙌

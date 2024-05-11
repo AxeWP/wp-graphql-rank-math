@@ -56,17 +56,15 @@ $I->sendPOST(
 									title
 								}
 							}
-							... on RankMathUserSeo {
-								additionalProfiles
-								facebookProfileUrl
-								twitterUserName
-							}
+							additionalProfiles
+							facebookProfileUrl
+							twitterUserName
 						}
 					}
 				}
 			',
 			'variables' => [
-				'id'     => $user_id,
+				'id' => $user_id,
 			],
 		]
 	)

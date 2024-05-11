@@ -62,14 +62,12 @@ query MyPosts {
         }
         robots
         title
-        ... on RankMathContentNodeSeo { # Only available on `contentNode` types.
-          isPillarContent
-          seoScore {
-            badgeHtml
-            hasFrontendScore
-            rating
-            score
-          }
+        isPillarContent
+        seoScore {
+          badgeHtml
+          hasFrontendScore
+          rating
+          score
         }
       }
       author {
@@ -192,14 +190,12 @@ query MyPosts {
             }
             robots
             title
-            ... on RankMathContentNodeSeo { # Only available on `contentNode` types.
-              isPillarContent
-              seoScore {
-                badgeHtml
-                hasFrontendScore
-                rating
-                score
-              }
+            isPillarContent
+            seoScore {
+              badgeHtml
+              hasFrontendScore
+              rating
+              score
             }
           }
         }
@@ -282,14 +278,12 @@ query MyCategories {
             }
             robots
             title
-            ... on RankMathContentNodeSeo { # Only available on `contentNode` types.
-              isPillarContent
-              seoScore {
-                badgeHtml
-                hasFrontendScore
-                rating
-                score
-              }
+            isPillarContent
+            seoScore {
+              badgeHtml
+              hasFrontendScore
+              rating
+              score
             }
           }
         }
@@ -330,7 +324,10 @@ query MyCategories {
 
 ### Querying with `nodeByUri`
 
-> **Note**: Currently, `nodeByUri` does not detect links associated with a Rank Math Redirection. This will be addressed [in a future release](https://github.com/AxeWP/wp-graphql-rank-math/issues/53).
+> [!IMPORTANT]
+> Currently, `nodeByUri` does not detect links associated with a Rank Math Redirection. This will be addressed [in a future release](https://github.com/AxeWP/wp-graphql-rank-math/issues/53).
+>
+> See [Querying Redirections](#querying-redirections) for more information.
 
 ```graphql
 query MyNodeByUriQuery( $uri: String ) {
@@ -422,7 +419,8 @@ The Sitemap Module must be enabled in the [Rank Math settings](https://rankmath.
 
 The Redirections Module [must be enabled] in the [Rank Math settings](https://rankmath.com/kb/setting-up-redirections/) for the sitemap data to be available.
 
-> **Note**: Currently, `nodeByUri` does not detect links associated with a Rank Math Redirection. This will be addressed [in a future release](https://github.com/AxeWP/wp-graphql-rank-math/issues/53).
+> [!NOTE]
+> Currently, `nodeByUri` does not detect links associated with a Rank Math Redirection. This will be addressed [in a future release](https://github.com/AxeWP/wp-graphql-rank-math/issues/53).
 >
 > In the interim, we recommend handling redirects in your frontend app, such as with the [NextJS `redirects` config key](https://nextjs.org/docs/pages/api-reference/next-config-js/redirects).
 
