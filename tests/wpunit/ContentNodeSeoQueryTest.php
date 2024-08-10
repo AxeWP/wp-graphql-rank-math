@@ -103,6 +103,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 									2
 								),
 								$this->expectedField( 'breadcrumbTitle', 'Post Title' ),
+								$this->expectedField( 'canonicalUrl', static::NOT_FALSY ),
 								$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
 								$this->expectedField( 'isPillarContent', false ),
