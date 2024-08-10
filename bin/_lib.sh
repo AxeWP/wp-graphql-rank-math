@@ -133,7 +133,7 @@ install_plugins() {
 
 	if [ "${INCLUDE_EXTENSIONS}" = "true" ]; then
 		# Install WooCommerce & WooGraphQL
-		install_woocommerce
+		install_woographql
 	fi
 }
 
