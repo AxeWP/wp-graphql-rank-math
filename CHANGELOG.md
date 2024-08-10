@@ -2,8 +2,10 @@
 
 ## [Unreleased]
 
+- chore: Update Composer dev-deps.
 - ci: test plugin compatibility with WordPress 6.6.1.
 - ci: replace uses of deprecated `docker-compose` with `docker compose`.
+
 
 ## [0.3.0]
 

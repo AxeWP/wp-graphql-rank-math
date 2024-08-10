@@ -43,7 +43,7 @@
 		"codeception/phpunit-wrapper": "^9.0",
 		"codeception/util-universalframework": "^1.0",
 		"phpunit/phpunit": "^9.5",
-		"wp-graphql/wp-graphql-testcase": "~3.0.1",
+		"wp-graphql/wp-graphql-testcase": "~3.4.0",
 		"phpstan/phpstan": "^1.2",
 		"phpstan/extension-installer": "^1.1",
 		"szepeviktor/phpstan-wordpress": "^1.0",
