@@ -80,12 +80,13 @@ abstract class Seo extends Model {
 		$allowed_fields = array_merge(
 			[
 				'breadcrumbs',
-				'title',
+				'canonicalUrl',
 				'description',
-				'robots',
 				'fullHead',
 				'jsonLd',
 				'openGraph',
+				'robots',
+				'title',
 				'type',
 			],
 			$allowed_fields
@@ -116,21 +117,13 @@ abstract class Seo extends Model {
 		if ( empty( $this->fields ) ) {
 			$this->fields = [
 				'breadcrumbs'   => fn (): ?array => $this->get_breadcrumbs(),
-				'title'         => function (): ?string {
-					$title = $this->helper->get_title();
-
-					return ! empty( $title ) ? html_entity_decode( $title, ENT_QUOTES ) : null;
+				'canonicalUrl'  => function (): ?string {
+					return $this->helper->get_canonical() ?: null;
 				},
 				'description'   => function (): ?string {
 					$description = $this->helper->get_description();
 
 					return ! empty( $description ) ? html_entity_decode( $description, ENT_QUOTES ) : null;
-				},
-				'robots'        => function (): ?array {
-					return $this->helper->get_robots() ?: null;
-				},
-				'canonicalUrl'  => function (): ?string {
-					return $this->helper->get_canonical() ?: null;
 				},
 				'focusKeywords' => function (): ?array {
 					$keywords = $this->helper->get_keywords();
@@ -154,6 +147,14 @@ abstract class Seo extends Model {
 					$head = $this->get_head();
 
 					return ! empty( $head ) ? $this->parse_og_tags( $head ) : null;
+				},
+				'robots'        => function (): ?array {
+					return $this->helper->get_robots() ?: null;
+				},
+				'title'         => function (): ?string {
+					$title = $this->helper->get_title();
+
+					return ! empty( $title ) ? html_entity_decode( $title, ENT_QUOTES ) : null;
 				},
 				'type'          => function (): string {
 					return $this->get_object_type();

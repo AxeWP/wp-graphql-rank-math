@@ -96,6 +96,7 @@ class UserSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 									1
 								),
 								$this->expectedField( 'breadcrumbTitle', 'display' ),
+								$this->expectedField( 'canonicalUrl', static::NOT_FALSY ),
 								$this->expectedField( 'description', static::IS_FALSY ),
 								$this->expectedField( 'focusKeywords', static::IS_NULL ),
 								$this->expectedField(

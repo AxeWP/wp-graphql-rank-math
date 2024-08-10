@@ -147,6 +147,7 @@ class CPTQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 									2
 								),
 								$this->expectedField( 'breadcrumbTitle', 'Test term' ),
+								$this->expectedField( 'canonicalUrl', static::NOT_FALSY ),
 								$this->expectedField( 'description', 'Test term description' ),
 								$this->expectedField( 'focusKeywords', self::IS_NULL ),
 								$this->expectedField(

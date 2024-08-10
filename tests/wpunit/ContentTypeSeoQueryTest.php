@@ -118,7 +118,7 @@ class ContentTypeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 							'seo',
 							[
 								$this->expectedField( 'breadcrumbTitle', 'Post' ),
-								$this->expectedField( 'canonicalUrl', self::IS_NULL ),
+								$this->expectedField( 'canonicalUrl', self::NOT_FALSY ),
 								$this->expectedField( 'description', 'Just another WordPress site' ),
 								$this->expectedField( 'focusKeywords', self::IS_NULL ),
 								$this->expectedField(
