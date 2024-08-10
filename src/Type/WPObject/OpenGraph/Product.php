@@ -43,14 +43,14 @@ class Product extends ObjectType {
 				'type'        => 'Float',
 				'description' => __( 'The price of the object', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ): ?float {
-					return ! empty( $source['price']['amount'] ) ? $source['price']['amount'] : null;
+					return ! empty( $source['price']['amount'] ) ? (float) $source['price']['amount'] : null;
 				},
 			],
 			'currency'     => [
 				'type'        => 'String',
 				'description' => __( 'The currency of the object price.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ): ?string {
-					return ! empty( $source['price']['currency'] ) ? $source['price']['currency'] : null;
+					return ! empty( $source['price']['currency'] ) ? (string) $source['price']['currency'] : null;
 				},
 			],
 			'availability' => [

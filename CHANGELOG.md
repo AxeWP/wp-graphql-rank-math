@@ -2,8 +2,9 @@
 
 ## [Unreleased]
 
-- chore: Update Composer dev-deps.
+- fix: Improve `seo.openGraph` type handling to prevent fatal errors when resolving custom schemas. H/t @juniorzenb
 - fix: expose `RankMathSeo.canonicalUrl` to unauthenticated users. H/t @marziolek
+- chore: Update Composer dev-deps.
 - ci: test plugin compatibility with WordPress 6.6.1.
 - ci: replace uses of deprecated `docker-compose` with `docker compose`.
 - ci: Remove WP < 6.3 from GitHub Actions tests for RankMath 1.0.218+ compatibility.
