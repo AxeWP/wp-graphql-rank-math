@@ -57,7 +57,7 @@ class OpenGraphMeta extends ObjectType {
 			'description'       => [
 				'type'        => 'String',
 				'description' => __( 'A brief description of the content, usually between 2 and 4 sentences. ', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['description'] ) ? $source['og']['description'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['description'] ) ? (string) $source['og']['description'] : null,
 			],
 			'image'             => [
 				'type'        => OpenGraph\Image::get_type_name(),
@@ -66,7 +66,7 @@ class OpenGraphMeta extends ObjectType {
 					$values = ! empty( $source['og']['image'] ) ? $source['og']['image'] : [];
 
 					if ( ! empty( $source['og']['image'][0] ) ) {
-						$values['url'] = $source['og']['image'][0];
+						$values['url'] = (string) $source['og']['image'][0];
 					}
 
 					return ! empty( $values ) ? $values : null;
@@ -109,33 +109,32 @@ class OpenGraphMeta extends ObjectType {
 			'siteName'          => [
 				'type'        => 'String',
 				'description' => __( 'The name of the site this resource is associated with.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['site_name'] ) ? $source['og']['site_name'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['site_name'] ) ? (string) $source['og']['site_name'] : null,
 			],
 			'title'             => [
 				'type'        => 'String',
 				'description' => __( 'The title of your object as it should appear within the graph.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['title'] ) ? $source['og']['title'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['title'] ) ? (string) $source['og']['title'] : null,
 			],
 			'twitterMeta'       => [
 				'type'        => OpenGraph\Twitter::get_type_name(),
 				'description' => __( 'The Twitter OpenGraph meta values.', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?array => ! empty( $source['twitter'] ) ? $source['twitter'] : null,
 			],
-
 			'type'              => [
 				'type'        => 'String',
 				'description' => __( 'The OpenGraph object type.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['type'] ) ? $source['og']['type'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['type'] ) ? (string) $source['og']['type'] : null,
 			],
 			'updatedTime'       => [
 				'type'        => 'String',
 				'description' => __( 'The updated time', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['updated_time'] ) ? $source['og']['updated_time'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['updated_time'] ) ? (string) $source['og']['updated_time'] : null,
 			],
 			'url'               => [
 				'type'        => 'String',
 				'description' => __( 'The canonical URL of your object that will be used as its permanent ID in the graph.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['url'] ) ? $source['og']['url'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['og']['url'] ) ? (string) $source['og']['url'] : null,
 			],
 			'videoMeta'         => [
 				'type'        => OpenGraph\Video::get_type_name(),

@@ -3,8 +3,10 @@
 ## [Unreleased]
 
 - chore: Update Composer dev-deps.
-- fix: expose `RankMathSeo.canonicalUrl` to unauthenticated users. H/t @marziolek- ci: test plugin compatibility with WordPress 6.6.1.
+- fix: expose `RankMathSeo.canonicalUrl` to unauthenticated users. H/t @marziolek
+- ci: test plugin compatibility with WordPress 6.6.1.
 - ci: replace uses of deprecated `docker-compose` with `docker compose`.
+- ci: Remove WP < 6.3 from GitHub Actions tests for RankMath 1.0.218+ compatibility.
 
 ## [0.3.0]
 
