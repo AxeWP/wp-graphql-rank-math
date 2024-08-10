@@ -44,5 +44,5 @@ parameters:
 			- vendor/axepress/wp-graphql-stubs/wp-graphql-stubs.php
 		scanDirectories:
 			- ../seo-by-rank-math
-			- ../wp-graphql-woocommerce
+			# - ../wp-graphql-woocommerce
 			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/
