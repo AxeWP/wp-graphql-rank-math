@@ -11,6 +11,7 @@ namespace WPGraphQL\RankMath;
 
 use RankMath\Helper as RMHelper;
 use WPGraphQL\RankMath\Admin\Settings\Settings;
+use WPGraphQL\RankMath\Extensions\Extensions;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Helper;
 
 if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
@@ -67,6 +68,7 @@ if ( ! class_exists( 'WPGraphQL\RankMath\Main' ) ) :
 			}
 
 			// Setup plugin.
+			Extensions::init();
 			CoreSchemaFilters::init();
 			Settings::init();
 			TypeRegistry::init();

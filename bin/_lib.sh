@@ -101,6 +101,25 @@ configure_wordpress() {
 	wp config set GRAPHQL_DEBUG true --raw --allow-root
 }
 
+
+install_woographql() {
+	cd $WP_CORE_DIR
+
+	echo "Installing WooCommerce..."
+	if ! $(wp plugin is-installed woocommerce); then
+		wp plugin install woocommerce --activate
+	fi
+
+	if ! $(wp plugin is-installed wp-graphql-woocommerce); then
+		wp plugin install https://github.com/wp-graphql/wp-graphql-woocommerce/archive/refs/heads/master.zip
+		# Install composer deps
+		cd $WP_CORE_DIR/wp-content/plugins/wp-graphql-woocommerce
+		composer install --no-dev --no-interaction --no-progress --no-suggest --optimize-autoloader
+
+		wp plugin activate wp-graphql-woocommerce
+	fi
+}
+
 install_plugins() {
 	cd $WP_CORE_DIR
 
@@ -111,6 +130,11 @@ install_plugins() {
 	# Install RankMath and Activate
 	wp plugin install seo-by-rank-math --allow-root
 	wp plugin activate seo-by-rank-math --allow-root
+
+	if [ "${INCLUDE_EXTENSIONS}" = "true" ]; then
+		# Install WooCommerce & WooGraphQL
+		install_woocommerce
+	fi
 }
 
 setup_plugin() {

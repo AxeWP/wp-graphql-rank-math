@@ -42,6 +42,7 @@ parameters:
 				- vendor-prefixed
 		scanDirectories:
 			- ../seo-by-rank-math
-			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/
+			- ../wp-graphql-woocommerce
+			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src
 		scanFiles:
 			- vendor/axepress/wp-graphql-stubs/wp-graphql-stubs.php

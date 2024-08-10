@@ -2,9 +2,11 @@
 
 ## [Unreleased]
 
+- fix: Fix interface conflicts on `wp-graphql-woocommerce` `Product` and `ProductVariation` types. H/t @robbiebel
 - fix: Improve `seo.openGraph` type handling to prevent fatal errors when resolving custom schemas. H/t @juniorzenb
 - fix: expose `RankMathSeo.canonicalUrl` to unauthenticated users. H/t @marziolek
 - chore: Update Composer dev-deps.
+- ci: add `INCLUDE_EXTENSIONS` to `.env` for installing external plugins (woocommerce, wp-graphql-woocommerce).
 - ci: test plugin compatibility with WordPress 6.6.1.
 - ci: replace uses of deprecated `docker-compose` with `docker compose`.
 - ci: Remove WP < 6.3 from GitHub Actions tests for RankMath 1.0.218+ compatibility.
