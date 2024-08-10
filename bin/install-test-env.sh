@@ -16,7 +16,5 @@ install_wordpress
 install_db
 configure_wordpress
 install_plugins
-
-cd ${BASEDIR}
 setup_plugin
 post_setup

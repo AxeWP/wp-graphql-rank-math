@@ -89,18 +89,9 @@ configure_wordpress() {
 	cd $WP_CORE_DIR
 
 	echo "Setting up WordPress..."
-	export WP_CLI_CONFIG_PATH=${WP_CLI_CONFIG_PATH};
 	wp config create --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASS" --dbhost="$DB_HOST" --skip-check --force=true
 	wp core install --url=$WP_DOMAIN --title=Test --admin_user=$ADMIN_USERNAME --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL
-
-	wp rewrite structure '/%year%/%monthnum%/%postname%/' --category-base='category' --hard --allow-root
-
-	wp config set RANK_MATH_REGISTRATION_SKIP true --raw --allow-root
-	wp config set WP_DEBUG true --raw --allow-root
-	wp config set WP_DEBUG_LOG true --raw --allow-root
-	wp config set GRAPHQL_DEBUG true --raw --allow-root
 }
-
 
 install_woographql() {
 	cd $WP_CORE_DIR
@@ -123,6 +114,11 @@ install_woographql() {
 install_plugins() {
 	cd $WP_CORE_DIR
 
+	if [ "${INCLUDE_EXTENSIONS}" = "true" ]; then
+		# Install WooCommerce & WooGraphQL
+		install_woographql
+	fi
+
 	# Install WPGraphQL and Activate
 	wp plugin install wp-graphql --allow-root
 	wp plugin activate wp-graphql --allow-root
@@ -130,11 +126,6 @@ install_plugins() {
 	# Install RankMath and Activate
 	wp plugin install seo-by-rank-math --allow-root
 	wp plugin activate seo-by-rank-math --allow-root
-
-	if [ "${INCLUDE_EXTENSIONS}" = "true" ]; then
-		# Install WooCommerce & WooGraphQL
-		install_woographql
-	fi
 }
 
 setup_plugin() {
@@ -161,12 +152,18 @@ post_setup() {
 	# activate the plugin
 	wp plugin activate wp-graphql-rank-math --allow-root
 
-	wp rewrite flush --allow-root --hard
+	wp rewrite structure '/%year%/%monthnum%/%postname%/' --category-base='category' --hard --allow-root
+	wp rewrite flush --allow-root
+
+
+	wp config set RANK_MATH_REGISTRATION_SKIP true --raw --allow-root
+	wp config set WP_DEBUG true --raw --allow-root
+	wp config set WP_DEBUG_LOG true --raw --allow-root
+	wp config set GRAPHQL_DEBUG true --raw --allow-root
 
 	# Export the db for codeception to use
 	wp db export $PLUGIN_DIR/tests/_data/dump.sql --allow-root
 
 	echo "Installed plugins"
 	wp plugin list --allow-root
-
 }
