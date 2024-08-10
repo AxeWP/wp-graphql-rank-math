@@ -37,12 +37,12 @@ class Article extends ObjectType {
 			'modifiedTime'  => [
 				'type'        => 'String',
 				'description' => __( 'The date modified.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['modified_time'] ) ? $source['modified_time'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['modified_time'] ) ? (string) $source['modified_time'] : null,
 			],
 			'publishedTime' => [
 				'type'        => 'String',
 				'description' => __( 'The date published.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['published_time'] ) ? $source['published_time'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['published_time'] ) ? (string) $source['published_time'] : null,
 			],
 			'publisher'     => [
 				'type'        => 'String',
@@ -58,9 +58,16 @@ class Article extends ObjectType {
 				'resolve'     => static function ( $source ): ?array {
 					$value = ! empty( $source['tag'] ) ? $source['tag'] : null;
 
-					if ( is_string( $value ) ) {
-						$value = [ $value ];
+					if ( empty( $value ) ) {
+						return null;
 					}
+
+					if ( ! is_array( $value ) ) {
+						$value = [ (string) $value ];
+					}
+
+					// Ensure all tags are strings.
+					$value = array_map( 'strval', $value );
 
 					return $value;
 				},
@@ -68,7 +75,7 @@ class Article extends ObjectType {
 			'section'       => [
 				'type'        => 'String',
 				'description' => __( 'The article category.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['section'] ) ? $source['section'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['section'] ) ? (string) $source['section'] : null,
 			],
 		];
 	}

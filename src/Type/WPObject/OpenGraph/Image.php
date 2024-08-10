@@ -41,7 +41,7 @@ class Image extends ObjectType {
 			'secureUrl' => [
 				'type'        => 'String',
 				'description' => __( 'The https:// URL for the image.', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['secure_url'] ) ? $source['secure_url'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['secure_url'] ) ? (string) $source['secure_url'] : null,
 			],
 			'type'      => [
 				'type'        => 'String', // @todo

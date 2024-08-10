@@ -37,7 +37,7 @@ class Facebook extends ObjectType {
 			'appId'  => [
 				'type'        => 'ID',
 				'description' => __( 'The Facebook app ID associated with this resource', 'wp-graphql-rank-math' ),
-				'resolve'     => static fn ( $source ): ?string => ! empty( $source['app_id'] ) ? $source['app_id'] : null,
+				'resolve'     => static fn ( $source ): ?string => ! empty( $source['app_id'] ) ? (string) $source['app_id'] : null,
 			],
 			'admins' => [
 				'type'        => [ 'list_of' => 'String' ],
@@ -45,9 +45,16 @@ class Facebook extends ObjectType {
 				'resolve'     => static function ( $source ): ?array {
 					$value = ! empty( $source['admins'] ) ? $source['admins'] : null;
 
-					if ( is_string( $value ) ) {
-						$value = [ $value ];
+					if ( empty( $value ) ) {
+						return null;
 					}
+
+					if ( ! is_array( $value ) ) {
+						$value = [ (string) $value ];
+					}
+
+					// Ensure all tags are strings.
+					$value = array_map( 'strval', $value );
 
 					return $value;
 				},
