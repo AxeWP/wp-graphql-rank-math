@@ -116,8 +116,6 @@ install_woographql() {
 		cd $WP_CORE_DIR/wp-content/plugins/wp-graphql-woocommerce
 		composer install --no-dev --no-interaction --no-progress --no-suggest --optimize-autoloader
 
-		cd $WP_CORE_DIR
-
 		wp plugin activate wp-graphql-woocommerce
 	fi
 }

@@ -18,4 +18,6 @@ install_wordpress
 install_db
 configure_wordpress
 install_plugins
+
+cd ${BASEDIR}
 post_setup
