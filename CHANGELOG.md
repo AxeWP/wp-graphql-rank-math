@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- ci: test plugin compatibility with WordPress 6.6.1.
+- ci: replace uses of deprecated `docker-compose` with `docker compose`.
+
 ## [0.3.0]
 
 This _major_ releases simplifies the GraphQL schema by narrowing the `seo` field types to their implementations. We've also bumped the minimum version of WPGraphQL to v1.26.0 and refactored the `RedirectionConnectionResolver` to use the improved lifecycle methods introduced in that release.
