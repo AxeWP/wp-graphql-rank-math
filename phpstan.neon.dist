@@ -43,6 +43,6 @@ parameters:
 		scanDirectories:
 			- ../seo-by-rank-math
 			- ../wp-graphql-woocommerce
-			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src
+			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/
 		scanFiles:
 			- vendor/axepress/wp-graphql-stubs/wp-graphql-stubs.php
