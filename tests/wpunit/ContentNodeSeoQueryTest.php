@@ -1,11 +1,14 @@
 <?php
+
+namespace Tests\WPGraphQL\RankMath;
+
 /**
  * Tests ContentNode seo queries.
  */
 class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
 	public $admin;
 	public $database_id;
-	public \WpunitTester $tester;
+	protected WpunitTester $tester;
 
 	/**
 	 * {@inheritDoc}

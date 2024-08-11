@@ -1,3 +1,4 @@
+namespace: Tests\WPGraphQL\RankMath
 paths:
     tests: '%TESTS_DIR%'
     output: '%TESTS_OUTPUT%'
