@@ -35,7 +35,6 @@ class Autoloader {
 			return self::$is_loaded;
 		}
 
-		
 		// If the main class has already been loaded, then they must be using a different autoloader.
 		if ( class_exists( 'WPGraphQL\RankMath\Main' ) ) {
 			return true;
