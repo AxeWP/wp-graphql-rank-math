@@ -63,6 +63,7 @@ jobs:
         env:
           PHP_VERSION: ${{ matrix.php }}
           WP_VERSION: ${{ matrix.wordpress }}
+          INCLUDE_EXTENSIONS: ${{ matrix.extensions }}
         run: composer build-test
 
       - name: Run Functional Tests w/ Docker
