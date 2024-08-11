@@ -102,12 +102,7 @@ install_woographql() {
 	fi
 
 	if ! $(wp plugin is-installed wp-graphql-woocommerce); then
-		wp plugin install https://github.com/wp-graphql/wp-graphql-woocommerce/archive/refs/heads/master.zip
-		# Install composer deps
-		cd $WP_CORE_DIR/wp-content/plugins/wp-graphql-woocommerce
-		composer install --no-dev --no-interaction --no-progress --no-suggest --optimize-autoloader
-
-		wp plugin activate wp-graphql-woocommerce
+		wp plugin install https://github.com/wp-graphql/wp-graphql-woocommerce/releases/latest/download/wp-graphql-woocommerce.zip --activate
 	fi
 }
 
@@ -154,7 +149,6 @@ post_setup() {
 
 	wp rewrite structure '/%year%/%monthnum%/%postname%/' --category-base='category' --hard --allow-root
 	wp rewrite flush --allow-root
-
 
 	wp config set RANK_MATH_REGISTRATION_SKIP true --raw --allow-root
 	wp config set WP_DEBUG true --raw --allow-root
