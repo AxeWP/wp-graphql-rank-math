@@ -102,7 +102,7 @@ install_woographql() {
 	fi
 
 	if ! $(wp plugin is-installed wp-graphql-woocommerce); then
-		wp plugin install https://github.com/wp-graphql/wp-graphql-woocommerce/releases/latest/download/wp-graphql-woocommerce.zip --activate
+		wp plugin install https://github.com/wp-graphql/wp-graphql-woocommerce/releases/download/v0.21.0/wp-graphql-woocommerce.zip --activate
 	fi
 }
 
