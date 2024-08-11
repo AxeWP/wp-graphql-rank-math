@@ -1,16 +1,15 @@
 <?php
 
+namespace Tests\WPGraphQL\RankMath;
+
 use RankMath\Helper;
 use RankMath\Redirections\DB;
 use WPGraphQL\RankMath\Modules\Redirection\CoreSchemaFilters;
-use WPGraphQL\RankMath\Modules\Redirection\Type\Enum\RedirectionComparisonTypeEnum;
-use WPGraphQL\RankMath\Modules\Redirection\Type\Enum\RedirectionStatusEnum;
-use WPGraphQL\RankMath\Modules\Redirection\Type\Enum\RedirectionTypeEnum;
 use WPGraphQL\RankMath\Modules\Redirection\TypeRegistry;
 use WPGraphQL\RankMath\TypeRegistry as ParentTypeRegistry;
 
 class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCase {
-	protected \WpunitTester $tester;
+	protected WpunitTester $tester;
 	public $admin;
 	public $database_ids;
 
@@ -27,7 +26,7 @@ class RedirectionConnectionQueriesTest extends \Tests\WPGraphQL\TestCase\WPGraph
 		Helper::update_modules( [ 'redirections' => 'on' ] );
 		
 		// Unset the default type registry
-		$registry = new ReflectionProperty( ParentTypeRegistry::class, 'registry' );
+		$registry = new \ReflectionProperty( ParentTypeRegistry::class, 'registry' );
 		$registry->setAccessible( true );
 		$registry->setValue( null, [] );
 

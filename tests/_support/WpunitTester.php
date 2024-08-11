@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\WPGraphQL\RankMath;
 
 /**
  * Inherited Methods

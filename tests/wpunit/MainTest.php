@@ -39,7 +39,7 @@ class MainTest extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function testClone() {
 		$actual = Main::instance();
-		$rc     = new ReflectionClass( $actual );
+		$rc     = new \ReflectionClass( $actual );
 		$this->assertTrue( $rc->hasMethod( '__clone' ) );
 		$this->assertTrue( $rc->hasMethod( '__wakeup' ) );
 	}
