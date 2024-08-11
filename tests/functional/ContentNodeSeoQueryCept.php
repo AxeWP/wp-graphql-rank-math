@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\WPGraphQL\RankMath;
+
 $I = new FunctionalTester( $scenario );
 $I->wantTo( 'Query content node seo data' );
 
