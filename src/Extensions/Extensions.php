@@ -3,7 +3,7 @@
  * Registers support for additional Extensions.
  *
  * @package WPGraphQL\RankMath\Extensions
- * @since @todo
+ * @since 0.3.1
  */
 
 declare( strict_types = 1 );
