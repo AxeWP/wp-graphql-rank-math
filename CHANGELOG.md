@@ -7,6 +7,7 @@ This _minor_ release fixes several bugs and improves compatibility with WPGraphQ
 - fix: Fix interface conflicts `Product.` and `ProductVariation.seo` types with WPGraphQL for WooCommerce. H/t @robbiebel
 - fix: Prevent fatal errors when resolving custom `seo.openGraph` schemas by improving type handling. H/t @juniorzenb
 - fix: Expose `RankMathSeo.canonicalUrl` to unauthenticated users. H/t @marziolek
+- fix: Check if classes are loaded by a different autoloader before attempting to autoload them.
 - chore: Update Composer dev-deps.
 - tests: fix namespaces for Codeception tests.
 - ci: test plugin compatibility with WordPress 6.6.1.
