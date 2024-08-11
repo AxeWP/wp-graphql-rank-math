@@ -1,19 +1,22 @@
 # Changelog
 
-## [Unreleased]
+## [0.3.1]
 
-- fix: Fix interface conflicts on `wp-graphql-woocommerce` `Product` and `ProductVariation` types. H/t @robbiebel
-- fix: Improve `seo.openGraph` type handling to prevent fatal errors when resolving custom schemas. H/t @juniorzenb
-- fix: expose `RankMathSeo.canonicalUrl` to unauthenticated users. H/t @marziolek
+This _minor_ release fixes several bugs and improves compatibility with WPGraphQL for WooCommerce.
+
+- fix: Fix interface conflicts `Product.` and `ProductVariation.seo` types with WPGraphQL for WooCommerce. H/t @robbiebel
+- fix: Prevent fatal errors when resolving custom `seo.openGraph` schemas by improving type handling. H/t @juniorzenb
+- fix: Expose `RankMathSeo.canonicalUrl` to unauthenticated users. H/t @marziolek
 - chore: Update Composer dev-deps.
-- ci: add `INCLUDE_EXTENSIONS` to `.env` for installing external plugins (woocommerce, wp-graphql-woocommerce).
+- tests: fix namespaces for Codeception tests.
 - ci: test plugin compatibility with WordPress 6.6.1.
-- ci: replace uses of deprecated `docker-compose` with `docker compose`.
 - ci: Remove WP < 6.3 from GitHub Actions tests for RankMath 1.0.218+ compatibility.
+- ci: add `INCLUDE_EXTENSIONS` to `.env` for installing external plugins (woocommerce, wp-graphql-woocommerce).
+- ci: replace uses of deprecated `docker-compose` with `docker compose`.
 
 ## [0.3.0]
 
-This _major_ releases simplifies the GraphQL schema by narrowing the `seo` field types to their implementations. We've also bumped the minimum version of WPGraphQL to v1.26.0 and refactored the `RedirectionConnectionResolver` to use the improved lifecycle methods introduced in that release.
+This _major_ release simplifies the GraphQL schema by narrowing the `seo` field types to their implementations. We've also bumped the minimum version of WPGraphQL to v1.26.0 and refactored the `RedirectionConnectionResolver` to use the improved lifecycle methods introduced in that release.
 
 ### Upgrade Notes
 

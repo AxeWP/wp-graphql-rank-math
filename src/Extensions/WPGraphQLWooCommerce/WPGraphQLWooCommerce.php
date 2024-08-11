@@ -3,7 +3,7 @@
  * Handles support for WPGraphQL for WooCommerce.
  *
  * @package WPGraphQL\RankMath\Extensions\WPGraphQLWooCommerce
- * @since @todo
+ * @since 0.3.1
  */
 
 declare( strict_types = 1 );
