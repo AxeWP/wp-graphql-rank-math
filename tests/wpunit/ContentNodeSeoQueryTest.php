@@ -20,7 +20,6 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 
 		rank_math()->settings->set( 'general', 'breadcrumbs', true );
 		rank_math()->settings->set( 'general', 'headless_support', true );
-		
 
 		$this->admin = $this->factory()->user->create(
 			[
@@ -53,7 +52,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		$this->clearSchema();
 	}
 
-	protected function get_query() : string {
+	protected function get_query(): string {
 		return '
 			query contentNode( $id: ID!, $idType: ContentNodeIdTypeEnum, $asPreview: Boolean ) {
 				contentNode( id: $id, idType: $idType, asPreview: $asPreview ){
@@ -106,9 +105,9 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 									2
 								),
 								$this->expectedField( 'breadcrumbTitle', 'Post Title' ),
-								$this->expectedField( 'canonicalUrl', static::NOT_FALSY ),
+								$this->expectedField( 'canonicalUrl', self::NOT_FALSY ),
 								$this->expectedField( 'description', get_the_excerpt( $this->database_id ) ),
-								$this->expectedField( 'focusKeywords', static::IS_NULL ),
+								$this->expectedField( 'focusKeywords', self::IS_NULL ),
 								$this->expectedField( 'isPillarContent', false ),
 								$this->expectedField(
 									'robots',
@@ -124,7 +123,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 								$this->expectedObject(
 									'seoScore',
 									[
-										$this->expectedField( 'badgeHtml', static::IS_NULL ),
+										$this->expectedField( 'badgeHtml', self::IS_NULL ),
 										$this->expectedField( 'hasFrontendScore', false ),
 										$this->expectedField( 'rating', 'UNKNOWN' ),
 										$this->expectedField( 'score', 0 ),
@@ -242,7 +241,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 								),
 								$this->expectedField( 'breadcrumbTitle', 'Draft Title' ),
 								$this->expectedField( 'description', get_the_excerpt( $draft_id ) ),
-								$this->expectedField( 'focusKeywords', static::IS_NULL ),
+								$this->expectedField( 'focusKeywords', self::IS_NULL ),
 								$this->expectedField( 'isPillarContent', false ),
 								$this->expectedField(
 									'robots',
@@ -258,7 +257,7 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 								$this->expectedObject(
 									'seoScore',
 									[
-										$this->expectedField( 'badgeHtml', static::IS_NULL ),
+										$this->expectedField( 'badgeHtml', self::IS_NULL ),
 										$this->expectedField( 'hasFrontendScore', false ),
 										$this->expectedField( 'rating', 'UNKNOWN' ),
 										$this->expectedField( 'score', 0 ),
@@ -274,5 +273,73 @@ class ContentNodeSeoQueryTest extends \Tests\WPGraphQL\TestCase\WPGraphQLTestCas
 		// cleanup.
 		wp_delete_post( $draft_id, true );
 		wp_delete_post( $revision_id, true );
+	}
+
+	public function testPasswordProtectedContentNodeSeo() {
+		$protected_id = $this->factory()->post->create(
+			[
+				'post_type'     => 'post',
+				'post_status'   => 'publish',
+				'post_title'    => 'Protected Post Title',
+				'post_content'  => 'Protected Post Content',
+				'post_password' => 'password',
+			]
+		);
+
+		$query = $this->get_query();
+
+		$variables = [
+			'id'        => $protected_id,
+			'idType'    => 'DATABASE_ID',
+			'asPreview' => false,
+		];
+
+		$actual = $this->graphql( compact( 'query', 'variables' ) );
+		$this->assertArrayNotHasKey( 'errors', $actual );
+
+		$this->assertEquals( $protected_id, $actual['data']['contentNode']['databaseId'] );
+
+		$this->assertQuerySuccessful(
+			$actual,
+			[
+				$this->expectedObject(
+					'contentNode',
+					[
+						$this->expectedObject(
+							'seo',
+							[
+								$this->expectedNode(
+									'breadcrumbs',
+									[
+										$this->expectedField( 'text', 'Protected: Protected Post Title' ),
+										$this->expectedField( 'url', get_permalink( $protected_id ) ),
+										$this->expectedField( 'isHidden', false ),
+									],
+									2
+								),
+								$this->expectedField( 'breadcrumbTitle', 'Protected: Protected Post Title' ),
+								$this->expectedField( 'canonicalUrl', self::NOT_FALSY ),
+								$this->expectedField( 'focusKeywords', self::IS_NULL ),
+								$this->expectedField( 'isPillarContent', false ),
+								$this->expectedField(
+									'robots',
+									[
+										'index',
+										'follow',
+										'max-snippet:-1',
+										'max-video-preview:-1',
+										'max-image-preview:large',
+									]
+								),
+								$this->expectedField( 'title', 'Protected Post Title - Test' ),
+							]
+						),
+					]
+				),
+			]
+		);
+
+		// cleanup.
+		wp_delete_post( $protected_id, true );
 	}
 }
