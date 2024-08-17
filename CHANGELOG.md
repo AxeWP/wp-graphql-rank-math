@@ -1,5 +1,7 @@
 # Changelog
 
+- fix: Prevent fatal error when resolving seo from private `Post` models. H/t @MonPetitUd
+
 ## [0.3.1]
 
 This _minor_ release fixes several bugs and improves compatibility with WPGraphQL for WooCommerce.
