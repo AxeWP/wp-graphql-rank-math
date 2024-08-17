@@ -1,6 +1,12 @@
 # Changelog
 
-- fix: Prevent fatal error when resolving seo from private `Post` models. H/t @MonPetitUd
+## [Unreleased]
+
+## [0.3.2]
+
+This _minor_ release fixes a fatal error when trying to resolve SEO data from private `Post` models.
+
+- fix: Use `Post::$databaseId` to prevent fatal errors on private `contentNode`s. H/t @MonPetitUd
 
 ## [0.3.1]
 
