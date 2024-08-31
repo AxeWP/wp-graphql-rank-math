@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- dev: Add GraphQL Debug message to response when attempting to use `Page.seo` for the Posts Archive.
 - chore: Update Composer dev-deps.
 
 ## [0.3.2]
