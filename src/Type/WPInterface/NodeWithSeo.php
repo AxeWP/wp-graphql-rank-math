@@ -87,6 +87,20 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 					}
 
 					if ( empty( $source->uri ) ) {
+						/**
+						 * This can occur when querying the `Posts` page, since the Model "casts" it as a `ContentType` due to the lack of archive support.
+						 *
+						 * @see \WPGraphQL\Model\Post::$uri
+						 */
+						if ( $source instanceof \WPGraphQL\Model\Post && $source->isPostsPage ) {
+							graphql_debug(
+								sprintf(
+									// translators: %d: The ID of the Post model being queried.
+									esc_html__( 'Post %d is configured as the Posts archive, but is being queried as a `Page`. To get the SEO data, please query the object as a `ContentType` (e.g. via `nodeByUri`).', 'wp-graphql-rank-math' ),
+									$source->databaseId,
+								)
+							);
+						}
 						return null;
 					}
 
