@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- chore: Update Composer dev-deps.
+
 ## [0.3.2]
 
 This _minor_ release fixes a fatal error when trying to resolve SEO data from private `Post` models.
