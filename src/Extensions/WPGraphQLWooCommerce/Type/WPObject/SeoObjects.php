@@ -34,34 +34,22 @@ class SeoObjects implements Registrable {
 	 */
 	public static function register(): void {
 		// Set SEO field types for product children.
-		$product_types = WP_GraphQL_WooCommerce::get_enabled_product_types();
+		$product_types = array_merge(
+			WP_GraphQL_WooCommerce::get_enabled_product_types(),
+			[
+				'ProductUnion',
+				'ProductWithPricing',
+				'ProductWithDimensions',
+				'InventoriedProduct',
+				'DownloadableProduct',
+				'ProductWithAttributes',
+				'ProductWithVariations',
+			]
+		);
 
 		foreach ( $product_types as $graphql_type_name ) {
 			Utils::overload_graphql_field_type( $graphql_type_name, 'seo', 'RankMathProductObjectSeo' );
 		}
 
-		// Register the Product Variation SEO type and apply it to the Product Variation and children.
-		$type_name_for_product_variation = 'RankMathProductVariationObjectSeo';
-
-		register_graphql_object_type(
-			$type_name_for_product_variation,
-			[
-				'description'     => __( 'The product variation object SEO data', 'wp-graphql-rank-math' ),
-				'interfaces'      => [ ContentNodeSeo::get_type_name() ],
-				'fields'          => [],
-				'eagerlyLoadType' => true,
-			]
-		);
-
-		$product_variations = array_merge(
-			[
-				'ProductVariation',
-			],
-			WP_GraphQL_WooCommerce::get_enabled_product_variation_types(),
-		);
-
-		foreach ( $product_variations as $product_variation ) {
-			Utils::overload_graphql_field_type( $product_variation, 'seo', $type_name_for_product_variation );
-		}
 	}
 }
