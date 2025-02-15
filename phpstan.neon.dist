@@ -17,12 +17,13 @@ parameters:
 			- WPGRAPHQL_SEO_AUTOLOAD
 		stubFiles:
 			# Simulate added properties
-			- phpstan/rank-math.stub
 			- phpstan/class-breadcrumbs.stub
 			- phpstan/class-choices.stub
 			- phpstan/class-database.stub
 			- phpstan/class-helpers.stub
 			- phpstan/class-singular.stub
+			- phpstan/namespace-rank-math.stub
+			- phpstan/rank-math.stub
 			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-post-type.stub
 			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-taxonomy.stub
 			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/Model.stub

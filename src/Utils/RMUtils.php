@@ -51,7 +51,7 @@ class RMUtils {
 	 *
 	 * @since 0.0.13
 	 *
-	 * @return \RankMath\Admin\Database\Query_Builder
+	 * @return \MyThemeShop\Database\Query_Builder
 	 */
 	public static function get_redirections_table() {
 		return Database::table( 'rank_math_redirections' );
