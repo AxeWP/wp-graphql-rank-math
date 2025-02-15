@@ -10,7 +10,6 @@ declare( strict_types = 1 );
 
 namespace WPGraphQL\RankMath\Extensions\WPGraphQLWooCommerce\Type\WPObject;
 
-use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo;
 use WPGraphQL\RankMath\Utils\Utils;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
@@ -50,6 +49,5 @@ class SeoObjects implements Registrable {
 		foreach ( $product_types as $graphql_type_name ) {
 			Utils::overload_graphql_field_type( $graphql_type_name, 'seo', 'RankMathProductObjectSeo' );
 		}
-
 	}
 }
