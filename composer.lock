@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f313a80706960ce78ece6b2fb096d6eb",
+    "content-hash": "4d9f306a136c74d800132250d6fa7caa",
     "packages": [
         {
             "name": "axepress/wp-graphql-plugin-boilerplate",
@@ -229,25 +229,25 @@
         },
         {
             "name": "axepress/wp-graphql-stubs",
-            "version": "v1.31.1",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AxeWP/wp-graphql-stubs.git",
-                "reference": "55296773a7537e0dbc008010959718c7c796e170"
+                "reference": "46f4c2a007e4577a004f3a43a8fc2e02d305c7d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AxeWP/wp-graphql-stubs/zipball/55296773a7537e0dbc008010959718c7c796e170",
-                "reference": "55296773a7537e0dbc008010959718c7c796e170",
+                "url": "https://api.github.com/repos/AxeWP/wp-graphql-stubs/zipball/46f4c2a007e4577a004f3a43a8fc2e02d305c7d4",
+                "reference": "46f4c2a007e4577a004f3a43a8fc2e02d305c7d4",
                 "shasum": ""
             },
             "require": {
-                "php-stubs/wordpress-stubs": "^5.4 || ^6.0"
+                "php-stubs/wordpress-stubs": ">=5.4"
             },
             "require-dev": {
-                "php": ">=7.3",
+                "php": ">=7.4",
                 "php-stubs/generator": "^0.8.0",
-                "phpstan/phpstan": "^1.8"
+                "phpstan/phpstan": "^2.1.5"
             },
             "suggest": {
                 "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
@@ -269,7 +269,7 @@
             ],
             "support": {
                 "issues": "https://github.com/AxeWP/wp-graphql-stubs/issues",
-                "source": "https://github.com/AxeWP/wp-graphql-stubs/tree/v1.31.1"
+                "source": "https://github.com/AxeWP/wp-graphql-stubs/tree/v2.0.0"
             },
             "funding": [
                 {
@@ -277,7 +277,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-29T12:41:14+00:00"
+            "time": "2025-02-15T14:48:32+00:00"
         },
         {
             "name": "behat/gherkin",
@@ -4391,20 +4391,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.18",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "fef9f07814a573399229304bb0046affdf558812"
+                "reference": "451b17f9665481ee502adc39be987cb71067ece2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fef9f07814a573399229304bb0046affdf558812",
-                "reference": "fef9f07814a573399229304bb0046affdf558812",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/451b17f9665481ee502adc39be987cb71067ece2",
+                "reference": "451b17f9665481ee502adc39be987cb71067ece2",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -4445,7 +4445,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-13T12:44:44+00:00"
+            "time": "2025-02-13T12:49:56+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -8651,30 +8651,29 @@
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
-            "version": "v1.3.5",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "7f8cfe992faa96b6a33bbd75c7bace98864161e7"
+                "reference": "f7beb13cd22998e3d913fdb897a1e2553ccd637e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/7f8cfe992faa96b6a33bbd75c7bace98864161e7",
-                "reference": "7f8cfe992faa96b6a33bbd75c7bace98864161e7",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/f7beb13cd22998e3d913fdb897a1e2553ccd637e",
+                "reference": "f7beb13cd22998e3d913fdb897a1e2553ccd637e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0",
-                "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0",
-                "phpstan/phpstan": "^1.10.31",
-                "symfony/polyfill-php73": "^1.12.0"
+                "php": "^7.4 || ^8.0",
+                "php-stubs/wordpress-stubs": "^6.6.2",
+                "phpstan/phpstan": "^2.0"
             },
             "require-dev": {
                 "composer/composer": "^2.1.14",
                 "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
                 "php-parallel-lint/php-parallel-lint": "^1.1",
-                "phpstan/phpstan-strict-rules": "^1.2",
-                "phpunit/phpunit": "^8.0 || ^9.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^9.0",
                 "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.0",
                 "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
             },
@@ -8708,9 +8707,9 @@
             ],
             "support": {
                 "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
-                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.3.5"
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v2.0.1"
             },
-            "time": "2024-06-28T22:27:19+00:00"
+            "time": "2024-12-01T02:13:05+00:00"
         },
         {
             "name": "theseer/tokenizer",
