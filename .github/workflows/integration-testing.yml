@@ -40,6 +40,8 @@ jobs:
           #   wordpress: "6.0"
           # New WP versions that dont support older PHP versions
           - php: "8.0"
+            wordpress: "6.7"
+          - php: "8.0"
             wordpress: "6.6"
           - php: "8.0"
             wordpress: "6.5"
