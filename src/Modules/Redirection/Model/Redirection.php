@@ -16,19 +16,19 @@ use WPGraphQL\RankMath\Utils\RMUtils;
 /**
  * Class - Redirection
  *
- * @property ?int $databaseId The redirection database ID.
- * @property ?string $dateCreated The date the redirection was created.
+ * @property ?int                 $databaseId The redirection database ID.
+ * @property ?string              $dateCreated The date the redirection was created.
  * @property ?string $dateCreatedGmt The GMT date the redirection was created.
- * @property ?string $dateModified The date the redirection was last modified.
- * @property ?string $dateModifiedGmt The GMT date the redirection was last modified.
- * @property ?string $dateLastAccessed The date the redirection was last accessed.
- * @property ?string $dateLastAccessedGmt The GMT date the redirection was last accessed.
- * @property ?int $hits The number of hits for this redirection.
- * @property string $id The global ID of the redirection.
- * @property ?string $redirectToUrl The URL to redirect to.
- * @property ?array $sources The sources for this redirection.
- * @property ?string $status The status of the redirection.
- * @property ?int $type The type of redirection.
+ * @property ?string              $dateModified The date the redirection was last modified.
+ * @property ?string              $dateModifiedGmt The GMT date the redirection was last modified.
+ * @property ?string              $dateLastAccessed The date the redirection was last accessed.
+ * @property ?string              $dateLastAccessedGmt The GMT date the redirection was last accessed.
+ * @property ?int                 $hits The number of hits for this redirection.
+ * @property string               $id The global ID of the redirection.
+ * @property ?string              $redirectToUrl The URL to redirect to.
+ * @property ?array<string,mixed> $sources The sources for this redirection.
+ * @property ?string              $status The status of the redirection.
+ * @property ?int                 $type The type of redirection.
  */
 class Redirection extends Model {
 	/**
