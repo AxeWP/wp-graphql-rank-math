@@ -2,8 +2,12 @@
 
 ## [Unreleased]
 
-- chore: test compatibility with WordPress 6.7.2 and WPGraphQL 2.0.0.
+## [0.3.3]
+
+This _minor_ release adds a GraphQL Debug message to the response when attempting to use `Page.seo` for the Posts Archive. It also tests compatibility with WordPress 6.7.2 and WPGraphQL 2.0.0.
+
 - dev: Add GraphQL Debug message to response when attempting to use `Page.seo` for the Posts Archive. H/t @amoyanoakqa
+- chore: test compatibility with WordPress 6.7.2 and WPGraphQL 2.0.0.
 - chore: Update Composer dev-deps.
 
 ## [0.3.2]
@@ -55,7 +59,7 @@ query GetContentNodeSeo {
           # since `seo` is always a `RankMathPostObjectSeo` type.
           ...MyPostSeoFragment
 
-          # This needs to be removed, since `Post` isnt a `User`
+          # This needs to be removed, since `Post` isn't a `User`
           ... on RankMathUserSeo {
             ...MyUserSeoFragment
           }
@@ -131,7 +135,7 @@ This _minor_ release bumps the plugin version to 0.1.0! However, there are **no 
 
 Additionally, we fixed a few bugs regarding `seo.openGraph` resolution, and deprecated a setting that was removed in RankMath v1.0.211.
 
-The reason for the version bump is to make it easier to update future releases in accordance with our [versioning policy](README.md#updating-and-versioning). While the plugin version number is indicative of the (projected) schema maturity and not the underlying code (which has been used in enteprise production environments for almost two years), the new features and improvements that would warrant major changes to the schema are currently blocked upstream. By bumping to v0.1.0, we can continue to push patch releases in the meantime without users having to worry about breaking changes.
+The reason for the version bump is to make it easier to update future releases in accordance with our [versioning policy](README.md#updating-and-versioning). While the plugin version number is indicative of the (projected) schema maturity and not the underlying code (which has been used in enterprise production environments for almost two years), the new features and improvements that would warrant major changes to the schema are currently blocked upstream. By bumping to v0.1.0, we can continue to push patch releases in the meantime without users having to worry about breaking changes.
 
 ### What's changed
 
