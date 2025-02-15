@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- chore: test compatibility with WordPress 6.7.2 and WPGraphQL 2.0.0.
 - dev: Add GraphQL Debug message to response when attempting to use `Page.seo` for the Posts Archive. H/t @amoyanoakqa
 - chore: Update Composer dev-deps.
 
