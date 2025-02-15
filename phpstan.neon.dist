@@ -34,10 +34,11 @@ parameters:
 			- src/
 		excludePaths:
 			analyse:
-				- vendor-prefixed
+				- vendor-prefixed/
 		scanFiles:
 			- vendor/axepress/wp-graphql-stubs/wp-graphql-stubs.php
 		scanDirectories:
-			- ../seo-by-rank-math
-			- ../wp-graphql-woocommerce
+			- ../seo-by-rank-math/
+			- ../seo-by-rank-math/includes/
+			- ../wp-graphql-woocommerce/includes/
 			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/
