@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 - chore: bump PHPStan to v2.0.x
+- chore: Test compatibility with WordPress 6.8 and WPGraphQL 2.3.
+- chore: Update Composer dev-dependencies and lint.
 
 ## [0.3.3]
 
