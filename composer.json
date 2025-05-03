@@ -31,7 +31,8 @@
 		"axepress/wp-graphql-plugin-boilerplate": "^0.1.0"
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "<3.5",
+		"axepress/wp-graphql-cs": "^2.0.0-beta",
+		"axepress/wp-graphql-stubs": "^2.0.0",
 		"codeception/lib-innerbrowser": "^1.0",
 		"codeception/module-asserts": "^1.0",
 		"codeception/module-cli": "^1.0",
@@ -42,16 +43,15 @@
 		"codeception/module-webdriver": "^1.0",
 		"codeception/phpunit-wrapper": "^9.0",
 		"codeception/util-universalframework": "^1.0",
-		"phpunit/phpunit": "^9.5",
-		"wp-graphql/wp-graphql-testcase": "~3.4.0",
-		"phpstan/phpstan": "^1.2",
-		"phpstan/extension-installer": "^1.1",
-		"szepeviktor/phpstan-wordpress": "^1.0",
-		"axepress/wp-graphql-stubs": "^1.22.1",
-		"axepress/wp-graphql-cs": "^2.0.0-beta",
+		"lucatume/wp-browser": "<3.5",
+		"php-coveralls/php-coveralls": "^2.5",
 		"phpcompatibility/php-compatibility": "dev-develop as 9.9.9",
+		"phpstan/extension-installer": "^1.1",
+		"phpstan/phpstan": "^2.1.5",
+		"phpunit/phpunit": "^9.5",
+		"szepeviktor/phpstan-wordpress": "^2.0.1",
 		"wp-cli/wp-cli-bundle": "^2.8.1",
-		"php-coveralls/php-coveralls": "^2.5"
+		"wp-graphql/wp-graphql-testcase": "~3.4.0"
 	},
 	"config": {
 		"allow-plugins": {

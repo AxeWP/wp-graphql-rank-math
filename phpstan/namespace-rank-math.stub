@@ -1,0 +1,16 @@
+<?php
+
+namespace RankMath;
+
+class Frontend_SEO_Score {}
+
+class Settings {}
+
+namespace RankMath\Replace_Variables;
+
+class Manager {}
+
+namespace RankMath\Module;
+
+class Manager {}
+

@@ -138,16 +138,16 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		// A map of the node models to their corresponding SEO model classes.
 		switch ( true ) {
 			case $node_model instanceof \WPGraphQL\Model\Post:
-				$seo_model = new ContentNodeSeo( $node_model->databaseId );
+				$seo_model = isset( $node_model->databaseId ) ? new ContentNodeSeo( $node_model->databaseId ) : null;
 				break;
 			case $node_model instanceof \WPGraphQL\Model\PostType:
-				$seo_model = new ContentTypeSeo( $node_model->name );
+				$seo_model = isset( $node_model->name ) ? new ContentTypeSeo( $node_model->name ) : null;
 				break;
 			case $node_model instanceof \WPGraphQL\Model\Term:
-				$seo_model = new TermNodeSeo( $node_model->databaseId );
+				$seo_model = isset( $node_model->databaseId ) ? new TermNodeSeo( $node_model->databaseId ) : null;
 				break;
 			case $node_model instanceof \WPGraphQL\Model\User:
-				$seo_model = new UserSeo( $node_model->databaseId );
+				$seo_model = isset( $node_model->databaseId ) ? new UserSeo( $node_model->databaseId ) : null;
 				break;
 			default:
 				$seo_model = null;

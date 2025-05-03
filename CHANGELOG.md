@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+- chore: bump PHPStan to v2.0.x
+- chore: Test compatibility with WordPress 6.8 and WPGraphQL 2.3.
+- chore: Update Composer dev-dependencies and lint.
+
 ## [0.3.3]
 
 This _minor_ release adds a GraphQL Debug message to the response when attempting to use `Page.seo` for the Posts Archive. It also tests compatibility with WordPress 6.7.2 and WPGraphQL 2.0.0.

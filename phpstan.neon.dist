@@ -2,35 +2,31 @@ parameters:
 		level: 8
 		treatPhpDocTypesAsCertain: false
 		inferPrivatePropertyTypeFromConstructor: true
-		checkAlwaysTrueCheckTypeFunctionCall: true
-		checkAlwaysTrueInstanceof: true
-		checkAlwaysTrueStrictComparison: true
 		checkExplicitMixedMissingReturn: true
 		checkFunctionNameCase: true
 		checkInternalClassCaseSensitivity: true
-		checkMissingIterableValueType: true
 		checkTooWideReturnTypesInProtectedAndPublicMethods: true
 		polluteScopeWithAlwaysIterableForeach: false
 		polluteScopeWithLoopInitialAssignments: false
 		reportAlwaysTrueInLastCondition: true
 		reportStaticMethodSignatures: true
 		reportWrongPhpDocTypeInVarTag: true
-		featureToggles:
-			disableRuntimeReflectionProvider: true
+		bootstrapFiles:
+			- phpstan/constants.php
 		dynamicConstantNames:
 			- WPGRAPHQL_SEO_AUTOLOAD
 		stubFiles:
 			# Simulate added properties
-			- phpstan/rank-math.stub
 			- phpstan/class-breadcrumbs.stub
 			- phpstan/class-choices.stub
-			- phpstan/class-singular.stub
+			- phpstan/class-database.stub
 			- phpstan/class-helpers.stub
+			- phpstan/class-singular.stub
+			- phpstan/namespace-rank-math.stub
+			- phpstan/rank-math.stub
 			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-post-type.stub
 			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-taxonomy.stub
 			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/Model.stub
-		bootstrapFiles:
-			- phpstan/constants.php
 		paths:
 			- wp-graphql-rank-math.php
 			- access-functions.php
@@ -39,10 +35,11 @@ parameters:
 			- src/
 		excludePaths:
 			analyse:
-				- vendor-prefixed
+				- vendor-prefixed/
 		scanFiles:
 			- vendor/axepress/wp-graphql-stubs/wp-graphql-stubs.php
 		scanDirectories:
-			- ../seo-by-rank-math
-			- ../wp-graphql-woocommerce
+			- ../seo-by-rank-math/
+			- ../seo-by-rank-math/includes/
+			- ../wp-graphql-woocommerce/includes/
 			- vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/
