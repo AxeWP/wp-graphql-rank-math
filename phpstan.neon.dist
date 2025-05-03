@@ -13,8 +13,6 @@ parameters:
 		reportWrongPhpDocTypeInVarTag: true
 		bootstrapFiles:
 			- phpstan/constants.php
-		dynamicConstantNames:
-			- WPGRAPHQL_SEO_AUTOLOAD
 		stubFiles:
 			# Simulate added properties
 			- phpstan/class-breadcrumbs.stub
@@ -24,9 +22,8 @@ parameters:
 			- phpstan/class-singular.stub
 			- phpstan/namespace-rank-math.stub
 			- phpstan/rank-math.stub
-			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-post-type.stub
-			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/class-wp-taxonomy.stub
-			- vendor/axepress/wp-graphql-plugin-boilerplate/phpstan/Model.stub
+			- phpstan/class-wp-post-type.stub
+			- phpstan/class-wp-taxonomy.stub
 		paths:
 			- wp-graphql-rank-math.php
 			- access-functions.php

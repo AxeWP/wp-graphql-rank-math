@@ -28,10 +28,10 @@
 	],
 	"require": {
 		"php": ">=7.4",
-		"axepress/wp-graphql-plugin-boilerplate": "^0.1.0"
+		"axepress/wp-graphql-plugin-boilerplate": "dev-dev/callable-types"
 	},
 	"require-dev": {
-		"axepress/wp-graphql-cs": "^2.0.0-beta",
+		"axepress/wp-graphql-cs": "^2.0.0",
 		"axepress/wp-graphql-stubs": "^2.0.0",
 		"codeception/lib-innerbrowser": "^1.0",
 		"codeception/module-asserts": "^1.0",
@@ -88,8 +88,13 @@
 			"namespace_prefix": "WPGraphQL\\RankMath\\Vendor\\",
 			"classmap_prefix": "WPGraphQL_RankMath_",
 			"constant_prefix": "WPGRAPHQL_SEO_",
-			"include_modified_date": false,
 			"delete_vendor_packages": true,
+			"include_modified_date": false,
+			"update_call_sites": false,
+			"exclude_from_prefix": {
+				"namespaces": [],
+				"file_patterns": []
+			},
 			"packages": [
 				"axepress/wp-graphql-plugin-boilerplate"
 			]
@@ -122,19 +127,25 @@
 		"phpstan": [
 			"vendor/bin/phpstan analyze --ansi --memory-limit=1G"
 		],
-		"strauss-install": [
-			"test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/download/0.19.1/strauss.phar"
+		"pre-prefix-namespaces": [
+			"test -d vendor-prefixed || mkdir vendor-prefixed",
+			"test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/download/0.22.2/strauss.phar"
 		],
-		"strauss": [
-			"@strauss-install",
+		"prefix-namespaces": [
 			"@php bin/strauss.phar",
-			"composer dump-autoload --optimize"
+			"@composer dump-autoload"
+		],
+		"pre-install-cmd": [
+			"@pre-prefix-namespaces"
+		],
+		"pre-update-cmd": [
+			"@pre-install-cmd"
 		],
 		"post-install-cmd": [
-			"@strauss"
+			"@prefix-namespaces"
 		],
 		"post-update-cmd": [
-			"@strauss"
+			"@prefix-namespaces"
 		]
 	}
 }

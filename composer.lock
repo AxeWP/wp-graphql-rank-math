@@ -4,32 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d9f306a136c74d800132250d6fa7caa",
+    "content-hash": "2ad54e9b6bfa34e12c5283fb1fed3133",
     "packages": [
         {
             "name": "axepress/wp-graphql-plugin-boilerplate",
-            "version": "0.1.0",
+            "version": "dev-dev/callable-types",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate.git",
-                "reference": "49096512cd599068edbbcff8e46684e207789001"
+                "reference": "1a3bf4ef390148cd88b043d6a5bc419c66279f6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/49096512cd599068edbbcff8e46684e207789001",
-                "reference": "49096512cd599068edbbcff8e46684e207789001",
+                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/1a3bf4ef390148cd88b043d6a5bc419c66279f6c",
+                "reference": "1a3bf4ef390148cd88b043d6a5bc419c66279f6c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
             },
             "require-dev": {
-                "axepress/wp-graphql-cs": "^2.0.0-beta",
-                "axepress/wp-graphql-stubs": "^1.12.2",
+                "axepress/wp-graphql-cs": "^2.0.0",
+                "axepress/wp-graphql-stubs": "^2.3.0",
                 "phpcompatibility/php-compatibility": "dev-develop as 9.9.9",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan": "^1.2",
-                "szepeviktor/phpstan-wordpress": "^1.0",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-deprecation-rules": "^2.0.1",
+                "szepeviktor/phpstan-wordpress": "^2.0",
                 "wp-cli/wp-cli-bundle": "^2.8.1"
             },
             "type": "library",
@@ -55,7 +56,7 @@
             "description": "Boilerplate for creating WPGraphQL extensions",
             "support": {
                 "issues": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/issues",
-                "source": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/tree/0.1.0"
+                "source": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/tree/dev/callable-types"
             },
             "funding": [
                 {
@@ -63,7 +64,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-06T17:12:24+00:00"
+            "time": "2025-05-03T18:46:20+00:00"
         }
     ],
     "packages-dev": [
@@ -11251,7 +11252,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "axepress/wp-graphql-cs": 10,
+        "axepress/wp-graphql-plugin-boilerplate": 20,
         "phpcompatibility/php-compatibility": 20
     },
     "prefer-stable": false,
