@@ -3,7 +3,7 @@
         'name' => 'axepress/wp-graphql-rank-math',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '3bd3ede8c79c3bdce32ba2d7c6a6c59837df5fd7',
+        'reference' => '10822768cf1aa6c7ceb488a5cb896d7575925965',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'axepress/wp-graphql-plugin-boilerplate' => array(
             'pretty_version' => 'dev-dev/callable-types',
             'version' => 'dev-dev/callable-types',
-            'reference' => '1a3bf4ef390148cd88b043d6a5bc419c66279f6c',
+            'reference' => '856ba0abf5b2b7c20dc805f117e47151f6750896',
             'type' => 'library',
             'install_path' => __DIR__ . '/../axepress/wp-graphql-plugin-boilerplate',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'axepress/wp-graphql-rank-math' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '3bd3ede8c79c3bdce32ba2d7c6a6c59837df5fd7',
+            'reference' => '10822768cf1aa6c7ceb488a5cb896d7575925965',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

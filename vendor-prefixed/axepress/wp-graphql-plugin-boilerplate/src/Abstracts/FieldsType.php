@@ -8,6 +8,7 @@
 declare (strict_types=1);
 namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts;
 
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Compat;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\GraphQLType;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithFields;
@@ -37,7 +38,9 @@ if (!class_exists('\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\FieldsType
          */
         public static function register(): void
         {
-            register_graphql_fields(static::get_type_name(), static::get_fields());
+            /** @todo remove when WPGraphQL > 2.3.0 is required. */
+            $config = Compat::resolve_graphql_config(['fields' => static::get_fields()]);
+            register_graphql_fields(static::get_type_name(), $config['fields']);
         }
     }
 }

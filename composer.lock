@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate.git",
-                "reference": "1a3bf4ef390148cd88b043d6a5bc419c66279f6c"
+                "reference": "856ba0abf5b2b7c20dc805f117e47151f6750896"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/1a3bf4ef390148cd88b043d6a5bc419c66279f6c",
-                "reference": "1a3bf4ef390148cd88b043d6a5bc419c66279f6c",
+                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/856ba0abf5b2b7c20dc805f117e47151f6750896",
+                "reference": "856ba0abf5b2b7c20dc805f117e47151f6750896",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-03T18:46:20+00:00"
+            "time": "2025-05-03T20:29:28+00:00"
         }
     ],
     "packages-dev": [
