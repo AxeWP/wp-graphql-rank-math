@@ -98,11 +98,19 @@ install_woographql() {
 
 	echo "Installing WooCommerce..."
 	if ! $(wp plugin is-installed woocommerce); then
-		wp plugin install woocommerce --activate
+		wp plugin install woocommerce --activate --allow-root
 	fi
 
 	if ! $(wp plugin is-installed wp-graphql-woocommerce); then
-		wp plugin install https://github.com/wp-graphql/wp-graphql-woocommerce/releases/download/v0.21.0/wp-graphql-woocommerce.zip --activate
+		wp plugin install https://github.com/wp-graphql/wp-graphql-woocommerce/archive/refs/heads/master.zip --allow-root
+		cd $WP_CORE_DIR/wp-content/plugins/wp-graphql-woocommerce
+
+		if [ ! -d vendor ]; then
+			composer install --no-dev
+		fi
+
+		wp plugin activate wp-graphql-woocommerce --allow-root
+
 	fi
 }
 
