@@ -43,13 +43,14 @@ class SeoObjects implements Registrable {
 			$product_types = array_merge(
 				$product_types,
 				[
-					'ProductUnion',
-					'ProductWithPricing',
-					'ProductWithDimensions',
-					'InventoriedProduct',
 					'DownloadableProduct',
+					'InventoriedProduct',
+					'ProductUnion',
 					'ProductWithAttributes',
+					'ProductWithDimensions',
+					'ProductWithPricing',
 					'ProductWithVariations',
+					'ProductVariation',
 				]
 			);
 		}
