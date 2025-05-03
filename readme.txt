@@ -2,7 +2,7 @@
 Contributors: axepress, justlevine
 Tags: GraphQL, Gatsby, Headless, WPGraphQL, React, Rest, RankMath, Seo, Schema
 Requires at least: 6.0
-Tested up to: 6.7.2
+Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 0.3.3
 Maintained at: https://github.com/AxeWP/wp-graphql-headless-login
