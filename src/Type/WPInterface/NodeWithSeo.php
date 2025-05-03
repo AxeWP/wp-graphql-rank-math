@@ -19,6 +19,7 @@ use WPGraphQL\RankMath\Model\UserSeo;
 use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo as WPInterfaceContentNodeSeo;
 use WPGraphQL\RankMath\Utils\Utils;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\InterfaceType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Compat;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 
 /**
@@ -27,9 +28,13 @@ use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithInterfaces;
 class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	/**
 	 * {@inheritDoc}
+	 *
+	 * Overloaded so the type isn't prefixed.
 	 */
 	public static function register(): void {
-		parent::register();
+		// @todo Remove when WPGraphQL < 2.3.0 is dropped.
+		$config = Compat::resolve_graphql_config( static::get_type_config() );
+		register_graphql_interface_type( static::type_name(), $config );
 
 		/**
 		 * Filters the GraphQL types that have SEO data.
