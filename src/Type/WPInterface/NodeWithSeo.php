@@ -29,7 +29,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 	 * {@inheritDoc}
 	 */
 	public static function register(): void {
-		register_graphql_interface_type( static::type_name(), static::get_type_config() );
+		parent::register();
 
 		/**
 		 * Filters the GraphQL types that have SEO data.
@@ -80,7 +80,7 @@ class NodeWithSeo extends InterfaceType implements TypeWithInterfaces {
 		return [
 			'seo' => [
 				'type'        => Seo::get_type_name(),
-				'description' => __( 'The RankMath SEO data for the node.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The RankMath SEO data for the node.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ) {
 					if ( ! $source instanceof Model ) {
 						return null;

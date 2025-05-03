@@ -42,7 +42,7 @@ class OpenGraphLocaleEnum extends EnumType {
 		foreach ( $types as $locale ) {
 			$values[ WPEnumType::get_safe_name( $locale ) ] = [
 				// translators: %s is the locale.
-				'description' => sprintf( __( '%s.', 'wp-graphql-rank-math' ), $locale ),
+				'description' => static fn () => sprintf( __( '%s.', 'wp-graphql-rank-math' ), $locale ),
 				'value'       => $locale,
 			];
 		}

@@ -38,15 +38,15 @@ class RedirectionSource extends ObjectType {
 		return [
 			'ignore'     => [
 				'type'        => 'String',
-				'description' => __( 'The ignore flag to use when matching the pattern.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The ignore flag to use when matching the pattern.', 'wp-graphql-rank-math' ),
 			],
 			'pattern'    => [
 				'type'        => 'String',
-				'description' => __( 'The pattern to match.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The pattern to match.', 'wp-graphql-rank-math' ),
 			],
 			'comparison' => [
 				'type'        => RedirectionComparisonTypeEnum::get_type_name(),
-				'description' => __( 'The comparison type to use when matching the pattern.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The comparison type to use when matching the pattern.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

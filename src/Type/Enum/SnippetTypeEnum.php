@@ -38,21 +38,21 @@ class SnippetTypeEnum extends EnumType {
 
 		$values = [
 			'LOCAL_BUSINESS' => [
-				'description' => __( 'Local Business', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Local Business', 'wp-graphql-rank-math' ),
 				'value'       => 'LocalBusiness',
 			],
 		];
 
 		foreach ( $types as $name => $description ) {
 			$values[ strtoupper( $name ) ] = [
-				'description' => $description,
+				'description' => static fn () => $description,
 				'value'       => $name,
 			];
 		}
 
 		if ( class_exists( 'WooCommerce' ) || class_exists( 'Easy_Digital_Downloads' ) ) {
 			$values['PRODUCT'] = [
-				'description' => __( 'Product.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Product.', 'wp-graphql-rank-math' ),
 				'value'       => 'product',
 			];
 		}

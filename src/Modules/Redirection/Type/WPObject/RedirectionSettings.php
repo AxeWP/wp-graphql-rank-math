@@ -39,23 +39,23 @@ class RedirectionSettings extends ObjectType {
 		return [
 			'fallbackBehavior'    => [
 				'type'        => RedirectionBehaviorEnum::get_type_name(),
-				'description' => __( 'The fallback redirection behavior', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The fallback redirection behavior', 'wp-graphql-rank-math' ),
 			],
 			'fallbackCustomUrl'   => [
 				'type'        => 'String',
-				'description' => __( 'The custom redirection URL to use as a fallback. Only set if `fallbackBehavior` is `CUSTOM`.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The custom redirection URL to use as a fallback. Only set if `fallbackBehavior` is `CUSTOM`.', 'wp-graphql-rank-math' ),
 			],
 			'hasAutoPostRedirect' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the auto post redirection is enabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the auto post redirection is enabled.', 'wp-graphql-rank-math' ),
 			],
 			'hasDebug'            => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the redirection Debug console is enabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the redirection Debug console is enabled.', 'wp-graphql-rank-math' ),
 			],
 			'redirectionType'     => [
 				'type'        => RedirectionTypeEnum::get_type_name(),
-				'description' => __( 'The redirection type.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The redirection type.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

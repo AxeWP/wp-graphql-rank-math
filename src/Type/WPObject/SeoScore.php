@@ -37,19 +37,19 @@ class SeoScore extends ObjectType {
 		return [
 			'badgeHtml'        => [
 				'type'        => 'String',
-				'description' => __( 'The html output for the Frontend SEO badge', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The html output for the Frontend SEO badge', 'wp-graphql-rank-math' ),
 			],
 			'hasFrontendScore' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the SEO score should be displayed on the frontend', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the SEO score should be displayed on the frontend', 'wp-graphql-rank-math' ),
 			],
 			'score'            => [
 				'type'        => 'Integer',
-				'description' => __( 'The SEO score', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The SEO score', 'wp-graphql-rank-math' ),
 			],
 			'rating'           => [
 				'type'        => SeoRatingEnum::get_type_name(),
-				'description' => __( 'The SEO score', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The SEO score', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

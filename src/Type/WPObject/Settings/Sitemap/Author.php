@@ -31,7 +31,7 @@ class Author extends ObjectType implements TypeWithConnections {
 		return [
 			'connectedAuthors' => [
 				'toType'      => 'User',
-				'description' => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The connected authors whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, $args, $context, $info ) {
 					$resolver = new UserConnectionResolver( $source, $args, $context, $info );
 
@@ -63,15 +63,15 @@ class Author extends ObjectType implements TypeWithConnections {
 		return [
 			'excludedRoles'           => [
 				'type'        => [ 'list_of' => 'UserRoleEnum' ],
-				'description' => __( 'List of user roles excluded from the sitemap.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'List of user roles excluded from the sitemap.', 'wp-graphql-rank-math' ),
 			],
 			'excludedUserDatabaseIds' => [
 				'type'        => [ 'list_of' => 'Int' ],
-				'description' => __( 'List of user IDs excluded from the sitemap.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'List of user IDs excluded from the sitemap.', 'wp-graphql-rank-math' ),
 			],
 			'sitemapUrl'              => [
 				'type'        => 'String',
-				'description' => __( 'The sitemap URL.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The sitemap URL.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

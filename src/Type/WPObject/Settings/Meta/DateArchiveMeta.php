@@ -49,7 +49,7 @@ class DateArchiveMeta extends ObjectType implements TypeWithInterfaces {
 		return [
 			'hasArchives' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether archives are enabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether archives are enabled.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

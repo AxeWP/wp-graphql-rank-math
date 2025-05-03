@@ -40,17 +40,17 @@ class Sitemap extends ObjectType {
 		return [
 			'author'          => [
 				'type'        => Author::get_type_name(),
-				'description' => __( 'Author sitemap settings. Null if authors are not indexable.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Author sitemap settings. Null if authors are not indexable.', 'wp-graphql-rank-math' ),
 			],
 			'contentTypes'    => [
 				'type'        => [ 'list_of' => ContentType::get_type_name() ],
 				'args'        => [
 					'include' => [
 						'type'        => [ 'list_of' => 'ContentTypeEnum' ],
-						'description' => __( 'Limit results to specific content types.', 'wp-graphql-rank-math' ),
+						'description' => static fn () => __( 'Limit results to specific content types.', 'wp-graphql-rank-math' ),
 					],
 				],
-				'description' => __( 'Content types included in the sitemap.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Content types included in the sitemap.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, array $args ) {
 					$content_types = $source['contentTypes'];
 
@@ -63,21 +63,21 @@ class Sitemap extends ObjectType {
 			],
 			'general'         => [
 				'type'        => General::get_type_name(),
-				'description' => __( 'Sitemap general settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Sitemap general settings.', 'wp-graphql-rank-math' ),
 			],
 			'sitemapIndexUrl' => [
 				'type'        => 'String',
-				'description' => __( 'The URL to the sitemap index.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The URL to the sitemap index.', 'wp-graphql-rank-math' ),
 			],
 			'taxonomies'      => [
 				'type'        => [ 'list_of' => Taxonomy::get_type_name() ],
 				'args'        => [
 					'include' => [
 						'type'        => [ 'list_of' => 'TaxonomyEnum' ],
-						'description' => __( 'Limit results to specific taxonomies.', 'wp-graphql-rank-math' ),
+						'description' => static fn () => __( 'Limit results to specific taxonomies.', 'wp-graphql-rank-math' ),
 					],
 				],
-				'description' => __( 'Content types included in the sitemap.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Content types included in the sitemap.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, array $args ) {
 					$taxonomies = $source['taxonomies'];
 

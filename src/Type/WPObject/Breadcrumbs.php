@@ -36,15 +36,15 @@ class Breadcrumbs extends ObjectType {
 		return [
 			'text'     => [
 				'type'        => 'String',
-				'description' => __( 'The text for the given breadcrumb', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The text for the given breadcrumb', 'wp-graphql-rank-math' ),
 			],
 			'url'      => [
 				'type'        => 'String',
-				'description' => __( 'The url for the given breadcrumb', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The url for the given breadcrumb', 'wp-graphql-rank-math' ),
 			],
 			'isHidden' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the given breadcrumb is hidden from the schema', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the given breadcrumb is hidden from the schema', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

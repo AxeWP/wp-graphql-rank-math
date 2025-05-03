@@ -35,15 +35,15 @@ class BulkEditingTypeEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'DISABLED'  => [
-				'description' => __( 'Disabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Disabled.', 'wp-graphql-rank-math' ),
 				'value'       => '0',
 			],
 			'ENABLED'   => [
-				'description' => __( 'Enabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Enabled.', 'wp-graphql-rank-math' ),
 				'value'       => 'editing',
 			],
 			'READ_ONLY' => [
-				'description' => __( 'Read only.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Read only.', 'wp-graphql-rank-math' ),
 				'value'       => 'readonly',
 			],
 		];

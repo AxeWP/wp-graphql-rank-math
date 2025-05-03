@@ -40,47 +40,47 @@ class Redirection extends ObjectType implements TypeWithInterfaces {
 		return [
 			'dateCreated'         => [
 				'type'        => 'String',
-				'description' => __( 'The date the redirection was created.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The date the redirection was created.', 'wp-graphql-rank-math' ),
 			],
 			'dateCreatedGmt'      => [
 				'type'        => 'String',
-				'description' => __( 'The GMT date the redirection was created.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The GMT date the redirection was created.', 'wp-graphql-rank-math' ),
 			],
 			'dateModified'        => [
 				'type'        => 'String',
-				'description' => __( 'The date the redirection was last modified.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The date the redirection was last modified.', 'wp-graphql-rank-math' ),
 			],
 			'dateModifiedGmt'     => [
 				'type'        => 'String',
-				'description' => __( 'The GMT date the redirection was last modified.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The GMT date the redirection was last modified.', 'wp-graphql-rank-math' ),
 			],
 			'dateLastAccessed'    => [
 				'type'        => 'String',
-				'description' => __( 'The date the redirection was last accessed.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The date the redirection was last accessed.', 'wp-graphql-rank-math' ),
 			],
 			'dateLastAccessedGmt' => [
 				'type'        => 'String',
-				'description' => __( 'The GMT date the redirection was last accessed.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The GMT date the redirection was last accessed.', 'wp-graphql-rank-math' ),
 			],
 			'hits'                => [
 				'type'        => 'Int',
-				'description' => __( 'The number of hits for this redirection.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The number of hits for this redirection.', 'wp-graphql-rank-math' ),
 			],
 			'redirectToUrl'       => [
 				'type'        => 'String',
-				'description' => __( 'The URL to redirect to.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The URL to redirect to.', 'wp-graphql-rank-math' ),
 			],
 			'sources'             => [
 				'type'        => [ 'list_of' => RedirectionSource::get_type_name() ],
-				'description' => __( 'The sources of the redirection.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The sources of the redirection.', 'wp-graphql-rank-math' ),
 			],
 			'status'              => [
 				'type'        => RedirectionStatusEnum::get_type_name(),
-				'description' => __( 'The status of the redirection.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The status of the redirection.', 'wp-graphql-rank-math' ),
 			],
 			'type'                => [
 				'type'        => RedirectionTypeEnum::get_type_name(),
-				'description' => __( 'The redirection type (HTTP status code).', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The redirection type (HTTP status code).', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

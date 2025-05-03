@@ -35,11 +35,11 @@ class SeoScoreTemplateTypeEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'CIRCLE' => [
-				'description' => __( 'Circle template', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Circle template', 'wp-graphql-rank-math' ),
 				'value'       => 'circle',
 			],
 			'SQUARE' => [
-				'description' => __( 'Square template', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Square template', 'wp-graphql-rank-math' ),
 				'value'       => 'square',
 			],
 		];

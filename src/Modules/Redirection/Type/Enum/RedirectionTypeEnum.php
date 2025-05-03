@@ -41,7 +41,7 @@ class RedirectionTypeEnum extends EnumType {
 
 		foreach ( $redirection_types as $value => $description ) {
 			$values[ WPEnumType::get_safe_name( 'REDIRECT_' . (string) $value ) ] = [
-				'description' => $description,
+				'description' => static fn () => $description,
 				'value'       => $value,
 			];
 		}

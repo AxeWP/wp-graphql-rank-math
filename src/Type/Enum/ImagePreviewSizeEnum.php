@@ -35,15 +35,15 @@ class ImagePreviewSizeEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'LARGE'    => [
-				'description' => __( 'Large', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Large', 'wp-graphql-rank-math' ),
 				'value'       => 'large',
 			],
 			'STANDARD' => [
-				'description' => __( 'Standard.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Standard.', 'wp-graphql-rank-math' ),
 				'value'       => 'standard',
 			],
 			'NONE'     => [
-				'description' => __( 'Prevents search engines from following links on the pages', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Prevents search engines from following links on the pages', 'wp-graphql-rank-math' ),
 				'value'       => 'none',
 			],
 		];

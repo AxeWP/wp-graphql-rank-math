@@ -35,11 +35,11 @@ class KnowledgeGraphTypeEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'PERSON'  => [
-				'description' => __( 'Person.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Person.', 'wp-graphql-rank-math' ),
 				'value'       => 'person',
 			],
 			'COMPANY' => [
-				'description' => __( 'Company.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Company.', 'wp-graphql-rank-math' ),
 				'value'       => 'company',
 			],
 		];

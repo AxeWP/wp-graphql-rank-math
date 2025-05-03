@@ -32,7 +32,7 @@ class Taxonomy extends ObjectType implements TypeWithConnections {
 		return [
 			'connectedTerms' => [
 				'toType'      => 'TermNode',
-				'description' => __( 'The connected terms whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The connected terms whose URLs are included in the sitemap', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, $args, $context, $info ) {
 					if ( empty( $source['isInSitemap'] ) ) {
 						return null;
@@ -67,19 +67,19 @@ class Taxonomy extends ObjectType implements TypeWithConnections {
 		return [
 			'hasEmptyTerms' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to archive pages of terms that have no posts associated.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to archive pages of terms that have no posts associated.', 'wp-graphql-rank-math' ),
 			],
 			'isInSitemap'   => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the content type is included in the sitemap.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the content type is included in the sitemap.', 'wp-graphql-rank-math' ),
 			],
 			'sitemapUrl'    => [
 				'type'        => 'String',
-				'description' => __( 'The sitemap URL.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The sitemap URL.', 'wp-graphql-rank-math' ),
 			],
 			'type'          => [
 				'type'        => 'TaxonomyEnum',
-				'description' => __( 'The taxonomy type.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The taxonomy type.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

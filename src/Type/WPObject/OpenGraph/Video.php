@@ -36,11 +36,11 @@ class Video extends ObjectType {
 		return [
 			'url'      => [
 				'type'        => 'String',
-				'description' => __( 'The URL of the video.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The URL of the video.', 'wp-graphql-rank-math' ),
 			],
 			'duration' => [
 				'type'        => 'String',
-				'description' => __( 'The duration of the video.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The duration of the video.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

@@ -36,11 +36,11 @@ class SlackEnhancedData extends ObjectType {
 		return [
 			'label' => [
 				'type'        => 'String',
-				'description' => __( 'The Enhanced Data label', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Enhanced Data label', 'wp-graphql-rank-math' ),
 			],
 			'data'  => [
 				'type'        => 'String',
-				'description' => __( 'The Enhanced Data', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Enhanced Data', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

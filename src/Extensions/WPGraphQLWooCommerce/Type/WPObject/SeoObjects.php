@@ -12,6 +12,7 @@ namespace WPGraphQL\RankMath\Extensions\WPGraphQLWooCommerce\Type\WPObject;
 
 use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo;
 use WPGraphQL\RankMath\Utils\Utils;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Compat;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
 use WPGraphQL\WooCommerce\WP_GraphQL_WooCommerce;
@@ -80,12 +81,15 @@ class SeoObjects implements Registrable {
 
 		register_graphql_object_type(
 			$type_name_for_product_variation,
-			[
-				'description'     => __( 'The product variation object SEO data', 'wp-graphql-rank-math' ),
-				'interfaces'      => [ ContentNodeSeo::get_type_name() ],
-				'fields'          => [],
-				'eagerlyLoadType' => true,
-			]
+			// @todo Remove when WPGraphQL < 2.3.0 is dropped.
+			Compat::resolve_graphql_config(
+				[
+					'description'     => static fn () => __( 'The product variation object SEO data', 'wp-graphql-rank-math' ),
+					'interfaces'      => [ ContentNodeSeo::get_type_name() ],
+					'fields'          => [],
+					'eagerlyLoadType' => true,
+				]
+			),
 		);
 
 		$product_variations = array_merge(

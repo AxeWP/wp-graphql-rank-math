@@ -38,11 +38,11 @@ class MetaSettingWithRobots extends InterfaceType {
 		return [
 			'advancedRobotsMeta' => [
 				'type'        => AdvancedRobotsMeta::get_type_name(),
-				'description' => __( 'Advanced robots meta tag settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Advanced robots meta tag settings.', 'wp-graphql-rank-math' ),
 			],
 			'robotsMeta'         => [
 				'type'        => [ 'list_of' => RobotsMetaValueEnum::get_type_name() ],
-				'description' => __( 'Custom values for robots meta tag.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Custom values for robots meta tag.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

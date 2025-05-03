@@ -36,11 +36,11 @@ class MetaSettingWithArchive extends InterfaceType {
 		return [
 			'archiveTitle'       => [
 				'type'        => 'String',
-				'description' => __( 'Default title tag for archive page.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Default title tag for archive page.', 'wp-graphql-rank-math' ),
 			],
 			'archiveDescription' => [
 				'type'        => 'String',
-				'description' => __( 'Description for archive pages.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Description for archive pages.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

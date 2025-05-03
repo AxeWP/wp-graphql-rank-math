@@ -33,7 +33,7 @@ class GeneralSettings extends FieldsType {
 		return [
 			'redirections' => [
 				'type'        => RedirectionSettings::get_type_name(),
-				'description' => __( 'RankMath SEO redirection settings', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'RankMath SEO redirection settings', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

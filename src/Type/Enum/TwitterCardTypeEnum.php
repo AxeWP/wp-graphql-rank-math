@@ -35,19 +35,19 @@ class TwitterCardTypeEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'SUMMARY'             => [
-				'description' => __( 'Summary Card.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Summary Card.', 'wp-graphql-rank-math' ),
 				'value'       => 'summary_card',
 			],
 			'SUMMARY_LARGE_IMAGE' => [
-				'description' => __( 'Summary Card with Large Image.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Summary Card with Large Image.', 'wp-graphql-rank-math' ),
 				'value'       => 'summary_large_image',
 			],
 			'APP'                 => [
-				'description' => __( 'The twitter App card', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The twitter App card', 'wp-graphql-rank-math' ),
 				'value'       => 'app',
 			],
 			'PLAYER'              => [
-				'description' => __( 'The twitter Player card', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The twitter Player card', 'wp-graphql-rank-math' ),
 				'value'       => 'player',
 			],
 		];

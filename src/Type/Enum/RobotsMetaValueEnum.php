@@ -39,7 +39,7 @@ class RobotsMetaValueEnum extends EnumType {
 
 		foreach ( $types as $name => $description ) {
 			$values[ strtoupper( $name ) ] = [
-				'description' => wp_strip_all_tags( $description ),
+				'description' => static fn () => wp_strip_all_tags( $description ),
 				'value'       => $name,
 			];
 		}
