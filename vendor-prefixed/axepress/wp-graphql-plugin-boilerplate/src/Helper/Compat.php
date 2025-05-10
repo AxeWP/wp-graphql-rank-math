@@ -34,7 +34,7 @@ if (!class_exists('\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Compat')) {
              * Recursively resolve nested configuration arrays.
              * Some keys contain arrays of configurations that might also contain lazy-loaded values.
              */
-            $nested_configs = ['args', 'connections', 'connectionArgs', 'connectionFields', 'fields', 'inputFields', 'outputFields', 'values'];
+            $nested_configs = ['args', 'connections', 'connectionArgs', 'connectionFields', 'edgeFields', 'fields', 'inputFields', 'outputFields', 'values'];
             foreach ($nested_configs as $nested_key) {
                 // Skip if the key doesn't exist or isn't an array.
                 if (!isset($config[$nested_key]) || !is_array($config[$nested_key])) {
