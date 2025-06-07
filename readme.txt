@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 6.8.1
 Requires PHP: 7.4
 Stable tag: 0.3.4
-Maintained at: https://github.com/AxeWP/wp-graphql-headless-login
+Maintained at: https://github.com/AxeWP/wp-graphql-rank-math
 License: GPL-3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
