@@ -4,7 +4,7 @@
 
 namespace WPGraphQL\RankMath\Vendor\Composer\Autoload;
 
-class ComposerStaticInit800bab8d8d4ed8c822b443679622b477
+class ComposerStaticInitbf31fcfbd71f02b8733e2b41ad240ef3
 {
     public static $files = array (
         'ac2ddaa6e645e1392b5d17e3c7ad9002' => __DIR__ . '/../..' . '/access-functions.php',
@@ -33,7 +33,7 @@ class ComposerStaticInit800bab8d8d4ed8c822b443679622b477
     );
 
     public static $classMap = array (
-        'ComposerAutoloaderInit800bab8d8d4ed8c822b443679622b477' => __DIR__ . '/..' . '/composer/autoload_real.php',
+        'ComposerAutoloaderInitbf31fcfbd71f02b8733e2b41ad240ef3' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'WPGraphQL\\RankMath\\Admin\\Settings\\Settings' => __DIR__ . '/../..' . '/src/Admin/Settings/Settings.php',
         'WPGraphQL\\RankMath\\Autoloader' => __DIR__ . '/../..' . '/src/Autoloader.php',
@@ -141,15 +141,15 @@ class ComposerStaticInit800bab8d8d4ed8c822b443679622b477
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Traits\\TypeNameTrait' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeNameTrait.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Traits\\TypeResolverTrait' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeResolverTrait.php',
         'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
-        'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ComposerStaticInit800bab8d8d4ed8c822b443679622b477' => __DIR__ . '/..' . '/composer/autoload_static.php',
+        'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ComposerStaticInitbf31fcfbd71f02b8733e2b41ad240ef3' => __DIR__ . '/..' . '/composer/autoload_static.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit800bab8d8d4ed8c822b443679622b477::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit800bab8d8d4ed8c822b443679622b477::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit800bab8d8d4ed8c822b443679622b477::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitbf31fcfbd71f02b8733e2b41ad240ef3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitbf31fcfbd71f02b8733e2b41ad240ef3::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitbf31fcfbd71f02b8733e2b41ad240ef3::$classMap;
 
         }, null, ClassLoader::class);
     }

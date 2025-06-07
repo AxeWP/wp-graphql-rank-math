@@ -6,7 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ComposerAutoloaderInit800bab8d8d4ed8c822b443679622b477' => $vendorDir . '/composer/autoload_real.php',
+    'ComposerAutoloaderInitbf31fcfbd71f02b8733e2b41ad240ef3' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'WPGraphQL\\RankMath\\Admin\\Settings\\Settings' => $baseDir . '/src/Admin/Settings/Settings.php',
     'WPGraphQL\\RankMath\\Autoloader' => $baseDir . '/src/Autoloader.php',
@@ -114,5 +114,5 @@ return array(
     'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Traits\\TypeNameTrait' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeNameTrait.php',
     'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Traits\\TypeResolverTrait' => $vendorDir . '/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeResolverTrait.php',
     'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
-    'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ComposerStaticInit800bab8d8d4ed8c822b443679622b477' => $vendorDir . '/composer/autoload_static.php',
+    'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ComposerStaticInitbf31fcfbd71f02b8733e2b41ad240ef3' => $vendorDir . '/composer/autoload_static.php',
 );

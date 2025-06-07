@@ -1,6 +1,6 @@
 {
-    "packages": {
-        "3": {
+    "packages": [
+        {
             "name": "axepress/wp-graphql-plugin-boilerplate",
             "version": "0.1.1",
             "version_normalized": "0.1.1.0",
@@ -63,7 +63,7 @@
             ],
             "install-path": "../../vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/"
         }
-    },
+    ],
     "dev": false,
     "dev-package-names": []
 }
