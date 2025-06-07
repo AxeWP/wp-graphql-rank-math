@@ -49,7 +49,7 @@ class RedirectionsLoader extends AbstractDataLoader {
 		$loaded = [];
 
 		foreach ( $keys as $key ) {
-			$index = array_search( $key, array_column( $redirections, 'id' ) );
+			$index = array_search( $key, array_column( $redirections, 'id' ) ); // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict -- @todo remove this once we can investigate the strict type.
 			if ( ! isset( $redirections[ $index ] ) ) {
 				throw new UserError(
 					sprintf(

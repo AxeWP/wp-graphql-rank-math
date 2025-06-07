@@ -47,7 +47,7 @@ if (!class_exists('\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\Type')) {
          */
         protected static function get_type_config(): array
         {
-            return ['description' => static fn() => static::get_description(), 'eagerlyLoadType' => static::should_load_eagerly()];
+            return ['description' => static fn(): string => static::get_description(), 'eagerlyLoadType' => static::should_load_eagerly()];
         }
         /**
          * Whether the type should be loaded eagerly by WPGraphQL. Defaults to false.

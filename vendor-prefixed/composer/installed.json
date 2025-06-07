@@ -1,18 +1,18 @@
 {
-    "packages": [
-        {
+    "packages": {
+        "3": {
             "name": "axepress/wp-graphql-plugin-boilerplate",
-            "version": "dev-develop",
-            "version_normalized": "dev-develop",
+            "version": "0.1.1",
+            "version_normalized": "0.1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate.git",
-                "reference": "b1c4967b7cefccaaf4f4c9a113d41e1d7c77d2a8"
+                "reference": "09495b61346453baabdf4c71a38ada3cfc91c3a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/b1c4967b7cefccaaf4f4c9a113d41e1d7c77d2a8",
-                "reference": "b1c4967b7cefccaaf4f4c9a113d41e1d7c77d2a8",
+                "url": "https://api.github.com/repos/AxeWP/wp-graphql-plugin-boilerplate/zipball/09495b61346453baabdf4c71a38ada3cfc91c3a7",
+                "reference": "09495b61346453baabdf4c71a38ada3cfc91c3a7",
                 "shasum": ""
             },
             "require": {
@@ -28,8 +28,7 @@
                 "szepeviktor/phpstan-wordpress": "^2.0",
                 "wp-cli/wp-cli-bundle": "^2.8.1"
             },
-            "time": "2025-05-10T17:15:33+00:00",
-            "default-branch": true,
+            "time": "2025-06-07T02:03:50+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -54,7 +53,7 @@
             "description": "Boilerplate for creating WPGraphQL extensions",
             "support": {
                 "issues": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/issues",
-                "source": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/tree/develop"
+                "source": "https://github.com/AxeWP/wp-graphql-plugin-boilerplate/tree/0.1.1"
             },
             "funding": [
                 {
@@ -64,7 +63,7 @@
             ],
             "install-path": "../../vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/"
         }
-    ],
+    },
     "dev": false,
     "dev-package-names": []
 }
