@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.3.4]
+
+This _minor_ release adds support for WPGraphQL 2.3's new lazy-loading features, resulting in significant performance improvements. It also fixes a type conflict when using WPGraphQL for WooCommerce 0.21.1+.
+
 - fix: Fix type conflicts on Product interfaces in WooGraphQL 0.21.1+. Props @robbiebel 🙌
 - dev: Add support for lazy-loading GraphQL descriptions and deprecation messages.
 - chore: bump PHPStan to v2.0.x
