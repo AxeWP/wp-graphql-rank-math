@@ -35,15 +35,15 @@ class ArticleTypeEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'ARTICLE'      => [
-				'description' => __( 'Article.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Article.', 'wp-graphql-rank-math' ),
 				'value'       => 'Article',
 			],
 			'BLOG_POST'    => [
-				'description' => __( 'Blog post.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Blog post.', 'wp-graphql-rank-math' ),
 				'value'       => 'BlogPosting',
 			],
 			'NEWS_ARTICLE' => [
-				'description' => __( 'News article.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'News article.', 'wp-graphql-rank-math' ),
 				'value'       => 'NewsArticle',
 			],
 		];

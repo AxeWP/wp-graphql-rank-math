@@ -36,27 +36,27 @@ class SocialMeta extends ObjectType {
 		return [
 			'facebookPageUrl'    => [
 				'type'        => 'String',
-				'description' => __( 'The complete Facebook page URL.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The complete Facebook page URL.', 'wp-graphql-rank-math' ),
 			],
 			'facebookAuthorUrl'  => [
 				'type'        => 'String',
-				'description' => __( 'The personal Facebook profile URL used to show authorship when articles are shared on Facebook.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The personal Facebook profile URL used to show authorship when articles are shared on Facebook.', 'wp-graphql-rank-math' ),
 			],
 			'facebookAdminId'    => [
 				'type'        => [ 'list_of' => 'Int' ],
-				'description' => __( 'A list of numeric Facebook admin User Ids.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'A list of numeric Facebook admin User Ids.', 'wp-graphql-rank-math' ),
 			],
 			'facebookAppId'      => [
 				'type'        => 'Int',
-				'description' => __( 'The facebook Facebook app ID.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The facebook Facebook app ID.', 'wp-graphql-rank-math' ),
 			],
 			'twitterAuthorName'  => [
 				'type'        => 'String',
-				'description' => __( 'Twitter Username of the auther used in the `twitter:creater` tag.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Twitter Username of the auther used in the `twitter:creater` tag.', 'wp-graphql-rank-math' ),
 			],
 			'additionalProfiles' => [
 				'type'        => [ 'list_of' => 'String' ],
-				'description' => __( 'Additional social profile URLs to add to the sameAs property for the Organization Schema.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Additional social profile URLs to add to the sameAs property for the Organization Schema.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

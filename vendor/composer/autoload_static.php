@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143
+class ComposerStaticInit52c774cabe83db5bf865195d7b3794c8
 {
     public static $files = array (
         'd93954ca8a74d7e67246db741a580590' => __DIR__ . '/../..' . '/access-functions.php',
@@ -15,10 +15,6 @@ class ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143
         array (
             'WPGraphQL\\RankMath\\' => 19,
         ),
-        'A' => 
-        array (
-            'AxeWP\\GraphQL\\' => 14,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -26,31 +22,10 @@ class ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'AxeWP\\GraphQL\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src',
-        ),
     );
 
     public static $classMap = array (
-        'AxeWP\\GraphQL\\Abstracts\\ConnectionType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/ConnectionType.php',
-        'AxeWP\\GraphQL\\Abstracts\\EnumType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/EnumType.php',
-        'AxeWP\\GraphQL\\Abstracts\\FieldsType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/FieldsType.php',
-        'AxeWP\\GraphQL\\Abstracts\\InputType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/InputType.php',
-        'AxeWP\\GraphQL\\Abstracts\\InterfaceType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/InterfaceType.php',
-        'AxeWP\\GraphQL\\Abstracts\\MutationType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/MutationType.php',
-        'AxeWP\\GraphQL\\Abstracts\\ObjectType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/ObjectType.php',
-        'AxeWP\\GraphQL\\Abstracts\\Type' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/Type.php',
-        'AxeWP\\GraphQL\\Abstracts\\UnionType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/UnionType.php',
-        'AxeWP\\GraphQL\\Helper\\Helper' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Helper/Helper.php',
-        'AxeWP\\GraphQL\\Interfaces\\GraphQLType' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/GraphQLType.php',
-        'AxeWP\\GraphQL\\Interfaces\\Registrable' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Registrable.php',
-        'AxeWP\\GraphQL\\Interfaces\\TypeWithConnections' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithConnections.php',
-        'AxeWP\\GraphQL\\Interfaces\\TypeWithFields' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithFields.php',
-        'AxeWP\\GraphQL\\Interfaces\\TypeWithInputFields' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithInputFields.php',
-        'AxeWP\\GraphQL\\Interfaces\\TypeWithInterfaces' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithInterfaces.php',
-        'AxeWP\\GraphQL\\Traits\\TypeNameTrait' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeNameTrait.php',
-        'AxeWP\\GraphQL\\Traits\\TypeResolverTrait' => __DIR__ . '/..' . '/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeResolverTrait.php',
+        'ComposerAutoloaderInitbf31fcfbd71f02b8733e2b41ad240ef3' => __DIR__ . '/../..' . '/vendor-prefixed/composer/autoload_real.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'WPGraphQL\\RankMath\\Admin\\Settings\\Settings' => __DIR__ . '/../..' . '/src/Admin/Settings/Settings.php',
         'WPGraphQL\\RankMath\\Autoloader' => __DIR__ . '/../..' . '/src/Autoloader.php',
@@ -147,6 +122,7 @@ class ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Abstracts\\ObjectType' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/ObjectType.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Abstracts\\Type' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/Type.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Abstracts\\UnionType' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Abstracts/UnionType.php',
+        'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Helper\\Compat' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Helper/Compat.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Helper\\Helper' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Helper/Helper.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Interfaces\\GraphQLType' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/GraphQLType.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Interfaces\\Registrable' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/Registrable.php',
@@ -156,14 +132,16 @@ class ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Interfaces\\TypeWithInterfaces' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Interfaces/TypeWithInterfaces.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Traits\\TypeNameTrait' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeNameTrait.php',
         'WPGraphQL\\RankMath\\Vendor\\AxeWP\\GraphQL\\Traits\\TypeResolverTrait' => __DIR__ . '/../..' . '/vendor-prefixed/axepress/wp-graphql-plugin-boilerplate/src/Traits/TypeResolverTrait.php',
+        'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ClassLoader' => __DIR__ . '/../..' . '/vendor-prefixed/composer/ClassLoader.php',
+        'WPGraphQL\\RankMath\\Vendor\\Composer\\Autoload\\ComposerStaticInitbf31fcfbd71f02b8733e2b41ad240ef3' => __DIR__ . '/../..' . '/vendor-prefixed/composer/autoload_static.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitef0cd05dc2a2aa01b422714ff9fb0143::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit52c774cabe83db5bf865195d7b3794c8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit52c774cabe83db5bf865195d7b3794c8::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit52c774cabe83db5bf865195d7b3794c8::$classMap;
 
         }, null, ClassLoader::class);
     }

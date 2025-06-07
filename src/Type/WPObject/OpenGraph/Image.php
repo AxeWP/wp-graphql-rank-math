@@ -36,24 +36,24 @@ class Image extends ObjectType {
 		return [
 			'url'       => [
 				'type'        => 'String',
-				'description' => __( 'URL for the image.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'URL for the image.', 'wp-graphql-rank-math' ),
 			],
 			'secureUrl' => [
 				'type'        => 'String',
-				'description' => __( 'The https:// URL for the image.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The https:// URL for the image.', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?string => ! empty( $source['secure_url'] ) ? (string) $source['secure_url'] : null,
 			],
 			'type'      => [
 				'type'        => 'String', // @todo
-				'description' => __( 'MIME type of the image. ', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'MIME type of the image. ', 'wp-graphql-rank-math' ),
 			],
 			'width'     => [
 				'type'        => 'Float',
-				'description' => __( 'Width of image in pixels.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Width of image in pixels.', 'wp-graphql-rank-math' ),
 			],
 			'height'    => [
 				'type'        => 'Float',
-				'description' => __( 'Height of image in pixels. ', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Height of image in pixels. ', 'wp-graphql-rank-math' ),
 			],
 
 		];

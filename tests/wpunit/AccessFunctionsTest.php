@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests access functons
+ * Tests access functions
  */
 class AccessFunctionsTest extends \Codeception\TestCase\WPTestCase {
 

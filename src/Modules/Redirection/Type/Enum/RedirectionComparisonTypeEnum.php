@@ -41,7 +41,7 @@ class RedirectionComparisonTypeEnum extends EnumType {
 
 		foreach ( $redirection_types as $value => $description ) {
 			$values[ WPEnumType::get_safe_name( $value ) ] = [
-				'description' => $description,
+				'description' => static fn () => $description,
 				'value'       => $value,
 			];
 		}

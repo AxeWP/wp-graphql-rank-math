@@ -38,22 +38,22 @@ class LocalMeta extends ObjectType {
 		return [
 			'type' => [
 				'type'        => KnowledgeGraphTypeEnum::get_type_name(),
-				'description' => __( 'Whether the site represents a person or an organization.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the site represents a person or an organization.', 'wp-graphql-rank-math' ),
 			],
 			'name' => [
 				'type'        => 'String',
-				'description' => __( 'Your name or company name to be used in Google\'s Knowledge Graph', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Your name or company name to be used in Google\'s Knowledge Graph', 'wp-graphql-rank-math' ),
 			],
 			'logo' => [
 				'type'        => 'MediaItem',
-				'description' => __( 'The logo to be used in the Google\'s Knowledge Graph.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The logo to be used in the Google\'s Knowledge Graph.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['logoId'] ) ? $context->get_loader( 'post' )->load_deferred( $source['logoId'] ) : null;
 				},
 			],
 			'url'  => [
 				'type'        => 'String',
-				'description' => __( 'URL of the item.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'URL of the item.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

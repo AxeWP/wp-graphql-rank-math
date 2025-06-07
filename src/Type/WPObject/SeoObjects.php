@@ -14,6 +14,7 @@ use WPGraphQL;
 use WPGraphQL\RankMath\Type\WPInterface\ContentNodeSeo;
 use WPGraphQL\RankMath\Type\WPInterface\Seo;
 use WPGraphQL\RankMath\Utils\Utils;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Compat;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\Registrable;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Traits\TypeNameTrait;
 
@@ -42,13 +43,15 @@ class SeoObjects implements Registrable {
 			// Register Post Object seo.
 			register_graphql_object_type(
 				$type_name_for_post_object,
-				[
-					// translators: %s is the post type name.
-					'description'     => sprintf( __( 'The %s post object SEO data', 'wp-graphql-rank-math' ), $post_type->name ),
-					'interfaces'      => [ ContentNodeSeo::get_type_name() ],
-					'fields'          => [],
-					'eagerlyLoadType' => true,
-				]
+				Compat::resolve_graphql_config( // @todo Remove when WPGraphQL < 2.3.0 is dropped.
+					[
+						// translators: %s is the post type name.
+						'description'     => static fn () => sprintf( __( 'The %s post object SEO data', 'wp-graphql-rank-math' ), $post_type->name ),
+						'interfaces'      => [ ContentNodeSeo::get_type_name() ],
+						'fields'          => [],
+						'eagerlyLoadType' => true,
+					]
+				),
 			);
 
 			// Register Post Object's SEO field.
@@ -58,13 +61,15 @@ class SeoObjects implements Registrable {
 			$type_name_for_post_type = 'RankMath' . graphql_format_type_name( $post_type->graphql_single_name . 'TypeSeo' );
 			register_graphql_object_type(
 				$type_name_for_post_type,
-				[
-					// translators: %s is the post type name.
-					'description'     => sprintf( __( 'The %s post type object SEO data', 'wp-graphql-rank-math' ), $post_type->name ),
-					'interfaces'      => [ Seo::get_type_name() ],
-					'fields'          => [],
-					'eagerlyLoadType' => true,
-				]
+				Compat::resolve_graphql_config( // @todo Remove when WPGraphQL < 2.3.0 is dropped.
+					[
+						// translators: %s is the post type name.
+						'description'     => static fn () => sprintf( __( 'The %s post type object SEO data', 'wp-graphql-rank-math' ), $post_type->name ),
+						'interfaces'      => [ Seo::get_type_name() ],
+						'fields'          => [],
+						'eagerlyLoadType' => true,
+					]
+				)
 			);
 		}
 
@@ -76,13 +81,15 @@ class SeoObjects implements Registrable {
 			$type_name_for_term = 'RankMath' . graphql_format_type_name( $taxonomy->graphql_single_name . 'TermSeo' );
 			register_graphql_object_type(
 				$type_name_for_term,
-				[
-					// translators: %s is the tax term name.
-					'description'     => sprintf( __( 'The %s term object SEO data', 'wp-graphql-rank-math' ), $taxonomy->name ),
-					'interfaces'      => [ Seo::get_type_name() ],
-					'fields'          => [],
-					'eagerlyLoadType' => true,
-				]
+				Compat::resolve_graphql_config( // @todo Remove when WPGraphQL < 2.3.0 is dropped.
+					[
+						// translators: %s is the tax term name.
+						'description'     => static fn () => sprintf( __( 'The %s term object SEO data', 'wp-graphql-rank-math' ), $taxonomy->name ),
+						'interfaces'      => [ Seo::get_type_name() ],
+						'fields'          => [],
+						'eagerlyLoadType' => true,
+					]
+				)
 			);
 
 			// Register Term Object's SEO field.
@@ -93,25 +100,27 @@ class SeoObjects implements Registrable {
 		$type_name_for_user = 'RankMathUserSeo';
 		register_graphql_object_type(
 			$type_name_for_user,
-			[
-				'description'     => __( 'The user object SEO data', 'wp-graphql-rank-math' ),
-				'interfaces'      => [ Seo::get_type_name() ],
-				'fields'          => [
-					'facebookProfileUrl' => [
-						'type'        => 'String',
-						'description' => __( 'The complete Facebook profile URL.', 'wp-graphql-rank-math' ),
+			Compat::resolve_graphql_config( // @todo Remove when WPGraphQL < 2.3.0 is dropped.
+				[
+					'description'     => static fn () => __( 'The user object SEO data', 'wp-graphql-rank-math' ),
+					'interfaces'      => [ Seo::get_type_name() ],
+					'fields'          => [
+						'facebookProfileUrl' => [
+							'type'        => 'String',
+							'description' => static fn () => __( 'The complete Facebook profile URL.', 'wp-graphql-rank-math' ),
+						],
+						'twitterUserName'    => [
+							'type'        => 'String',
+							'description' => static fn () => __( 'Twitter Username of the user.', 'wp-graphql-rank-math' ),
+						],
+						'additionalProfiles' => [
+							'type'        => [ 'list_of' => 'String' ],
+							'description' => static fn () => __( 'Additional social profile URLs to add to the sameAs property.', 'wp-graphql-rank-math' ),
+						],
 					],
-					'twitterUserName'    => [
-						'type'        => 'String',
-						'description' => __( 'Twitter Username of the user.', 'wp-graphql-rank-math' ),
-					],
-					'additionalProfiles' => [
-						'type'        => [ 'list_of' => 'String' ],
-						'description' => __( 'Additional social profile URLs to add to the sameAs property.', 'wp-graphql-rank-math' ),
-					],
-				],
-				'eagerlyLoadType' => true,
-			]
+					'eagerlyLoadType' => true,
+				]
+			)
 		);
 
 		// Register User Object's SEO field.

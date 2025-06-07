@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 - fix: Fix type conflicts on Product interfaces in WooGraphQL 0.21.1+. Props @robbiebel 🙌
+- dev: Add support for lazy-loading GraphQL descriptions and deprecation messages.
 - chore: bump PHPStan to v2.0.x
 - chore: Test compatibility with WordPress 6.8 and WPGraphQL 2.3.
 - chore: Update Composer dev-dependencies and lint.

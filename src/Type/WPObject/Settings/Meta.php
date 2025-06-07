@@ -44,59 +44,59 @@ class Meta extends ObjectType {
 		return [
 			'authorArchives'               => [
 				'type'        => AuthorArchiveMeta::get_type_name(),
-				'description' => __( 'Author Archive settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Author Archive settings.', 'wp-graphql-rank-math' ),
 			],
 			'contentTypes'                 => [
 				'type'        => ContentTypeMeta::get_type_name(),
-				'description' => __( 'Content type settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Content type settings.', 'wp-graphql-rank-math' ),
 			],
 			'taxonomies'                   => [
 				'type'        => TaxonomyMeta::get_type_name(),
-				'description' => __( 'Taxonomy settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Taxonomy settings.', 'wp-graphql-rank-math' ),
 			],
 			'dateArchives'                 => [
 				'type'        => DateArchiveMeta::get_type_name(),
-				'description' => __( 'Date Archive settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Date Archive settings.', 'wp-graphql-rank-math' ),
 			],
 			'global'                       => [
 				'type'        => GlobalMeta::get_type_name(),
-				'description' => __( 'Global settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Global settings.', 'wp-graphql-rank-math' ),
 			],
 			'local'                        => [
 				'type'        => LocalMeta::get_type_name(),
-				'description' => __( 'Local settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Local settings.', 'wp-graphql-rank-math' ),
 			],
 			'social'                       => [
 				'type'        => SocialMeta::get_type_name(),
-				'description' => __( 'Social settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Social settings.', 'wp-graphql-rank-math' ),
 			],
 			'homepage'                     => [
 				'type'        => HomepageMeta::get_type_name(),
-				'description' => __( 'Homepage settings. Only used is the Homepage is set to display a list of posts.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Homepage settings. Only used is the Homepage is set to display a list of posts.', 'wp-graphql-rank-math' ),
 			],
 			'notFoundTitle'                => [
 				'type'        => 'String',
-				'description' => __( 'Title tag on 404 Not Found error page.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Title tag on 404 Not Found error page.', 'wp-graphql-rank-math' ),
 			],
 			'searchTitle'                  => [
 				'type'        => 'String',
-				'description' => __( 'Title tag on search results page.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Title tag on search results page.', 'wp-graphql-rank-math' ),
 			],
 			'shouldIndexSearch'            => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to index search result pages.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to index search result pages.', 'wp-graphql-rank-math' ),
 			],
 			'shouldIndexPaginatedPages'    => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to index /page/2 and further of any archive.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to index /page/2 and further of any archive.', 'wp-graphql-rank-math' ),
 			],
 			'shouldIndexArchiveSubpages'   => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to index paginated archive pages from getting.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to index paginated archive pages from getting.', 'wp-graphql-rank-math' ),
 			],
 			'shouldIndexPasswordProtected' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to index password protected pages and posts.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to index password protected pages and posts.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

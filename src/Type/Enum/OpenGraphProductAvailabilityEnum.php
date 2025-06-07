@@ -35,11 +35,11 @@ class OpenGraphProductAvailabilityEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'IN_STOCK'     => [
-				'description' => __( 'The product is in stock', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The product is in stock', 'wp-graphql-rank-math' ),
 				'value'       => 'instock',
 			],
 			'OUT_OF_STOCK' => [
-				'description' => __( 'The product is out of stock', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The product is out of stock', 'wp-graphql-rank-math' ),
 				'value'       => '',
 			],
 		];

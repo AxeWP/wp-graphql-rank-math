@@ -36,7 +36,7 @@ class JsonLd extends ObjectType {
 		return [
 			'raw' => [
 				'type'        => 'String',
-				'description' => __( 'The raw JSON+LD output', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The raw JSON+LD output', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

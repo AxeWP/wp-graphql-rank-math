@@ -36,27 +36,27 @@ class Webmaster extends ObjectType {
 		return [
 			'baidu'     => [
 				'type'        => 'String',
-				'description' => __( 'The Baidu Webmaster Tools verification HTML code or ID.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Baidu Webmaster Tools verification HTML code or ID.', 'wp-graphql-rank-math' ),
 			],
 			'bing'      => [
 				'type'        => 'String',
-				'description' => __( 'The Bing Webmaster Tools verification HTML code or ID.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Bing Webmaster Tools verification HTML code or ID.', 'wp-graphql-rank-math' ),
 			],
 			'google'    => [
 				'type'        => 'String',
-				'description' => __( 'The Google Search Console verification HTML code or ID.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Google Search Console verification HTML code or ID.', 'wp-graphql-rank-math' ),
 			],
 			'norton'    => [
 				'type'        => 'String',
-				'description' => __( 'The Norton Safe Web verification HTML code or ID.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Norton Safe Web verification HTML code or ID.', 'wp-graphql-rank-math' ),
 			],
 			'pinterest' => [
 				'type'        => 'String',
-				'description' => __( 'The Pinterest verification HTML code or ID.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Pinterest verification HTML code or ID.', 'wp-graphql-rank-math' ),
 			],
 			'yandex'    => [
 				'type'        => 'String',
-				'description' => __( 'The Yandex verification HTML code or ID.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Yandex verification HTML code or ID.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

@@ -1,28 +1,43 @@
 <?php
+
 /**
  * Interface for for classes that register a GraphQL type with connections to the GraphQL schema.
  *
- * @package AxeWP\GraphQL\Interfaces
- *
- * @license GPL-3.0-or-later
- * Modified by AxePress Development using {@see https://github.com/BrianHenryIE/strauss}.
+ * @package \AxeWP\GraphQL\Interfaces
  */
-
-declare( strict_types=1 );
-
+declare (strict_types=1);
 namespace WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces;
 
-if ( ! interface_exists( '\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithConnections' ) ) {
-
-	/**
-	 * Interface - TypeWithConnections
-	 */
-	interface TypeWithConnections extends GraphQLType {
-		/**
-		 * Gets the properties for the type.
-		 *
-		 * @return array<string,array{toType:string,description:string,args?:array<string,array{type:string|array<string,string|array<string,string>>,description:string,defaultValue?:mixed}>,connectionInterfaces?:string[],oneToOne?:bool,resolve?:callable}>
-		 */
-		public static function get_connections(): array;
-	}
+if (!interface_exists('\WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Interfaces\TypeWithConnections')) {
+    /**
+     * Interface - TypeWithConnections
+     *
+     * phpcs:disable SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation -- PHPStan formatting.
+     *
+     * @phpstan-type ConnectionConfigArgs array{
+     *   type: string|array<string,string|array<string,string>>,
+     *   description: callable(): string,
+     *   defaultValue?: mixed
+     * }
+     *
+     * @phpstan-type ConnectionConfig array{
+     *   toType: string,
+     *   description: callable():string,
+     *   args?: array<string,ConnectionConfigArgs>,
+     *   connectionInterfaces?: string[],
+     *   oneToOne?: bool,
+     *   resolve?: callable
+     * }
+     *
+     * phpcs:enable SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation
+     */
+    interface TypeWithConnections extends GraphQLType
+    {
+        /**
+         * Gets the properties for the type.
+         *
+         * @return array<string,ConnectionConfig>
+         */
+        public static function get_connections(): array;
+    }
 }

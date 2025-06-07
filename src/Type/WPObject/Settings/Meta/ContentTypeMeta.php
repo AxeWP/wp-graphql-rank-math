@@ -18,6 +18,7 @@ use WPGraphQL\RankMath\Type\Enum\SnippetTypeEnum;
 use WPGraphQL\RankMath\Type\WPInterface\MetaSettingWithArchive;
 use WPGraphQL\RankMath\Type\WPInterface\MetaSettingWithRobots;
 use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Abstracts\ObjectType;
+use WPGraphQL\RankMath\Vendor\AxeWP\GraphQL\Helper\Compat;
 
 /**
  * Class - ContentTypeMeta
@@ -59,15 +60,17 @@ class ContentTypeMeta extends ObjectType {
 
 			register_graphql_object_type(
 				ucfirst( $post_type_object->graphql_single_name ) . 'MetaSettings',
-				[
-					'description' => sprintf(
-					// translators: post type name.
-						__( 'The RankMath SEO meta settings for %s.', 'wp-graphql-rank-math' ),
-						$post_type_object->label,
-					),
-					'interfaces'  => $interfaces,
-					'fields'      => self::get_child_type_fields( $post_type_object ),
-				]
+				Compat::resolve_graphql_config( // @todo Remove when WPGraphQL < 2.3.0 is dropped.
+					[
+						'description' => static fn () => sprintf(
+						// translators: post type name.
+							__( 'The RankMath SEO meta settings for %s.', 'wp-graphql-rank-math' ),
+							$post_type_object->label,
+						),
+						'interfaces'  => $interfaces,
+						'fields'      => self::get_child_type_fields( $post_type_object ),
+					]
+				)
 			);
 		}
 
@@ -92,7 +95,7 @@ class ContentTypeMeta extends ObjectType {
 
 			$fields[ lcfirst( $post_type_object->graphql_single_name ) ] = [
 				'type'        => $post_type_object->graphql_single_name . 'MetaSettings',
-				'description' => sprintf(
+				'description' => static fn () => sprintf(
 					// translators: post type name.
 					__( 'The RankMath SEO meta settings for %s.', 'wp-graphql-rank-math' ),
 					$post_type_object->label,
@@ -114,7 +117,7 @@ class ContentTypeMeta extends ObjectType {
 		$fields = [
 			'title'                   => [
 				'type'        => 'String',
-				'description' => sprintf(
+				'description' => static fn () => sprintf(
 					// translators: post type label.
 					__( 'Default title tag for single %s pages.', 'wp-graphql-rank-math' ),
 					$post_type_object->label,
@@ -122,7 +125,7 @@ class ContentTypeMeta extends ObjectType {
 			],
 			'description'             => [
 				'type'        => 'String',
-				'description' => sprintf(
+				'description' => static fn () => sprintf(
 					// translators: post type label.
 					__( 'Default description for single %s pages.', 'wp-graphql-rank-math' ),
 					$post_type_object->label,
@@ -130,7 +133,7 @@ class ContentTypeMeta extends ObjectType {
 			],
 			'snippetType'             => [
 				'type'        => SnippetTypeEnum::get_type_name(),
-				'description' => sprintf(
+				'description' => static fn () => sprintf(
 					// translators: post type label.
 					__( 'Default rich snippet select when creating a new %s.', 'wp-graphql-rank-math' ),
 					$post_type_object->label,
@@ -138,7 +141,7 @@ class ContentTypeMeta extends ObjectType {
 			],
 			'articleType'             => [
 				'type'        => ArticleTypeEnum::get_type_name(),
-				'description' => sprintf(
+				'description' => static fn () => sprintf(
 					// translators: post type label.
 					__( 'Default article type when creating a new %s.', 'wp-graphql-rank-math' ),
 					$post_type_object->label,
@@ -146,46 +149,46 @@ class ContentTypeMeta extends ObjectType {
 			],
 			'snippetHeadline'         => [
 				'type'        => 'String',
-				'description' => __( 'Default rich snippet headline.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Default rich snippet headline.', 'wp-graphql-rank-math' ),
 			],
 			'snippetDescription'      => [
 				'type'        => 'String',
-				'description' => __( 'Default rich snippet headline.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Default rich snippet headline.', 'wp-graphql-rank-math' ),
 			],
 			'hasCustomRobotsMeta'     => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether custom robots meta for author page are set. Otherwise the default meta will be used, as set in the Global Meta tab.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether custom robots meta for author page are set. Otherwise the default meta will be used, as set in the Global Meta tab.', 'wp-graphql-rank-math' ),
 			],
 			'hasLinkSuggestions'      => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether Link Suggestions meta box and the Pillar Content featured are enabled for this post type.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether Link Suggestions meta box and the Pillar Content featured are enabled for this post type.', 'wp-graphql-rank-math' ),
 			],
 			'shouldUseFocusKeyword'   => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to use the Focus Keyword as the default text for the links instead of the post titles.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to use the Focus Keyword as the default text for the links instead of the post titles.', 'wp-graphql-rank-math' ),
 			],
 			'hasBulkEditing'          => [
 				'type'        => BulkEditingTypeEnum::get_type_name(),
-				'description' => __( 'Whether to list bulk editing columns to the post listing screen.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to list bulk editing columns to the post listing screen.', 'wp-graphql-rank-math' ),
 			],
 			'socialImage'             => [
 				'type'        => 'MediaItem',
-				'description' => __( 'The default image to display when sharing this post type on social media', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The default image to display when sharing this post type on social media', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['socialImage'] ) ? $context->get_loader( 'post' )->load_deferred( $source['socialImage'] ) : null;
 				},
 			],
 			'hasSlackEnhancedSharing' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to show additional information (name & total number of posts) when an author archive is shared on Slack.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to show additional information (name & total number of posts) when an author archive is shared on Slack.', 'wp-graphql-rank-math' ),
 			],
 			'hasSeoControls'          => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the SEO Controls meta box for user profile pages is enabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the SEO Controls meta box for user profile pages is enabled.', 'wp-graphql-rank-math' ),
 			],
 			'analyzedFields'          => [
 				'type'        => [ 'list_of' => 'String' ],
-				'description' => __( 'List of custom fields name to include in the Page analysis', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'List of custom fields name to include in the Page analysis', 'wp-graphql-rank-math' ),
 			],
 		];
 
@@ -199,7 +202,7 @@ class ContentTypeMeta extends ObjectType {
 		if ( ! empty( $taxonomies ) ) {
 			$fields['primaryTaxonomy'] = [
 				'type'        => 'TaxonomyEnum',
-				'description' => __( 'The taxonomy used with the Primary Term Feature and displayed in the Breadcrumbs.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The taxonomy used with the Primary Term Feature and displayed in the Breadcrumbs.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ) use ( $allowed_taxonomies ) {
 					if ( ! in_array( $source, $allowed_taxonomies, true ) ) {
 						throw new UserError(

@@ -37,25 +37,25 @@ class Product extends ObjectType {
 		return [
 			'brand'        => [
 				'type'        => 'String',
-				'description' => __( 'The brand of the product.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The brand of the product.', 'wp-graphql-rank-math' ),
 			],
 			'price'        => [
 				'type'        => 'Float',
-				'description' => __( 'The price of the object', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The price of the object', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ): ?float {
 					return ! empty( $source['price']['amount'] ) ? (float) $source['price']['amount'] : null;
 				},
 			],
 			'currency'     => [
 				'type'        => 'String',
-				'description' => __( 'The currency of the object price.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The currency of the object price.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source ): ?string {
 					return ! empty( $source['price']['currency'] ) ? (string) $source['price']['currency'] : null;
 				},
 			],
 			'availability' => [
 				'type'        => OpenGraphProductAvailabilityEnum::get_type_name(),
-				'description' => __( 'The currency of the object price.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The currency of the object price.', 'wp-graphql-rank-math' ),
 			],
 
 		];

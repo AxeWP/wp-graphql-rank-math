@@ -49,23 +49,23 @@ class AuthorArchiveMeta extends ObjectType implements TypeWithInterfaces {
 		return [
 			'baseSlug'                => [
 				'type'        => 'String',
-				'description' => __( 'Change the `/author/` part in author archive URLs.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Change the `/author/` part in author archive URLs.', 'wp-graphql-rank-math' ),
 			],
 			'hasArchives'             => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether author archives are enabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether author archives are enabled.', 'wp-graphql-rank-math' ),
 			],
 			'hasCustomRobotsMeta'     => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether custom robots meta for author page are set. Otherwise the default meta will be used, as set in the Global Meta tab.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether custom robots meta for author page are set. Otherwise the default meta will be used, as set in the Global Meta tab.', 'wp-graphql-rank-math' ),
 			],
 			'hasSlackEnhancedSharing' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether to show additional information (name & total number of posts) when an author archive is shared on Slack.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether to show additional information (name & total number of posts) when an author archive is shared on Slack.', 'wp-graphql-rank-math' ),
 			],
 			'hasSeoControls'          => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the SEO Controls meta box for user profile pages is enabled.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the SEO Controls meta box for user profile pages is enabled.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

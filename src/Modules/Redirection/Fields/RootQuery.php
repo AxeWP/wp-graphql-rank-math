@@ -48,10 +48,10 @@ class RootQuery extends FieldsType {
 				'args'        => [
 					'id' => [
 						'type'        => 'ID',
-						'description' => __( 'The ID of the redirection. Accepts either a global or database ID.', 'wp-graphql-rank-math' ),
+						'description' => static fn () => __( 'The ID of the redirection. Accepts either a global or database ID.', 'wp-graphql-rank-math' ),
 					],
 				],
-				'description' => __( 'RankMath SEO redirection', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'RankMath SEO redirection', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					$database_id = Utils::get_database_id_from_id( $args['id'] );
 

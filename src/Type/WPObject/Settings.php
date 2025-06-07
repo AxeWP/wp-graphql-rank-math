@@ -39,15 +39,15 @@ class Settings extends ObjectType {
 		return [
 			'general' => [
 				'type'        => General::get_type_name(),
-				'description' => __( 'General settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'General settings.', 'wp-graphql-rank-math' ),
 			],
 			'meta'    => [
 				'type'        => Meta::get_type_name(),
-				'description' => __( 'Meta settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Meta settings.', 'wp-graphql-rank-math' ),
 			],
 			'sitemap' => [
 				'type'        => Sitemap::get_type_name(),
-				'description' => __( 'Sitemap settings.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Sitemap settings.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

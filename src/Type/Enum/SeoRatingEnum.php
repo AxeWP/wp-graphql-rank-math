@@ -35,19 +35,19 @@ class SeoRatingEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'UNKNOWN' => [
-				'description' => __( 'Unknown score.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Unknown score.', 'wp-graphql-rank-math' ),
 				'value'       => 'unknown',
 			],
 			'BAD'     => [
-				'description' => __( 'Bad ( < 50 ) score', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Bad ( < 50 ) score', 'wp-graphql-rank-math' ),
 				'value'       => 'bad',
 			],
 			'GOOD'    => [
-				'description' => __( 'Good (50-79) score', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Good (50-79) score', 'wp-graphql-rank-math' ),
 				'value'       => 'good',
 			],
 			'GREAT'   => [
-				'description' => __( 'Great ( > 80 ) score', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Great ( > 80 ) score', 'wp-graphql-rank-math' ),
 				'value'       => 'great',
 			],
 		];

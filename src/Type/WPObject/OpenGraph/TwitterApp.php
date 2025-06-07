@@ -36,15 +36,15 @@ class TwitterApp extends ObjectType {
 		return [
 			'name' => [
 				'type'        => 'String',
-				'description' => __( 'The name of the Twitter app.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The name of the Twitter app.', 'wp-graphql-rank-math' ),
 			],
 			'id'   => [
 				'type'        => 'ID',
-				'description' => __( 'The App ID .', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The App ID .', 'wp-graphql-rank-math' ),
 			],
 			'url'  => [
 				'type'        => 'String',
-				'description' => __( 'Your app\’s custom URL scheme.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Your app\’s custom URL scheme.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

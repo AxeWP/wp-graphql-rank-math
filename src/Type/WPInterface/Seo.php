@@ -48,39 +48,39 @@ class Seo extends InterfaceType {
 		$fields = [
 			'title'           => [
 				'type'        => 'String',
-				'description' => __( 'The title.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The title.', 'wp-graphql-rank-math' ),
 			],
 			'description'     => [
 				'type'        => 'String',
-				'description' => __( 'The meta description.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The meta description.', 'wp-graphql-rank-math' ),
 			],
 			'robots'          => [
 				'type'        => [ 'list_of' => 'String' ],
-				'description' => __( 'A list of the robots meta properties to output.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'A list of the robots meta properties to output.', 'wp-graphql-rank-math' ),
 			],
 			'focusKeywords'   => [
 				'type'        => [ 'list_of' => 'String' ],
-				'description' => __( 'The focus keywords you want to rank for', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The focus keywords you want to rank for', 'wp-graphql-rank-math' ),
 			],
 			'canonicalUrl'    => [
 				'type'        => 'String',
-				'description' => __( 'The canonical url.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The canonical url.', 'wp-graphql-rank-math' ),
 			],
 			'breadcrumbTitle' => [
 				'type'        => 'String',
-				'description' => __( 'The title to use in the breadcrumbs for this post', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The title to use in the breadcrumbs for this post', 'wp-graphql-rank-math' ),
 			],
 			'fullHead'        => [
 				'type'        => 'String',
-				'description' => __( 'The fully-rendered `head` tag for the given item', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The fully-rendered `head` tag for the given item', 'wp-graphql-rank-math' ),
 			],
 			'jsonLd'          => [
 				'type'        => JsonLd::get_type_name(),
-				'description' => __( 'The JSON+LD data', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The JSON+LD data', 'wp-graphql-rank-math' ),
 			],
 			'openGraph'       => [
 				'type'        => OpenGraphMeta::get_type_name(),
-				'description' => __( 'The open graph meta properties.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The open graph meta properties.', 'wp-graphql-rank-math' ),
 			],
 
 		];
@@ -89,7 +89,7 @@ class Seo extends InterfaceType {
 		if ( Helper::is_breadcrumbs_enabled() ) {
 			$fields['breadcrumbs'] = [
 				'type'        => [ 'list_of' => Breadcrumbs::get_type_name() ],
-				'description' => __( 'The breadcrumbs trail for the given object', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The breadcrumbs trail for the given object', 'wp-graphql-rank-math' ),
 			];
 		}
 

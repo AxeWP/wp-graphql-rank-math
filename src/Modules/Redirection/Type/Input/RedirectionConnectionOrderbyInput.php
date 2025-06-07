@@ -38,11 +38,11 @@ class RedirectionConnectionOrderbyInput extends InputType {
 		return [
 			'field' => [
 				'type'        => RedirectionConnectionOrderByEnum::get_type_name(),
-				'description' => __( 'The field to order the results by.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The field to order the results by.', 'wp-graphql-rank-math' ),
 			],
 			'order' => [
 				'type'        => 'OrderEnum',
-				'description' => __( 'The ordering direction.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The ordering direction.', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

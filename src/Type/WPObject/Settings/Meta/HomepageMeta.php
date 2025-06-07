@@ -48,27 +48,27 @@ class HomepageMeta extends ObjectType implements TypeWithInterfaces {
 		return [
 			'title'               => [
 				'type'        => 'String',
-				'description' => __( 'Title tag.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Title tag.', 'wp-graphql-rank-math' ),
 			],
 			'description'         => [
 				'type'        => 'String',
-				'description' => __( 'Meta description.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Meta description.', 'wp-graphql-rank-math' ),
 			],
 			'hasCustomRobotsMeta' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether custom robots meta for author page are set. Otherwise the default meta will be used, as set in the Global Meta tab.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether custom robots meta for author page are set. Otherwise the default meta will be used, as set in the Global Meta tab.', 'wp-graphql-rank-math' ),
 			],
 			'socialTitle'         => [
 				'type'        => 'String',
-				'description' => __( 'Title when shared on Facebook, Twitter and other social networks.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Title when shared on Facebook, Twitter and other social networks.', 'wp-graphql-rank-math' ),
 			],
 			'socialDescription'   => [
 				'type'        => 'String',
-				'description' => __( 'Description when shared on Facebook, Twitter and other social networks.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Description when shared on Facebook, Twitter and other social networks.', 'wp-graphql-rank-math' ),
 			],
 			'socialImage'         => [
 				'type'        => 'MediaItem',
-				'description' => __( 'Image displayed when your homepage is shared on Facebook and other social networks.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Image displayed when your homepage is shared on Facebook and other social networks.', 'wp-graphql-rank-math' ),
 				'resolve'     => static function ( $source, array $args, AppContext $context ) {
 					return ! empty( $source['socialImageId'] ) ? $context->get_loader( 'post' )->load_deferred( $source['socialImageId'] ) : null;
 				},

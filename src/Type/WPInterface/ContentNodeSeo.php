@@ -53,11 +53,11 @@ class ContentNodeSeo extends InterfaceType implements TypeWithInterfaces {
 		return [
 			'isPillarContent' => [
 				'type'        => 'Boolean',
-				'description' => __( 'Whether the item is considered pillar (cornerstone) content', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Whether the item is considered pillar (cornerstone) content', 'wp-graphql-rank-math' ),
 			],
 			'seoScore'        => [
 				'type'        => SeoScore::get_type_name(),
-				'description' => __( 'The SEO score', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The SEO score', 'wp-graphql-rank-math' ),
 			],
 		];
 	}

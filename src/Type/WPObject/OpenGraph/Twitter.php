@@ -37,62 +37,62 @@ class Twitter extends ObjectType {
 		return [
 			'card'                    => [
 				'type'        => TwitterCardTypeEnum::get_type_name(),
-				'description' => __( 'The Twitter card type', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Twitter card type', 'wp-graphql-rank-math' ),
 			],
 			'title'                   => [
 				'type'        => 'String',
-				'description' => __( 'Title of content', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Title of content', 'wp-graphql-rank-math' ),
 			],
 			'description'             => [
 				'type'        => 'String',
-				'description' => __( 'Description of content (maximum 200 characters)', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Description of content (maximum 200 characters)', 'wp-graphql-rank-math' ),
 			],
 			'appCountry'              => [
 				'type'        => 'String',
-				'description' => __( 'The app country.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The app country.', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?string => ! empty( $source['app:country'] ) ? (string) $source['app:country'] : null,
 			],
 			'ipadApp'                 => [
 				'type'        => TwitterApp::get_type_name(),
-				'description' => __( 'The Twitter iPad app meta', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Twitter iPad app meta', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?array => self::get_app_meta( $source, 'ipad' ),
 			],
 			'iphoneApp'               => [
 				'type'        => TwitterApp::get_type_name(),
-				'description' => __( 'The Twitter iPhone app meta', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Twitter iPhone app meta', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?array => self::get_app_meta( $source, 'iphone' ),
 			],
 			'googleplayApp'           => [
 				'type'        => TwitterApp::get_type_name(),
-				'description' => __( 'The Twitter Google Play app meta', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The Twitter Google Play app meta', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?array => self::get_app_meta( $source, 'googleplay' ),
 			],
 			'playerUrl'               => [
 				'type'        => 'Int',
-				'description' => __( 'URL of the twitter player.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'URL of the twitter player.', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?int => ! empty( $source['player'] ) ? (int) $source['player'] : null,
 			],
 			'playerStream'            => [
 				'type'        => 'String',
-				'description' => __( 'URL to raw video or audio stream', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'URL to raw video or audio stream', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?string => ! empty( $source['player:stream'] ) ? (string) $source['player:stream'] : null,
 			],
 			'site'                    => [
 				'type'        => 'String',
-				'description' => __( '@username of website', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( '@username of website', 'wp-graphql-rank-math' ),
 			],
 			'playerStreamContentType' => [
 				'type'        => 'String',
-				'description' => __( 'The content type of the stream', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'The content type of the stream', 'wp-graphql-rank-math' ),
 				'resolve'     => static fn ( $source ): ?string => ! empty( $source['player:stream:content_type'] ) ? (string) $source['player:stream:content_type'] : null,
 			],
 			'image'                   => [
 				'type'        => 'String',
-				'description' => __( 'URL of image to use in the card.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'URL of image to use in the card.', 'wp-graphql-rank-math' ),
 			],
 			'creator'                 => [
 				'type'        => 'String',
-				'description' => __( '@username of content creator', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( '@username of content creator', 'wp-graphql-rank-math' ),
 			],
 
 		];

@@ -36,15 +36,15 @@ class RedirectionStatusEnum extends EnumType {
 	public static function get_values(): array {
 		return [
 			'ACTIVE'   => [
-				'description' => __( 'Active.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Active.', 'wp-graphql-rank-math' ),
 				'value'       => 'active',
 			],
 			'INACTIVE' => [
-				'description' => __( 'Inactive.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Inactive.', 'wp-graphql-rank-math' ),
 				'value'       => 'inactive',
 			],
 			'TRASH'    => [
-				'description' => __( 'Trashed.', 'wp-graphql-rank-math' ),
+				'description' => static fn () => __( 'Trashed.', 'wp-graphql-rank-math' ),
 				'value'       => 'trash',
 			],
 		];
