@@ -6,4 +6,4 @@
  */
 
 define( 'WPGRAPHQL_SEO_PLUGIN_FILE', 'wp-graphql-rank-math.php' );
-define( 'WPGRAPHQL_SEO_VERSION', '0.3.3' );
+define( 'WPGRAPHQL_SEO_VERSION', '0.3.4' );
